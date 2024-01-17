@@ -4,6 +4,11 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 
 import {fileURLToPath, URL} from 'node:url'
 
+// 导入 Antdv 的 Design Token 应用到 less 中
+import { theme } from 'ant-design-vue';
+const { defaultAlgorithm, defaultSeed } = theme;
+const mapToken = defaultAlgorithm(defaultSeed);
+
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
     // 从 /env/.env 中读取环境变量
@@ -21,7 +26,7 @@ export default defineConfig(({command, mode}) => {
             base: '/' + env.APP_BUILD_NAME + '/',
             build: {
                 outDir: env.APP_BUILD_NAME,
-                sourcemap: true,
+                sourcemap: env.APP_SOURCE_MAP,
             },
         });
     }
@@ -34,12 +39,19 @@ export default defineConfig(({command, mode}) => {
             vue(),
             vueJsx(),
         ],
-        assetsInclude: ['**/*.toml'],
+        // assetsInclude: ['**/*.toml'],
         resolve: {
             alias: {
                 '@': fileURLToPath(new URL('./src', import.meta.url))
             }
         },
+        css: {
+            preprocessorOptions: {
+                less: {
+                    modifyVars: mapToken,
+                }
+            }
+        }
     });
     return conf;
 });
