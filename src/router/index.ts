@@ -17,7 +17,11 @@ const router = createRouter({
             path: '/',
             name: 'main',
             component: () => import('@/views/Main.vue'),
-            children: []
+            children: [{
+                path: '/',
+                name: 'data-model',
+                component: () => defineAsyncComponent(() => import('@/views/pages/main-data-model/DataModel.vue')),
+            }]
         },
     ],
 })
@@ -49,6 +53,15 @@ export const setRouter = (routerConfig: RouteItem[], pName = 'main') => {
         // }
         // 外链跳转属于特殊的菜单结构，不添加到 router 中
         if (item.externalLink) return;
+        /****
+         ***
+         *
+         * Bug report:
+         * URL为null是，route path 为空，无法添加报错。
+         *
+         *
+         ***/
+
         router.addRoute(pName, route);
         // 处理路由子节点
         if (Array.isArray(item.children) && item.children.length) {

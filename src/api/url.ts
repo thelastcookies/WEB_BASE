@@ -1,1 +1,1 @@
-export const baseUrl = import.meta.env.APP_BASE_URL;
+export const baseUrl = import.meta.env.APP_API_BASE_URL;

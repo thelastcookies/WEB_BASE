@@ -1,18 +1,18 @@
 import {defineConfig, loadEnv} from 'vite'
-import vue from '@vitejs/plugin-vue'
-import vueJsx from '@vitejs/plugin-vue-jsx'
-
 import {fileURLToPath, URL} from 'node:url'
-
+import {createVitePlugins} from "./plugins";
 // 导入 Antdv 的 Design Token 应用到 less 中
 import { theme } from 'ant-design-vue';
+import {resolve} from "node:path";
 const { defaultAlgorithm, defaultSeed } = theme;
 const mapToken = defaultAlgorithm(defaultSeed);
+
+const baseSrc = fileURLToPath(new URL('./src', import.meta.url))
 
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
     // 从 /env/.env 中读取环境变量
-    const env = loadEnv('', process.cwd() + "/env", '');
+    const env = loadEnv('', process.cwd() + '/env', 'APP_');
     let conf = {};
     // 一些开发和构建时的配置
     if (command === 'serve') {
@@ -35,15 +35,14 @@ export default defineConfig(({command, mode}) => {
         // .env 目录以及前缀设置
         envDir: 'env',
         envPrefix: 'APP_',
-        plugins: [
-            vue(),
-            vueJsx(),
-        ],
+        // plugins
+        plugins: createVitePlugins(),
         // assetsInclude: ['**/*.toml'],
         resolve: {
-            alias: {
-                '@': fileURLToPath(new URL('./src', import.meta.url))
-            }
+            alias: [{
+                find: '@',
+                replacement: baseSrc,
+            }]
         },
         css: {
             preprocessorOptions: {

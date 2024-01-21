@@ -1,11 +1,12 @@
 <script setup lang="ts">
 import testComp from "@/components/samples/TsxCompSample.tsx";
+
+// console.log(import.meta.env);
 </script>
 
 <template>
     <div class="main-container">
-        <test-comp></test-comp>
-        MAIN
+        <router-view />
     </div>
 </template>
 
