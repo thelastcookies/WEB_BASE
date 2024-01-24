@@ -7,6 +7,7 @@ export interface DataModel {
 }
 
 export interface DataModelField {
+    id: string;
     fieldName: string;
     fieldAlias: string;
     fieldType: string;
@@ -15,12 +16,8 @@ export interface DataModelField {
     isPrimaryKey?: boolean;
     isUnique?: boolean;
     isAutoIncrement?: boolean;
+    isNotNull: boolean;
+    fieldDict: string;
     referencedDataModel?: string;
     referencedField?: string;
-
-    notNull: boolean;
-    fieldDict: string;
-
-    queryConditions: string;
-    orderBy: string;
 }

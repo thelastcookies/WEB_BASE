@@ -1,19 +1,18 @@
-import type {AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig} from 'axios'
+/**
+ * 对于 axios 请求的扩展，包括请求拦截器、响应拦截器和错误处理
+ * 提供 axios 实例
+ */
+import type {AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig} from 'axios'
 import axios from 'axios'
-// import {AxiosLoading} from '@/utils/loading'
 import router from '@/router'
-import {ContentTypeEnum, RequestEnum} from "@/enums/http.ts";
+import {ContentTypeEnum} from "@/enums/http.ts";
 import {notification} from 'ant-design-vue';
 import {useTokenStore} from "@/stores/token.ts";
 import {NamingStyleTransfer} from "@/enums/naming-style-transfer.ts";
-import {RE_URL_FIRST_CUT} from "@/utils/regexp.ts";
+import {RE_CUT_URL_PREFIX} from "@/utils/regexp.ts";
 
 const {token} = storeToRefs(useTokenStore());
 
-/**
- * Represents the response body returned by an API request.
- * @template T The type of the data contained in the response body.
- */
 export interface ResponseBody<T = any> {
     code: number
     data?: T
@@ -21,31 +20,23 @@ export interface ResponseBody<T = any> {
 }
 
 export interface RequestConfigExtra {
+    // 请求时是否携带 token
     token?: boolean;
+    // 是否使用 mock
     mock?: boolean;
     loading?: boolean;
     namingStyleTransfer?: NamingStyleTransfer;
 }
 
-const instance: AxiosInstance = axios.create({
-    baseURL: import.meta.env.VITE_APP_BASE_API ?? '/',
-    timeout: 60000,
-    headers: {'Content-Type': ContentTypeEnum.JSON},
-});
-
-instance.interceptors.request.use(requestHandler);
-
-instance.interceptors.response.use(responseHandler, errorHandler);
-
-export default instance;
-
 // const axiosLoading = new AxiosLoading();
 
-async function requestHandler(config: InternalAxiosRequestConfig & RequestConfigExtra): Promise<InternalAxiosRequestConfig> {
+const requestHandler = async (
+    config: InternalAxiosRequestConfig & RequestConfigExtra
+): Promise<InternalAxiosRequestConfig> => {
     if (import.meta.env.DEV
         && import.meta.env.APP_API_MOCK_URL
         && config.mock) {
-        const urlProc = config.url?.replace(RE_URL_FIRST_CUT, "/");
+        const urlProc = config.url?.replace(RE_CUT_URL_PREFIX, "/");
         config.url = import.meta.env.APP_API_MOCK_URL + urlProc;
     }
     if (token.value && config.token !== false) {
@@ -58,11 +49,14 @@ async function requestHandler(config: InternalAxiosRequestConfig & RequestConfig
     return config;
 }
 
-function responseHandler(response: any): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any {
-    return response.data
+const responseHandler = (response: any): ResponseBody<any> | AxiosResponse<any> | Promise<any> | any => {
+    /******************************************
+     * 预留 NamingStyleTransfer 的处理
+     */
+    return response.data;
 }
 
-function errorHandler(error: AxiosError): Promise<any> {
+const errorHandler = (error: AxiosError): Promise<any> => {
     const [notificationApi] = notification.useNotification();
 
     if (error.response) {
@@ -110,7 +104,7 @@ interface AxiosOptions<T> {
     data?: T
 }
 
-function instancePromise<R = any, T = any>(options: AxiosOptions<T> & RequestConfigExtra): Promise<ResponseBody<R>> {
+export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & RequestConfigExtra): Promise<ResponseBody<R>> => {
     const {loading} = options;
     return new Promise((resolve, reject) => {
         instance.request(options).then((res) => {
@@ -123,44 +117,16 @@ function instancePromise<R = any, T = any>(options: AxiosOptions<T> & RequestCon
             }
         });
     });
-}
+};
 
-export function useGet<R = any, T = any>(url: string, params?: T, config?: AxiosRequestConfig & RequestConfigExtra): Promise<ResponseBody<R>> {
-    const options = {
-        url,
-        params,
-        method: RequestEnum.GET,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
-}
+const instance: AxiosInstance = axios.create({
+    baseURL: '/',
+    timeout: 60000,
+    headers: {'Content-Type': ContentTypeEnum.JSON},
+});
 
-export function usePost<R = any, T = any>(url: string, data?: T, config?: AxiosRequestConfig & RequestConfigExtra): Promise<ResponseBody<R>> {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.POST,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
-}
+instance.interceptors.request.use(requestHandler);
 
-export function usePut<R = any, T = any>(url: string, data?: T, config?: AxiosRequestConfig & RequestConfigExtra): Promise<ResponseBody<R>> {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.PUT,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
-}
+instance.interceptors.response.use(responseHandler, errorHandler);
 
-export function useDelete<R = any, T = any>(url: string, data?: T, config?: AxiosRequestConfig & RequestConfigExtra): Promise<ResponseBody<R>> {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.DELETE,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
-}
+export default instance;

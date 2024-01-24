@@ -1,5 +1,5 @@
 import {baseUrl} from "@/api/url.ts";
-import {DataModel} from "@/api/main_data/model/types.ts";
+import {DataModel} from "@/api/main-data/model/types.ts";
 
 export const getDataModelList = () => {
     return useGet<DataModel[]>(

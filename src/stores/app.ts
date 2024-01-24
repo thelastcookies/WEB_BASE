@@ -3,7 +3,7 @@ import {ref} from "vue";
 import {Token} from "@/utils/token";
 import {useRouterStore} from "@/stores/router";
 import {useUserStore} from "@/stores/user";
-import router from "@/router";
+import {useTokenStore} from "@/stores/token.ts";
 
 export const useAppStore = defineStore('app', () => {
     const windowInnerWidth = ref(0);
@@ -12,16 +12,18 @@ export const useAppStore = defineStore('app', () => {
     const signOut = () => {
         Token.removeToken();
         const routerStore = useRouterStore();
+        routerStore.$reset();
         const userStore = useUserStore();
-        routerStore.routerConf = [];
-        userStore.userToken = "";
-        userStore.userInfo = {};
-        userStore.userPerms = [];
+        userStore.$reset();
+        const tokenStore = useTokenStore();
+        tokenStore.$reset();
+
+        const router = useRouter();
 
         if (import.meta.env.APP_LOGIN_ENABLE === "true") {
             router.push("/login");
         } else {
-            // parent.window.location.assign("http://172.22.116.13:8080/cas/logout?service=http://172.22.116.13:8080/cas/login?service=http%3A%2F%2F172.22.116.20%3A7303%2Fportal%2F");
+            parent.window.location.assign("");
         }
     }
     return {

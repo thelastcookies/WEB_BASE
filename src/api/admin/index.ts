@@ -1,1 +1,1 @@
-export const permUrl = import.meta.env.APP_PERM_URL;
+export const permUrl = import.meta.env.APP_API_PERM_URL;

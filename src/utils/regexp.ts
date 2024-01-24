@@ -1,1 +1,4 @@
-export const RE_URL_FIRST_CUT = new RegExp("(https?|ftp|file)://[\\w-+&@#%?=~|!:,.;]+[\\w-+&@#%=~|]/", "g");
+/**
+ * 全局的正则表达式
+ */
+export const RE_CUT_URL_PREFIX = new RegExp("(https?|ftp|file)://[\\w-+&@#%?=~|!:,.;]+[\\w-+&@#%=~|]/", "g");

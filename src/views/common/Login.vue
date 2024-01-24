@@ -71,7 +71,7 @@ const appTitle = import.meta.env.APP_TITLE;
 .login-container {
     width: 100%;
     height: 100%;
-    background-image: url("../assets/images/login/login-bg.png");
+    background-image: url("../../assets/images/login/login-bg.png");
     background-repeat: no-repeat;
     background-size: cover;
     background-position: center;

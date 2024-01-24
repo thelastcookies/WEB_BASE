@@ -1,5 +1,5 @@
-import {ResponseBody} from "../../../src/hooks/request";
-import {DataModel} from "../../../src/api/main_data/model/types";
+// import {ResponseBody} from "../../../src/hooks/axios";
+// import {DataModel} from "../../../src/api/main-data/model/types";
 
 // export default eventHandler((event): ResponseBody<DataModel> => {
 //     const id = getRouterParam(event, 'id');

@@ -1,4 +1,4 @@
-import {ResponseBody} from "../../../src/hooks/request";
+import {ResponseBody} from "../../../src/hooks/axios";
 
 export default eventHandler((event): ResponseBody => {
     const id = event.context.params.id;
