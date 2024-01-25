@@ -1,26 +1,23 @@
-import {permUrl} from "@/api/admin";
-import {LoginParams, LoginResultModel, UserInfo} from "./types.ts";
+import type {LoginParams, UserInfo} from "./types";
+import type {AdminResponseBody} from "@/api/admin";
 
 export const login = (params: LoginParams) => {
-    return usePost<LoginResultModel, LoginParams>(
-        `${permUrl}/Base_Manage/Home/SubmitLogin`,
-        params,
-        {
-            token: true,
-        }
+    return usePost<AdminResponseBody, LoginParams>(
+        `${PERM_URL}/Base_Manage/Home/SubmitLogin`,
+        params
     );
 }
 
 // export function changePwd() {
 //     return axios({
-//         url: `${permUrl}/Base_Manage/Home/ChangePwd`,
+//         url: `${PERM_URL}/Base_Manage/Home/ChangePwd`,
 //         method: 'POST'
 //     });
 // }
 
 export function getOperatorInfo() {
-    return usePost<UserInfo>(
-        `${permUrl}/Base_Manage/Home/GetOperatorInfo`,
+    return usePost<AdminResponseBody>(
+        `${PERM_URL}/Base_Manage/Home/GetOperatorInfo`,
         null,
         {
             token: true,
@@ -29,8 +26,8 @@ export function getOperatorInfo() {
 }
 
 export function getOperatorMenuList() {
-    return usePost<any>(
-        `${permUrl}/Base_Manage/Home/GetOperatorMenuList`,
+    return usePost<AdminResponseBody>(
+        `${PERM_URL}/Base_Manage/Home/GetOperatorMenuList`,
         null,
         {
             token: true,
@@ -39,7 +36,7 @@ export function getOperatorMenuList() {
 }
 
 export function getOperatorMenuListByUsername() {
-    return usePost<LoginResultModel>(
-        `${permUrl}/Base_Manage/Home/GetOperatorMenuListByUserName`,
+    return usePost<AdminResponseBody>(
+        `${PERM_URL}/Base_Manage/Home/GetOperatorMenuListByUserName`,
     );
 }

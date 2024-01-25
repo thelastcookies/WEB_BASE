@@ -2,22 +2,33 @@ import {createApp} from 'vue';
 import './style.css';
 import App from './App.vue';
 
-import {createPinia} from 'pinia';
-import router from '@/router';
 
 import './assets/index.css';
 
-const app = createApp(App);
+export const app = createApp(App);
 
 // Pinia
+import {createPinia} from 'pinia';
 app.use(createPinia());
 // router
+import router from '@/router';
+// 导入路由守卫
+import '@/router/guards.ts';
 app.use(router);
 
 // UI框架 ant-design-vue
-import Antd from 'ant-design-vue';
+import Antd, {message, notification} from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 app.use(Antd);
+
+// 全局提供 message 和 notification
+const [msg, msgContextHolder] = message.useMessage();
+const [noti, notiContextHolder] = notification.useNotification();
+
+app.provide(MsgInjectionKey, msg);
+app.provide(MsgContextHolderInjectionKey, msgContextHolder);
+app.provide(NotiInjectionKey, noti);
+app.provide(NotiContextHolderInjectionKey, notiContextHolder);
 
 // dayjs 以及本地化
 import 'dayjs/locale/zh-cn';

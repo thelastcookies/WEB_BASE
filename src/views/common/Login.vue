@@ -1,26 +1,44 @@
 <script setup lang="ts">
-import {reactive} from "vue";
-
-interface FormState {
-    username: string;
-    password: string;
-    remember: boolean;
-}
-
-const formState = reactive<FormState>({
-    username: '',
-    password: '',
-    remember: true,
-});
-const onFinish = (values: any) => {
-    console.log('Success:', values);
-};
-
-const onFinishFailed = (errorInfo: any) => {
-    console.log('Failed:', errorInfo);
-};
+import type {MessageInstance} from "ant-design-vue/es/message/interface";
+import type {LoginParams} from "@/api/admin/home/types";
+import type {Rule} from "ant-design-vue/es/form";
 
 const appTitle = import.meta.env.APP_TITLE;
+const msg = inject(MsgInjectionKey) as MessageInstance;
+
+const loginForm = reactive<LoginParams>({
+    userName: '',
+    password: '',
+});
+
+const loginFormRules: Record<string, Rule[]> = {
+    userName: [{required: true, message: '请输入用户名!', trigger: 'blur'}],
+    password: [{required: true, message: '请输入密码!', trigger: 'blur'}],
+};
+
+const handleSubmitLogin = async () => {
+    msg.loading({
+        content: '正在登录中，请稍候。',
+        key: LOGIN_LOADING_KEY,
+    });
+    const loginRes = await login(loginForm);
+    if (loginRes.Success) {
+        const tokenRes = loginRes.Data;
+        const {setToken} = useTokenStore();
+        setToken(tokenRes);
+        msg.loading({
+            content: '登录成功。正在加载中，请稍候。',
+            key: LOGIN_LOADING_KEY ,
+            duration: 0,
+        });
+        await router.push("/");
+    } else {
+        msg.error({
+            content: loginRes.Msg,
+            key: LOGIN_LOADING_KEY,
+        });
+    }
+};
 </script>
 
 <template>
@@ -31,35 +49,22 @@ const appTitle = import.meta.env.APP_TITLE;
                 <div class="login-form-title">{{ appTitle }}</div>
                 <div class="login-form-subtitle">安全生产运检平台</div>
                 <a-form
-                    :model="formState"
+                    :model="loginForm"
                     name="basic"
+                    :rules="loginFormRules"
                     :label-col="{ span: 8 }"
                     :wrapper-col="{ span: 16 }"
                     autocomplete="off"
-                    @finish="onFinish"
-                    @finishFailed="onFinishFailed"
+                    @submit="handleSubmitLogin"
                 >
-                    <a-form-item
-                        label="Username"
-                        name="username"
-                        :rules="[{ required: true, message: 'Please input your username!' }]"
-                    >
-                        <a-input v-model:value="formState.username" />
+                    <a-form-item label="用户名" name="userName">
+                        <a-input v-model:value="loginForm.userName"/>
                     </a-form-item>
-                    <a-form-item
-                        label="Password"
-                        name="password"
-                        :rules="[{ required: true, message: 'Please input your password!' }]"
-                    >
-                        <a-input-password v-model:value="formState.password" />
+                    <a-form-item label="密码" name="password">
+                        <a-input-password v-model:value="loginForm.password"/>
                     </a-form-item>
-
-                    <a-form-item name="remember" :wrapper-col="{ offset: 8, span: 16 }">
-                        <a-checkbox v-model:checked="formState.remember">Remember me</a-checkbox>
-                    </a-form-item>
-
                     <a-form-item :wrapper-col="{ offset: 8, span: 16 }">
-                        <a-button type="primary" html-type="submit">Submit</a-button>
+                        <a-button type="primary" html-type="submit">登录</a-button>
                     </a-form-item>
                 </a-form>
             </div>
@@ -84,12 +89,14 @@ const appTitle = import.meta.env.APP_TITLE;
         background-size: cover;
         background-position: center;
     }
+
     .login-form-container {
         width: 100%;
         height: calc(100% - 175px);
         display: flex;
         align-items: center;
     }
+
     .login-form {
         width: 500px;
         height: 480px;
@@ -99,6 +106,7 @@ const appTitle = import.meta.env.APP_TITLE;
         margin-left: 200px;
         padding: 35px 50px;
         box-sizing: border-box;
+
         .login-form-title {
             font-size: 26px;
             font-weight: 500;
@@ -106,6 +114,7 @@ const appTitle = import.meta.env.APP_TITLE;
             text-align: center;
             letter-spacing: 2px;
         }
+
         .login-form-subtitle {
             font-size: 17px;
             font-weight: 500;
@@ -113,10 +122,12 @@ const appTitle = import.meta.env.APP_TITLE;
             text-align: center;
             margin-top: 10px;
         }
+
         .form {
             margin-top: 60px;
 
         }
+
         .base-btn {
             width: 400px;
             height: 40px;

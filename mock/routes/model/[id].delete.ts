@@ -1,6 +1,6 @@
-import {ResponseBody} from "../../../src/hooks/axios";
+import type {BaseResponseBody} from "../../../src/api/main-data";
 
-export default eventHandler((event): ResponseBody => {
+export default eventHandler((event): BaseResponseBody => {
     const id = event.context.params.id;
     if (typeof id !== 'number') {
         setResponseStatus(event, 403);

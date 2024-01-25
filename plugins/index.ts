@@ -2,6 +2,7 @@ import type {PluginOption} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
+import {Options} from "unplugin-auto-import/types";
 
 
 /**
@@ -16,14 +17,29 @@ export function createVitePlugins() {
         vue(),
         vueJsx(),
         AutoImport({
+            include: [
+                /\.tsx?$/, // .ts, .tsx
+                /\.vue$/,
+                /\.vue\?vue/, // .vue
+            ],
             imports: [
                 'vue',
                 'vue-router',
                 'pinia',
             ],
             dts: 'src/types/auto-imports.d.ts',
-            dirs: ['src/stores', 'src/hooks', 'src/api/**/index.ts', 'src/utils/**.ts'],
-        }),
+            dirs: [
+                'src/stores',
+                'src/hooks',
+                'src/router',
+                'src/utils',
+                'src/api/**/*.ts',
+                'src/types/**/*.ts',
+                'src/views/**/*.vue',
+            ],
+            ignoreDts: [
+            ],
+        } as Options),
     ]
     return vitePluginList
 }

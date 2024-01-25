@@ -1,10 +1,3 @@
-import {defineStore} from "pinia";
-import {ref} from "vue";
-import {Token} from "@/utils/token";
-import {useRouterStore} from "@/stores/router";
-import {useUserStore} from "@/stores/user";
-import {useTokenStore} from "@/stores/token.ts";
-
 export const useAppStore = defineStore('app', () => {
     const windowInnerWidth = ref(0);
     const windowInnerHeight = ref(0);

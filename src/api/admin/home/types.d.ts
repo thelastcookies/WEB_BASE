@@ -3,10 +3,6 @@ export interface LoginParams {
     password: string;
 }
 
-export interface LoginResultModel {
-    token: string;
-}
-
 export interface UserInfo {
 
 }

@@ -1,6 +1,4 @@
-import {defineStore} from 'pinia'
-import {getOperatorInfo} from "@/api/admin/home";
-import {UserInfo} from "@/api/admin/home/types.ts";
+import type {UserInfo} from "@/api/admin/home/types";
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = shallowRef<UserInfo>();
@@ -8,8 +6,8 @@ export const useUserStore = defineStore('user', () => {
 
     const getUserInfo = async () => {
         // 获取用户信息
-        const { data } = await getOperatorInfo();
-        userInfo.value = data;
+        const { Data } = await getOperatorInfo();
+        userInfo.value = Data;
     };
 
     const $reset = () => {

@@ -1,7 +1,7 @@
-import {ResponseBody} from "../../../src/hooks/axios";
-import {DataModel} from "../../../src/api/main-data/model/types";
+import type {DataModel} from "../../../src/api/main-data/model/types";
+import type {BaseResponseBody} from "../../../src/api/main-data";
 
-export default eventHandler(async (event): Promise<ResponseBody<DataModel>> => {
+export default eventHandler(async (event): Promise<BaseResponseBody<DataModel>> => {
     const body = await readBody(event);
     console.log(body);
     // const id = getRouterParam(event, 'id');

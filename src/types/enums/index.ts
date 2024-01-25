@@ -8,7 +8,7 @@ export enum LoadActionTypeEnum {
     BACKEND = 'BACKEND', // 后端动态加载菜单， 使用这种方式将从后端接口加载菜单和路由信息
 }
 
-export enum STATUS {
+export enum StatusEnum {
     OFF = '0',
     RUNNING = '1',
     ONLINE = '2',
