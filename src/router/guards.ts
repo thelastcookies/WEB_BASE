@@ -7,7 +7,8 @@ const loginPath = '/login';
 router.beforeEach(async (to, _, next) => {
     setRouteEmitter(to);
     // 获取 token 进行校验
-    const {token} = useTokenStore();
+    const {getToken} = useTokenStore();
+    const token = getToken();
     if (!token) {
         //  如果 token 不存在就跳转到登录页面
         if (!accessWhileList.includes(to.path) && !to.path.startsWith('/redirect')) {

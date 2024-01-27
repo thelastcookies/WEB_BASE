@@ -1,4 +1,5 @@
 import type {UserInfo} from "@/api/admin/home/types";
+import type {ActionMeta} from "@/router/types.ts";
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = shallowRef<UserInfo>();
@@ -6,8 +7,9 @@ export const useUserStore = defineStore('user', () => {
 
     const getUserInfo = async () => {
         // 获取用户信息
-        const { Data } = await getOperatorInfo();
-        userInfo.value = Data;
+        const {Data} = await getOperatorInfo();
+        userInfo.value = preprocessUserInfo(Data.UserInfo);
+        userPerms.value = Data.Permissions;
     };
 
     const $reset = () => {
@@ -22,3 +24,11 @@ export const useUserStore = defineStore('user', () => {
         $reset
     }
 });
+
+export const preprocessUserInfo = (info: any): UserInfo => {
+    return {
+        id: info.Id,
+        userId: info.UserName,
+        realName: info.RealName,
+    } as UserInfo;
+}

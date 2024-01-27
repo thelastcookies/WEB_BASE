@@ -27,7 +27,7 @@ export const useRouterStore = defineStore('router', () => {
     let currentRouteName = ref("");
 
     let tabList = [] as Tab[];
-    const homePageId = import.meta.env.APP_HOMEPAGE;
+    const homePageId = import.meta.env.APP_HOMEPAGE_ID;
 
     // const routeTo = (pageInfo: PageInfo) => {
     //     let pageId = pageInfo.pageId;
@@ -136,36 +136,35 @@ export const useRouterStore = defineStore('router', () => {
         return staticActions;
     }
 
+    /**
+     * 获取菜单结构配置，生成路由
+     */
     const generateRouterConf = async () => {
+        // 读取菜单获取途径
         const loadActionType = import.meta.env.APP_LOAD_ACTION_TYPE;
         const getActions = loadActionType === LoadActionTypeEnum.BACKEND ? getActionsFromApi : getActionsFromConfig;
+        // 获取菜单
         const actionTree = await getActions();
-
+        // 保存
+        routerConf.value = actionTree;
+        // 生成路由配置
         const routes = generateRoutes(actionTree);
-
+        // 获取首页配置
+        const homePageId = import.meta.env.APP_HOMEPAGE_ID;
+        const homePage = findPage(routerConf.value, homePageId);
+        if (!homePage) {
+            console.error('RouterStore function "generateRouterConf": Cannot find page by id: ' + homePageId);
+        }
+        // 添加路由到 router
         const routerData = {
             path: '/',
             name: 'rootPath',
-            redirect: '/dashboard',
+            redirect: homePage!.url,
             component: () => import('@/views/layouts/Layout.vue'),
             children: routes
-        }
-        // const routerData = {
-        //     path: '/',
-        //     name: 'rootPath',
-        //     redirect: '/dashboard',
-        //     component: Layout,
-        //     children: [{
-        //         path: '/',
-        //         redirect: '/dashboard',
-        //         name: 'ROOT_EMPTY_PATH',
-        //         component: getRouterModule('RouteView'),
-        //         children: flatRoutesList,
-        //     }]
-        // }
+        };
         router.addRoute('Layout', routerData);
     }
-
 
     const $reset = () => {
 
@@ -180,16 +179,25 @@ export const useRouterStore = defineStore('router', () => {
     }
 });
 
-export const findPage = (list: ActionMeta[], id: string): ActionMeta | undefined => {
+/**
+ * 根据查询条件查找 Action 配置
+ * @param actions Actions
+ * @param key 查询参数
+ * @param field 被查询字段
+ */
+export const findPage = (
+    actions: ActionMeta[],
+    key: string,
+    field: 'id' | 'menuId' | 'title' | 'url' = 'menuId'
+): ActionMeta | undefined => {
     let page: ActionMeta;
-    for (let i = 0, len = list.length; i < len; i++) {
-        if (list[i].id === id) {
-            page = list[i];
-            // page.bc.push(list[i].displayName);
+    for (let i = 0, len = actions.length; i < len; i++) {
+        if (actions[i][field] === key) {
+            page = actions[i];
             return page;
         }
-        if (list[i].children) {
-            const p = findPage(list[i].children as ActionMeta[], id);
+        if (actions[i].children) {
+            const p = findPage(actions[i].children as ActionMeta[], key, field);
             if (p) {
                 return p;
             }
@@ -197,25 +205,16 @@ export const findPage = (list: ActionMeta[], id: string): ActionMeta | undefined
     }
 }
 
-export const findPageByName = (list: ActionMeta[], name: string): ActionMeta | undefined => {
-    for (let i = 0, len = list.length; i < len; i++) {
-        if (list[i].name === name) {
-            return list[i];
-        }
-        if (list[i].children) {
-            const p = findPageByName(list[i].children as ActionMeta[], name);
-            if (p) {
-                return p;
-            }
-        }
-    }
-}
-
+/**
+ * 转换接口数据为 Actions 数据
+ * @param actionTree
+ */
 export const preprocessActionTree = (actionTree: any): ActionMeta[] => {
     return actionTree.map((item: any) => {
         let route: ActionMeta = {};
-        route.id = item.id ?? '';
-        route.name = item.name ?? '';
+        route.id = item.Id ?? '';
+        route.pId = item.ParentId ?? '';
+        route.menuId = item.MenuId ?? '';
         route.title = item.Text ?? '';
         route.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
         route.url = item.Url ?? '';
@@ -224,7 +223,9 @@ export const preprocessActionTree = (actionTree: any): ActionMeta[] => {
         route.component = item.Component ?? '';
         route.query = item.Query ? JSON.parse(item.Query) : '';
         route.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
-        route.children = item.Children ? preprocessActionTree(item.Children) : [];
+        if (item.Children) {
+            route.children = preprocessActionTree(item.Children);
+        }
         return route;
     });
 }
@@ -233,7 +234,7 @@ export const preprocessActionTree = (actionTree: any): ActionMeta[] => {
  * 将 Actions 处理为 Routes 并拉平。
  * @param actions 待处理的 actionList
  */
-function generateRoutes(actions: ActionMeta[]) {
+const generateRoutes = (actions: ActionMeta[]) => {
     const routeData = [] as RouteRecordRaw[];
     for (const action of actions) {
         if (action.children && action.children.length) {
@@ -251,7 +252,7 @@ const actionToRoute = (action: ActionMeta) => {
     const redirect = action.url?.startsWith('/redirect') ? action.url?.split('/redirect')[1] : undefined;
     return {
         path: action.url,
-        name: action.name,
+        name: action.menuId,
         component: getRouterModule(action.component),
         redirect,
     } as RouteRecordRaw;

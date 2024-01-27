@@ -34,8 +34,8 @@ export const getRouterModule = (path?: string): any => {
         path = path.slice(1);
     }
     // 组装页面路径
-    const fullPath = `/src/pages/${path}.vue`;
-    const fullPathIndex = `/src/pages/${path}/index.vue`;
+    const fullPath = `/src/views/${path}.vue`;
+    const fullPathIndex = `/src/views/${path}/index.vue`;
     return fullPathIndex in modules
         ? checkEager(modules[fullPathIndex])
         : checkEager(modules[fullPath]);

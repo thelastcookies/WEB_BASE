@@ -15,8 +15,8 @@ export enum MenuPageType {
 }
 
 export enum ShowInMenuType {
-    HIDE = 0,
-    SHOW = 1,
+    HIDE = "0",
+    SHOW = "1",
     // 预留扩展
 }
 
@@ -27,8 +27,10 @@ export enum ShowInMenuType {
 export interface ActionMeta {
     // 路由 id
     id?: string;
+    // 父级 id
+    pId?: string;
     // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项
-    name?: string;
+    menuId?: string;
     // 路由配置的中文描述
     title?: string;
     // 路由配置的类型
@@ -41,6 +43,8 @@ export interface ActionMeta {
     affix?: boolean;
     // 组件配置
     component?: string;
+    // 排序
+    sort?: number;
     // 是否 KeepAlive
     keepAlive?: boolean
     // 配置携带的默认查询参数

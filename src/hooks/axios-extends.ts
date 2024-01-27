@@ -30,13 +30,13 @@ const requestHandler = async (
         config.url = import.meta.env.APP_API_MOCK_URL + urlProc;
     }
     if (config.token) {
-        const {token} = storeToRefs(useTokenStore());
-        if (token.value) {
-            config.headers.set('Authorization', "Bearer " + token.value);
+        const {getToken} = useTokenStore();
+        const token = getToken();
+        if (token) {
+            config.headers.set('Authorization', "Bearer " + token);
         } else {
             msg?.error('no token');
         }
-
     }
     if (config.loading) {
         // axiosLoading.addLoading();
@@ -107,6 +107,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
         instance.request(options).then((res) => {
             resolve(res as R);
         }).catch((e: Error | AxiosError) => {
+            console.error(e);
             reject(e);
         }).finally(() => {
             if (loading) {
