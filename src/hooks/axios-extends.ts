@@ -3,11 +3,8 @@
  * 提供 axios 实例
  */
 import axios from 'axios';
-import type {MessageInstance} from "ant-design-vue/es/message/interface";
 import type {NamingStyleTransfer} from "@/types/enums/naming-style.ts";
 import type {AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig} from "axios";
-
-const msg = inject(MsgInjectionKey) as MessageInstance;
 
 export interface RequestConfigExtra {
     // 请求时是否携带 token
@@ -35,13 +32,12 @@ const requestHandler = async (
         if (token) {
             config.headers.set('Authorization', "Bearer " + token);
         } else {
-            msg?.error('no token');
+            console.error(`function "requestHandler": Token is required for request '${config.method}' ${config.url}, but it is missing.`);
         }
     }
     if (config.loading) {
         // axiosLoading.addLoading();
     }
-    // if (config.)
     return config;
 }
 
@@ -107,7 +103,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
         instance.request(options).then((res) => {
             resolve(res as R);
         }).catch((e: Error | AxiosError) => {
-            console.error(e);
+            console.error('function "instancePromise": ' + e + '.');
             reject(e);
         }).finally(() => {
             if (loading) {

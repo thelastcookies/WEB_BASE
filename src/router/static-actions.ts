@@ -1,4 +1,4 @@
-import type {ActionMeta} from "@/router/types.ts";
+import type {ActionItem} from "@/router/types.ts";
 
 export const staticActions = [{
     id: "1536643442430447616",
@@ -85,4 +85,4 @@ export const staticActions = [{
             showInMenu: "1",
         }
     ],
-}] as ActionMeta[];
+}] as ActionItem[];

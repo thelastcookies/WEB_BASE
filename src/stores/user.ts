@@ -1,5 +1,4 @@
 import type {UserInfo} from "@/api/admin/home/types";
-import type {ActionMeta} from "@/router/types.ts";
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = shallowRef<UserInfo>();

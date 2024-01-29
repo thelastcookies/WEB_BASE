@@ -25,9 +25,9 @@ router.beforeEach(async (to, _, next) => {
             // 如果用户信息不存在则尝试去获取
             try {
                 await userStore.getUserInfo();
-                const {generateRouterConf} = useRouterStore();
-                // 获取并生成路由配置
-                await generateRouterConf();
+                // 获取 Actions 并生成路由配置
+                const {getActions} = useActionStore();
+                generateRouterConf(await getActions());
                 next({
                     ...to,
                     replace: true,

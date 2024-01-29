@@ -24,7 +24,7 @@ export enum ShowInMenuType {
  * 由接口获取的 Action 信息
  * 为构建路由、菜单、面包屑和 Tab 内容的基本数据
  */
-export interface ActionMeta {
+export interface ActionItem {
     // 路由 id
     id?: string;
     // 父级 id
@@ -52,7 +52,7 @@ export interface ActionMeta {
     // 该配置项是否在系统中展示
     showInMenu?: ShowInMenuType;
     // 子节点
-    children?: ActionMeta[];
+    children?: ActionItem[];
 }
 
 export interface MenuTreeNode {
