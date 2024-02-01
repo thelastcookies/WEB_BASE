@@ -4,7 +4,9 @@ import type {AdminResponseBody} from "@/api/admin";
 export const login = (params: LoginParams) => {
     return usePost<AdminResponseBody, LoginParams>(
         `${PERM_URL}/Base_Manage/Home/SubmitLogin`,
-        params
+        params, {
+            mock: true,
+        }
     );
 }
 
@@ -18,9 +20,9 @@ export const login = (params: LoginParams) => {
 export function getOperatorInfo() {
     return usePost<AdminResponseBody>(
         `${PERM_URL}/Base_Manage/Home/GetOperatorInfo`,
-        null,
-        {
+        null, {
             token: true,
+            mock: true,
         }
     );
 }

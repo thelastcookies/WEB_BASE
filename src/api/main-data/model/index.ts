@@ -12,18 +12,23 @@ export const getDataModelList = () => {
 
 export const getDataModelById = (id: string) => {
     return useGet<DataModel, string>(
-        `${BASE_URL}/model/${id}`
+        `${BASE_URL}/model/${id}`,
+        '', {
+            mock: true
+        }
     );
 }
 
 export const addDataModel = (params: DataModel) => {
     return usePost<null, DataModel>(
         `${BASE_URL}/model`,
-        params
+        params, {
+            mock: true,
+        }
     );
 }
 
-export const putDataModel = (params: DataModel) => {
+export const updDataModel = (params: DataModel) => {
     return usePut<null, DataModel>(
         `${BASE_URL}/model`,
         params

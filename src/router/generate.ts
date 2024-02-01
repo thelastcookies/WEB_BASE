@@ -1,4 +1,4 @@
-import type {ActionItem} from "@/router/types.ts";
+import type {ActionItem} from "@/types";
 import type {RouteRecordRaw} from "vue-router";
 
 /**

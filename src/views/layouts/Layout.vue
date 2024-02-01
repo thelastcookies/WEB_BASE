@@ -1,6 +1,6 @@
 <script setup lang="ts">
 
-import SidebarMenu from "@/views/layouts/SidebarMenu.vue";
+import SidebarMenu from "@/views/layouts/menu/SidebarMenu.vue";
 </script>
 
 <template>

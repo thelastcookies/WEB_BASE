@@ -1,4 +1,4 @@
-import type {ActionItem} from "@/router/types.ts";
+import type {ActionItem} from "@/types";
 
 export const staticActions = [{
     id: "1536643442430447616",

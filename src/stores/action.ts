@@ -1,4 +1,4 @@
-import type {ActionItem} from "@/router/types.ts";
+import type {ActionItem} from "@/types";
 
 export const useActionStore = defineStore('action', () => {
     const actionTree = shallowRef([] as ActionItem[]);

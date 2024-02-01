@@ -1,24 +1,19 @@
-/**
- * 页面类型
- */
-export enum MenuPageType {
-    // 菜单类型
-    MENU = 0,
-    // 页面类型，实际关联 .vue 文件
-    PAGE = 1,
-    // 外链
-    LINK = 2,
-    // iframe
-    IFRAME = 3,
-    // 组态图
-    DIAGRAM = 9
+import {VNodeChild} from "vue";
+
+export type Key = string | number;
+
+interface CommonItem {
+    id: string,
+    name: string,
+}
+interface ListItem extends CommonItem {
+    pId: string,
 }
 
-export enum ShowInMenuType {
-    HIDE = "0",
-    SHOW = "1",
-    // 预留扩展
+interface TreeNode extends ListItem {
+    children?: Array<TreeNode>
 }
+
 
 /**
  * 由接口获取的 Action 信息
@@ -55,10 +50,15 @@ export interface ActionItem {
     children?: ActionItem[];
 }
 
+/**
+ * 用于 Antdv 菜单
+ */
 export interface MenuTreeNode {
-   key: string;
-   title: string;
-   icon?: string;
-   disabled?: boolean;
-   children?: MenuTreeNode[];
+    key: string;
+    label: string;
+    title?: string;
+    icon?: string | (() => VNodeChild);
+    disabled?: boolean;
+    showInMenu?: ShowInMenuType;
+    children?: MenuTreeNode[];
 }

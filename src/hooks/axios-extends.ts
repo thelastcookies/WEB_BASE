@@ -103,7 +103,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
         instance.request(options).then((res) => {
             resolve(res as R);
         }).catch((e: Error | AxiosError) => {
-            console.error('function "instancePromise": ' + e + '.');
+            console.error(`function "instancePromise": ${e}.`);
             reject(e);
         }).finally(() => {
             if (loading) {
