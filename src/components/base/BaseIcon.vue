@@ -2,9 +2,12 @@
 import * as icons from '@ant-design/icons-vue';
 import type {VNodeChild} from 'vue';
 
-const props = defineProps<{
+const props = withDefaults(defineProps<{
     icon: string | ((...args: any[]) => VNodeChild),
-}>();
+    size: number
+}>(), {
+    size: 14
+});
 const iconComp = computed(() => {
     if (typeof (props.icon) === 'function') {
         const node = props.icon();
@@ -18,5 +21,8 @@ const iconComp = computed(() => {
 </script>
 
 <template>
-    <component :is="iconComp" v-if="icon"/>
+    <component :is="iconComp" v-if="icon" :style="{
+        fontSize: size + 'px',
+        lineHeight: size + 'px'
+        }"/>
 </template>

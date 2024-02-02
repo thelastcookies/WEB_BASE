@@ -3,7 +3,7 @@ import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
 import AutoImport from 'unplugin-auto-import/vite';
 import {Options} from "unplugin-auto-import/types";
-
+import UnoCSS from 'unocss/vite';
 
 /**
  * 注入 vite 的插件
@@ -16,6 +16,7 @@ export function createVitePlugins() {
     const vitePluginList: (PluginOption | PluginOption[])[] = [
         vue(),
         vueJsx(),
+        UnoCSS(),
         AutoImport({
             include: [
                 /\.tsx?$/, // .ts, .tsx

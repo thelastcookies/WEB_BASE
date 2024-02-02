@@ -7,7 +7,7 @@ export const useUserStore = defineStore('user', () => {
     const getUserInfo = async () => {
         // 获取用户信息
         const {Data} = await getOperatorInfo();
-        userInfo.value = preprocessUserInfo(Data.UserInfo);
+        userInfo.value = preprocessUserInfo(Data.UserInfo) as UserInfo;
         userPerms.value = Data.Permissions;
     };
 
@@ -27,7 +27,7 @@ export const useUserStore = defineStore('user', () => {
 export const preprocessUserInfo = (info: any): UserInfo => {
     return {
         id: info.Id,
-        userId: info.UserName,
+        userName: info.UserName,
         realName: info.RealName,
     } as UserInfo;
 }

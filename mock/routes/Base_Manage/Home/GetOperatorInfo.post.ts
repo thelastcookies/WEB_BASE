@@ -6,7 +6,9 @@ export default eventHandler(async (event): Promise<AdminResponseBody<Object>> =>
         ErrorCode: 0,
         Data: {
             UserInfo: {
-                Id: 'Admin',
+                Id: 'SuperAdmin',
+                UserName: 'Admin',
+                RealName: '超级管理员',
             },
         },
         Msg: '',

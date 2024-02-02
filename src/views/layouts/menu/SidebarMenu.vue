@@ -2,8 +2,8 @@
 import SubMenu from "@/views/layouts/menu/SubMenu.vue";
 import type {MenuTreeNode, ActionItem} from "@/types";
 
-const openKeys = [] as string[];
-const selectedKeys = [] as string[];
+const openKeys = ref([]);
+const selectedKeys = ref([]);
 const menuData = ref([] as MenuTreeNode[]);
 
 const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
@@ -31,14 +31,32 @@ watch(actionTree, (tree: ActionItem[]) => {
     immediate: true,
 });
 
+const handleMenuClick = (item: MenuTreeNode, key: string, keyPath: any) => {
+    console.log('handleMenuClick item', item);
+    console.log('handleMenuClick key', key);
+    console.log('handleMenuClick keyPath', keyPath);
+}
+
+const onOpenChange = (openKeys: (string | number)[]) => {
+    console.log('onOpenChange openKeys', openKeys);
+}
+
+const onSelect = (item: MenuTreeNode, key: string, selectedKeys: any) => {
+    console.log('onSelect item', item);
+    console.log('onSelect key', key);
+    console.log('onSelect selectedKeys', selectedKeys);
+}
+
 </script>
 
 <template>
     <a-menu
         v-model:openKeys="openKeys"
         v-model:selectedKeys="selectedKeys"
-        style="width: 256px"
         mode="inline"
+        @click="handleMenuClick"
+        @openChange="onOpenChange"
+        @select="onSelect"
     >
         <template v-for="item in menuData">
             <template v-if="!item.showInMenu">

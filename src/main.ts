@@ -10,6 +10,7 @@ export const app = createApp(App);
 // Pinia
 import {createPinia} from 'pinia';
 app.use(createPinia());
+
 // router
 import router from '@/router';
 // 导入路由守卫
@@ -34,5 +35,8 @@ app.provide(NotiContextHolderInjectionKey, notiContextHolder);
 import 'dayjs/locale/zh-cn';
 import dayjs from "dayjs";
 dayjs.locale('zh-cn');
+
+// UnoCss
+import 'virtual:uno.css';
 
 app.mount('#app');

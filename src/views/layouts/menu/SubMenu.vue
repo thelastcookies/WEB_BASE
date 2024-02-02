@@ -14,10 +14,6 @@ const renderTitle = (title: VNodeChild | (() => VNodeChild)) => {
     return title;
 }
 
-const handleMenuClick = (key: string, evt: Event) => {
-    console.log(key);
-    console.log(evt);
-}
 </script>
 
 <template>
@@ -37,7 +33,7 @@ const handleMenuClick = (key: string, evt: Event) => {
         </a-sub-menu>
     </template>
     <template v-else>
-        <a-menu-item :key="item.key" @onTitleClick="handleMenuClick">
+        <a-menu-item :key="item.key">
             <template v-if="item.icon" #icon>
                 <BaseIcon :icon="item.icon" />
             </template>
