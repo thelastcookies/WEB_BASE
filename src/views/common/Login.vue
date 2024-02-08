@@ -2,9 +2,10 @@
 import type {MessageInstance} from "ant-design-vue/es/message/interface";
 import type {LoginParams} from "@/api/admin/home/types";
 import type {Rule} from "ant-design-vue/es/form";
+import {message} from "ant-design-vue";
 
 const appTitle = import.meta.env.APP_TITLE;
-const msg = inject(MsgInjectionKey) as MessageInstance;
+// const msg = inject(MsgInjectionKey) as MessageInstance;
 
 const loginForm = reactive<LoginParams>({
     userName: '',
@@ -16,28 +17,35 @@ const loginFormRules: Record<string, Rule[]> = {
     password: [{required: true, message: '请输入密码!', trigger: 'blur'}],
 };
 
-const handleSubmitLogin = async () => {
-    msg.loading({
+const loginFormRef = ref();
+const handleSubmitLogin = async (formData: LoginParams) => {
+    message.loading({
         content: '正在登录中，请稍候。',
         key: LOGIN_LOADING_KEY,
     });
-    const loginRes = await login(loginForm);
-    if (loginRes.Success) {
-        const tokenRes = loginRes.Data;
-        const {setToken} = useTokenStore();
-        setToken(tokenRes);
-        msg.loading({
-            content: '登录成功。正在加载中，请稍候。',
-            key: LOGIN_LOADING_KEY ,
-            duration: 0,
-        });
-        await router.push("/");
-    } else {
-        msg.error({
-            content: loginRes.Msg,
+    login(formData).then(res => {
+        if (res.Success) {
+            const tokenRes = res.Data;
+            const {setToken} = useTokenStore();
+            setToken(tokenRes);
+            message.loading({
+                content: '登录成功。正在加载中，请稍候。',
+                key: LOGIN_LOADING_KEY,
+                duration: 0,
+            });
+            router.push("/");
+        } else {
+            message.error({
+                content: res.Msg,
+                key: LOGIN_LOADING_KEY,
+            });
+        }
+    }).catch(e => {
+        message.error({
+            content: '登录失败！',
             key: LOGIN_LOADING_KEY,
         });
-    }
+    });
 };
 </script>
 
@@ -49,13 +57,14 @@ const handleSubmitLogin = async () => {
                 <div class="login-form-title">{{ appTitle }}</div>
                 <div class="login-form-subtitle">安全生产运检平台</div>
                 <a-form
+                    ref="loginFormRef"
                     :model="loginForm"
                     name="basic"
                     :rules="loginFormRules"
                     :label-col="{ span: 8 }"
                     :wrapper-col="{ span: 16 }"
                     autocomplete="off"
-                    @submit="handleSubmitLogin"
+                    @finish="handleSubmitLogin"
                 >
                     <a-form-item label="用户名" name="userName">
                         <a-input v-model:value="loginForm.userName"/>

@@ -1,8 +1,5 @@
 import {createApp} from 'vue';
-import './style.css';
 import App from './App.vue';
-
-
 import './assets/index.css';
 
 export const app = createApp(App);
@@ -22,7 +19,7 @@ import Antd, {message, notification} from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 app.use(Antd);
 
-// 全局提供 message 和 notification
+// 为各组件提供 message 和 notification
 const [msg, msgContextHolder] = message.useMessage();
 const [noti, notiContextHolder] = notification.useNotification();
 

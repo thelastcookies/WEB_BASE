@@ -5,30 +5,15 @@ import {
     presetIcons,
     presetTypography,
     presetUno,
-    presetWebFonts,
-    transformerDirectives,
-    transformerVariantGroup
 } from 'unocss';
+import presetThelastcookies from "./preset";
 
 export default defineConfig({
-    shortcuts: [
-        // ...
-    ],
-    theme: {
-        colors: {
-            // ...
-        }
-    },
     presets: [
         presetUno(),
         presetAttributify(),
         presetIcons(),
         presetTypography(),
-        presetWebFonts({
-            fonts: {
-                // ...
-            }
-        })
+        presetThelastcookies(),
     ],
-    transformers: [transformerDirectives(), transformerVariantGroup()],
 })

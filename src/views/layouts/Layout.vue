@@ -1,16 +1,16 @@
 <script setup lang="ts">
-import SidebarMenu from "@/views/layouts/menu/SidebarMenu.vue";
-import BaseIcon from "@/components/base/BaseIcon.vue";
-import BaseAvatar from "@/components/base/BaseAvatar.vue";
+import {message} from "ant-design-vue";
 
-
+onMounted(() => {
+    message.destroy();
+});
 </script>
 
 <template>
-    <a-layout>
-        <a-layout-header class="header">
-            <BaseIcon icon="DashboardOutlined" size="40"></BaseIcon>
-            <BaseAvatar></BaseAvatar>
+    <a-layout w-full h-full>
+        <a-layout-header class="header" flex>
+            <BaseIcon icon="CodeOutlined" :size="40"></BaseIcon>
+            <UserAvatar></UserAvatar>
         </a-layout-header>
         <a-layout>
             <a-layout-sider style="background: #fff">
@@ -33,5 +33,7 @@ import BaseAvatar from "@/components/base/BaseAvatar.vue";
 </template>
 
 <style scoped lang="less">
-
+.ant-layout-header {
+    background-color: #fff;
+}
 </style>

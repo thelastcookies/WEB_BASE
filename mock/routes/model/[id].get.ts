@@ -1,4 +1,4 @@
-import {DataModel} from "../../../src/api/main-data/model/types";
+import type {DataModel} from "../../../src/api/main-data/model/types";
 import {BaseResponseBody} from "../../../src/api/main-data";
 
 export default eventHandler((event): BaseResponseBody<DataModel> => {
