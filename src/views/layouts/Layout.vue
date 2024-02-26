@@ -1,31 +1,33 @@
 <script setup lang="ts">
-import {message} from "ant-design-vue";
+const {routeTo} = useActionStore();
 
 onMounted(() => {
-    message.destroy();
+    routeTo({id: import.meta.env.APP_HOMEPAGE_ID});
 });
 </script>
 
 <template>
     <a-layout w-full h-full>
-        <a-layout-header class="header" flex>
-            <BaseIcon icon="CodeOutlined" :size="40"></BaseIcon>
-            <UserAvatar></UserAvatar>
+        <a-layout-header h-48px>
+            <Header />
         </a-layout-header>
         <a-layout>
-            <a-layout-sider style="background: #fff">
+            <a-layout-sider width="280">
                 <SidebarMenu></SidebarMenu>
             </a-layout-sider>
-            <a-layout style="padding: 0 24px 24px">
-                <a-breadcrumb style="margin: 16px 0">
-                    <a-breadcrumb-item>Home</a-breadcrumb-item>
-                    <a-breadcrumb-item>List</a-breadcrumb-item>
-                    <a-breadcrumb-item>App</a-breadcrumb-item>
-                </a-breadcrumb>
-                <a-layout-content
-                    :style="{ background: '#fff', padding: '24px', margin: 0, minHeight: '280px' }"
-                >
-                    Content
+            <a-layout pl-15px>
+                <Breadcrumb></Breadcrumb>
+                <a-layout-content class="main-container">
+                    <router-view v-slot="{ Component }">
+                        <suspense timeout="0">
+                            <div>
+                                <component :is="Component"></component>
+                            </div>
+                            <template #fallback>
+                                <Loading />
+                            </template>
+                        </suspense>
+                    </router-view>
                 </a-layout-content>
             </a-layout>
         </a-layout>
@@ -33,7 +35,8 @@ onMounted(() => {
 </template>
 
 <style scoped lang="less">
-.ant-layout-header {
-    background-color: #fff;
+.main-container {
+    background-color: @colorBgContainer;
 }
+
 </style>

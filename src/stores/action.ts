@@ -1,8 +1,12 @@
-import type {ActionItem} from "@/types";
+import type {RouteLocationRaw} from "vue-router";
+import type {ActionItem, Key, RouteToInfo} from "@/types";
+import type {Ref} from "vue";
 
 export const useActionStore = defineStore('action', () => {
     const actionTree = shallowRef([] as ActionItem[]);
-    // const actionMap = ref(new Map<Key, ActionItem>());
+
+    const crtActiveMenu = ref() as Ref<ActionItem>;
+    const crtBreadcrumb = ref([] as ActionItem[]);
 
     const getActionsFromApi = async () => {
         const {Data} = await getOperatorMenuList();
@@ -19,10 +23,37 @@ export const useActionStore = defineStore('action', () => {
         const getActionFunc = loadActionType === LoadActionTypeEnum.BACKEND ? getActionsFromApi : getActionsFromConfig;
         // 获取 Actions 配置并保存
         actionTree.value = await getActionFunc();
-        // console.log(actionTree);
         return actionTree.value;
     };
 
+    const routeTo = (routeToInfo: RouteToInfo) => {
+        let actionId = routeToInfo.id;
+        // 使用原生 pageId 取得路由配置信息
+        const action = findAction(actionTree.value, actionId);
+        if (!action) {
+            console.error('ActionStore "routeTo": Cannot find action by id: ' + actionId);
+            return;
+        }
+        // 如果是外链页面，则直接跳转
+        if (action.type === MenuPageType.LINK) {
+            window.open(action.url);
+            return;
+        }
+        // 路由配置中页面没有配置实际组件，只作为菜单结构存在
+        if (!action.component && !action.url?.startsWith('/redirect')) return;
+
+        setCurrentActiveMenu(actionId);
+        let route: RouteLocationRaw;
+        route = {
+            path: action.url!,
+        };
+        router.push(route);
+    }
+
+    const setCurrentActiveMenu = (id: Key) => {
+        crtActiveMenu.value = findAction(actionTree.value, id)!;
+        crtBreadcrumb.value = findActionAncestorChain(actionTree.value, id)!.reverse();
+    };
 
     const $reset = () => {
         actionTree.value = [] as ActionItem[];
@@ -30,7 +61,10 @@ export const useActionStore = defineStore('action', () => {
 
     return {
         actionTree,
+        crtActiveMenu,
+        crtBreadcrumb,
         getActions,
+        routeTo,
         $reset,
     }
 });
@@ -43,14 +77,14 @@ export const useActionStore = defineStore('action', () => {
  */
 export const findAction = (
     actions: ActionItem[],
-    key: string,
+    key: Key,
     field: 'id' | 'menuId' | 'title' | 'url' = 'menuId'
 ): ActionItem | undefined => {
-    let page: ActionItem;
+    let action: ActionItem;
     for (let i = 0, len = actions.length; i < len; i++) {
         if (actions[i][field] === key) {
-            page = actions[i];
-            return page;
+            action = actions[i];
+            return action;
         }
         if (actions[i].children) {
             const p = findAction(actions[i].children as ActionItem[], key, field);
@@ -59,7 +93,28 @@ export const findAction = (
             }
         }
     }
-}
+};
+
+/**
+ *
+ */
+export const findActionAncestorChain = (
+    actions: ActionItem[],
+    key: Key,
+    field: 'id' | 'menuId' | 'title' | 'url' = 'menuId',
+): ActionItem[] | undefined => {
+    const action = findAction(actions, key, field)!;
+    if (action) {
+        if (action.pId) {
+            return [action, ...findActionAncestorChain(actions, action.pId, 'id')!];
+        } else {
+            return [action];
+        }
+    } else {
+        console.error(`ActionStore "findActionAncestorChain": Cannot find action by ${field}: ${key}`);
+        return undefined;
+    }
+};
 
 /**
  * 转换接口数据为 Actions 数据

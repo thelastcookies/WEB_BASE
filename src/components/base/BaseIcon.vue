@@ -4,25 +4,47 @@ import type {VNodeChild} from 'vue';
 
 const props = withDefaults(defineProps<{
     icon: string | ((...args: any[]) => VNodeChild),
-    size: number
+    type?: 'antdv' | 'image',
+    size?: number | string
 }>(), {
-    size: 14
+    size: 14,
+    type: 'antdv',
 });
 const iconComp = computed(() => {
-    if (typeof (props.icon) === 'function') {
-        const node = props.icon();
-        if (node) {
-            return node;
+    if (props.type === 'antdv') {
+        if (typeof (props.icon) === 'function') {
+            const node = props.icon();
+            if (node) {
+                return node;
+            }
+        } else {
+            return (icons as any)[props.icon];
         }
-    } else {
-        return (icons as any)[props.icon];
+    }
+});
+
+const sizeStyle = computed(() => {
+    return {
+        height: `${props.size}px`,
+        width: `${props.size}px`,
+        'line-height': `${props.size}px`,
+        'font-size': `${props.size}px`,
     }
 });
 </script>
 
 <template>
-    <component :is="iconComp" v-if="icon" :style="{
-        fontSize: size + 'px',
-        lineHeight: size + 'px'
+    <template v-if="type === 'antdv'">
+        <component v-bind="$attrs" :is="iconComp" v-if="icon" :style="{
+            fontSize: size + 'px',
+            lineHeight: size + 'px'
         }"/>
+    </template>
+    <template v-else>
+        <div
+            v-bind="$attrs"
+            class="image-bg"
+            :style="[sizeStyle, {'background-image': 'url(' + icon + ')'}]"
+        ></div>
+    </template>
 </template>

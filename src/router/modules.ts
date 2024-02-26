@@ -3,6 +3,7 @@
  */
 const modules = import.meta.glob([
     '@/views/**/*.vue',
+    '@/views/**/*.tsx',
     '!@/views/common',
     '!@/views/**/component',
     '!@/views/**/test',
@@ -34,8 +35,8 @@ export const getRouterModule = (path?: string): any => {
         path = path.slice(1);
     }
     // 组装页面路径
-    const fullPath = `/src/views/${path}.vue`;
-    const fullPathIndex = `/src/views/${path}/index.vue`;
+    const fullPath = `/src/views/${path}`;
+    const fullPathIndex = `/src/views/${path}/index`;
     return fullPathIndex in modules
         ? checkEager(modules[fullPathIndex])
         : checkEager(modules[fullPath]);

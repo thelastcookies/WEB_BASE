@@ -1,9 +1,6 @@
 <script setup lang="ts">
-import {legacyLogicalPropertiesTransformer} from "ant-design-vue";
+import {legacyLogicalPropertiesTransformer, message} from "ant-design-vue";
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
-
-const msgContextHolder = inject(MsgContextHolderInjectionKey) as Function;
-const notiContextHolder = inject(NotiContextHolderInjectionKey) as Function;
 
 </script>
 
@@ -12,16 +9,11 @@ const notiContextHolder = inject(NotiContextHolderInjectionKey) as Function;
         :locale="zhCN">
         <a-style-provider
             :transformers="[legacyLogicalPropertiesTransformer]">
-            <div id="app" ref="app">
-                <msg-context-holder />
-                <noti-context-holder />
-                <Suspense>
-                    <router-view/>
-                    <template #fallback>
-                        Loading...
-                    </template>
-                </Suspense>
-            </div>
+            <a-app w-full h-full>
+                <div id="app" ref="app">
+                    <RouterView/>
+                </div>
+            </a-app>
         </a-style-provider>
     </a-config-provider>
 </template>

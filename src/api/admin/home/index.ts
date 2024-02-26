@@ -1,11 +1,11 @@
-import type {LoginParams, UserInfo} from "./types";
+import type {LoginParams} from "./types";
 import type {AdminResponseBody} from "@/api/admin";
 
 export const login = (params: LoginParams) => {
     return usePost<AdminResponseBody, LoginParams>(
         `${PERM_URL}/Base_Manage/Home/SubmitLogin`,
         params, {
-            mock: true,
+            // mock: true,
         }
     );
 }
@@ -22,7 +22,7 @@ export function getOperatorInfo() {
         `${PERM_URL}/Base_Manage/Home/GetOperatorInfo`,
         null, {
             token: true,
-            mock: true,
+            // mock: true,
         }
     );
 }

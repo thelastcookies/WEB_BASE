@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { VNodeChild } from 'vue'
 import type {MenuTreeNode} from "@/types";
-import BaseIcon from "@/components/base/BaseIcon.vue";
 
 const props = defineProps<{
     item: MenuTreeNode,

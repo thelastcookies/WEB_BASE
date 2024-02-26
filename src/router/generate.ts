@@ -13,15 +13,20 @@ export const generateRouterConf = (actionTree: ActionItem[]) => {
     if (!homePage) {
         console.error('RouterStore function "generateRouterConf": Cannot find page by id: ' + homePageId + '.');
     }
+
     // 添加路由到 router
-    const routerData = {
-        path: '/',
-        name: 'rootPath',
-        redirect: homePage!.url,
-        component: () => import('@/views/layouts/Layout.vue'),
-        children: routes
-    };
-    router.addRoute('Layout', routerData);
+    // const routerData = {
+    //     path: '/',
+    //     name: 'rootPath',
+    //     // redirect: homePage!.url,
+    //     // component: () => import('@/views/layouts/Layout.vue'),
+    //     children: routes
+    // };
+    // router.addRoute('Layout', routerData);
+
+    routes.forEach(route => {
+        router.addRoute('Layout', route);
+    });
 }
 
 /**

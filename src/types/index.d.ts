@@ -1,4 +1,5 @@
 import {VNodeChild} from "vue";
+import type {MenuPageType, ShowInMenuType} from "@/types/enums";
 
 export type Key = string | number;
 
@@ -21,11 +22,11 @@ interface TreeNode extends ListItem {
  */
 export interface ActionItem {
     // 路由 id
-    id?: string;
+    id?: Key;
     // 父级 id
-    pId?: string;
+    pId?: Key;
     // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项
-    menuId?: string;
+    menuId?: Key;
     // 路由配置的中文描述
     title?: string;
     // 路由配置的类型
@@ -50,11 +51,18 @@ export interface ActionItem {
     children?: ActionItem[];
 }
 
+export interface RouteToInfo {
+    id: Key,
+    title?: string,
+    type?: string,
+    query?: Object
+}
+
 /**
  * 用于 Antdv 菜单
  */
 export interface MenuTreeNode {
-    key: string;
+    key: Key;
     label: string;
     title?: string;
     icon?: string | (() => VNodeChild);

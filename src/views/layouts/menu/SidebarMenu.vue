@@ -1,16 +1,17 @@
 <script setup lang="ts">
-import SubMenu from "@/views/layouts/menu/SubMenu.vue";
-import type {MenuTreeNode, ActionItem} from "@/types";
+import type {ActionItem, Key, MenuTreeNode} from "@/types";
+import type {MenuInfo, SelectInfo} from "ant-design-vue/es/menu/src/interface";
 
 const openKeys = ref([]);
-const selectedKeys = ref([]);
+const selectedKeys = ref([] as string[]);
+
 const menuData = ref([] as MenuTreeNode[]);
 
 const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
     return tree.map((item: ActionItem) => {
         let menuNode: MenuTreeNode = {
             key: item.menuId ?? item.id ?? '',
-            label: item.title ?? item.menuId ?? item.id ?? '',
+            label: item.title ?? String(item.menuId) ?? String(item.id) ?? '',
             title: item.title,
         };
         if (item.icon) {
@@ -23,7 +24,25 @@ const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
     });
 };
 
-const {actionTree} = storeToRefs(useActionStore());
+const handleMenuClick = ({item, key, keyPath}: MenuInfo) => {
+    console.log('handleMenuClick item', item);
+    console.log('handleMenuClick key', key);
+    ///////////
+    console.log('handleMenuClick keyPath', keyPath);
+    routeTo({id: key});
+}
+
+const onOpenChange = (openKeys: (Key)[]) => {
+    console.log('onOpenChange openKeys', openKeys);
+}
+
+const onSelect = ({selectedKeys}: SelectInfo) => {
+    console.log('onSelect selectedKeys', selectedKeys);
+}
+
+const actionStore = useActionStore();
+const {routeTo} = actionStore;
+const {actionTree} = storeToRefs(actionStore);
 
 watch(actionTree, (tree: ActionItem[]) => {
     menuData.value = actionToMenu(tree);
@@ -31,26 +50,16 @@ watch(actionTree, (tree: ActionItem[]) => {
     immediate: true,
 });
 
-const handleMenuClick = (item: MenuTreeNode, key: string, keyPath: any) => {
-    console.log('handleMenuClick item', item);
-    console.log('handleMenuClick key', key);
-    console.log('handleMenuClick keyPath', keyPath);
-}
-
-const onOpenChange = (openKeys: (string | number)[]) => {
-    console.log('onOpenChange openKeys', openKeys);
-}
-
-const onSelect = (item: MenuTreeNode, key: string, selectedKeys: any) => {
-    console.log('onSelect item', item);
-    console.log('onSelect key', key);
-    console.log('onSelect selectedKeys', selectedKeys);
-}
+const {crtActiveMenu} = storeToRefs(useActionStore());
+watch(crtActiveMenu, (action: ActionItem) => {
+    selectedKeys.value = [action.menuId as string];
+});
 
 </script>
 
 <template>
     <a-menu
+        h-full
         v-model:openKeys="openKeys"
         v-model:selectedKeys="selectedKeys"
         mode="inline"

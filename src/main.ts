@@ -34,6 +34,6 @@ import dayjs from "dayjs";
 dayjs.locale('zh-cn');
 
 // UnoCss
-import 'virtual:uno.css';
+import 'unocss';
 
 app.mount('#app');

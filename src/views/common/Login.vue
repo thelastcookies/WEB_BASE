@@ -1,11 +1,10 @@
 <script setup lang="ts">
-import type {MessageInstance} from "ant-design-vue/es/message/interface";
 import type {LoginParams} from "@/api/admin/home/types";
 import type {Rule} from "ant-design-vue/es/form";
-import {message} from "ant-design-vue";
 
 const appTitle = import.meta.env.APP_TITLE;
-// const msg = inject(MsgInjectionKey) as MessageInstance;
+
+const { message } = useAppStore();
 
 const loginForm = reactive<LoginParams>({
     userName: '',
@@ -22,16 +21,16 @@ const handleSubmitLogin = async (formData: LoginParams) => {
     message.loading({
         content: '正在登录中，请稍候。',
         key: LOGIN_LOADING_KEY,
+        duration: 0,
     });
     login(formData).then(res => {
         if (res.Success) {
             const tokenRes = res.Data;
             const {setToken} = useTokenStore();
             setToken(tokenRes);
-            message.loading({
-                content: '登录成功。正在加载中，请稍候。',
+            message.success({
+                content: '登录成功。',
                 key: LOGIN_LOADING_KEY,
-                duration: 0,
             });
             router.push("/");
         } else {
