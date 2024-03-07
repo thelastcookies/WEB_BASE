@@ -5,7 +5,7 @@ const appTitle = import.meta.env.APP_TITLE;
 <template>
     <div class="w-full h-full flex-sb">
         <div class="h-full flex">
-            <BaseIcon icon="/logo.png" type="image" :size="32"></BaseIcon>
+            <BaseIcon icon="/zx.png" type="image" :size="32"></BaseIcon>
             <span class="header-title ml  font-700">{{ appTitle }}</span>
         </div>
         <div class="h-full lh-3">
