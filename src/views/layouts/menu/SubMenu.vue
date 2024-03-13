@@ -2,7 +2,7 @@
 import type { VNodeChild } from 'vue'
 import type {MenuTreeNode} from "@/types";
 
-const props = defineProps<{
+defineProps<{
     item: MenuTreeNode,
 }>();
 

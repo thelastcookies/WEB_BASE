@@ -1,5 +1,4 @@
-import type {Preset, Rule, UserShortcuts, Variant} from 'unocss';
-import {CSSEntries} from "@unocss/core";
+import type {CSSEntries, Preset, Rule, UserShortcuts, Variant} from 'unocss';
 
 // 规则
 const rules: Rule<Object>[] = [

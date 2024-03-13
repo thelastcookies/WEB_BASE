@@ -93,7 +93,7 @@ const handleInputMEnter = (e: Event) => {
     const domId = (e.target as Element).id;
     if (domId === 'userName' && loginForm.userName !== '') {
         userNameLabelStyle.value.color = userNameActiveColor;
-    } else if (domId === 'password' && loginForm.password !== '') {
+    } else if (domId === 'password-cont' && loginForm.password !== '') {
         passwordLabelStyle.value.color = passwordActiveColor;
     }
 };
@@ -103,11 +103,12 @@ const handleInputMEnter = (e: Event) => {
  * @param e
  */
 const handleInputMLeave = (e: Event) => {
-    if (document.activeElement === e.target) return;
     const domId = (e.target as Element).id;
+    if (document.activeElement!.id === domId
+        || (document.activeElement!.id === 'password' && domId === 'password-cont')) return;
     if (domId === 'userName' && loginForm.userName !== '') {
         userNameLabelStyle.value.color = colorTextQuaternary;
-    } else if (domId === 'password' && loginForm.password !== '') {
+    } else if (domId === 'password-cont' && loginForm.password !== '') {
         passwordLabelStyle.value.color = colorTextQuaternary;
     }
 };
@@ -183,13 +184,14 @@ const handleInputBlur = (e: Event) => {
                 />
                 <div class="form-label absolute left-12.5px p-lr-4px" :style="userNameLabelStyle">账号</div>
             </a-form-item>
-            <a-form-item name="password">
+            <a-form-item name="password"
+                         id="password-cont"
+                         @mouseenter="handleInputMEnter"
+                         @mouseleave="handleInputMLeave">
                 <a-input-password
                     id="password"
                     class="login-input transparent z-1"
                     v-model:value="loginForm.password"
-                    @mouseenter="handleInputMEnter"
-                    @mouseleave="handleInputMLeave"
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
@@ -223,9 +225,9 @@ const handleInputBlur = (e: Event) => {
     }
 
     .ant-input-password {
-        //padding: 0;
+        padding: 0 16px 0;
         ::v-deep(.ant-input) {
-            //padding: 16px;
+            padding: 16px 0 16px;
             background-color: transparent;
         }
     }

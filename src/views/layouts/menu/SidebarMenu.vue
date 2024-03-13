@@ -74,7 +74,3 @@ watch(crtActiveMenu, (action: ActionItem) => {
         </template>
     </a-menu>
 </template>
-
-<style scoped lang="less">
-
-</style>

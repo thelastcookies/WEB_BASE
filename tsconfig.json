@@ -19,7 +19,8 @@
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": ["./src/*"],
+      "~/*": ["./src/assets/images/*"]
     },
     /* Linting */
     "strict": true,
@@ -34,8 +35,7 @@
     "src/**/*.d.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
-    "plugins/auto-imports/auto-imports.d.ts",
-    "plugins/vue-components/components.d.ts"
+    "plugins/**/*.d.ts"
   ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

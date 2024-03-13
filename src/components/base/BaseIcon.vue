@@ -31,6 +31,19 @@ const sizeStyle = computed(() => {
         'font-size': `${props.size}px`,
     }
 });
+
+const iconUrl = computed(() => {
+    let url = props.icon as string;
+    if (url.startsWith('/')) {
+        return url.replace("/", "");
+    } else if (url.startsWith('~')) {
+        url = url.replace("~/", "");
+        return new URL(`../../assets/images/${url}`, import.meta.url).href;
+    } else {
+        return '';
+    }
+});
+
 </script>
 
 <template>
@@ -41,10 +54,9 @@ const sizeStyle = computed(() => {
         }"/>
     </template>
     <template v-else>
-        <div
+        <img
             v-bind="$attrs"
-            class="image-bg"
-            :style="[sizeStyle, {'background-image': 'url(' + icon + ')'}]"
-        ></div>
+            :style="[sizeStyle]"
+            :src="iconUrl" alt="icon" />
     </template>
 </template>

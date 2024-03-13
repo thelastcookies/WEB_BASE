@@ -1,13 +1,14 @@
 import {defineConfig, loadEnv} from 'vite'
-import {fileURLToPath, URL} from 'node:url'
+import {fileURLToPath} from "node:url";
 import {createVitePlugins} from "./plugins";
-// 导入 Antdv 的 Design Token 应用到 less 中
 import { theme } from 'ant-design-vue';
-import {resolve} from "node:path";
-const { defaultAlgorithm, defaultSeed } = theme;
+// 导入 Antdv 的 Design Token 应用到 less 中
+const { defaultAlgorithm, darkAlgorithm, defaultSeed } = theme;
 const mapToken = defaultAlgorithm(defaultSeed);
+// const mapToken = darkAlgorithm(defaultSeed);
 
-const baseSrc = fileURLToPath(new URL('./src', import.meta.url))
+const baseSrc = fileURLToPath(new URL('/src', import.meta.url));
+const imageSrc = fileURLToPath(new URL('/src/assets/images', import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(({command, mode}) => {
@@ -42,6 +43,9 @@ export default defineConfig(({command, mode}) => {
             alias: [{
                 find: '@',
                 replacement: baseSrc,
+            },{
+                find: '~',
+                replacement: imageSrc,
             }]
         },
         css: {
