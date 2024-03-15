@@ -3,10 +3,17 @@ import {legacyLogicalPropertiesTransformer} from "ant-design-vue";
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 import {theme} from 'ant-design-vue';
 
-const themeAlgo = theme.defaultAlgorithm;
-// const themeAlgo = theme.darkAlgorithm;
+const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
+const isDarkTheme = ref(darkModeMediaQuery.matches);
 
-const isDarkTheme = ref(true);
+darkModeMediaQuery.addEventListener('change', (e) => {
+    isDarkTheme.value = e.matches;
+    console.log(isDarkTheme.value ? '🌒 深色模式开启' : '🌖 浅色模式开启');
+});
+
+const themeAlgo = computed(() => {
+    return isDarkTheme.value ? theme.darkAlgorithm : theme.defaultAlgorithm;
+});
 
 </script>
 
@@ -22,9 +29,13 @@ const isDarkTheme = ref(true);
                     <RouterView/>
                 </div>
                 <div class="absolute right-0 bottom-0">
-                    <a-switch v-model:checked="isDarkTheme" >
-                        <template #checkedChildren><BaseIcon type="image" size="18" icon="~/icons/light-mode.svg" /></template>
-                        <template #unCheckedChildren><BaseIcon type="image" size="18" icon="~/icons/dark-mode.svg" /></template>
+                    <a-switch v-model:checked="isDarkTheme">
+                        <template #checkedChildren>
+                            <BaseIcon type="image" size="18" icon="~/icons/light-mode.svg"/>
+                        </template>
+                        <template #unCheckedChildren>
+                            <BaseIcon type="image" size="18" icon="~/icons/dark-mode.svg"/>
+                        </template>
                     </a-switch>
                 </div>
             </a-app>
@@ -32,5 +43,8 @@ const isDarkTheme = ref(true);
     </a-config-provider>
 </template>
 
-<style scoped lang="less">
+<style>
+@import "@/assets/theme/style.css";
+@import "@/assets/theme/light.css" (prefers-color-scheme: light);
+@import "@/assets/theme/dark.css" (prefers-color-scheme: dark);
 </style>

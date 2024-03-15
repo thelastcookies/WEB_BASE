@@ -26,13 +26,13 @@ const appTitle = import.meta.env.APP_TITLE;
     background-image: url("~/login/login-bg.jpg");
 
     .login-form-container {
-        background-color: @colorBgContainer;
+        background-color: var(--colorBgContainer);
     }
 
     .login-form {
         .form-header {
             .header-title {
-                font-size: ~'@{fontSizeHeading3}px';
+                font-size: calc(var(--fontSizeHeading3) * 1px);
             }
         }
     }

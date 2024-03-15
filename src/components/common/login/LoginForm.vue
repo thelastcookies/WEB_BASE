@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import {theme} from 'ant-design-vue';
 import type {LoginParams} from "@/api/admin/home/types";
 import type {Rule} from "ant-design-vue/es/form";
 import {Ref} from "vue";
@@ -49,67 +48,62 @@ const handleSubmitLogin = async (formData: LoginParams) => {
     });
 };
 
-// 获取 theme 中的颜色配置，用于 input label
-const {useToken} = theme;
-const {token} = useToken();
-const {colorTextQuaternary, colorPrimaryHover, colorErrorText} = token.value;
-
 // 用于保存 input label 的状态颜色值
-let userNameActiveColor = colorPrimaryHover;
-let passwordActiveColor = colorPrimaryHover;
+let uActiveColor = 'primary' as 'primary' | 'warning';
+let pActiveColor = 'primary' as 'primary' | 'warning';
 
-const userNameLabelStyle = ref({
-    top: '16.5px',
-    color: colorTextQuaternary,
-    fontSize: '18px',
-    zIndex: 0,
-});
+// 用于决定 label 的呈现颜色
+const userNameColorClass = ref<'' | 'primary' | 'warning'>('');
+const passwordColorClass = ref<'' | 'primary' | 'warning'>('');
 
-const passwordLabelStyle = ref({
-    top: '16.5px',
-    color: colorTextQuaternary,
-    fontSize: '18px',
-    zIndex: 0,
-});
+// 用于标记 input active 状态
+const userNameIsActive = ref(false);
+const passwordIsActive = ref(false);
 
 /**
- * 改变各字段高亮色
+ * 表单校验时，根据校验结果改变各字段高亮色
  * @param name
  * @param status
  */
 const handleValidate = (name: string | number | string[] | number[], status: boolean) => {
     if (name === 'userName') {
-        userNameActiveColor = status ? colorPrimaryHover : colorErrorText;
+        uActiveColor = status ? 'primary' : 'warning';
     } else if (name === 'password') {
-        passwordActiveColor = status ? colorPrimaryHover : colorErrorText;
+        pActiveColor = status ? 'primary' : 'warning';
     }
 };
 
 /**
- * mouseenter 且输入框内有内容时，改变 input label 的颜色为高亮色
+ * mouseenter 与 mouseleave 旨在为 label 同步 Antdv 的输入框 hover 效果
+ */
+
+/**
+ * mouseenter 时改变 label 的颜色为高亮色
+ * 如果输入框内无内容，则 label 不响应颜色变化
  * @param e
  */
 const handleInputMEnter = (e: Event) => {
     const domId = (e.target as Element).id;
     if (domId === 'userName' && loginForm.userName !== '') {
-        userNameLabelStyle.value.color = userNameActiveColor;
+        userNameColorClass.value = uActiveColor;
     } else if (domId === 'password-cont' && loginForm.password !== '') {
-        passwordLabelStyle.value.color = passwordActiveColor;
+        passwordColorClass.value = pActiveColor;
     }
 };
 
 /**
- * hover 且输入框内有内容时，改变 input label 的颜色为高亮色
+ * mouseleave 时重置 label 的颜色
+ * 如果输入框处于 focus 状态，则不重置 label 颜色
  * @param e
  */
 const handleInputMLeave = (e: Event) => {
     const domId = (e.target as Element).id;
     if (document.activeElement!.id === domId
         || (document.activeElement!.id === 'password' && domId === 'password-cont')) return;
-    if (domId === 'userName' && loginForm.userName !== '') {
-        userNameLabelStyle.value.color = colorTextQuaternary;
-    } else if (domId === 'password-cont' && loginForm.password !== '') {
-        passwordLabelStyle.value.color = colorTextQuaternary;
+    if (domId === 'userName') {
+        userNameColorClass.value = '';
+    } else if (domId === 'password-cont') {
+        passwordColorClass.value = '';
     }
 };
 
@@ -120,37 +114,30 @@ const handleInputMLeave = (e: Event) => {
 const handleInputFocus = (e: Event) => {
     const domId = (e.target as Element).id;
     if (domId === 'userName') {
-        userNameLabelStyle.value.color = userNameActiveColor;
-        userNameLabelStyle.value.top = '-10.5px';
-        userNameLabelStyle.value.fontSize = '14px';
-        userNameLabelStyle.value.zIndex = 1;
+        userNameColorClass.value = uActiveColor;
+        userNameIsActive.value = true;
     } else if (domId === 'password') {
-        passwordLabelStyle.value.color = passwordActiveColor;
-        passwordLabelStyle.value.top = '-10.5px';
-        passwordLabelStyle.value.fontSize = '14px';
-        passwordLabelStyle.value.zIndex = 1;
+        passwordColorClass.value = pActiveColor;
+        passwordIsActive.value = true;
     }
 };
 
 /**
- * blur 时 label 保持悬浮样式不变，或从悬浮样式变为 placeholder
+ * blur 时 label 从悬浮样式变为 placeholder
+ * 如果输入框内有内容，则 label 保持悬浮样式不变
  * @param e
  */
 const handleInputBlur = (e: Event) => {
     const domId = (e.target as Element).id;
     if (domId === 'userName') {
-        userNameLabelStyle.value.color = colorTextQuaternary;
+        userNameColorClass.value = '';
         if (loginForm.userName === '') {
-            userNameLabelStyle.value.top = '16.5px';
-            userNameLabelStyle.value.fontSize = '18px';
-            userNameLabelStyle.value.zIndex = 0;
+            userNameIsActive.value = false;
         }
     } else if (domId === 'password') {
-        passwordLabelStyle.value.color = colorTextQuaternary;
+        passwordColorClass.value = '';
         if (loginForm.password === '') {
-            passwordLabelStyle.value.top = '16.5px';
-            passwordLabelStyle.value.fontSize = '18px';
-            passwordLabelStyle.value.zIndex = 0;
+            passwordIsActive.value = false;
         }
     }
 };
@@ -182,7 +169,9 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label absolute left-12.5px p-lr-4px" :style="userNameLabelStyle">账号</div>
+                <div class="form-label absolute left-12.5px p-lr-4px"
+                     :class="[userNameColorClass, {'active': userNameIsActive}]">账号
+                </div>
             </a-form-item>
             <a-form-item name="password"
                          id="password-cont"
@@ -195,7 +184,9 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label absolute left-12.5px p-lr-4px" :style="passwordLabelStyle">密码</div>
+                <div class="form-label absolute left-12.5px p-lr-4px"
+                     :class="[passwordColorClass, {'active': passwordIsActive}]">密码
+                </div>
             </a-form-item>
             <a-form-item class="mb-20px">
                 <a-form-item name="remember" no-style>
@@ -216,16 +207,17 @@ const handleInputBlur = (e: Event) => {
 <style scoped lang="less">
 .form-container {
     .form-title {
-        font-size: ~'@{fontSizeHeading1}px';
+        font-size: calc(var(--fontSizeHeading1) * 1px);
     }
 
     .form-subtitle {
-        font-size: ~'@{fontSizeLG}px';
-        color: @colorTextSecondary;
+        font-size: calc(var(--fontSizeLG) * 1px);
+        color: var(--colorTextSecondary);
     }
 
     .ant-input-password {
         padding: 0 16px 0;
+
         ::v-deep(.ant-input) {
             padding: 16px 0 16px;
             background-color: transparent;
@@ -239,18 +231,36 @@ const handleInputBlur = (e: Event) => {
     }
 
     .form-label {
-        transition-duration: @motionDurationMid;
-        background-color: @colorBgContainer;
+        transition-duration: var(--motionDurationMid);
+        background-color: var(--colorBgContainer);
+        color: var(--colorTextQuaternary);
+        top: 16.5px;
+        font-size: 18px;
+        z-index: 0;
+    }
+
+    .form-label.active {
+        top: -10.5px;
+        font-size: 14px;
+        z-index: 1;
+    }
+
+    .form-label.primary {
+        color: var(--colorPrimaryHover);
+    }
+
+    .form-label.warning {
+        color: var(--colorErrorText);
     }
 
     .ant-checkbox-wrapper {
         :deep(.ant-checkbox-inner) {
-            border: 2px solid @colorBgSpotlight;
+            border: 2px solid var(--colorBgSpotlight);
         }
     }
 
     .ant-divider {
-        border-top-color: @colorBorder;
+        border-top-color: var(--colorBorder);
     }
 }
 </style>

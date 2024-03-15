@@ -1,17 +1,17 @@
 import {defineConfig, loadEnv} from 'vite'
 import {fileURLToPath} from "node:url";
 import {createVitePlugins} from "./plugins";
-import { theme } from 'ant-design-vue';
+// import {theme} from 'ant-design-vue';
 // 导入 Antdv 的 Design Token 应用到 less 中
-const { defaultAlgorithm, darkAlgorithm, defaultSeed } = theme;
-const mapToken = defaultAlgorithm(defaultSeed);
+// const {defaultAlgorithm, darkAlgorithm, defaultSeed} = theme;
+// const mapToken = defaultAlgorithm(defaultSeed);
 // const mapToken = darkAlgorithm(defaultSeed);
 
 const baseSrc = fileURLToPath(new URL('/src', import.meta.url));
 const imageSrc = fileURLToPath(new URL('/src/assets/images', import.meta.url));
 
 // https://vitejs.dev/config/
-export default defineConfig(({command, mode}) => {
+export default defineConfig(({command}) => {
     // 从 /env/.env 中读取环境变量
     const env = loadEnv('', process.cwd() + '/env', 'APP_');
     let conf = {};
@@ -43,18 +43,18 @@ export default defineConfig(({command, mode}) => {
             alias: [{
                 find: '@',
                 replacement: baseSrc,
-            },{
+            }, {
                 find: '~',
                 replacement: imageSrc,
             }]
         },
-        css: {
-            preprocessorOptions: {
-                less: {
-                    modifyVars: mapToken,
-                }
-            }
-        }
+        // css: {
+        //     preprocessorOptions: {
+        //         less: {
+        //             modifyVars: mapToken,
+        //         }
+        //     }
+        // }
     });
     return conf;
 });
