@@ -1,0 +1,26 @@
+{
+  "extends": [
+    "@commitlint/config-conventional"
+  ],
+  "rules": {
+    "type-enum": [
+      2,
+      "always",
+      [
+        "init",
+        "feat",
+        "fix",
+        "build",
+        "chore",
+        "ci",
+        "docs",
+        "style",
+        "refactor",
+        "perf",
+        "test",
+        "revert"
+      ]
+    ]
+  },
+  "helpUrl": "https://github.com/conventional-changelog/commitlint/#what-is-commitlint"
+}
