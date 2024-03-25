@@ -9,7 +9,7 @@
 ## 关键字
 
 - Vue3，TypeScript，Vite；
-- WebStorm；
+- macOS，类 Unix，WebStorm；
 - Node，pnpm；
 - GitHub，GitHub Actions，GitHub Workflows，Release Please；
 - Conventional Commit，Husky，Commitlint；
@@ -157,7 +157,7 @@ echo -n "" > .husky/pre-commit
 
 选择 `Plugins` 菜单进入 `Marketplace` 标签页，查找 `Conventional Commit` 插件并安装。
 
-#### 新建 CHANGELOG 文件
+### 新建 CHANGELOG 文件
 
 ```shell
 touch CHANGELOG.md
@@ -191,16 +191,16 @@ Release-As: 0.0.0
 
 ### Troubleshoot
 
-#### 完成配置并提交后，`GitHub Actions` 菜单下无内容
+#### 1. 完成配置并提交后，`GitHub Actions` 菜单下无内容
 
 排查 `.github/workflows/release-please.yml` 是否正确配置并提交、推送。
 
-#### `Actions` 执行失败并提示 `Input required and not supplied: token`
+#### 2. `Actions` 执行失败并提示 `Input required and not supplied: token`
 
 排查 `secrets.AUTO_RELEASE_TOKEN` 是否与 GitHub
 该项目下的 `Settings > Secrets and variables > Actions > Repository secrets` 对应。
 
-#### `Actions` 执行失败并提示 `Bad credentials`
+#### 3. `Actions` 执行失败并提示 `Bad credentials`
 
 排查 `PAT` 的正确性以及有效性。
 
