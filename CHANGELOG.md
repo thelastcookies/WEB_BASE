@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.2.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.1.0...v0.2.0) (2024-03-25)
+
+
+### Features
+
+* 在应用级别引入深浅色 antdv 主题 与 CSS 变量，实现主题切换功能 ([5395fbc](https://github.com/thelastcookies/WEB-BASE/commit/5395fbcc2107327aa820eedd47f1f0549dde0b85))
+* 根据 Antdv 新增深色、浅色模式的 CSS 变量 ([981f3a4](https://github.com/thelastcookies/WEB-BASE/commit/981f3a45b571f8532f2d43c126001a779e4a6535))
+
 ## [0.1.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.0.0...v0.1.0) (2024-03-25)
 
 
