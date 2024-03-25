@@ -19,7 +19,12 @@
     "jsx": "preserve",
     "jsxImportSource": "vue",
     "paths": {
-      "@/*": ["./src/*"]
+      "@/*": [
+        "./src/*"
+      ],
+      "~/*": [
+        "./src/assets/images/*"
+      ]
     },
     /* Linting */
     "strict": true,

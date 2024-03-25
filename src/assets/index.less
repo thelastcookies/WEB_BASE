@@ -30,6 +30,12 @@ body {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+
+    --duration: 0.5s;
+    --timing: ease;
+
+    transition: color var(--duration) var(--timing),
+    background-color var(--duration) var(--timing);
 }
 
 #app {

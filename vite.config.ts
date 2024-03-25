@@ -3,6 +3,7 @@ import {createVitePlugins} from "./plugins";
 import {fileURLToPath} from "node:url";
 
 const baseSrc = fileURLToPath(new URL('/src', import.meta.url));
+const imageSrc = fileURLToPath(new URL('/src/assets/images', import.meta.url));
 
 // https://vitejs.dev/config/
 export default defineConfig(({command}) => {
@@ -36,6 +37,9 @@ export default defineConfig(({command}) => {
             alias: [{
                 find: '@',
                 replacement: baseSrc,
+            }, {
+                find: '~',
+                replacement: imageSrc,
             }]
         },
     });
