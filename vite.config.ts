@@ -8,7 +8,6 @@ const baseSrc = fileURLToPath(new URL('/src', import.meta.url));
 export default defineConfig(({command}) => {
     // 从 /.env/.env 中读取环境变量
     const env = loadEnv('', process.cwd() + '/.env', 'APP_');
-    console.log(env);
     let conf = {};
     // 一些开发和构建时的配置
     if (command === 'serve') {
