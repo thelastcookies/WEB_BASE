@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.3.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.2.0...v0.3.0) (2024-03-25)
+
+
+### Features
+
+* 新增 BaseIcon.vue 特性 ([ee5a30b](https://github.com/thelastcookies/WEB-BASE/commit/ee5a30bfe5259e59d77f77de006b08226a1cc311))
+* 新增 Login.vue，作为系统登录页 ([bc15af3](https://github.com/thelastcookies/WEB-BASE/commit/bc15af333a6e90042ed93676c25805128094edec))
+* 新增 LoginForm.vue 组件 ([d9b050b](https://github.com/thelastcookies/WEB-BASE/commit/d9b050b74092d8b72f64513f2f009408f27020b8))
+
+
+### Bug Fixes
+
+* 修复 App 组件内缺少 RouterView 的问题 ([77bee7c](https://github.com/thelastcookies/WEB-BASE/commit/77bee7c0636a3c7875ea1870845ecd68c22a4eb5))
+* 修改 env 环境变量的存储路径使 index.html title 正常显示 ([16cf686](https://github.com/thelastcookies/WEB-BASE/commit/16cf686843f06cd697de2ae6325a8398ed688ccb))
+
 ## [0.2.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.1.0...v0.2.0) (2024-03-25)
 
 
