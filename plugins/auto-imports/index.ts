@@ -13,6 +13,14 @@ export const AutoImportPluginConfig = AutoImport({
         'pinia',
     ],
     dts: './plugins/auto-imports/auto-imports.d.ts',
-    dirs: [],
+    dirs: [
+        'src/stores',
+        'src/hooks',
+        'src/router',
+        'src/utils',
+        'src/api/**/*.ts',
+        'src/types/**/*.ts',
+        'src/views/**/*.vue',
+    ],
     ignoreDts: [],
 }) as PluginOption;
