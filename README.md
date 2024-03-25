@@ -111,7 +111,7 @@ Docs：[Managing your personal access tokens](https://docs.github.com/en/authent
 
 #### 配置 Actions Secrets
 
-在 GitHub 的项目页面下，点击 `Settings > Secrets and variables > Actions` 进入菜单。
+进入 GitHub 该项目的主页下，点击 `Settings > Secrets and variables > Actions` 进入菜单。
 
 在 `Repository secrets` 单元下点击 `New repository secret` 按钮。
 
@@ -120,36 +120,87 @@ Docs：[Managing your personal access tokens](https://docs.github.com/en/authent
 其他配置内容详见 GitHub
 Docs：[Using secrets in GitHub Actions](https://docs.github.com/en/actions/security-guides/using-secrets-in-github-actions)。
 
-#### 配置 Release Please
+### 配置 Release Please
 
 在项目根目录下新建 `.github/workflows/release-please.yml`
 文件，配置内容参考 [release-please.yml](.github/workflows/release-please.yml)。
 
 在 `token` 字段中需要配置上一步 `Actions secrets` 的 `Name` 字段。
 
-#### 配置 Commitlint
+### 配置 Commitlint
+
+安装并配置 Commitlint。
 
 ```shell
-pnpm add --save-dev @commitlint/{cli,config-conventional}
+pnpm add -D @commitlint/{cli,config-conventional}
+
+echo -n '{"extends": ["@commitlint/config-conventional"], "rules": {"type-enum": [2, "always", ["init", "feat", "fix", "build", "chore", "ci", "docs", "style", "refactor", "perf", "test", "revert"]]}}
+' > .commitlintrc.json
 ```
 
-安装 Commitlint 后，在项目根目录下新建 `.commitlintrc.json` 文件，配置内容参考 [.commitlintrc.json](.commitlintrc.json)。
+### 配置 Husky
 
-#### 配置 Husky
+安装并初始化 husky，为 commit-msg 钩子增加提交信息规范校验。
 
 ```shell
-# 安装 husky
 pnpm add -D husky
 
-# 初始化 husky
-npx husky init # 初始化 husky
+npx husky init
 
-# 为 pre-commit 钩子增加提交信息规范校验 
-echo "npx --no -- commitlint --edit \"\$1\"" > .husky/pre-commit
+echo "npx --no -- commitlint --edit \"\$1\"" > .husky/commit-msg
+
+echo -n "" > .husky/pre-commit
 ```
 
-#### 配置 IDE Plugins
+### 配置 IDE Plugins
 
 选择 `Plugins` 菜单进入 `Marketplace` 标签页，查找 `Conventional Commit` 插件并安装。
+
+#### 新建 CHANGELOG 文件
+
+```shell
+touch CHANGELOG.md
+```
+
+### 提交，推送与测试
+
+至此，Vue 工程与 GitHub Actions 已配置完成，可以将目前的工程文件进行提交和推送，并测试 GitHub Actions 是否正常工作。
+
+进行初次提交的 `Commit Message` 编写时，最佳实践是添加一个 `Release-As: 0.0.0` 的脚注，约定初始版本号。
+
+```text
+init: 工程初始化
+
+Release-As: 0.0.0
+```
+
+**进行 `git push` 时一定要注意，提交到远程仓库的分支应与 [release-please.yml](.github/workflows/release-please.yml)
+中的 `branches` 配置项一致。在本项目中为 main 分支上，即 `origin/main`**。
+
+完成推送后，进入 GitHub 该项目的主页下，点击 `Actions` 进入 `Workflows` 的状态查询页面。
+
+如果配置正确，在 `Workflows > release-please` 下可以看到成功运行的 `init` 工作流。
+
+并且，在项目主页下点击进入 `Pull requests` 后会看到由 `Actions` 生成的类似 `chore(main): release 0.0.0`
+的 `pull request`。
+
+可以根据实际需求选择 `Merge`，`Rebase`，`Squash` 三种方式来创建 `release`。
+
+完成后可以在项目主页下通过查看 `Tags`、`Releases`、`Commits` 等方法来确认提交和发布。
+
+### Troubleshoot
+
+#### 完成配置并提交后，`GitHub Actions` 菜单下无内容
+
+排查 `.github/workflows/release-please.yml` 是否正确配置并提交、推送。
+
+#### `Actions` 执行失败并提示 `Input required and not supplied: token`
+
+排查 `secrets.AUTO_RELEASE_TOKEN` 是否与 GitHub
+该项目下的 `Settings > Secrets and variables > Actions > Repository secrets` 对应。
+
+#### `Actions` 执行失败并提示 `Bad credentials`
+
+排查 `PAT` 的正确性以及有效性。
 
 ## To Be continued
