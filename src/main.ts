@@ -1,5 +1,9 @@
-import {createApp} from 'vue'
-import './style.css'
-import App from './App.vue'
+import {createApp} from 'vue';
+import App from './App.vue';
 
-createApp(App).mount('#app');
+// 全局样式表
+import '@/assets/index.less';
+
+export const app = createApp(App);
+
+app.mount('#app');
