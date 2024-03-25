@@ -4,7 +4,7 @@ import type {VNodeChild} from 'vue';
 
 const props = withDefaults(defineProps<{
     icon: string | ((...args: any[]) => VNodeChild),
-    type?: 'antdv' | 'image',
+    type?: 'antdv' | 'image' | 'logo',
     size?: number | string
 }>(), {
     size: 14,
@@ -48,15 +48,27 @@ const iconUrl = computed(() => {
 
 <template>
     <template v-if="type === 'antdv'">
-        <component v-bind="$attrs" :is="iconComp" v-if="icon" :style="{
-            fontSize: size + 'px',
-            lineHeight: size + 'px'
-        }"/>
+        <component v-bind="$attrs" :is="iconComp" v-if="icon"
+                   :style="{fontSize: size + 'px', lineHeight: size + 'px'}"
+        />
     </template>
     <template v-else>
         <img
             v-bind="$attrs"
+            :class="{'logo': type === 'logo'}"
             :style="[sizeStyle]"
-            :src="iconUrl" alt="icon" />
+            :src="iconUrl" :alt="type"/>
     </template>
 </template>
+
+<style scoped lang="less">
+.logo {
+    cursor: pointer;
+    // will-change: filter;
+    transition: filter 0.5s;
+}
+
+.logo:hover {
+    filter: drop-shadow(0px 0px 3px var(--colorPrimaryHover));
+}
+</style>
