@@ -5,6 +5,13 @@
 
 ### init
 
+* Vue 工程初始化 ([776a0c1](https://github.com/thelastcookies/WEB-BASE/commit/776a0c124616e31c255da844969c956fab338419))
+
+## 0.0.0 (2024-03-25)
+
+
+### init
+
 * 工程初始化 ([7eeb06a](https://github.com/thelastcookies/WEB-BASE/commit/7eeb06ad5deec27b89bad6e241044caf8ec7752f))
 * 项目初始化 ([d9c128c](https://github.com/thelastcookies/WEB-BASE/commit/d9c128c9a20b114b4abbefd210128130449fa54a))
 
