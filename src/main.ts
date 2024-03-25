@@ -1,9 +1,23 @@
 import {createApp} from 'vue';
 import App from './App.vue';
 
+export const app = createApp(App);
+
 // 全局样式表
 import '@/assets/index.less';
 
-export const app = createApp(App);
+// Pinia
+import {createPinia} from 'pinia';
+app.use(createPinia());
+
+// router
+import router from '@/router';
+// 导入路由守卫
+app.use(router);
+
+// UI框架 ant-design-vue
+import Antd from 'ant-design-vue';
+import 'ant-design-vue/dist/reset.css';
+app.use(Antd);
 
 app.mount('#app');
