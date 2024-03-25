@@ -21,4 +21,7 @@ import Antd from 'ant-design-vue';
 import 'ant-design-vue/dist/reset.css';
 app.use(Antd);
 
+// UnoCss
+import 'virtual:uno.css'
+
 app.mount('#app');

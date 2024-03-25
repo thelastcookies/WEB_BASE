@@ -1,0 +1,69 @@
+import type {CSSEntries, Preset, Rule, UserShortcuts, Variant} from 'unocss';
+
+// 规则
+const rules: Rule<Object>[] = [
+    ['ph', []],
+    ['transparent', {'background-color': 'transparent'}],
+    [/^letter-spacing-(-?(\d.)?\w+)$/, ([, v]) => ({'letter-spacing': `${v}`})],
+];
+// 快捷方式
+const shortcuts: UserShortcuts = [
+    ['flex', 'flex flex-items-center flex-justify-start'],
+    ['flex-c', 'flex flex-items-center flex-justify-center'],
+    ['flex-sb', 'flex flex-items-center flex-justify-between'],
+    ['flex-sa', 'flex flex-items-center flex-justify-around'],
+    ['flex-se', 'flex flex-items-center flex-justify-evenly'],
+    ['image-bg', 'bg-no-repeat bg-contain bg-center'],
+    ['image-bg-cover', 'bg-no-repeat bg-cover bg-center'],
+    ['m-center', 'ml-a mr-a mt-0 mb-0'],
+    ['login-input', 'w-400px p-16px line-height-8 border-rd-10px font-size-18px border-width-1'],
+    ['login-btn', 'h-54px w-full letter-spacing--0.18px font-size-18px font-600 border-rd-10px'],
+    [/^(([pm])-([lrtb]+)-(\w+))$/, ([, , style, direction, val]) => {
+        let output = [] as string[];
+        direction.split('').forEach(d => {
+            output.push(style + d + '-' + val);
+        });
+        return output.join(' ');
+    }],
+];
+
+// 主题
+const theme: Object = {};
+
+// 变体
+const variants: Variant<Object>[] = [{
+    name: 'calcVariant',
+    match: (matcher) => {
+        if (!matcher.startsWith('calc:')) {
+            return matcher;
+        }
+        let css: CSSEntries = [];
+        const regExp = /^calc:([a-z]+)-(\d+[a-z%]+)([+\-*\/])(\d+[a-z%]+)$/;
+        const match = regExp.exec(matcher);
+        if (match && match.length === 5) {
+            const [, style, val1, operator, val2] = regExp.exec(matcher) as RegExpExecArray;
+            const cssStr = `calc(${val1} ${operator} ${val2})`;
+            if (['height', 'width', 'top', 'bottom', 'left', 'right'].includes(style)) {
+                css.push([style, cssStr]);
+            }
+        }
+        return {
+            matcher: 'ph',
+            body: (body) => {
+                return css;
+            },
+        }
+    },
+    autocomplete: 'calc:(height|width|top|bottom|left|right)-<num>-<num>',
+}];
+
+// 组合预设并导出
+export default function presetThelastcookies(): Preset {
+    return {
+        name: 'preset-thelastcookies',
+        rules,
+        shortcuts,
+        theme,
+        variants,
+    }
+}
