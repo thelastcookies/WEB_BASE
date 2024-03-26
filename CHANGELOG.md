@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.4.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.3.0...v0.4.0) (2024-03-26)
+
+
+### Features
+
+* 新增 Loading 组件 ([0233340](https://github.com/thelastcookies/WEB-BASE/commit/023334042fe7d99b8aa4b8b7d44bba95ffddc27e))
+* 新增用户头像组件 ([e645239](https://github.com/thelastcookies/WEB-BASE/commit/e645239142572bf9220fea5c4bceda7b720253a8))
+* 新增登录后系统总入口 ([f1275d1](https://github.com/thelastcookies/WEB-BASE/commit/f1275d1c3b4e071327307232b00fb11873de775a))
+* 新增边栏菜单组件 ([5c300e4](https://github.com/thelastcookies/WEB-BASE/commit/5c300e4eb925414670b187cabe1481035ad09b13))
+* 新增面包屑组件 ([58c6f7b](https://github.com/thelastcookies/WEB-BASE/commit/58c6f7bdc8f42a11ff144e911effffbf8e15c8bf))
+* 新增页眉组件 ([6472120](https://github.com/thelastcookies/WEB-BASE/commit/647212016a8c175c9ec1c94622a05e412abb235a))
+
+
+### Bug Fixes
+
+* 修改 Less 变量为 CSS 变量 ([737cd1a](https://github.com/thelastcookies/WEB-BASE/commit/737cd1abf97634fdbf1db40dbe2853897821a034))
+* 删除已不需要的内容 ([66cc8a9](https://github.com/thelastcookies/WEB-BASE/commit/66cc8a973a0a6071b1025dce50b127a288cbfaf3))
+* 补充 Layout.vue 的路由配置 ([f2335ea](https://github.com/thelastcookies/WEB-BASE/commit/f2335ea787e710173ee0ca582283f3435ef4b03f))
+* 调整页眉，面包屑，头像组件的位置 ([7bf345b](https://github.com/thelastcookies/WEB-BASE/commit/7bf345beb9bbc99a8031ecf52bfc2db589a7651f))
+
 ## [0.3.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.2.0...v0.3.0) (2024-03-25)
 
 
