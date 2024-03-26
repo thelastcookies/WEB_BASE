@@ -118,7 +118,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
 
 const instance: AxiosInstance = axios.create({
     baseURL: '/',
-    timeout: 60000,
+    timeout: 30000,
     headers: {'Content-Type': ContentTypeEnum.JSON},
 });
 
