@@ -48,7 +48,7 @@ async function handleClick({key}: MenuInfo) {
 
 <style scoped lang="less">
 .user-name {
-    font-size: ~'@{fontSizeLG}px';
-    color: @colorBgContainer;
+    font-size: calc(var(--fontSizeLG) * 1px);
+    color: var(--colorBgContainer);
 }
 </style>

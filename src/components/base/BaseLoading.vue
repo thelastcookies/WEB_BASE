@@ -6,6 +6,6 @@
 
 <style scoped lang="less">
 .icon {
-    color: @colorPrimary;
+    color: var(--colorPrimary)
 }
 </style>
