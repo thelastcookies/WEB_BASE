@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.5.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.4.0...v0.5.0) (2024-03-28)
+
+
+### Features
+
+* 增加登录表单提交后禁用功能 ([34e398d](https://github.com/thelastcookies/WEB-BASE/commit/34e398d4f9384a70fb3c15080d77f2160d07a200))
+
+
+### Bug Fixes
+
+* 修复 404 页面无法正常展示的问题 ([cceddb1](https://github.com/thelastcookies/WEB-BASE/commit/cceddb10c791e6ac07d3cf629d42cb2ea825db5b))
+* 修改 tsconfig.json 配置 ([cbe50ec](https://github.com/thelastcookies/WEB-BASE/commit/cbe50ecea0a3ee6755cb55629ed6b66f08d9839f))
+* 添加路由匹配失败时的回退模式 ([b36f10a](https://github.com/thelastcookies/WEB-BASE/commit/b36f10a2e9b10385e12a886d49d076a2d5a72e82))
+
 ## [0.4.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.3.0...v0.4.0) (2024-03-26)
 
 
