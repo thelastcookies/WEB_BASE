@@ -15,9 +15,9 @@ onMounted(() => {
             <a-layout-sider width="280">
                 <SidebarMenu></SidebarMenu>
             </a-layout-sider>
-            <a-layout pl-15px>
+            <a-layout>
                 <Breadcrumb></Breadcrumb>
-                <a-layout-content class="main-container">
+                <a-layout-content p-24px>
                     <router-view v-slot="{ Component }">
                         <suspense timeout="0">
                             <div>
@@ -33,10 +33,3 @@ onMounted(() => {
         </a-layout>
     </a-layout>
 </template>
-
-<style scoped lang="less">
-.main-container {
-    background-color: var(--colorBgContainer);
-}
-
-</style>
