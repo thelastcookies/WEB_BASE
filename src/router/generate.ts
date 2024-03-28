@@ -11,7 +11,7 @@ export const generateRouterConf = (actionTree: ActionItem[]) => {
     const homePageId = import.meta.env.APP_HOMEPAGE_ID;
     const homePage = findAction(actionTree, homePageId);
     if (!homePage) {
-        console.error('RouterStore function "generateRouterConf": Cannot find page by id: ' + homePageId + '.');
+        console.error(`Router.generate "generateRouterConf": Cannot find homepage by id: ${homePageId}.`);
     }
 
     // 添加路由到 router

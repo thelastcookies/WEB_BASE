@@ -31,7 +31,7 @@ export const useActionStore = defineStore('action', () => {
         // 使用原生 pageId 取得路由配置信息
         const action = findAction(actionTree.value, actionId);
         if (!action) {
-            console.error('ActionStore "routeTo": Cannot find action by id: ' + actionId);
+            console.error(`ActionStore "routeTo": Cannot find action by id: ${actionId}.`);
             return;
         }
         // 如果是外链页面，则直接跳转

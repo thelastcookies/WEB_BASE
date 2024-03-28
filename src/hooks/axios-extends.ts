@@ -32,7 +32,7 @@ const requestHandler = async (
         if (token) {
             config.headers.set('Authorization', "Bearer " + token);
         } else {
-            console.error(`function "requestHandler": Token is required for request '${config.method}' ${config.url}, but it is missing.`);
+            console.error(`Axios "requestHandler": Token is required for request '${config.method}' ${config.url}, but it is missing.`);
         }
     }
     if (config.loading) {
@@ -106,7 +106,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
         instance.request(options).then((res) => {
             resolve(res as R);
         }).catch((e: Error | AxiosError) => {
-            console.error(`function "instancePromise": ${e}.`);
+            console.error(`Axios "instancePromise": ${e}.`);
             reject(e);
         }).finally(() => {
             if (loading) {
