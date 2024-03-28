@@ -5,6 +5,8 @@ import {Ref} from "vue";
 
 const {message} = useAppStore();
 
+const submittingDisabled = ref(false);
+
 const loginForm = reactive<LoginParams>({
     userName: '',
     password: '',
@@ -19,6 +21,7 @@ const loginFormRules: Record<string, Rule[]> = {
 const loginFormRef = ref(null) as Ref<Element | null>;
 const usernameRef = ref(null) as Ref<Element | null>;
 const handleSubmitLogin = async (formData: LoginParams) => {
+    submittingDisabled.value = true;
     message.loading({
         content: '正在登录中，请稍候。',
         key: LOGIN_LOADING_KEY,
@@ -33,18 +36,21 @@ const handleSubmitLogin = async (formData: LoginParams) => {
                 content: '登录成功。',
                 key: LOGIN_LOADING_KEY,
             });
+            submittingDisabled.value = false;
             router.push("/");
         } else {
             message.error({
                 content: res.Msg,
                 key: LOGIN_LOADING_KEY,
             });
+            submittingDisabled.value = false;
         }
     }).catch(() => {
         message.error({
             content: '登录失败！',
             key: LOGIN_LOADING_KEY,
         });
+        submittingDisabled.value = false;
     });
 };
 
@@ -83,6 +89,7 @@ const handleValidate = (name: string | number | string[] | number[], status: boo
  * @param e
  */
 const handleInputMEnter = (e: Event) => {
+    if (submittingDisabled.value) return;
     const domId = (e.target as Element).id;
     if (domId === 'userName' && loginForm.userName !== '') {
         userNameColorClass.value = uActiveColor;
@@ -155,6 +162,7 @@ const handleInputBlur = (e: Event) => {
             :model="loginForm"
             autocomplete="off"
             :rules="loginFormRules"
+            :disabled="submittingDisabled"
             @validate="handleValidate"
             @finish="handleSubmitLogin"
         >
@@ -215,6 +223,7 @@ const handleInputBlur = (e: Event) => {
         color: var(--colorTextSecondary);
     }
 
+
     .ant-input-password {
         padding: 0 16px 0;
 
@@ -223,6 +232,11 @@ const handleInputBlur = (e: Event) => {
             background-color: transparent;
         }
     }
+
+    .ant-input[disabled] {
+        background-color: rgba(0, 0, 0, 0);
+    }
+
 
     .ant-form-item {
         ::v-deep(.ant-form-item-explain-error) {
