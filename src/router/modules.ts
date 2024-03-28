@@ -37,9 +37,13 @@ export const getRouterModule = (path?: string): any => {
     // 组装页面路径
     const fullPath = `/src/views/${path}`;
     const fullPathIndex = `/src/views/${path}/index`;
-    return fullPathIndex in modules
-        ? checkEager(modules[fullPathIndex])
-        : checkEager(modules[fullPath]);
+    if (fullPath in modules) {
+        return checkEager(modules[fullPath]);
+    } else if (fullPathIndex in modules) {
+        return checkEager(modules[fullPathIndex]);
+    } else {
+        return basicRouteMap.ComponentError;
+    }
 };
 
 export default modules;
