@@ -9,7 +9,7 @@ const router = createRouter({
     }, {
         path: '/',
         name: 'Layout',
-        component: () => import('@/views/layout/Layout.vue'),
+        component: () => import('@/views/layouts/Layout.vue'),
         children: []
     }, {
         path: '/:pathMatch(.*)',

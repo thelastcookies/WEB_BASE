@@ -6,7 +6,7 @@ const appTitle = import.meta.env.APP_TITLE;
     <div class="w-full h-full flex-sb">
         <div class="h-full flex">
             <BaseIcon icon="/logo.svg" type="logo" :size="32"></BaseIcon>
-            <span class="header-title text ml  font-700">{{ appTitle }}</span>
+            <span class="header-title text ml font-700 tracking-wide">{{ appTitle }}</span>
         </div>
         <div class="h-full lh-3">
             <UserAvatar :size="24" />
