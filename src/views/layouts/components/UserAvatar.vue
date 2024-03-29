@@ -30,7 +30,7 @@ async function handleClick({key}: MenuInfo) {
             <a-avatar :size="size" mr-8px>
                 <BaseIcon icon="UserOutlined" :size="size"></BaseIcon>
             </a-avatar>
-            <span class="user-name text">{{ realName }}</span>
+            <span class="font-size-14px text">{{ realName }}</span>
         </div>
         <template #overlay>
             <a-menu @click="handleClick">
@@ -45,9 +45,3 @@ async function handleClick({key}: MenuInfo) {
         </template>
     </a-dropdown>
 </template>
-
-<style scoped lang="less">
-.user-name {
-    font-size: calc(var(--fontSizeLG) * 1px);
-}
-</style>

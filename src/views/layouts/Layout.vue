@@ -8,7 +8,7 @@ onMounted(() => {
 
 <template>
     <a-layout w-full h-full>
-        <a-layout-header h-48px>
+        <a-layout-header h-52px p-lr-16px>
             <Header />
         </a-layout-header>
         <a-layout>
