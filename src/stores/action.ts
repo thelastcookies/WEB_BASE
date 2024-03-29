@@ -40,7 +40,10 @@ export const useActionStore = defineStore('action', () => {
             return;
         }
         // 路由配置中页面没有配置实际组件，只作为菜单结构存在
-        if (!action.component && !action.url?.startsWith('/redirect')) return;
+        if (!action.component && !action.url?.startsWith('/redirect')) {
+            console.warn(`ActionStore "routeTo": Cannot find 'component' in action: ${actionId}.`);
+            return;
+        }
 
         setCurrentActiveMenu(actionId);
         let route: RouteLocationRaw;

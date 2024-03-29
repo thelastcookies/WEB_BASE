@@ -48,6 +48,7 @@ const generateRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
 
 /**
  * 将 Action 处理为 RouteRecordRaw 类型并返回
+ * 如果 Action 没有配置 component 与 url 属性，则视作非实体组件而不会被加入到 router 中
  * @param action
  */
 const actionToRoute = (action: ActionItem) => {
