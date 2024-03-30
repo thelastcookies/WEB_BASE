@@ -16,7 +16,7 @@ const router = createRouter({
         meta: {
             title: '找不到页面',
         },
-        component: () => import('@/views/exception/Error.vue'),
+        component: () => import('@/views/exceptions/Error.vue'),
     },],
 });
 

@@ -20,10 +20,10 @@
     "jsxImportSource": "vue",
     "paths": {
       "@/*": [
-        "./src/*"
+        "src/*"
       ],
       "~/*": [
-        "./src/assets/images/*"
+        "src/assets/images/*"
       ]
     },
     /* Linting */

@@ -2,11 +2,12 @@
  * 将从接口中取到的路由配置的 component 字段进行校验与实际导入
  */
 const modules = import.meta.glob([
-    '@/views/**/*.vue',
-    '@/views/**/*.tsx',
-    '!@/views/common',
-    '!@/views/**/component',
-    '!@/views/**/test',
+    '/src/views/**/*.vue',
+    '/src/views/**/*.tsx',
+    '!/src/views/common',
+    '!/src/views/**/exceptions',
+    '!/src/views/**/components',
+    '!/src/views/**/test',
 ]);
 
 export const basicRouteMap = {
@@ -15,7 +16,7 @@ export const basicRouteMap = {
     // 一般用于存在子集的页面
     // RouteView: () => import('@/views/common/route-view.vue'),
     // 空页面
-    ComponentError: () => import('@/views/exception/ComponentError.vue'),
+    ComponentError: () => import('@/views/exceptions/ComponentError.vue'),
 };
 
 const checkEager = (module: any) => {
