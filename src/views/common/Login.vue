@@ -4,11 +4,11 @@ const appTitle = import.meta.env.APP_TITLE;
 
 <template>
     <div class="login-container w-full h-full image-bg-cover flex-c">
-        <div class="login-form-container w-75% h-82% border-rd-32px flex">
-            <div class="login-form h-full w-530px p32px">
-                <header class="form-header flex">
+        <div class="w-75% h-82% border-rd-32px flex bg-ant__bg-container">
+            <div class="h-full w-530px p32px">
+                <header class="flex">
                     <BaseIcon icon="/logo.svg" type="logo" size="32"></BaseIcon>
-                    <div class="header-title font-600 ml line-height-9">{{ appTitle }}</div>
+                    <div class="text-24px font-600 ml line-height-9">{{ appTitle }}</div>
                 </header>
                 <main class="calc:height-100%-32px flex">
                     <LoginForm></LoginForm>
@@ -24,18 +24,6 @@ const appTitle = import.meta.env.APP_TITLE;
 <style scoped lang="less">
 .login-container {
     background-image: url("~/login/login-bg.jpg");
-
-    .login-form-container {
-        background-color: var(--colorBgContainer);
-    }
-
-    .login-form {
-        .form-header {
-            .header-title {
-                font-size: calc(var(--fontSizeHeading3) * 1px);
-            }
-        }
-    }
 
     .form-deco {
         background-image: url("~/login/login-form-bg.jpg");

@@ -153,8 +153,8 @@ const handleInputBlur = (e: Event) => {
 
 <template>
     <div class="form-container w-400px m-center">
-        <div class="form-title line-height-12 font-700 letter-spacing--1.6px">登录</div>
-        <div class="form-subtitle mt-3">请登录以使用本系统</div>
+        <div class="text-40px line-height-12 font-700 letter-spacing--1.6px">登录</div>
+        <div class="text-18px c-ant__text-tertiary mt-3">请登录以使用本系统</div>
         <a-form
             mt-8
             name="login"
@@ -177,7 +177,7 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label absolute left-12.5px p-lr-4px"
+                <div class="form-label bg-ant__bg-container absolute left-12.5px p-lr-4px"
                      :class="[userNameColorClass, {'active': userNameIsActive}]">账号
                 </div>
             </a-form-item>
@@ -192,7 +192,7 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label absolute left-12.5px p-lr-4px"
+                <div class="form-label bg-ant__bg-container absolute left-12.5px p-lr-4px"
                      :class="[passwordColorClass, {'active': passwordIsActive}]">密码
                 </div>
             </a-form-item>
@@ -214,16 +214,6 @@ const handleInputBlur = (e: Event) => {
 
 <style scoped lang="less">
 .form-container {
-    .form-title {
-        font-size: calc(var(--fontSizeHeading1) * 1px);
-    }
-
-    .form-subtitle {
-        font-size: calc(var(--fontSizeLG) * 1px);
-        color: var(--colorTextSecondary);
-    }
-
-
     .ant-input-password {
         padding: 0 16px 0;
 
@@ -246,7 +236,6 @@ const handleInputBlur = (e: Event) => {
 
     .form-label {
         transition-duration: var(--motionDurationMid);
-        background-color: var(--colorBgContainer);
         color: var(--colorTextQuaternary);
         top: 16.5px;
         font-size: 18px;
