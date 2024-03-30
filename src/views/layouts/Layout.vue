@@ -9,7 +9,7 @@ onMounted(() => {
 <template>
     <a-layout w-full h-full>
         <a-layout-header h-52px p-lr-16px>
-            <Header />
+            <Header/>
         </a-layout-header>
         <a-layout>
             <a-layout-sider width="280">
@@ -20,11 +20,9 @@ onMounted(() => {
                 <a-layout-content p-24px>
                     <router-view v-slot="{ Component }">
                         <suspense timeout="0">
-                            <div>
-                                <component :is="Component"></component>
-                            </div>
+                            <component :is="Component"></component>
                             <template #fallback>
-                                <BaseLoading />
+                                <BaseLoading/>
                             </template>
                         </suspense>
                     </router-view>
