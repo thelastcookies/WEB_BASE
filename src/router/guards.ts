@@ -50,9 +50,9 @@ router.beforeEach(async (to, _, next) => {
                         next({
                             path: '/401',
                         })
-                    } else {
-
                     }
+                } else {
+                    console.error(e);
                 }
                 message.error({
                     content: '加载失败。',
