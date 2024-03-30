@@ -1,4 +1,5 @@
 import type {CSSEntries, Preset, Rule, UserShortcuts, Variant} from 'unocss';
+import antdUnoTheme from './antd-uno-theme.json'
 
 // 规则
 const rules: Rule<Object>[] = [
@@ -28,7 +29,9 @@ const shortcuts: UserShortcuts = [
 ];
 
 // 主题
-const theme: Object = {};
+const theme: Object = {
+    ...antdUnoTheme,
+};
 
 // 变体
 const variants: Variant<Object>[] = [{
