@@ -1,7 +1,6 @@
 import type {ActionItem} from "@/types";
 import type {RouteRecordRaw} from "vue-router";
 
-const {findAction} = useActionStore();
 /**
  * 根据 Actions 配置，生成路由
  */
@@ -55,7 +54,7 @@ const generateRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
 const actionToRoute = (action: ActionItem) => {
     if (!action.component || !action.url) return;
     const redirect = action.url?.startsWith('/redirect') ? action.url?.split('/redirect')[1] : undefined;
-    const props = action.url.search(/:/) > 0 ? true : false;
+    const props = action.url.search(/:/) > 0;
     return {
         path: action.url,
         name: action.menuId,

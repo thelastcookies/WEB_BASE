@@ -2,7 +2,6 @@ import type {RouteToInfo} from "@/types";
 import type {RouteLocationRaw} from "vue-router";
 
 const actionStore = useActionStore();
-const {findAction} = actionStore;
 const {actionTree} = storeToRefs(actionStore);
 
 export const routeTo = (routeToInfo: RouteToInfo) => {
