@@ -19,12 +19,12 @@ onMounted(() => {
                 <Breadcrumb></Breadcrumb>
                 <a-layout-content p-24px>
                     <router-view v-slot="{ Component }">
-                        <suspense timeout="0">
+                        <Suspense timeout="0">
                             <component :is="Component"></component>
                             <template #fallback>
                                 <BaseLoading/>
                             </template>
-                        </suspense>
+                        </Suspense>
                     </router-view>
                 </a-layout-content>
             </a-layout>
