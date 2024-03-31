@@ -1,8 +1,6 @@
 <script setup lang="ts">
-const {routeTo} = useActionStore();
-
 onMounted(() => {
-    routeTo({id: import.meta.env.APP_HOMEPAGE_ID});
+    routeTo({name: import.meta.env.APP_HOMEPAGE_ID});
 });
 </script>
 

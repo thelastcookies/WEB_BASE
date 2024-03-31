@@ -1,10 +1,25 @@
 <script setup lang="ts">
-const {crtBreadcrumb} = storeToRefs(useActionStore());
+import type {ActionItem, RecordName} from "@/types";
+import type {RouteLocationNormalized} from "vue-router";
+
+const actionStore = useActionStore();
+const {findActionAncestorChain} = actionStore;
+const {actionTree} = storeToRefs(actionStore);
+
+const breadcrumb = ref([] as ActionItem[]);
+// 订阅路由变化，设置面包屑
+listenRouteChange((route: RouteLocationNormalized) => {
+    breadcrumb.value = findActionAncestorChain(actionTree.value, route.name as RecordName)!.reverse();
+}, true);
+
+onUnmounted(() => {
+    removeRouteListener();
+});
 </script>
 
 <template>
     <a-breadcrumb h-54px lh-54px p-lr-24px bg-ant__bg-container>
-        <template v-for="menu in crtBreadcrumb">
+        <template v-for="menu in breadcrumb">
             <a-breadcrumb-item>{{ menu.title }}</a-breadcrumb-item>
         </template>
     </a-breadcrumb>

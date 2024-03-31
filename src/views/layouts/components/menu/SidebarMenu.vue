@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type {ActionItem, Key, MenuTreeNode} from "@/types";
+import type {ActionItem, Key, MenuTreeNode, RecordName} from "@/types";
 import type {MenuInfo, SelectInfo} from "ant-design-vue/es/menu/src/interface";
+import type {Ref} from "vue";
+import type {RouteLocationNormalized} from "vue-router";
 
 const openKeys = ref([]);
 const selectedKeys = ref([] as string[]);
-
-const menuData = ref([] as MenuTreeNode[]);
 
 const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
     return tree.map((item: ActionItem) => {
@@ -29,31 +29,41 @@ const handleMenuClick = ({item, key, keyPath}: MenuInfo) => {
     console.log('handleMenuClick key', key);
     ///////////
     console.log('handleMenuClick keyPath', keyPath);
-    routeTo({id: key});
+    routeTo({name: key as string});
 }
 
 const onOpenChange = (openKeys: (Key)[]) => {
-    console.log('onOpenChange openKeys', openKeys);
 }
 
 const onSelect = ({selectedKeys}: SelectInfo) => {
-    console.log('onSelect selectedKeys', selectedKeys);
 }
 
 const actionStore = useActionStore();
-const {routeTo} = actionStore;
+const {findAction} = actionStore;
 const {actionTree} = storeToRefs(actionStore);
 
+const activeMenu = ref() as Ref<ActionItem>;
+
+// 订阅路由变化，设置活跃菜单项
+listenRouteChange((route: RouteLocationNormalized) => {
+    activeMenu.value = findAction(actionTree.value, route.name as RecordName)!;
+}, true);
+
+onUnmounted(() => {
+    removeRouteListener();
+});
+
+watch(activeMenu, (action: ActionItem) => {
+    selectedKeys.value = [action.menuId as string];
+});
+
+const menuData = ref([] as MenuTreeNode[]);
 watch(actionTree, (tree: ActionItem[]) => {
     menuData.value = actionToMenu(tree);
 }, {
     immediate: true,
 });
 
-const {crtActiveMenu} = storeToRefs(useActionStore());
-watch(crtActiveMenu, (action: ActionItem) => {
-    selectedKeys.value = [action.menuId as string];
-});
 
 </script>
 
