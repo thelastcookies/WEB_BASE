@@ -7,8 +7,9 @@ import type {RouteLocationNormalized} from "vue-router";
 const openKeys = ref([]);
 const selectedKeys = ref([] as string[]);
 
-const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
+const actionToMenu = (tree: ActionItem[]): (MenuTreeNode | undefined)[] => {
     return tree.map((item: ActionItem) => {
+        if (item.showInMenu !== ShowInMenuType.SHOW) return;
         let menuNode: MenuTreeNode = {
             key: item.menuId ?? item.id ?? '',
             label: item.title ?? String(item.menuId) ?? String(item.id) ?? '',
@@ -17,8 +18,8 @@ const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
         if (item.icon) {
             menuNode.icon = item.icon;
         }
-        if (item.children) {
-            menuNode.children = actionToMenu(item.children);
+        if (item.children && item.children.filter(menu => menu.showInMenu === ShowInMenuType.SHOW).length > 0) {
+            menuNode.children = actionToMenu(item.children) as MenuTreeNode[];
         }
         return menuNode;
     });
@@ -39,31 +40,29 @@ const onSelect = ({selectedKeys}: SelectInfo) => {
 }
 
 const actionStore = useActionStore();
-const {findAction} = actionStore;
 const {actionTree} = storeToRefs(actionStore);
 
 const activeMenu = ref() as Ref<ActionItem>;
-
 // 订阅路由变化，设置活跃菜单项
 listenRouteChange((route: RouteLocationNormalized) => {
-    activeMenu.value = findAction(actionTree.value, route.name as RecordName)!;
+    const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
+    if (!ancestorChain || !ancestorChain.length) return;
+
+    activeMenu.value = ancestorChain[0];
+    const menuCouldBeSelected = ancestorChain.find(action => action.showInMenu === ShowInMenuType.SHOW);
+    selectedKeys.value = [String(menuCouldBeSelected!.menuId)];
 }, true);
 
 onUnmounted(() => {
     removeRouteListener();
 });
 
-watch(activeMenu, (action: ActionItem) => {
-    selectedKeys.value = [action.menuId as string];
-});
-
-const menuData = ref([] as MenuTreeNode[]);
+const menuData = ref([] as (MenuTreeNode | undefined)[]);
 watch(actionTree, (tree: ActionItem[]) => {
     menuData.value = actionToMenu(tree);
 }, {
     immediate: true,
 });
-
 
 </script>
 
@@ -77,10 +76,8 @@ watch(actionTree, (tree: ActionItem[]) => {
         @openChange="onOpenChange"
         @select="onSelect"
     >
-        <template v-for="item in menuData">
-            <template v-if="!item.showInMenu">
-                <SubMenu :key="item!.key" :item="item"/>
-            </template>
+        <template v-for="item in menuData" :key="item.key">
+            <SubMenu :item="item"/>
         </template>
     </a-menu>
 </template>

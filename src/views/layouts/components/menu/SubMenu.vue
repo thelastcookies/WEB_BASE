@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { VNodeChild } from 'vue'
+import type {VNodeChild} from 'vue'
 import type {MenuTreeNode} from "@/types";
 
 defineProps<{
@@ -19,22 +19,20 @@ const renderTitle = (title: VNodeChild | (() => VNodeChild)) => {
     <template v-if="item.children">
         <a-sub-menu :key="item.key">
             <template v-if="item.icon" #icon>
-                <BaseIcon :icon="item.icon" />
+                <BaseIcon :icon="item.icon"/>
             </template>
             <template #title>
                 {{ renderTitle(item.title) }}
             </template>
-            <template v-for="subM in item.children">
-                <template v-if="!subM.showInMenu">
-                    <SubMenu :key="subM!.key" :item="subM"/>
-                </template>
+            <template v-for="subM in item.children" :key="subM.key">
+                <SubMenu :item="subM"/>
             </template>
         </a-sub-menu>
     </template>
     <template v-else>
         <a-menu-item :key="item.key">
             <template v-if="item.icon" #icon>
-                <BaseIcon :icon="item.icon" />
+                <BaseIcon :icon="item.icon"/>
             </template>
             {{ renderTitle(item.title) }}
         </a-menu-item>
