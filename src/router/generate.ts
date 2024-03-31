@@ -54,10 +54,12 @@ const generateRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
 const actionToRoute = (action: ActionItem) => {
     if (!action.component || !action.url) return;
     const redirect = action.url?.startsWith('/redirect') ? action.url?.split('/redirect')[1] : undefined;
+    const props = action.url.search(/:/) > 0 ? true : false;
     return {
         path: action.url,
         name: action.menuId,
         component: getRouterModule(action.component),
+        props,
         redirect,
     } as RouteRecordRaw;
 }

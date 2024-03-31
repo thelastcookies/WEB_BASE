@@ -55,6 +55,7 @@ export interface RouteToInfo {
     id: Key,
     title?: string,
     type?: string,
+    params?: Object,
     query?: Object
 }
 

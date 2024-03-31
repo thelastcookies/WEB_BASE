@@ -44,16 +44,22 @@ export const useActionStore = defineStore('action', () => {
             console.warn(`ActionStore "routeTo": Cannot find 'component' in action: ${actionId}.`);
             return;
         }
-
-        setCurrentActiveMenu(actionId);
+        // 设置路由活跃状态
+        setCurrentActiveAction(actionId);
+        // 构建 Route
         let route: RouteLocationRaw;
-        route = {
-            path: action.url!,
-        };
+        route = {name: action.menuId as string};
+        if (routeToInfo.params) {
+            Object.assign(route, {params: routeToInfo.params});
+        }
         router.push(route);
     }
 
-    const setCurrentActiveMenu = (id: Key) => {
+    /**
+     * 设置当前活跃 Action
+     * @param id
+     */
+    const setCurrentActiveAction = (id: Key) => {
         crtActiveMenu.value = findAction(actionTree.value, id)!;
         crtBreadcrumb.value = findActionAncestorChain(actionTree.value, id)!.reverse();
     };
@@ -126,21 +132,22 @@ export const findActionAncestorChain = (
  */
 export const preprocessActionTree = (actionTree: any): ActionItem[] => {
     return actionTree.map((item: any) => {
-        let route: ActionItem = {};
-        route.id = item.Id ?? '';
-        route.pId = item.ParentId ?? '';
-        route.menuId = item.MenuId ?? '';
-        route.title = item.Text ?? '';
-        route.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
-        route.url = item.Url ?? '';
-        route.icon = item.icon ?? '';
+        let action: ActionItem = {};
+        action.id = item.Id ?? '';
+        action.pId = item.ParentId ?? '';
+        action.menuId = item.MenuId ?? '';
+        action.title = item.Text ?? '';
+        action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
+        action.url = item.Url ?? '';
+        action.icon = item.icon ?? '';
 
-        route.component = item.Component ?? '';
-        route.query = item.Query ? JSON.parse(item.Query) : '';
-        route.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
+
+        action.component = item.Component ?? '';
+        action.query = item.Query ? JSON.parse(item.Query) : '';
+        action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
         if (item.Children) {
-            route.children = preprocessActionTree(item.Children);
+            action.children = preprocessActionTree(item.Children);
         }
-        return route;
+        return action;
     });
 };
