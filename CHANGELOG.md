@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.6.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.5.0...v0.6.0) (2024-03-31)
+
+
+### Features
+
+* 使用订阅路由变化的方式更新菜单和面包屑 ([409d742](https://github.com/thelastcookies/WEB-BASE/commit/409d74277fcc6df9a6b0c626c411e04ea78ffe7c))
+* 增加路由组件传参支持 ([ad00a52](https://github.com/thelastcookies/WEB-BASE/commit/ad00a52308c0d1d40c5484fb8b6d427ce8e2b45c))
+* 完善菜单功能，增加对隐藏菜单的支持 ([7294190](https://github.com/thelastcookies/WEB-BASE/commit/729419049343aff7f4c2f0486e6f0b94d5188182))
+* 新增 UnoCSS 主题，导入 Antdv CSS 变量 ([7b1d11b](https://github.com/thelastcookies/WEB-BASE/commit/7b1d11bc4e839bfd33d7596c098bb35bccd42517))
+
+
+### Bug Fixes
+
+* 使用 UnoCSS 'vue-scoped' mode，解决 UnoCSS 样式优先级低的问题 ([57af199](https://github.com/thelastcookies/WEB-BASE/commit/57af19907016bbb0e8334ee8b8fde972cfd5cde5))
+* 修复 ActionStore 方法在初始化前被调用的问题 ([a042989](https://github.com/thelastcookies/WEB-BASE/commit/a042989d3fef64e062c37060da5e79bd2625e504))
+* 修复 UserAvatar.vue 文字颜色错误的问题 ([58ef791](https://github.com/thelastcookies/WEB-BASE/commit/58ef791211e2212f87475c8c8cb50da1124979d9))
+* 删除 Layout.vue 中的多余内容 ([8cceb1d](https://github.com/thelastcookies/WEB-BASE/commit/8cceb1d2273549ca60fdbf896db3fbabd8a8def5))
+* 增加 guard.ts 的错误提示 ([cc9cc5c](https://github.com/thelastcookies/WEB-BASE/commit/cc9cc5c362ee456fdbc0c8e227791f42d1945d93))
+* 增加面包屑组件数据校验，修复死循环问题 ([98ba5f4](https://github.com/thelastcookies/WEB-BASE/commit/98ba5f46213718f8c51ac3d44a82b29e8a527d61))
+* 新增路由配置缺陷时的提示 ([a5076c7](https://github.com/thelastcookies/WEB-BASE/commit/a5076c73839b25c9d9fb3216f71a627658cc8a31))
+
 ## [0.5.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.4.0...v0.5.0) (2024-03-28)
 
 
