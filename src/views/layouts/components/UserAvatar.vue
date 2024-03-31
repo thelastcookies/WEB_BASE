@@ -30,7 +30,7 @@ async function handleClick({key}: MenuInfo) {
             <a-avatar :size="size" mr-8px>
                 <BaseIcon icon="UserOutlined" :size="size"></BaseIcon>
             </a-avatar>
-            <span class="font-size-14px text">{{ realName }}</span>
+            <span class="c-ant__white font-size-14px text">{{ realName }}</span>
         </div>
         <template #overlay>
             <a-menu @click="handleClick">
