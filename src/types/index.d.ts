@@ -2,6 +2,7 @@ import {VNodeChild} from "vue";
 import type {MenuPageType, ShowInMenuType} from "@/types/enums";
 
 export type Key = string | number;
+export type RecordName = string | symbol;
 
 interface CommonItem {
     id: string,
@@ -25,8 +26,8 @@ export interface ActionItem {
     id?: Key;
     // 父级 id
     pId?: Key;
-    // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项
-    menuId?: Key;
+    // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项，在构建路由时，会将此项作为 'name' 属性填入 Route 中
+    menuId?: Key | RecordName;
     // 路由配置的中文描述
     title?: string;
     // 路由配置的类型
@@ -52,7 +53,7 @@ export interface ActionItem {
 }
 
 export interface RouteToInfo {
-    id: Key,
+    name: RecordName,
     title?: string,
     type?: string,
     params?: Object,
@@ -63,7 +64,7 @@ export interface RouteToInfo {
  * 用于 Antdv 菜单
  */
 export interface MenuTreeNode {
-    key: Key;
+    key: Key | RecordName;
     label: string;
     title?: string;
     icon?: string | (() => VNodeChild);

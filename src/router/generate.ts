@@ -1,6 +1,7 @@
 import type {ActionItem} from "@/types";
 import type {RouteRecordRaw} from "vue-router";
 
+const {findAction} = useActionStore();
 /**
  * 根据 Actions 配置，生成路由
  */
