@@ -3,13 +3,14 @@ import type {ActionItem, RecordName} from "@/types";
 import type {RouteLocationNormalized} from "vue-router";
 
 const actionStore = useActionStore();
-const {findActionAncestorChain} = actionStore;
 const {actionTree} = storeToRefs(actionStore);
 
 const breadcrumb = ref([] as ActionItem[]);
 // 订阅路由变化，设置面包屑
 listenRouteChange((route: RouteLocationNormalized) => {
-    breadcrumb.value = findActionAncestorChain(actionTree.value, route.name as RecordName)!.reverse();
+    const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
+    if (!ancestorChain || !ancestorChain.length) return;
+    breadcrumb.value = ancestorChain.reverse();
 }, true);
 
 onUnmounted(() => {
