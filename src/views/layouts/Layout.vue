@@ -15,7 +15,7 @@ onMounted(() => {
             </a-layout-sider>
             <a-layout>
                 <Breadcrumb></Breadcrumb>
-                <a-layout-content p-24px>
+                <a-layout-content>
                     <router-view v-slot="{ Component }">
                         <Suspense timeout="0">
                             <component :is="Component"></component>

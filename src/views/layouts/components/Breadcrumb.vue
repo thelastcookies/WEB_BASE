@@ -19,7 +19,7 @@ onUnmounted(() => {
 </script>
 
 <template>
-    <a-breadcrumb h-54px lh-54px p-lr-24px bg-ant__bg-container>
+    <a-breadcrumb h-54px lh-54px p-lr-normal bg-ant__bg-container>
         <template v-for="menu in breadcrumb">
             <a-breadcrumb-item>{{ menu.title }}</a-breadcrumb-item>
         </template>

@@ -6,6 +6,18 @@ const rules: Rule<Object>[] = [
     ['ph', []],
     ['transparent', {'background-color': 'transparent'}],
     [/^letter-spacing-(-?(\d.)?\w+)$/, ([, v]) => ({'letter-spacing': `${v}`})],
+    [/^([pm])([lrtb]+)-normal$/, ([, style, direction]) => {
+        let property = '';
+        if (style === 'm') property = 'margin';
+        else if (style === 'p') property = 'padding';
+        if (direction === 'l') property += '-left';
+        else if (direction === 'r') property += '-right';
+        else if (direction === 't') property += '-top';
+        else if (direction === 'b') property += '-bottom';
+        return {
+            [property]: 'var(--marginSize)',
+        };
+    }],
 ];
 // 快捷方式
 const shortcuts: UserShortcuts = [
