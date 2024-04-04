@@ -7,9 +7,10 @@ import type {RouteLocationNormalized} from "vue-router";
 const openKeys = ref([]);
 const selectedKeys = ref([] as string[]);
 
-const actionToMenu = (tree: ActionItem[]): (MenuTreeNode | undefined)[] => {
-    return tree.map((item: ActionItem) => {
-        if (item.showInMenu !== ShowInMenuType.SHOW) return;
+const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
+    let menuTree = [] as MenuTreeNode[];
+    for (const item of tree) {
+        if (item.showInMenu !== ShowInMenuType.SHOW) continue;
         let menuNode: MenuTreeNode = {
             key: item.menuId ?? item.id ?? '',
             label: item.title ?? String(item.menuId) ?? String(item.id) ?? '',
@@ -19,10 +20,11 @@ const actionToMenu = (tree: ActionItem[]): (MenuTreeNode | undefined)[] => {
             menuNode.icon = item.icon;
         }
         if (item.children && item.children.filter(menu => menu.showInMenu === ShowInMenuType.SHOW).length > 0) {
-            menuNode.children = actionToMenu(item.children) as MenuTreeNode[];
+            menuNode.children = actionToMenu(item.children);
         }
-        return menuNode;
-    });
+        menuTree.push(menuNode);
+    }
+    return menuTree;
 };
 
 const handleMenuClick = ({item, key, keyPath}: MenuInfo) => {
@@ -43,6 +45,7 @@ const actionStore = useActionStore();
 const {actionTree} = storeToRefs(actionStore);
 
 const activeMenu = ref() as Ref<ActionItem>;
+
 // 订阅路由变化，设置活跃菜单项
 listenRouteChange((route: RouteLocationNormalized) => {
     const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
@@ -57,7 +60,7 @@ onUnmounted(() => {
     removeRouteListener();
 });
 
-const menuData = ref([] as (MenuTreeNode | undefined)[]);
+const menuData = ref([] as MenuTreeNode[]);
 watch(actionTree, (tree: ActionItem[]) => {
     menuData.value = actionToMenu(tree);
 }, {
