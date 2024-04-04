@@ -4,7 +4,7 @@ import type {MenuInfo, SelectInfo} from "ant-design-vue/es/menu/src/interface";
 import type {Ref} from "vue";
 import type {RouteLocationNormalized} from "vue-router";
 
-const openKeys = ref([]);
+const openKeys = ref([] as string[]);
 const selectedKeys = ref([] as string[]);
 
 const actionToMenu = (tree: ActionItem[]): MenuTreeNode[] => {
@@ -52,8 +52,10 @@ listenRouteChange((route: RouteLocationNormalized) => {
     if (!ancestorChain || !ancestorChain.length) return;
 
     activeMenu.value = ancestorChain[0];
-    const menuCouldBeSelected = ancestorChain.find(action => action.showInMenu === ShowInMenuType.SHOW);
-    selectedKeys.value = [String(menuCouldBeSelected!.menuId)];
+    const indexMenuSelectable = ancestorChain.findIndex(action => action.showInMenu === ShowInMenuType.SHOW);
+    selectedKeys.value = [String(ancestorChain[indexMenuSelectable]!.menuId)];
+    const parentMenuIndex = indexMenuSelectable + 1 < ancestorChain.length ? indexMenuSelectable + 1 : indexMenuSelectable;
+    openKeys.value = [String(ancestorChain[parentMenuIndex].menuId)];
 }, true);
 
 onUnmounted(() => {
