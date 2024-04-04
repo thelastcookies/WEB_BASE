@@ -17,19 +17,23 @@ export const useAppStore = defineStore('app', () => {
         modal.value = staticFunction.modal;
     })();
 
+    /**
+     * signOut 退出登录
+     */
     const signOut = () => {
-        return new Promise(() => {
+        return new Promise<void>((resolve) => {
             const actionStore = useActionStore();
             actionStore.$reset();
             const userStore = useUserStore();
             userStore.$reset();
             const tokenStore = useTokenStore();
             tokenStore.$reset();
-            if (import.meta.env.APP_LOGIN_ENABLE === true) {
+            if (import.meta.env.APP_LOGIN_ENABLE === "true") {
                 router.push("/login");
             } else {
                 parent.window.location.assign("");
             }
+            resolve();
         });
     };
 
