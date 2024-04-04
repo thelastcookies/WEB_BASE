@@ -44,20 +44,38 @@ router.beforeEach(async (to, _, next) => {
                 });
                 return;
             } catch (e) {
+                console.error(e);
                 if (e instanceof AxiosError) {
-                    if (e?.response?.status === 401) {
+                    if (e.code === "ECONNABORTED") {
+                        message.error({
+                            content: '请求超时。',
+                            key: SYS_LOADING_KEY,
+                        });
+                    } else if (e?.response?.status === 401) {
                         // 跳转到error页面
                         next({
                             path: '/401',
-                        })
+                        });
+                        //////// 401 页面
+                        message.destroy(SYS_LOADING_KEY);
+                    } else {
+                        message.destroy(SYS_LOADING_KEY);
                     }
+                } else if ((e as Error).message === WITH_UNAUTHORIZED) {
+                    const {signOut} = useAppStore();
+                    signOut().then(() => {
+                        message.error({
+                            content: '会话已过期，请重新登录。',
+                            key: SYS_LOADING_KEY,
+                            duration: 5
+                        });
+                    });
                 } else {
-                    console.error(e);
+                    message.error({
+                        content: '加载失败。',
+                        key: SYS_LOADING_KEY,
+                    });
                 }
-                message.error({
-                    content: '加载失败。',
-                    key: SYS_LOADING_KEY,
-                });
             }
         } else {
             // 如果当前是登录页面就跳转到首页
