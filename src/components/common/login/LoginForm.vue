@@ -63,8 +63,8 @@ const userNameColorClass = ref<'' | 'primary' | 'warning'>('');
 const passwordColorClass = ref<'' | 'primary' | 'warning'>('');
 
 // 用于标记 input active 状态
-const userNameIsActive = ref(false);
-const passwordIsActive = ref(false);
+const userNameIsActive = ref(Boolean(loginForm.userName));
+const passwordIsActive = ref(Boolean(loginForm.password));
 
 /**
  * 表单校验时，根据校验结果改变各字段高亮色
@@ -171,6 +171,7 @@ const handleInputBlur = (e: Event) => {
                     id="userName"
                     ref="usernameRef"
                     class="login-input transparent z-1"
+                    autofocus
                     v-model:value="loginForm.userName"
                     @mouseenter="handleInputMEnter"
                     @mouseleave="handleInputMLeave"
