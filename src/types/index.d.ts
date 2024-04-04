@@ -23,7 +23,7 @@ interface TreeNode extends ListItem {
  */
 export interface ActionItem {
     // 路由 id
-    id?: Key;
+    id: Key;
     // 父级 id
     pId?: Key;
     // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项，在构建路由时，会将此项作为 'name' 属性填入 Route 中
@@ -33,7 +33,7 @@ export interface ActionItem {
     // 路由配置的类型
     type?: MenuPageType;
     // 路由配置的 url，具体含义要结合 type 属性
-    url?: string;
+    url: string;
     // 路由配置的icon，一般用于第一级菜单
     icon?: string;
     // 是否为固定页签

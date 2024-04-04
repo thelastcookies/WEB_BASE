@@ -89,7 +89,7 @@ export const findActionAncestorChain = (
  */
 export const preprocessActionTree = (dataTree: any): ActionItem[] => {
     return dataTree.map((item: any) => {
-        let action: ActionItem = {};
+        let action= {} as ActionItem;
         action.id = item.Id ?? '';
         action.pId = item.ParentId ?? '';
         action.menuId = item.MenuId ?? '';

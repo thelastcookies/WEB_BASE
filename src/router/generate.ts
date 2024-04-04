@@ -1,5 +1,6 @@
 import type {ActionItem} from "@/types";
 import type {RouteRecordRaw} from "vue-router";
+import {MenuPageType} from "@/types/enums";
 
 /**
  * 根据 Actions 配置，生成路由
@@ -33,14 +34,30 @@ export const generateRouterConf = (actionTree: ActionItem[]) => {
  * 将 Actions 处理为 RouteMap 并拉平。
  * @param actions 待处理的 actionList
  */
-const generateRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
+const generateFlatRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
     const routeData = [] as RouteRecordRaw[];
     for (const action of actions) {
         if (action.children && action.children.length) {
-            routeData.push(...generateRoutes(action.children));
+            routeData.push(...generateFlatRoutes(action.children));
         }
         const route = actionToRoute(action);
         if (!route) continue;
+        routeData.push(route);
+    }
+    return routeData;
+}
+
+/**
+ * 将 Actions 处理为 RouteMap。
+ * @param actions 待处理的 actionList
+ */
+const generateRoutes = (actions: ActionItem[]) => {
+    const routeData = [] as RouteRecordRaw[];
+    for (const action of actions) {
+        const route = actionToRoute(action);
+        if (action.children && action.children.length) {
+            route.children = generateRoutes(action.children)
+        }
         routeData.push(route);
     }
     return routeData;
@@ -51,14 +68,15 @@ const generateRoutes = (actions: ActionItem[]): RouteRecordRaw[] => {
  * 如果 Action 没有配置 component 与 url 属性，则视作非实体组件而不会被加入到 router 中
  * @param action
  */
-const actionToRoute = (action: ActionItem) => {
-    if (!action.component || !action.url) return;
-    const redirect = action.url?.startsWith('/redirect') ? action.url?.split('/redirect')[1] : undefined;
+const actionToRoute = (action: ActionItem): RouteRecordRaw => {
+    const component = action.type === MenuPageType.MENU ? basicRouteMap.Parent
+        : getRouterModule(action.component);
+    const redirect = action.url.startsWith('/redirect') ? action.url.split('/redirect')[1] : undefined;
     const props = action.url.search(/:/) > 0;
     return {
         path: action.url,
         name: action.menuId,
-        component: getRouterModule(action.component),
+        component,
         props,
         redirect,
     } as RouteRecordRaw;

@@ -13,8 +13,8 @@ const modules = import.meta.glob([
 export const basicRouteMap = {
     // iframe 模式下使用
     // Iframe: () => import('@/views/common/IFrame.vue'),
-    // 一般用于存在子集的页面
-    // RouteView: () => import('@/views/common/route-view.vue'),
+    // 用于存在 children 的页面
+    Parent: () => import('@/views/common/Parent.vue'),
     // 空页面
     ComponentError: () => import('@/views/exceptions/ComponentError.vue'),
 };
@@ -28,9 +28,9 @@ export const getRouterModule = (path?: string): any => {
         return basicRouteMap.ComponentError;
     }
     // 判断是否在 basicRouteMap 中存在
-    if (path in basicRouteMap) {
-        return (basicRouteMap as any)[path];
-    }
+    // if (path in basicRouteMap) {
+    //     return (basicRouteMap as any)[path];
+    // }
     // 判断开头是不是/
     if (path.startsWith('/')) {
         path = path.slice(1);
