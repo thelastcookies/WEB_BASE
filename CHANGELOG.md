@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.7.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.6.0...v0.7.0) (2024-04-04)
+
+
+### Features
+
+* 对影响整体布局紧凑度的内外边距值进行 CSS 变量提取，并增加 UnoCSS 支持 ([8e1aad7](https://github.com/thelastcookies/WEB-BASE/commit/8e1aad7b766856d7953bc0b6bbe8e501b699df8d))
+
+
+### Bug Fixes
+
+* 修复 AppStore 中没有正确验证配置文件与没有 resolve 的问题 ([82b0523](https://github.com/thelastcookies/WEB-BASE/commit/82b0523e0af35a13f690f98a8b0150a65677952b))
+* 修复 UserStore 没有正确地抛出异常导致 Token 过期后系统加载异常的问题 ([e9db47d](https://github.com/thelastcookies/WEB-BASE/commit/e9db47d33e3d88e652e692e62e903f8c2377d477))
+* 修复登录表单有默认值时 label 状态异常的问题，增加账户 input 的自动聚焦 ([05f2ea8](https://github.com/thelastcookies/WEB-BASE/commit/05f2ea856cc16d90a521883ac31fa4d67c64d739))
+* 修复系统根节点的颜色错误问题，调整 rem 基值 ([e1be34f](https://github.com/thelastcookies/WEB-BASE/commit/e1be34f0a7a003fde24533f6d05b8768b847fece))
+* 补充路由守卫中遗漏的错误处理 ([4d0d5ef](https://github.com/thelastcookies/WEB-BASE/commit/4d0d5ef1de114bb2ab8fb59dcb4581366a3ea3ca))
+
 ## [0.6.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.5.0...v0.6.0) (2024-03-31)
 
 
