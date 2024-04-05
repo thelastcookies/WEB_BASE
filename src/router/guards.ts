@@ -9,18 +9,16 @@ router.beforeEach(async (to) => {
     // 获取 token 进行校验
     const {getToken} = useTokenStore();
     const token = getToken();
-    if (!token) {
-        //  如果 token 不存在就跳转到登录页面
-        if (!accessWhileList.includes(to.path) && !to.path.startsWith('/redirect')) {
-            return ({
-                path: loginPath,
-                query: {redirect: encodeURIComponent(to.fullPath)},
-            });
-        }
+    if (!token && !accessWhileList.includes(to.path)) {
+        // 如果 token 不存在且目标不在白名单内，则跳转到登录页
+        return ({
+            path: loginPath,
+            query: {redirect: encodeURIComponent(to.fullPath)},
+        });
     } else {
         // 获取用户信息
         const userStore = useUserStore();
-        if (!userStore.userInfo && !accessWhileList.includes(to.path) && !to.path.startsWith('/redirect')) {
+        if (!userStore.userInfo && !accessWhileList.includes(to.path)) {
             message.loading({
                 content: '系统加载中，请稍候。',
                 key: SYS_LOADING_KEY,

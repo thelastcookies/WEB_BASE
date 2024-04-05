@@ -34,6 +34,8 @@ export interface ActionItem {
     type?: MenuPageType;
     // 路由配置的 url，具体含义要结合 type 属性
     url: string;
+    // 重定向
+    redirect?: string;
     // 路由配置的icon，一般用于第一级菜单
     icon?: string;
     // 是否为固定页签
