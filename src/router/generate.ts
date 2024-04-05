@@ -20,7 +20,7 @@ export const generateRouterConf = (actionTree: ActionItem[]) => {
     //     path: '/',
     //     name: 'rootPath',
     //     // redirect: homePage!.url,
-    //     // component: () => import('@/views/layouts/Layout.vue'),
+    //     component: () => basicRouteMap.Parent,
     //     children: routes
     // };
     // router.addRoute('Layout', routerData);
@@ -28,6 +28,7 @@ export const generateRouterConf = (actionTree: ActionItem[]) => {
     routes.forEach(route => {
         router.addRoute('Layout', route);
     });
+    return homePage;
 }
 
 /**
@@ -71,7 +72,8 @@ const generateRoutes = (actions: ActionItem[]) => {
 const actionToRoute = (action: ActionItem): RouteRecordRaw => {
     const component = action.type === MenuPageType.MENU ? basicRouteMap.Parent
         : getRouterModule(action.component);
-    const redirect = action.url.startsWith('/redirect') ? action.url.split('/redirect')[1] : undefined;
+    const redirect = action.url.startsWith('/redirect') ? action.url.split('/redirect')[1]
+        : findMenuRedirect(action);
     const props = action.url.search(/:/) > 0;
     return {
         path: action.url,
@@ -81,3 +83,10 @@ const actionToRoute = (action: ActionItem): RouteRecordRaw => {
         redirect,
     } as RouteRecordRaw;
 }
+
+const findMenuRedirect = (action: ActionItem) => {
+    if (action.type === MenuPageType.MENU && action.children) {
+        if (action.children[0].url) return action.children[0].url;
+        else findMenuRedirect(action.children[0]);
+    } else return '';
+};
