@@ -1,9 +1,3 @@
-<script setup lang="ts">
-onMounted(() => {
-    routeTo({name: import.meta.env.APP_HOMEPAGE_ID});
-});
-</script>
-
 <template>
     <a-layout w-full h-full>
         <a-layout-header h-52px p-lr-16px>
@@ -18,7 +12,9 @@ onMounted(() => {
                 <a-layout-content>
                     <router-view v-slot="{ Component }">
                         <Suspense timeout="0">
-                            <component :is="Component"></component>
+                            <div>
+                                <component :is="Component"></component>
+                            </div>
                             <template #fallback>
                                 <BaseLoading/>
                             </template>

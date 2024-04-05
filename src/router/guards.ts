@@ -31,17 +31,16 @@ router.beforeEach(async (to) => {
                 await userStore.getUserInfo();
                 // 获取 Actions 并生成路由配置
                 const {getActions} = useActionStore();
-                generateRouterConf(await getActions());
+                const {url} = generateRouterConf(await getActions())!;
 
                 message.success({
                     content: '加载完成。',
                     key: SYS_LOADING_KEY,
                 });
-                next({
-                    ...to,
+                return ({
+                    path: url,
                     replace: true,
                 });
-                return;
             } catch (e) {
                 console.error(e);
                 if (e instanceof AxiosError) {
