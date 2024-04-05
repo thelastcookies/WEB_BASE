@@ -4,7 +4,7 @@ import {message} from "ant-design-vue";
 const accessWhileList = ['/login', '/error', '/401', '/404', '/403'];
 const loginPath = '/login';
 
-router.beforeEach(async (to, _, next) => {
+router.beforeEach(async (to) => {
     setRouteEmitter(to);
     // 获取 token 进行校验
     const {getToken} = useTokenStore();
@@ -12,11 +12,10 @@ router.beforeEach(async (to, _, next) => {
     if (!token) {
         //  如果 token 不存在就跳转到登录页面
         if (!accessWhileList.includes(to.path) && !to.path.startsWith('/redirect')) {
-            next({
+            return ({
                 path: loginPath,
                 query: {redirect: encodeURIComponent(to.fullPath)},
             });
-            return;
         }
     } else {
         // 获取用户信息
@@ -52,12 +51,12 @@ router.beforeEach(async (to, _, next) => {
                             key: SYS_LOADING_KEY,
                         });
                     } else if (e?.response?.status === 401) {
+                        message.destroy(SYS_LOADING_KEY);
                         // 跳转到error页面
-                        next({
+                        return ({
+                            //////// 401 页面
                             path: '/401',
                         });
-                        //////// 401 页面
-                        message.destroy(SYS_LOADING_KEY);
                     } else {
                         message.destroy(SYS_LOADING_KEY);
                     }
@@ -77,17 +76,13 @@ router.beforeEach(async (to, _, next) => {
                     });
                 }
             }
-        } else {
+        } else if (to.path === loginPath) {
             // 如果当前是登录页面就跳转到首页
-            if (to.path === loginPath) {
-                next({
-                    path: '/',
-                })
-                return
-            }
+            return ({
+                path: '/',
+            })
         }
     }
-    next();
 });
 
 // router.afterEach((to) => {
