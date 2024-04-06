@@ -6,7 +6,7 @@ const rules: Rule<Object>[] = [
     ['ph', []],
     ['transparent', {'background-color': 'transparent'}],
     [/^letter-spacing-(-?(\d.)?\w+)$/, ([, v]) => ({'letter-spacing': `${v}`})],
-    [/^([pm])([lrtb]+)-normal$/, ([, style, direction]) => {
+    [/^([pm])([lrtb]*)-normal$/, ([, style, direction]) => {
         let property = '';
         if (style === 'm') property = 'margin';
         else if (style === 'p') property = 'padding';
