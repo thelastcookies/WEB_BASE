@@ -9,12 +9,17 @@ router.beforeEach(async (to) => {
     // 获取 token 进行校验
     const {getToken} = useTokenStore();
     const token = getToken();
-    if (!token && !accessWhileList.includes(to.path)) {
-        // 如果 token 不存在且目标不在白名单内，则跳转到登录页
-        return ({
-            path: loginPath,
-            query: {redirect: encodeURIComponent(to.fullPath)},
-        });
+    if (!token) {
+        if (accessWhileList.includes(to.path)) {
+            // 如果目标在白名单内则不干涉
+            return ;
+        } else {
+            // 否跳转到登录页
+            return ({
+                path: loginPath,
+                query: {redirect: encodeURIComponent(to.fullPath)},
+            });
+        }
     } else {
         // 获取用户信息
         const userStore = useUserStore();
