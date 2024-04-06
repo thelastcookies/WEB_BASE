@@ -12,7 +12,7 @@
                 <a-layout-content>
                     <router-view v-slot="{ Component }">
                         <Suspense timeout="0">
-                            <div>
+                            <div h-full w-full>
                                 <component :is="Component"></component>
                             </div>
                             <template #fallback>

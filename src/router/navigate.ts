@@ -1,12 +1,12 @@
-import type {ActionItem, RecordName, RouteToInfo} from "@/types";
+import {ActionItem, RecordName, RouteToRecordRaw} from "@/types";
 import type {RouteLocationRaw} from "vue-router";
 
 const actionStore = useActionStore();
 const {actionTree} = storeToRefs(actionStore);
 
-export const routeTo = (routeToInfo: RouteToInfo) => {
+export const routeTo = (props: RouteToRecordRaw) => {
     return new Promise<ActionItem>((resolve, reject) => {
-        const actionId = routeToInfo.name;
+        const actionId = typeof props === "object" ? props.name : props;
         const action = findAction(actionTree.value, actionId);
         if (!action) {
             const err = `Router.navigate "routeTo": Cannot find action by id: ${String(actionId)}.`
@@ -28,7 +28,7 @@ export const routeTo = (routeToInfo: RouteToInfo) => {
             // 构建 Route
             let route: RouteLocationRaw;
             route = {name: action.menuId as RecordName};
-            routeToInfo.params && Object.assign(route, {params: routeToInfo.params});
+            typeof props === "object" && props.params && Object.assign(route, {params: props.params});
             router.push(route);
             resolve(action);
         }
