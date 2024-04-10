@@ -1,5 +1,6 @@
 import {AxiosError} from "axios";
 import {message} from "ant-design-vue";
+import type {ActionRecordPage} from "@/types/action";
 
 const accessWhileList = ['/login', '/error', '/401', '/404', '/403'];
 const loginPath = '/login';
@@ -12,7 +13,7 @@ router.beforeEach(async (to) => {
     if (!token) {
         if (accessWhileList.includes(to.path)) {
             // 如果目标在白名单内则不干涉
-            return ;
+            return;
         } else {
             // 否跳转到登录页
             return ({
@@ -34,7 +35,7 @@ router.beforeEach(async (to) => {
                 await userStore.getUserInfo();
                 // 获取 Actions 并生成路由配置
                 const {getActions} = useActionStore();
-                const {url} = generateRouterConf(await getActions())!;
+                const {url} = generateRouterConf(await getActions()) as ActionRecordPage;
 
                 message.success({
                     content: '加载完成。',
@@ -50,6 +51,11 @@ router.beforeEach(async (to) => {
                     if (e.code === "ECONNABORTED") {
                         message.error({
                             content: '请求超时。',
+                            key: SYS_LOADING_KEY,
+                        });
+                    } else if (e.code === "ERR_NETWORK") {
+                        message.error({
+                            content: '网络连接失败。',
                             key: SYS_LOADING_KEY,
                         });
                     } else if (e?.response?.status === 401) {

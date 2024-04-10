@@ -1,11 +1,12 @@
 <script setup lang="ts">
-import type {ActionItem, RecordName} from "@/types";
+import type {RecordName} from "@/types";
+import type {ActionRecordRaw} from "@/types/action";
 import type {RouteLocationNormalized} from "vue-router";
 
 const actionStore = useActionStore();
 const {actionTree} = storeToRefs(actionStore);
 
-const breadcrumb = ref([] as ActionItem[]);
+const breadcrumb = ref([] as ActionRecordRaw[]);
 // 订阅路由变化，设置面包屑
 listenRouteChange((route: RouteLocationNormalized) => {
     const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);

@@ -14,7 +14,7 @@ export const basicRouteMap = {
     // iframe 模式下使用
     // Iframe: () => import('@/views/common/IFrame.vue'),
     // 用于存在 children 的页面
-    Parent: () => import('@/views/common/Parent.vue'),
+    // Parent: () => import('@/components/common/Parent.vue'),
     // 空页面
     ComponentError: () => import('@/views/exceptions/ComponentError.vue'),
 };

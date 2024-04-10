@@ -1,7 +1,14 @@
-import type {ActionItem, Key, RecordName} from "@/types";
+import type {Key, RecordName} from "@/types";
+import type {
+    ActionRecordMenu,
+    ActionRecordMenuWithChildren,
+    ActionRecordPage,
+    ActionRecordPageWithChildren,
+    ActionRecordRaw
+} from "@/types/action";
 
 export const useActionStore = defineStore('action', () => {
-    const actionTree = shallowRef([] as ActionItem[]);
+    const actionTree = shallowRef([] as ActionRecordRaw[]);
 
     const getActionsFromApi = async () => {
         const {Data} = await getOperatorMenuList();
@@ -23,7 +30,7 @@ export const useActionStore = defineStore('action', () => {
 
 
     const $reset = () => {
-        actionTree.value = [] as ActionItem[];
+        actionTree.value = [] as ActionRecordRaw[];
     };
 
     return {
@@ -40,18 +47,22 @@ export const useActionStore = defineStore('action', () => {
  * @param field 被查询字段
  */
 export const findAction = (
-    actions: ActionItem[],
+    actions: ActionRecordRaw[],
     key: Key | RecordName,
-    field: 'id' | 'menuId' | 'title' | 'url' = 'menuId'
-): ActionItem | undefined => {
-    let action: ActionItem;
+    field: 'id' | 'actionId' | 'title' = 'actionId'
+): ActionRecordRaw | undefined => {
+    let action: ActionRecordRaw;
     for (let i = 0, len = actions.length; i < len; i++) {
         if (actions[i][field] === key) {
             action = actions[i];
             return action;
         }
-        if (actions[i].children) {
-            const p = findAction(actions[i].children as ActionItem[], key, field);
+        if ('children' in actions[i]) {
+            const p = findAction(
+                (actions[i] as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children,
+                key,
+                field
+            );
             if (p) {
                 return p;
             }
@@ -66,10 +77,10 @@ export const findAction = (
  * @param field 被查询字段
  */
 export const findActionAncestorChain = (
-    actions: ActionItem[],
+    actions: ActionRecordRaw[],
     key: Key | RecordName,
-    field: 'id' | 'menuId' | 'title' | 'url' = 'menuId',
-): ActionItem[] | undefined => {
+    field: 'id' | 'actionId' | 'title' = 'actionId',
+): ActionRecordRaw[] | undefined => {
     const action = findAction(actions, key, field)!;
     if (action) {
         if (action.pId) {
@@ -87,22 +98,31 @@ export const findActionAncestorChain = (
  * 主要进行字段的转换和过滤
  * @param dataTree 接口数据
  */
-export const preprocessActionTree = (dataTree: any): ActionItem[] => {
+export const preprocessActionTree = (dataTree: any): ActionRecordRaw[] => {
     return dataTree.map((item: any) => {
-        let action= {} as ActionItem;
+        let action = {} as ActionRecordRaw;
         action.id = item.Id ?? '';
         action.pId = item.ParentId ?? '';
-        action.menuId = item.MenuId ?? '';
+        action.actionId = item.actionId ?? '';
         action.title = item.Text ?? '';
         action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
-        action.url = item.Url ?? '';
-        action.icon = item.icon ?? '';
-
-        action.component = item.Component ?? '';
-        action.query = item.Query ? JSON.parse(item.Query) : '';
+        action.sort = Number(item.Sort)
         action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
+
+        if (item.Url) {
+            (action as ActionRecordPage | ActionRecordPageWithChildren).url = item.Url;
+        }
+        if (item.Component) {
+            (action as ActionRecordPage | ActionRecordPageWithChildren).component = item.Component;
+        }
+        if (item.icon) {
+            (action as ActionRecordMenu | ActionRecordMenuWithChildren).icon = item.icon;
+        }
+        if (item.Query) {
+            (action as ActionRecordPage | ActionRecordPageWithChildren).query = JSON.parse(item.Query);
+        }
         if (item.Children) {
-            action.children = preprocessActionTree(item.Children);
+            (action as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children = preprocessActionTree(item.Children);
         }
         return action;
     });
