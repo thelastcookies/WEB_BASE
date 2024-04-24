@@ -1,7 +1,7 @@
 import type {UserInfo} from "@/api/admin/home/types";
 
 export const useUserStore = defineStore('user', () => {
-    const userInfo = shallowRef<UserInfo>();
+    const userInfo = shallowRef({} as UserInfo);
     const userPerms = shallowRef([] as any[]);
 
     const getUserInfo = async () => {

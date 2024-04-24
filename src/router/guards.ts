@@ -24,7 +24,7 @@ router.beforeEach(async (to) => {
     } else {
         // 获取用户信息
         const userStore = useUserStore();
-        if (!userStore.userInfo && !accessWhileList.includes(to.path)) {
+        if (!Object.keys(userStore.userInfo).length && !accessWhileList.includes(to.path)) {
             message.loading({
                 content: '系统加载中，请稍候。',
                 key: SYS_LOADING_KEY,
