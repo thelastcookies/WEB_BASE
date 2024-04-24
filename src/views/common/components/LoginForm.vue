@@ -1,15 +1,13 @@
 <script setup lang="ts">
 import type {LoginParams} from "@/api/admin/home/types";
 import type {Rule} from "ant-design-vue/es/form";
-import {Ref} from "vue";
-
-const {message} = useAppStore();
+import {message} from "ant-design-vue";
 
 const submittingDisabled = ref(false);
 
 const loginForm = reactive<LoginParams>({
-    userName: '',
-    password: '',
+    userName: 'Admin',
+    password: '123456',
     remember: false,
 });
 
@@ -23,8 +21,8 @@ const usernameRef = ref(null) as Ref<Element | null>;
 const handleSubmitLogin = async (formData: LoginParams) => {
     submittingDisabled.value = true;
     message.loading({
-        content: '正在登录中，请稍候。',
-        key: LOGIN_LOADING_KEY,
+        content: '正在登录中，请稍候',
+        key: SYS_LOADING_KEY,
         duration: 0,
     });
     login(formData).then(res => {
@@ -32,23 +30,19 @@ const handleSubmitLogin = async (formData: LoginParams) => {
             const tokenRes = res.Data;
             const {setToken} = useTokenStore();
             setToken(tokenRes);
-            message.success({
-                content: '登录成功。',
-                key: LOGIN_LOADING_KEY,
-            });
             submittingDisabled.value = false;
             router.push("/");
         } else {
             message.error({
                 content: res.Msg,
-                key: LOGIN_LOADING_KEY,
+                key: SYS_LOADING_KEY,
             });
             submittingDisabled.value = false;
         }
     }).catch(() => {
         message.error({
-            content: '登录失败！',
-            key: LOGIN_LOADING_KEY,
+            content: '登录失败',
+            key: SYS_LOADING_KEY,
         });
         submittingDisabled.value = false;
     });

@@ -26,7 +26,7 @@ router.beforeEach(async (to) => {
         const userStore = useUserStore();
         if (!Object.keys(userStore.userInfo).length && !accessWhileList.includes(to.path)) {
             message.loading({
-                content: '系统加载中，请稍候。',
+                content: '系统加载中，请稍候',
                 key: SYS_LOADING_KEY,
                 duration: 0,
             });
@@ -38,7 +38,7 @@ router.beforeEach(async (to) => {
                 const {url} = generateRouterConf(await getActions()) as ActionRecordPage;
 
                 message.success({
-                    content: '加载完成。',
+                    content: '加载完成',
                     key: SYS_LOADING_KEY,
                 });
                 return ({
@@ -50,12 +50,12 @@ router.beforeEach(async (to) => {
                 if (e instanceof AxiosError) {
                     if (e.code === "ECONNABORTED") {
                         message.error({
-                            content: '请求超时。',
+                            content: '请求超时',
                             key: SYS_LOADING_KEY,
                         });
                     } else if (e.code === "ERR_NETWORK") {
                         message.error({
-                            content: '网络连接失败。',
+                            content: '网络连接失败',
                             key: SYS_LOADING_KEY,
                         });
                     } else if (e?.response?.status === 401) {
@@ -72,14 +72,14 @@ router.beforeEach(async (to) => {
                     const {signOut} = useAppStore();
                     signOut().then(() => {
                         message.error({
-                            content: '会话已过期，请重新登录。',
+                            content: '会话已过期，请重新登录',
                             key: SYS_LOADING_KEY,
                             duration: 5
                         });
                     });
                 } else {
                     message.error({
-                        content: '加载失败。',
+                        content: '加载失败',
                         key: SYS_LOADING_KEY,
                     });
                 }
