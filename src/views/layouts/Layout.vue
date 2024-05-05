@@ -11,14 +11,14 @@
                 <Breadcrumb></Breadcrumb>
                 <a-layout-content>
                     <router-view v-slot="{ Component }">
-                        <Suspense timeout="0">
-                            <div h-full w-full>
+                        <suspense timeout="0">
+                            <div class="h-full w-full">
                                 <component :is="Component"></component>
                             </div>
                             <template #fallback>
                                 <BaseLoading/>
                             </template>
-                        </Suspense>
+                        </suspense>
                     </router-view>
                 </a-layout-content>
             </a-layout>
