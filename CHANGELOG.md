@@ -1,5 +1,29 @@
 # Changelog
 
+## [0.8.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.7.0...v0.8.0) (2024-05-05)
+
+
+### Features
+
+* 为类型为菜单的页面配置 redirect，指向第一个配置了 path 的直系子孙 ([e12df0c](https://github.com/thelastcookies/WEB-BASE/commit/e12df0c43747087e9e0a9266337263013b2ec47f))
+* 使用 data-fns 作为时间处理工具 ([089cf56](https://github.com/thelastcookies/WEB-BASE/commit/089cf561bed577a69acce4f89bef5c594a6d659f))
+* 增加表格中按钮样式 preset ([6ec643a](https://github.com/thelastcookies/WEB-BASE/commit/6ec643ad35645c9587067653fe4614bbad7731fc))
+* 增加随路由自动展开当前活跃菜单的功能 ([658239f](https://github.com/thelastcookies/WEB-BASE/commit/658239f06c33151acfd53b9b9d0216eeb77a002b))
+* 定义 routeTo 方法参数的联合类型 ([a99d758](https://github.com/thelastcookies/WEB-BASE/commit/a99d758d293246ff547183af3fc9f3afde535eed))
+* 对 ActionItem 接口类型进行拆分细化 ([3b51146](https://github.com/thelastcookies/WEB-BASE/commit/3b5114640191297ab500d1e4f78981b52237137e))
+* 将导航方法 "routeTo" Promise 化，并增加导航到菜单时的处理方法 ([f54e7b9](https://github.com/thelastcookies/WEB-BASE/commit/f54e7b990989054ffef29f14fe25f7b723545cdf))
+* 弃用平铺路由，使用层级路由来更好地发挥 Vue Router 的能力 ([82f1af3](https://github.com/thelastcookies/WEB-BASE/commit/82f1af37484eb6d173c1fb53cbfda8788dfb8a16))
+
+
+### Bug Fixes
+
+* 优化了侧边栏菜单的生成方法，修复可能的类型错误问题 ([9e5faa8](https://github.com/thelastcookies/WEB-BASE/commit/9e5faa8ca66e31a098e6cbd914d3fde3550ef459))
+* 修复一个可能导致注销后重新登录时菜单加载失败的问题 ([40f705b](https://github.com/thelastcookies/WEB-BASE/commit/40f705b1b5d35495419b073628ac3ed6317a9152))
+* 修改控制台错误提示输出 ([fdae4d2](https://github.com/thelastcookies/WEB-BASE/commit/fdae4d232759537ab7a8007751595340a1b464b0))
+* 去除多余的样式 ([16a1a80](https://github.com/thelastcookies/WEB-BASE/commit/16a1a80818221038b43ddee0702dff99ccdd304c))
+* 解决 token 失效时引起导航问题 ([60eda90](https://github.com/thelastcookies/WEB-BASE/commit/60eda900222d8c966b92e7e6b573eb52d03a030c))
+* 设置中文环境 ([92f93e1](https://github.com/thelastcookies/WEB-BASE/commit/92f93e1b469ab0f07a82d13e4e2d792112d34965))
+
 ## [0.7.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.6.0...v0.7.0) (2024-04-04)
 
 
