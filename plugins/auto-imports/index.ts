@@ -24,4 +24,5 @@ export const AutoImportPluginConfig = AutoImport({
         'src/views/**/*.vue',
     ],
     ignoreDts: [],
+    vueTemplate: true,
 }) as PluginOption;
