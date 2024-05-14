@@ -8,7 +8,7 @@ const imageSrc = fileURLToPath(new URL('/src/assets/images', import.meta.url));
 // https://vitejs.dev/config/
 export default defineConfig(({command}) => {
     // 从 /.env/.env 中读取环境变量
-    const env = loadEnv('', process.cwd() + '/env', 'APP_');
+    const env = loadEnv('', process.cwd() + '/.env', 'APP_');
     let conf = {};
     // 一些开发和构建时的配置
     if (command === 'serve') {
@@ -29,7 +29,7 @@ export default defineConfig(({command}) => {
     // 一些通用配置
     Object.assign(conf, {
         // .env 目录以及前缀设置
-        envDir: 'env',
+        envDir: '.env',
         envPrefix: 'APP_',
         // plugins
         plugins: createVitePlugins(),
