@@ -44,3 +44,22 @@ export enum ShowInMenuType {
     SHOW = "1",
     // 预留扩展
 }
+
+/**
+ * 步骤
+ */
+export enum StepEnum {
+    STEP1,
+    STEP2,
+    STEP3,
+    STEP4,
+    STEP5,
+    STEP6,
+    STEP7,
+    STEP8,
+}
+
+export enum EditEnum {
+    NEW,
+    EDIT
+}

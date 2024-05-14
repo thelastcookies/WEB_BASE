@@ -1,5 +1,5 @@
 import {VNodeChild} from "vue";
-import type {ShowInMenuType} from "@/types/enums";
+import type {ShowInMenuType} from "@/enums";
 
 export type Key = string | number;
 export type RecordName = string | symbol;

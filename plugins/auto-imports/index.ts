@@ -19,6 +19,7 @@ export const AutoImportPluginConfig = AutoImport({
         'src/router',
         'src/utils',
         'src/api/**/*.ts',
+        'src/enums/**/*.ts',
         'src/types/**/*.ts',
         'src/views/**/*.vue',
     ],

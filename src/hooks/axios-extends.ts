@@ -3,7 +3,7 @@
  * 提供 axios 实例
  */
 import axios from 'axios';
-import type {NamingStyleTransfer} from "@/types/enums/naming-style.ts";
+import type {NamingStyleTransfer} from "@/enums/naming-style.ts";
 import type {AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig} from "axios";
 
 export interface RequestConfigExtra {
