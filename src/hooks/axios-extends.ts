@@ -1,6 +1,5 @@
 /**
- * 对于 axios 请求的扩展，包括请求拦截器、响应拦截器和错误处理
- * 提供 axios 实例
+ * 提供 axios 实例，配置请求拦截器、响应拦截器和错误处理
  */
 import axios from 'axios';
 import type {NamingStyleTransfer} from "@/enums/naming-style.ts";
