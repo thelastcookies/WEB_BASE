@@ -1,5 +1,5 @@
 import type {MenuPageType, ShowInMenuType} from "@/enums";
-import type {Key, RecordName} from "@/types/index";
+import type {Key, RecordName} from "@/types";
 
 export type ActionRecordRaw =
     ActionRecordPage
