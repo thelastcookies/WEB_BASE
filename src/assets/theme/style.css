@@ -76,5 +76,8 @@
     --borderRadiusSM: 4px;
     --borderRadiusLG: 8px;
     --borderRadiusOuter: 4px;
+
+    /*扩展*/
+    --marginSize: 24px;
 }
 

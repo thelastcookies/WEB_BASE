@@ -32,9 +32,3 @@ const themeAlgo = computed(() => {
         </a-style-provider>
     </a-config-provider>
 </template>
-
-<style>
-@import "@/assets/theme/style.css";
-@import "@/assets/theme/light.css" (prefers-color-scheme: light);
-@import "@/assets/theme/dark.css" (prefers-color-scheme: dark);
-</style>
