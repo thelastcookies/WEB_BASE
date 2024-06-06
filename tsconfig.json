@@ -34,6 +34,7 @@
     "allowSyntheticDefaultImports": true
   },
   "include": [
+    ".env/types",
     "src/**/*.ts",
     "src/**/*.tsx",
     "src/**/*.vue",
