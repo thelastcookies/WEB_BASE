@@ -12,6 +12,10 @@ const router = createRouter({
         component: () => import('@/views/layouts/Layout.vue'),
         children: []
     }, {
+        path: '/sample',
+        name: 'Sample',
+        component: () => import('@/views/samples/Sample.vue'),
+    }, {
         path: '/:pathMatch(.*)',
         meta: {
             title: '找不到页面',

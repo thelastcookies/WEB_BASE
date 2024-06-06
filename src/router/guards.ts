@@ -2,15 +2,19 @@ import {AxiosError} from "axios";
 import {message} from "ant-design-vue";
 import type {ActionRecordPage} from "@/types/action";
 
-const accessWhileList = ['/login', '/error', '/401', '/404', '/403'];
 const loginPath = '/login';
+const samplePath = '/sample';
+const accessWhileList = [loginPath, '/error', '/401', '/404', '/403'];
 
 router.beforeEach(async (to) => {
     setRouteEmitter(to);
     // 获取 token 进行校验
     const {getToken} = useTokenStore();
     const token = getToken();
-    if (!token) {
+    if (to.path === samplePath && import.meta.env.DEV) {
+        // Sample 页面特殊处理
+        return;
+    } else if (!token) {
         if (accessWhileList.includes(to.path)) {
             // 如果目标在白名单内则不干涉
             return;
@@ -85,7 +89,7 @@ router.beforeEach(async (to) => {
                 }
             }
         } else if (to.path === loginPath) {
-            // 如果当前是登录页面就跳转到首页
+            // 已登录情况下访问登录页时跳转到首页
             return ({
                 path: '/',
             })
