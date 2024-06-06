@@ -25,7 +25,7 @@ const themeAlgo = computed(() => {
         <a-style-provider
             :transformers="[legacyLogicalPropertiesTransformer]">
             <a-app w-full h-full>
-                <div id="app" ref="app">
+                <div id="web-app" ref="webApp" class="w-full h-full">
                     <RouterView/>
                 </div>
             </a-app>
