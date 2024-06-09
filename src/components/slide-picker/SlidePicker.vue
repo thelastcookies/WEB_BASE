@@ -142,10 +142,16 @@ const isValueEmpty = computed(() => {
     return value.value.every(item => item.length === 0);
 });
 
+// 根据传入的 picker 设置，修改自定义颜色
 // 在传入 value 更新时，同步更新 picker 状态
 watchEffect(() => {
     if (!_compRef.value) return;
     const children = _compRef.value!.children;
+    _pickerList.value.forEach((item, idx) => {
+        if (item.color) {
+            _compRef.value?.style.setProperty(`--topic${idx}-bg`, item.color);
+        }
+    });
     if (isValueEmpty.value) {
         Array.from(children).forEach((_, idx) => {
             setPickerTopic(children[idx] as HTMLDivElement, null, 'is-');
@@ -162,11 +168,11 @@ watchEffect(() => {
 </script>
 
 <template>
-    <div class="w-full">
+    <div class="slider-picker w-full">
         <div class="w-full flex px-12 box-border">
             <div class="flex mr-3 cursor-pointer" v-for="(item, idx) in _pickerList"
                  @click="handleSetTopic(('topic' + idx) as PickerTopic)">
-                <div class="w-4 h-4 mr-1" :style="{backgroundColor: item.color}"></div>
+                <div class="w-4 h-4 mr-1" :class="['is-topic' + idx]" :style="{backgroundColor: item.color}"></div>
                 <div class="">{{ item.label }}</div>
             </div>
         </div>
@@ -193,77 +199,86 @@ watchEffect(() => {
 </template>
 
 <style scoped lang="less">
-.picker-container {
-    .picker {
-        height: 2rem;
-        width: 2rem;
-        margin-right: 0.25rem;
-        border: 2px solid;
-        position: relative;
-        transition-duration: 0.2s;
-        cursor: pointer;
-        background-color: var(--colorFill);
+.slider-picker {
+    --topic0-bg: #EF6E2D;
+    --topic1-bg: #FCEF4C;
+    --topic2-bg: #3476B8;
+    --topic3-bg: #3DEEC9;
+    --topic4-bg: #E83530;
+    --topic5-bg: #72FF7B;
+    --topic6-bg: #6BC4C9;
+    --topic7-bg: #3DEEC9;
+}
 
-        &:nth-child(odd) {
-            .mark {
-                top: -1.5rem;
-            }
-        }
+.picker {
+    height: 2rem;
+    width: 2rem;
+    margin-right: 0.25rem;
+    border: 2px solid;
+    position: relative;
+    transition-duration: 0.2s;
+    cursor: pointer;
+    background-color: var(--colorFill);
 
-        &:nth-child(even) {
-            .mark {
-                bottom: -1.5rem;
-            }
-        }
-
+    &:nth-child(odd) {
         .mark {
-            width: 100%;
-            text-align: center;
-            font-size: 12px;
-            line-height: 1rem;
-            position: absolute;
+            top: -1.5rem;
         }
     }
 
-    .is-topic0,
-    .picker.is-temp-topic0 {
-        background-color: #EF6E2D;
+    &:nth-child(even) {
+        .mark {
+            bottom: -1.5rem;
+        }
     }
 
-    .is-topic1,
-    .picker.is-temp-topic1 {
-        background-color: #FCEF4C;
+    .mark {
+        width: 100%;
+        text-align: center;
+        font-size: 12px;
+        line-height: 1rem;
+        position: absolute;
     }
+}
 
-    .is-topic2,
-    .picker.is-temp-topic2 {
-        background-color: #3476B8;
-    }
+.is-topic0,
+.picker.is-temp-topic0 {
+    background-color: var(--topic0-bg);
+}
 
-    .is-topic3,
-    .picker.is-temp-topic3 {
-        background-color: #3DEEC9;
-    }
+.is-topic1,
+.picker.is-temp-topic1 {
+    background-color: var(--topic1-bg);
+}
 
-    .is-topic4,
-    .picker.is-temp-topic4 {
-        background-color: #E83530;
-    }
+.is-topic2,
+.picker.is-temp-topic2 {
+    background-color: var(--topic2-bg);
+}
 
-    .is-topic5,
-    .picker.is-temp-topic5 {
-        background-color: #72FF7B;
-    }
+.is-topic3,
+.picker.is-temp-topic3 {
+    background-color: var(--topic3-bg);
+}
 
-    .is-topic6,
-    .picker.is-temp-topic6 {
-        background-color: #6BC4C9;
-    }
+.is-topic4,
+.picker.is-temp-topic4 {
+    background-color: var(--topic4-bg);
+}
 
-    .is-topic7,
-    .picker.is-temp-topic7 {
-        background-color: #3DEEC9;
-    }
+.is-topic5,
+.picker.is-temp-topic5 {
+    background-color: var(--topic5-bg);
+}
+
+.is-topic6,
+.picker.is-temp-topic6 {
+    background-color: var(--topic6-bg);
+}
+
+.is-topic7,
+.picker.is-temp-topic7 {
+    background-color: var(--topic7-bg);
 }
 
 .picker-container.mark-left {

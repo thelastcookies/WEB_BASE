@@ -78,44 +78,38 @@ const step = 24 / max * 60;
 const picker = [{
     key: 'tip',
     label: '主题一',
-    color: '#EF6E2D',
+    color: '#FFF'
 }, {
     key: 'tip',
     label: '主题二',
-    color: '#FCEF4C',
+    color: '#000'
 }, {
     key: 'tip',
     label: '主题三',
-    color: '#3476B8',
 }, {
     key: 'tip',
     label: '主题四',
-    color: '#3DEEC9',
 },{
     key: 'tip',
     label: '主题五',
-    color: '#EF6E2D',
 }, {
     key: 'tip',
     label: '主题六',
-    color: '#FCEF4C',
 }, {
     key: 'tip',
     label: '主题七',
-    color: '#3476B8',
 }, {
     key: 'tip',
     label: '主题八',
-    color: '#3DEEC9',
 }] as PickerItem[];
 
 </script>
 <template>
     <div class="w-full flex justify-center">
-        <button class="mr-8" @click="handleSetDuration('topic0')">尖 {{ durations.tip }}</button>
-        <button class="mr-8" @click="handleSetDuration('topic1')">峰 {{ durations.peak }}</button>
-        <button class="mr-8" @click="handleSetDuration('topic2')">平 {{ durations.flat }}</button>
-        <button class="mr-8" @click="handleSetDuration('topic3')">谷 {{ durations.valley }}</button>
+<!--        <button class="mr-8" @click="handleSetDuration('topic0')">尖 {{ durations.tip }}</button>-->
+<!--        <button class="mr-8" @click="handleSetDuration('topic1')">峰 {{ durations.peak }}</button>-->
+<!--        <button class="mr-8" @click="handleSetDuration('topic2')">平 {{ durations.flat }}</button>-->
+<!--        <button class="mr-8" @click="handleSetDuration('topic3')">谷 {{ durations.valley }}</button>-->
         {{ pickerValue }}
     </div>
     <div class="w-full flex justify-center">
