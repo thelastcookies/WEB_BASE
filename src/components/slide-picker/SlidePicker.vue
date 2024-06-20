@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import {PickerItem, PickerTopic} from "@/components/slide-picker/types.ts";
+import { PickerItem, PickerTopic } from "@/components/slide-picker/types.ts";
 
 // 定义 v-model 类型
-const disabled = defineModel<boolean>('disabled', {default: true});
-const topic = defineModel<PickerTopic>('topic', {default: null});
-const value = defineModel<number[][]>('value', {default: () => []});
+const disabled = defineModel<boolean>('disabled', { default: true });
+const topic = defineModel<PickerTopic>('topic', { default: null });
+const value = defineModel<number[][]>('value', { default: () => [] });
 
 // 定义 props
 const props = withDefaults(defineProps<{
@@ -41,7 +41,7 @@ const _max = computed(() => {
 });
 
 // 标注的初始化
-const _marks = Array.from({length: _max.value}, (_, idx) => _min.value + idx);
+const _marks = Array.from({ length: _max.value }, (_, idx) => _min.value + idx);
 // 标注类型的初始化
 const _markStyle = computed(() => {
     return ['center', 'left', 'right'].includes(props.markType) ? 'mark-' + props.markType : 'mark-center';
@@ -56,7 +56,7 @@ watch(() => props.picker, (pList: PickerItem[]) => {
         console.warn(`SlidePicker.vue: The length of 'picker' exceeds the limit '8', the excess will be truncated.`);
     }
     _pickerList.value = pList;
-}, {immediate: true});
+}, { immediate: true });
 
 // 用于记录点击开始时 picker 的 index 值
 const _stIndex = ref<null | number>(null);
@@ -65,6 +65,16 @@ const handleSetTopic = (t: PickerTopic) => {
     topic.value = t;
     disabled.value = false;
 };
+
+// 设置退出状态
+watch(disabled, (val) => {
+    if (val) {
+        _stIndex.value = null;
+        clearTempTopic();
+        topic.value = null;
+    }
+});
+
 // picker 点击事件
 const handlePickerClick = (e: Event, idx: number) => {
     if (disabled.value) return;
@@ -125,7 +135,7 @@ const clearTempTopic = () => {
 // 数据 emit 前的处理
 const emitValue = () => {
     const children = _compRef.value!.children;
-    let v: number[][] = Array.from({length: _pickerList.value.length}, () => []);
+    let v: number[][] = Array.from({ length: _pickerList.value.length }, () => []);
     for (let i = 0, len = children.length; i < len; i++) {
         const className = children[i].className;
         const match = className.match(/topic([0-7])/);
@@ -137,11 +147,6 @@ const emitValue = () => {
     value.value = v;
 };
 
-// 用于判断传入的 value 值是否为空
-const isValueEmpty = computed(() => {
-    return value.value.every(item => item.length === 0);
-});
-
 // 根据传入的 picker 设置，修改自定义颜色
 // 在传入 value 更新时，同步更新 picker 状态
 watchEffect(() => {
@@ -152,17 +157,14 @@ watchEffect(() => {
             _compRef.value?.style.setProperty(`--topic${idx}-bg`, item.color);
         }
     });
-    if (isValueEmpty.value) {
-        Array.from(children).forEach((_, idx) => {
-            setPickerTopic(children[idx] as HTMLDivElement, null, 'is-');
+    Array.from(children).forEach((_, idx) => {
+        setPickerTopic(children[idx] as HTMLDivElement, null, 'is-');
+    });
+    value.value.forEach((topic, i) => {
+        topic.forEach(idx => {
+            setPickerTopic(children[idx] as HTMLDivElement, ('topic' + i) as PickerTopic, 'is-');
         });
-    } else {
-        value.value.forEach((topic, i) => {
-            topic.forEach(idx => {
-                setPickerTopic(children[idx] as HTMLDivElement, ('topic' + i) as PickerTopic, 'is-');
-            });
-        });
-    }
+    });
 });
 
 </script>
