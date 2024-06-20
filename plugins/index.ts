@@ -1,6 +1,7 @@
 import type {PluginOption} from 'vite';
 import vue from '@vitejs/plugin-vue';
 import vueJsx from '@vitejs/plugin-vue-jsx';
+import VueDevTools from 'vite-plugin-vue-devtools'
 import {VueComponentPluginConfig} from "./vue-components";
 import {AutoImportPluginConfig} from "./auto-imports";
 import {UnoCSSPluginConfig} from "./unocss";
@@ -19,6 +20,7 @@ export function createVitePlugins() {
     const vitePluginList: (PluginOption | PluginOption[])[] = [
         vue(),
         vueJsx(),
+        VueDevTools(),
         UnoCSSPluginConfig,
         VueComponentPluginConfig,
         AutoImportPluginConfig,
