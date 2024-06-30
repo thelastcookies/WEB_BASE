@@ -1,24 +1,22 @@
 import type {
-    ActionRecordLink,
-    ActionRecordMenu,
+    ActionRecordRaw,
     ActionRecordPage,
     ActionRecordPageWithChildren,
-    ActionRecordRaw,
-    ActionRecordRedirect
+    ActionRecordLink,
+    ActionRecordIFrame,
+    ActionRecordDiagram,
 } from "@/types/action";
-import type {RouteRecordRaw} from "vue-router";
+import type { RouteRecordName, RouteRecordRaw } from "vue-router";
 
 /**
  * 根据 Actions 配置，生成路由
  */
-export const generateRouterConf = (
-    actionTree: ActionRecordRaw[]
-): ActionRecordPage | ActionRecordMenu | ActionRecordRedirect | ActionRecordLink | undefined => {
+export const generateRouterConf = (actionTree: ActionRecordRaw[]) => {
     // 生成路由配置
     const routes = generateRoutes(actionTree);
     // 获取首页配置
     const homePageId = import.meta.env.APP_HOMEPAGE_ID;
-    let homePage = {} as ActionRecordRaw | undefined;
+    let homePage: ActionRecordRaw | undefined;
     if (!homePageId) {
         console.info(`Router.generate "generateRouterConf": Empty configuration item 'APP_HOMEPAGE_ID'.`);
         homePage = findDescendantWithUrlDefined(actionTree[0]);
@@ -29,20 +27,16 @@ export const generateRouterConf = (
         console.error(`Router.generate "generateRouterConf": Cannot find homepage by id: ${homePageId}.`);
     }
 
-    // 添加路由到 router
-    // const routerData = {
-    //     path: '/',
-    //     name: 'rootPath',
-    //     // redirect: homePage!.url,
-    //     component: () => basicRouteMap.Parent,
-    //     children: routes
-    // };
-    // router.addRoute('Layout', routerData);
+    // 为 Layout 添加指向首页的 redirect
+    router.removeRoute('Layout');
 
-    routes.forEach(route => {
-        router.addRoute('Layout', route);
+    router.addRoute({
+        path: '/',
+        name: 'Layout',
+        redirect: { name: homePage!.actionId as RouteRecordName },
+        component: basicRouteMap.Layout,
+        children: routes
     });
-    return homePage;
 };
 
 /**
@@ -94,14 +88,23 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
     }
     if ('component' in action) {
         route.component = getRouterModule(action.component);
+    } else if (action.type === MenuPageType.MENU) {
+        route.component = getRouterModule('Parent');
+        route.redirect = 'redirect' in action ? action.redirect : {
+            name: findDescendantWithUrlDefined(action)?.actionId as RouteRecordName
+        };
+    } else if (action.type === MenuPageType.IFRAME) {
+        route.component = getRouterModule('IFrame');
+        route.meta = { href: action.href };
+    } else if (action.type === MenuPageType.DIAGRAM) {
+
     }
-    route.redirect = 'redirect' in action ? action.redirect : findDescendantWithUrlDefined(action)?.url ?? '';
     return route;
 };
 
 export const findDescendantWithUrlDefined = (
     action: ActionRecordRaw
-): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | undefined => {
+): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
     if ('children' in action) {
         if ('url' in action.children[0]) return action.children[0];
         else findDescendantWithUrlDefined(action.children[0]);

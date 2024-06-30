@@ -1,5 +1,5 @@
-import type {MenuPageType, ShowInMenuType} from "@/enums";
-import type {Key, RecordName} from "@/types";
+import type { MenuPageType, ShowInMenuType } from "@/enums";
+import type { Key, RecordName } from "@/types";
 
 export type ActionRecordRaw =
     ActionRecordPage
@@ -7,7 +7,9 @@ export type ActionRecordRaw =
     | ActionRecordMenu
     | ActionRecordMenuWithChildren
     | ActionRecordRedirect
-    | ActionRecordLink;
+    | ActionRecordLink
+    | ActionRecordIFrame
+    | ActionRecordDiagram;
 
 interface _ActionBase {
     // 路由 id
@@ -46,10 +48,11 @@ export interface ActionRecordPageWithChildren extends ActionRecordPage {
     children: ActionRecordRaw[];
 }
 
-export interface ActionRecordMenu extends _ActionBase{
+export interface ActionRecordMenu extends _ActionBase {
     type: MenuPageType.MENU;
     // 路由配置的icon，一般用于第一级菜单
     icon?: string;
+    redirect: string;
 }
 
 export interface ActionRecordMenuWithChildren extends ActionRecordMenu {
@@ -64,5 +67,16 @@ export interface ActionRecordRedirect extends _ActionBase {
 
 export interface ActionRecordLink extends _ActionBase {
     type: MenuPageType.LINK;
+    url: string;
+}
+
+export interface ActionRecordIFrame extends _ActionBase {
+    type: MenuPageType.IFRAME;
+    url: string;
+    href: string;
+}
+
+export interface ActionRecordDiagram extends _ActionBase {
+    type: MenuPageType.DIAGRAM;
     url: string;
 }

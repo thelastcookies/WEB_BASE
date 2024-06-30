@@ -1,6 +1,5 @@
-import {AxiosError} from "axios";
-import {message} from "ant-design-vue";
-import type {ActionRecordPage} from "@/types/action";
+import { AxiosError } from "axios";
+import { message } from "ant-design-vue";
 
 const loginPath = '/login';
 const samplePath = '/sample';
@@ -9,7 +8,7 @@ const accessWhileList = [loginPath, '/error', '/401', '/404', '/403'];
 router.beforeEach(async (to) => {
     setRouteEmitter(to);
     // 获取 token 进行校验
-    const {getToken} = useTokenStore();
+    const { getToken } = useTokenStore();
     const token = getToken();
     if (to.path === samplePath && import.meta.env.DEV) {
         // Sample 页面特殊处理
@@ -22,7 +21,7 @@ router.beforeEach(async (to) => {
             // 否跳转到登录页
             return ({
                 path: loginPath,
-                query: {redirect: encodeURIComponent(to.fullPath)},
+                query: { redirect: encodeURIComponent(to.fullPath) },
             });
         }
     } else {
@@ -38,15 +37,15 @@ router.beforeEach(async (to) => {
             try {
                 await userStore.getUserInfo();
                 // 获取 Actions 并生成路由配置
-                const {getActions} = useActionStore();
-                const {url} = generateRouterConf(await getActions()) as ActionRecordPage;
+                const { getActions } = useActionStore();
+                generateRouterConf(await getActions());
 
                 message.success({
                     content: '加载完成',
                     key: SYS_LOADING_KEY,
                 });
                 return ({
-                    path: url,
+                    path: '/',
                     replace: true,
                 });
             } catch (e) {
@@ -73,7 +72,7 @@ router.beforeEach(async (to) => {
                         message.destroy(SYS_LOADING_KEY);
                     }
                 } else if ((e as Error).message === WITH_UNAUTHORIZED) {
-                    const {signOut} = useAppStore();
+                    const { signOut } = useAppStore();
                     signOut().then(() => {
                         message.error({
                             content: '会话已过期，请重新登录',

@@ -1,12 +1,12 @@
-import {defineConfig, loadEnv} from 'vite'
-import {createVitePlugins} from "./plugins";
-import {fileURLToPath} from "node:url";
+import { defineConfig, loadEnv } from 'vite'
+import { createVitePlugins } from "./plugins";
+import { fileURLToPath } from "node:url";
 
 const baseSrc = fileURLToPath(new URL('/src', import.meta.url));
 const imageSrc = fileURLToPath(new URL('/src/assets/images', import.meta.url));
 
 // https://vitejs.dev/config/
-export default defineConfig(({command}) => {
+export default defineConfig(({ command }) => {
     // 从 /.env/.env 中读取环境变量
     const env = loadEnv('', process.cwd() + '/.env', 'APP_');
     let conf = {};
@@ -15,6 +15,7 @@ export default defineConfig(({command}) => {
         Object.assign(conf, {
             server: {
                 host: '0.0.0.0',
+                port: 8194,
             }
         });
     } else if (command === 'build') {
