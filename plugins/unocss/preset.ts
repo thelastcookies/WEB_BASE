@@ -1,11 +1,11 @@
-import type {CSSEntries, Preset, Rule, UserShortcuts, Variant} from 'unocss';
+import type { CSSEntries, Preset, Rule, UserShortcuts, Variant } from 'unocss';
 import antdUnoTheme from './antd-uno-theme.json'
 
 // 规则
 const rules: Rule<Object>[] = [
     ['ph', []],
-    ['transparent', {'background-color': 'transparent'}],
-    [/^letter-spacing-(-?(\d.)?\w+)$/, ([, v]) => ({'letter-spacing': `${v}`})],
+    ['transparent', { 'background-color': 'transparent' }],
+    [/^letter-spacing-(-?(\d.)?\w+)$/, ([, v]) => ({ 'letter-spacing': `${v}` })],
     [/^([pm])([lrtb]*)-normal$/, ([, style, direction]) => {
         let property = '';
         if (style === 'm') property = 'margin';

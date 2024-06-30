@@ -3,8 +3,8 @@
  * 目前是为了在路由变化时同步更新菜单、面包屑和 Tab 状态。
  */
 import mitt from 'mitt';
-import type {Handler} from 'mitt';
-import type {RouteLocationNormalized} from 'vue-router';
+import type { Handler } from 'mitt';
+import type { RouteLocationNormalized } from 'vue-router';
 
 const emitter = mitt();
 

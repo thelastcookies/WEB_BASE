@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import {legacyLogicalPropertiesTransformer} from "ant-design-vue";
+import { legacyLogicalPropertiesTransformer } from "ant-design-vue";
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
-import {theme} from 'ant-design-vue';
+import { theme } from 'ant-design-vue';
 
 const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
 const isDarkTheme = ref(darkModeMediaQuery.matches);

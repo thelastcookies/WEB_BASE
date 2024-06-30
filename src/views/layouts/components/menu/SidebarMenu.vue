@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type {Key, MenuTreeNode, RecordName} from "@/types";
-import type {ActionRecordRaw} from "@/types/action";
-import type {MenuInfo, SelectInfo} from "ant-design-vue/es/menu/src/interface";
-import type {Ref} from "vue";
-import type {RouteLocationNormalized} from "vue-router";
+import type { Key, MenuTreeNode, RecordName } from "@/types";
+import type { ActionRecordRaw } from "@/types/action";
+import type { MenuInfo, SelectInfo } from "ant-design-vue/es/menu/src/interface";
+import type { Ref } from "vue";
+import type { RouteLocationNormalized } from "vue-router";
 
 const openKeys = ref([] as string[]);
 const selectedKeys = ref([] as string[]);
@@ -28,22 +28,22 @@ const actionToMenu = (tree: ActionRecordRaw[]): MenuTreeNode[] => {
     return menuTree;
 };
 
-const handleMenuClick = ({item, key, keyPath}: MenuInfo) => {
+const handleMenuClick = ({ item, key, keyPath }: MenuInfo) => {
     console.log('handleMenuClick item', item);
     console.log('handleMenuClick key', key);
     ///////////
     console.log('handleMenuClick keyPath', keyPath);
-    routeTo({name: key as string});
+    routeTo({ name: key as string });
 }
 
 const onOpenChange = (openKeys: (Key)[]) => {
 }
 
-const onSelect = ({selectedKeys}: SelectInfo) => {
+const onSelect = ({ selectedKeys }: SelectInfo) => {
 }
 
 const actionStore = useActionStore();
-const {actionTree} = storeToRefs(actionStore);
+const { actionTree } = storeToRefs(actionStore);
 
 const activeMenu = ref() as Ref<ActionRecordRaw>;
 

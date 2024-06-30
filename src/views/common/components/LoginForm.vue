@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type {LoginParams} from "@/api/admin/home/types";
-import type {Rule} from "ant-design-vue/es/form";
-import {message} from "ant-design-vue";
+import type { LoginParams } from "@/api/admin/home/types";
+import type { Rule } from "ant-design-vue/es/form";
+import { message } from "ant-design-vue";
 
 const submittingDisabled = ref(false);
 
@@ -12,8 +12,8 @@ const loginForm = reactive<LoginParams>({
 });
 
 const loginFormRules: Record<string, Rule[]> = {
-    userName: [{required: true, message: '请输入账号', trigger: 'blur'}],
-    password: [{required: true, message: '请输入密码', trigger: 'blur'}],
+    userName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+    password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 };
 
 const loginFormRef = ref(null) as Ref<Element | null>;
@@ -28,7 +28,7 @@ const handleSubmitLogin = async (formData: LoginParams) => {
     login(formData).then(res => {
         if (res.Success) {
             const tokenRes = res.Data;
-            const {setToken} = useTokenStore();
+            const { setToken } = useTokenStore();
             setToken(tokenRes);
             submittingDisabled.value = false;
             router.push("/");

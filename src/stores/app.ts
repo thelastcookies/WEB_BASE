@@ -1,7 +1,7 @@
-import {App} from 'ant-design-vue';
-import type {MessageInstance} from 'ant-design-vue/es/message/interface';
-import type {ModalStaticFunctions} from 'ant-design-vue/es/modal/confirm';
-import type {NotificationInstance} from 'ant-design-vue/es/notification/interface';
+import { App } from 'ant-design-vue';
+import type { MessageInstance } from 'ant-design-vue/es/message/interface';
+import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm';
+import type { NotificationInstance } from 'ant-design-vue/es/notification/interface';
 
 export const useAppStore = defineStore('app', () => {
     const windowInnerWidth = ref(0);
@@ -28,7 +28,7 @@ export const useAppStore = defineStore('app', () => {
             userStore.$reset();
             const tokenStore = useTokenStore();
             tokenStore.$reset();
-            if (import.meta.env.APP_LOGIN_ENABLE === "true") {
+            if (import.meta.env.APP_LOGIN_ENABLE) {
                 router.push("/login");
             } else {
                 parent.window.location.assign("");

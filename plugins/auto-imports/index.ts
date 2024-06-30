@@ -1,4 +1,4 @@
-import {PluginOption} from "vite";
+import { PluginOption } from "vite";
 import AutoImport from "unplugin-auto-import/vite";
 
 export const AutoImportPluginConfig = AutoImport({

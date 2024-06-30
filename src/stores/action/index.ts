@@ -1,4 +1,4 @@
-import type {Key, RecordName} from "@/types";
+import type { Key, RecordName } from "@/types";
 import type {
     ActionRecordMenu,
     ActionRecordMenuWithChildren,
@@ -11,7 +11,7 @@ export const useActionStore = defineStore('action', () => {
     const actionTree = shallowRef([] as ActionRecordRaw[]);
 
     const getActionsFromApi = async () => {
-        const {Data} = await getOperatorMenuList();
+        const { Data } = await getOperatorMenuList();
         return preprocessActionTree(Data ?? [])
     };
 

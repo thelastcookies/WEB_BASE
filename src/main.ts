@@ -1,4 +1,4 @@
-import {createApp} from 'vue';
+import { createApp } from 'vue';
 import App from './App.vue';
 
 export const app = createApp(App);
@@ -7,7 +7,7 @@ export const app = createApp(App);
 import '@/assets/index.less';
 
 // Pinia
-import {createPinia} from 'pinia';
+import { createPinia } from 'pinia';
 app.use(createPinia());
 
 // router

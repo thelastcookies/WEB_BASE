@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import * as icons from '@ant-design/icons-vue';
-import type {VNodeChild} from 'vue';
+import type { VNodeChild } from 'vue';
 
 const props = withDefaults(defineProps<{
     icon: string | ((...args: any[]) => VNodeChild),

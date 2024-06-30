@@ -1,4 +1,4 @@
-import type {UserInfo} from "@/api/admin/home/types";
+import type { UserInfo } from "@/api/admin/home/types";
 
 export const useUserStore = defineStore('user', () => {
     const userInfo = shallowRef({} as UserInfo);

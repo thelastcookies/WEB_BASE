@@ -1,5 +1,5 @@
-import type {LoginParams} from "./types";
-import type {AdminResponseBody} from "@/api/admin";
+import type { LoginParams } from "./types";
+import type { AdminResponseBody } from "@/api/admin";
 
 export const login = (params: LoginParams) => {
     return usePost<AdminResponseBody, LoginParams>(

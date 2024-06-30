@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import {message} from "ant-design-vue";
-import type {MenuInfo} from "ant-design-vue/es/menu/src/interface";
+import { message } from "ant-design-vue";
+import type { MenuInfo } from "ant-design-vue/es/menu/src/interface";
 
 withDefaults(defineProps<{
     size: number
@@ -12,7 +12,7 @@ const userStore = useUserStore();
 const realName = computed(() => userStore.userInfo ? userStore.userInfo.realName : '');
 const appStore = useAppStore();
 
-async function handleClick({key}: MenuInfo) {
+async function handleClick({ key }: MenuInfo) {
     if (key === 'logout') {
         const hide = message.loading('注销中，请稍候。', 0);
         appStore.signOut().finally(() => {

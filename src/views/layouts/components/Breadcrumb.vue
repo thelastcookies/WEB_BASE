@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type {RecordName} from "@/types";
-import type {ActionRecordRaw} from "@/types/action";
-import type {RouteLocationNormalized} from "vue-router";
+import type { RecordName } from "@/types";
+import type { ActionRecordRaw } from "@/types/action";
+import type { RouteLocationNormalized } from "vue-router";
 
 const actionStore = useActionStore();
-const {actionTree} = storeToRefs(actionStore);
+const { actionTree } = storeToRefs(actionStore);
 
 const breadcrumb = ref([] as ActionRecordRaw[]);
 // 订阅路由变化，设置面包屑

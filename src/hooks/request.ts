@@ -2,8 +2,8 @@
  * 对于 axios.ts 提供的 axios 实例的再封装
  * 包括 GET，POST，PUT，DELETE 请求方法
  */
-import type {AxiosRequestConfig} from "axios";
-import type {RequestConfigExtra} from "@/hooks/axios-extends.ts";
+import type { AxiosRequestConfig } from "axios";
+import type { RequestConfigExtra } from "@/hooks/axios-extends.ts";
 
 export const useGet = <R = any, T = any>(
     url: string,

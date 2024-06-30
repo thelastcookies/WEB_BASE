@@ -2,8 +2,8 @@
  * 提供 axios 实例，配置请求拦截器、响应拦截器和错误处理
  */
 import axios from 'axios';
-import type {NamingStyleTransfer} from "@/enums/naming-style.ts";
-import type {AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig} from "axios";
+import type { NamingStyleTransfer } from "@/enums/naming-style.ts";
+import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
 
 export interface RequestConfigExtra {
     // 请求时是否携带 token
@@ -26,7 +26,7 @@ const requestHandler = async (
         config.url = import.meta.env.APP_API_MOCK_URL + urlProc;
     }
     if (config.token) {
-        const {getToken} = useTokenStore();
+        const { getToken } = useTokenStore();
         const token = getToken();
         if (token) {
             config.headers.set('Authorization', "Bearer " + token);
@@ -100,7 +100,7 @@ interface AxiosOptions<T> {
 }
 
 export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & RequestConfigExtra): Promise<R> => {
-    const {loading} = options;
+    const { loading } = options;
     return new Promise((resolve, reject) => {
         instance.request(options).then((res) => {
             resolve(res as R);
@@ -118,7 +118,7 @@ export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & Req
 const instance: AxiosInstance = axios.create({
     baseURL: '/',
     timeout: 30000,
-    headers: {'Content-Type': ContentTypeEnum.JSON},
+    headers: { 'Content-Type': ContentTypeEnum.JSON },
 });
 
 instance.interceptors.request.use(requestHandler);
