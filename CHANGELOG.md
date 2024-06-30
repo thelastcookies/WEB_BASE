@@ -1,5 +1,21 @@
 # Changelog
 
+## [0.9.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.8.0...v0.9.0) (2024-06-30)
+
+
+### Features
+
+* 增加 SlidePicker 组件与组件 Sample ([c3c4c43](https://github.com/thelastcookies/WEB-BASE/commit/c3c4c43540d5d60029fa968b66683c05b250c570))
+* 增加 SlidePicker 组件自定义颜色支持 ([ea83b6f](https://github.com/thelastcookies/WEB-BASE/commit/ea83b6f3b8871054bdab08387c8d07285096c8fb))
+* 增加特殊页面 Sample.vue ([a9119df](https://github.com/thelastcookies/WEB-BASE/commit/a9119df90d8721d869715ad5f1187d1f59fb37ad))
+* 重新设计路由组织形式，增加对 iframe 页面嵌入的支持，增加静态路由示例 ([4e32809](https://github.com/thelastcookies/WEB-BASE/commit/4e328097621b8618e8f7e0d9e0226158f7a0cf60))
+
+
+### Bug Fixes
+
+* 修改 App.vue 中包裹路由的 div 设置 ([33bd9e5](https://github.com/thelastcookies/WEB-BASE/commit/33bd9e531607e510bea69e81cd364471885d5589))
+* 特殊状态下 SlidePicker 编辑状态无法退出的问题消缺。 ([6c7c60b](https://github.com/thelastcookies/WEB-BASE/commit/6c7c60b0cd6ce68950ffab1302b74e656ce318e2))
+
 ## [0.8.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.7.0...v0.8.0) (2024-05-05)
 
 
