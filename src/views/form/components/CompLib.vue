@@ -2,12 +2,13 @@
 import { VueDraggable } from "vue-draggable-plus";
 import { nanoid } from "nanoid";
 import { cloneDeep } from "lodash";
+import type { ComponentConfig } from "@/views/form/types";
 
-function handleClone(el: Record<string, string>) {
+const handleClone = (el: ComponentConfig): ComponentConfig => {
     return Object.assign(cloneDeep(el), {
         key: el.type + '_' + nanoid(8),
     });
-}
+};
 
 </script>
 
@@ -21,7 +22,7 @@ function handleClone(el: Record<string, string>) {
                 <div class="mb-2">{{ group.name }}</div>
                 <vue-draggable
                     v-model="group.components"
-                    :group="{ name: 'FormDesign', pull: 'clone', put: false }"
+                    :group="{ name: 'FormDesigner', pull: 'clone', put: false }"
                     :sort="false"
                     :clone="handleClone"
                     class="grid grid-cols-2 grid-gap-1 mb-4"
@@ -44,6 +45,7 @@ function handleClone(el: Record<string, string>) {
     border-radius: 0.75rem;
     background-color: var(--colorBgContainer);
     border: 1px solid var(--colorBorder);
+    transition: all var(--motionDurationMid);
 
     &:hover {
         background-color: var(--colorPrimaryBg);

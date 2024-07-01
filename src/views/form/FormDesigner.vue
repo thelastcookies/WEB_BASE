@@ -7,6 +7,7 @@ import componentMixin from './FormComponentMixin.ts';
 // import { formJson } from './FormInterface.ts';
 // import { useMessage } from '/@/hooks/web/useMessage';
 import * as icons from "@ant-design/icons-vue";
+import { ComponentConfig, FormConfig } from "@/views/form/types";
 
 // const { createConfirm } = useMessage();
 
@@ -69,24 +70,9 @@ import * as icons from "@ant-design/icons-vue";
 //     console.log(ev);
 // }
 //
-// function _onChoose(cp) {
-//     active.value = cp;
-// }
+
 //
-// function clearForm() {
-//     // createConfirm.confirm('您确定要清空表单设计区吗?', '提醒', {
-//     //   confirmButtonText: '我再想想',
-//     //   cancelButtonText: '确认清空',
-//     //   type: 'warning',
-//     // }).catch(() => {
-//     //   addHis(deepCopy(_value.value.components));
-//     //   _value.value.components.length = 0;
-//     // });
-// }
-//
-// function previewForm() {
-//     previewVisible.value = true;
-// }
+
 //
 // function validate() {
 //     return new Promise((resolve, reject) => {
@@ -98,17 +84,15 @@ import * as icons from "@ant-design/icons-vue";
 //     });
 // }
 //
-// const labelCol = computed(() => {
-//     if (props.config) {
-//         return {
-//             style: {
-//                 width: _value.value.conf.labelWidth + 'px'
-//             }
-//         }
-//     }
-// });
-//
-// const settTabActiveKey = ref("comp");
+
+const compList = ref([] as ComponentConfig[]);
+const currentComp = ref({} as ComponentConfig);
+const formConf = ref({
+    layout: 'horizontal',
+    labelAlign: 'right',
+    labelWidth: 100,
+    size: 'middle',
+} as FormConfig);
 
 </script>
 
@@ -117,11 +101,11 @@ import * as icons from "@ant-design/icons-vue";
         <aside class="w-300px h-full">
             <CompLib />
         </aside>
-        <main class="flex h-full w-[calc(100%-600px)]">
-
+        <main class="h-full w-[calc(100%-600px)]">
+            <DrawArea :comp-list="compList" :current-comp="currentComp" :form-conf="formConf" />
         </main>
         <aside class="w-300px h-full">
-
+            <CompSetts :comp-conf="currentComp" :form-conf="formConf" />
         </aside>
     </div>
 </template>
@@ -142,18 +126,6 @@ import * as icons from "@ant-design/icons-vue";
     //color: var(--el-text-color);
 }
 
-.w-form-d-item {
-    position: relative;
-    border: 1px dashed white;
-}
-
-.w-form-d-item:hover {
-    border: 1px dashed #8D8D8D;
-}
-
-.w-form-cp-active {
-    border: 1px dashed var(--el-color-primary) !important;
-}
 
 .w-form-d-lib {
     border-right: 1px solid var(--el-border-color);
@@ -227,65 +199,6 @@ import * as icons from "@ant-design/icons-vue";
     }
 }
 
-.w-form-d-toolbar {
-    display: flex;
-    height: @tool-nav-height;
-    align-items: center;
-    background: white;
-    position: relative;
-    padding: 0 20px;
-
-    .w-f-d-t-active {
-        color: #656363;
-    }
-
-    & > div {
-        color: #989898;
-        font-size: medium;
-
-        & > * {
-            padding: 2px;
-            margin: 0 5px;
-            cursor: pointer;
-
-            &:focus {
-                outline: none;
-            }
-
-            &:hover {
-                color: #656363;
-            }
-        }
-    }
-
-    & > div:nth-child(2) {
-        margin-left: 20px;
-    }
-
-    & > div:nth-child(3) {
-        font-size: small;
-        position: absolute;
-        right: 20px;
-        display: flex;
-
-        & > div {
-            display: flex;
-            align-items: center;
-
-            span {
-                margin-left: 5px;
-            }
-        }
-
-        & > div:first-child {
-            color: var(--el-color-danger);
-        }
-
-        & > div:last-child {
-            color: var(--el-color-primary);
-        }
-    }
-}
 
 .w-form-d-ctx {
     margin: 10px;
@@ -313,8 +226,5 @@ import * as icons from "@ant-design/icons-vue";
     }
 }
 
-.w-f-cp-select {
-    border-radius: 2px;
-    border: 1px dashed var(--el-color-primary) !important;
-}
+
 </style>

@@ -1,9 +1,20 @@
+import { SizeType } from "ant-design-vue/es/config-provider";
+import { FormLabelAlign } from "ant-design-vue/es/form/interface";
+
+export interface FormConfig {
+    layout: string;
+    labelAlign: FormLabelAlign;
+    labelWidth: number;
+    size: SizeType;
+}
+
 export interface ComponentGroup {
     name: string;
     components: ComponentConfig[];
 }
 
 export interface ComponentConfig {
+    key?: string;
     name: string;
     type: string;
     icon: string;
