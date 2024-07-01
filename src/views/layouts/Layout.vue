@@ -1,7 +1,7 @@
 <template>
     <a-layout w-full h-full>
         <a-layout-header h-52px p-lr-16px>
-            <Header/>
+            <Header />
         </a-layout-header>
         <a-layout>
             <a-layout-sider width="280">
@@ -16,7 +16,7 @@
                                 <component :is="Component"></component>
                             </div>
                             <template #fallback>
-                                <BaseLoading/>
+                                <BaseLoading />
                             </template>
                         </suspense>
                     </router-view>

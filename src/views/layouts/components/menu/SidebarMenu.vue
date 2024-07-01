@@ -83,7 +83,7 @@ watch(actionTree, (tree: ActionRecordRaw[]) => {
         @select="onSelect"
     >
         <template v-for="item in menuData" :key="item.key">
-            <SubMenu :item="item"/>
+            <SubMenu :item="item" />
         </template>
     </a-menu>
 </template>

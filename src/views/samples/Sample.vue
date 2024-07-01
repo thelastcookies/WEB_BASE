@@ -4,7 +4,7 @@
  * 位于顶层路由，独立于系统存在
  */
 import dayjs from "dayjs";
-import type {PickerItem, PickerTopic} from "@/components/slide-picker/types.ts";
+import type { PickerItem, PickerTopic } from "@/components/slide-picker/types.ts";
 
 // 处理时段选择
 const pickerActive = ref(true);
@@ -89,7 +89,7 @@ const picker = [{
 }, {
     key: 'tip',
     label: '主题四',
-},{
+}, {
     key: 'tip',
     label: '主题五',
 }, {
@@ -106,10 +106,10 @@ const picker = [{
 </script>
 <template>
     <div class="w-full flex justify-center">
-<!--        <button class="mr-8" @click="handleSetDuration('topic0')">尖 {{ durations.tip }}</button>-->
-<!--        <button class="mr-8" @click="handleSetDuration('topic1')">峰 {{ durations.peak }}</button>-->
-<!--        <button class="mr-8" @click="handleSetDuration('topic2')">平 {{ durations.flat }}</button>-->
-<!--        <button class="mr-8" @click="handleSetDuration('topic3')">谷 {{ durations.valley }}</button>-->
+        <!--        <button class="mr-8" @click="handleSetDuration('topic0')">尖 {{ durations.tip }}</button>-->
+        <!--        <button class="mr-8" @click="handleSetDuration('topic1')">峰 {{ durations.peak }}</button>-->
+        <!--        <button class="mr-8" @click="handleSetDuration('topic2')">平 {{ durations.flat }}</button>-->
+        <!--        <button class="mr-8" @click="handleSetDuration('topic3')">谷 {{ durations.valley }}</button>-->
         {{ pickerValue }}
     </div>
     <div class="w-full flex justify-center">

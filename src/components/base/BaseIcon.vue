@@ -57,7 +57,7 @@ const iconUrl = computed(() => {
             v-bind="$attrs"
             :class="{'logo': type === 'logo'}"
             :style="[sizeStyle]"
-            :src="iconUrl" :alt="type"/>
+            :src="iconUrl" :alt="type" />
     </template>
 </template>
 

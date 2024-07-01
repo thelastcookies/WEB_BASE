@@ -18,7 +18,7 @@ const finishLoading = () => {
             :spinning="loading"
             wrapper-class-name="b-rd-8px of-hidden w-full h-full flex flex-col flex-1"
         >
-            <iframe w-full h-full flex flex-col flex-1 :src="url" style="border: none" @load="finishLoading"/>
+            <iframe w-full h-full flex flex-col flex-1 :src="url" style="border: none" @load="finishLoading" />
         </a-spin>
     </div>
 </template>

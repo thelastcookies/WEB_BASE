@@ -34,7 +34,7 @@ async function handleClick({ key }: MenuInfo) {
         </div>
         <template #overlay>
             <a-menu @click="handleClick">
-                <a-menu-divider/>
+                <a-menu-divider />
                 <a-menu-item key="logout">
                     <template #icon>
                         <BaseIcon icon="LogoutOutlined"></BaseIcon>

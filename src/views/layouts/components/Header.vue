@@ -9,7 +9,7 @@ const appTitle = import.meta.env.APP_TITLE;
             <span class="c-ant__white ml-12px font-size-18px font-700 tracking-wide">{{ appTitle }}</span>
         </div>
         <div class="h-full lh-3">
-            <UserAvatar :size="24"/>
+            <UserAvatar :size="24" />
         </div>
     </div>
 </template>
