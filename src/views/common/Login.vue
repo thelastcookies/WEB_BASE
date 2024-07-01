@@ -7,7 +7,7 @@ const appTitle = import.meta.env.APP_TITLE;
         <div class="w-75% h-82% border-rd-32px flex bg-ant.bg-container">
             <div class="h-full w-530px p32px">
                 <header class="flex">
-                    <BaseIcon icon="/logo.svg" type="logo" size="32"></BaseIcon>
+                    <BaseIcon icon="/logo.svg" type="logo" size="2"></BaseIcon>
                     <div class="text-24px font-600 ml line-height-9">{{ appTitle }}</div>
                 </header>
                 <main class="calc:height-100%-32px flex">

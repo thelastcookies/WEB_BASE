@@ -7,7 +7,7 @@ const props = withDefaults(defineProps<{
     type?: 'antdv' | 'image' | 'logo',
     size?: number | string
 }>(), {
-    size: 14,
+    size: 1,
     type: 'antdv',
 });
 const iconComp = computed(() => {
@@ -25,10 +25,10 @@ const iconComp = computed(() => {
 
 const sizeStyle = computed(() => {
     return {
-        height: `${props.size}px`,
-        width: `${props.size}px`,
-        'line-height': `${props.size}px`,
-        'font-size': `${props.size}px`,
+        height: `${props.size}rem`,
+        width: `${props.size}rem`,
+        'line-height': `${props.size}rem`,
+        'font-size': `${props.size}rem`,
     }
 });
 
@@ -49,7 +49,7 @@ const iconUrl = computed(() => {
 <template>
     <template v-if="type === 'antdv'">
         <component v-bind="$attrs" :is="iconComp" v-if="icon"
-                   :style="{fontSize: size + 'px', lineHeight: size + 'px'}"
+                   :style="{fontSize: size + 'rem', lineHeight: size + 'rem'}"
         />
     </template>
     <template v-else>
