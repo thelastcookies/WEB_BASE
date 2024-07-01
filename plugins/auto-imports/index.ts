@@ -22,7 +22,10 @@ export const AutoImportPluginConfig = AutoImport({
         'src/types/**/*.ts',
         'src/utils/**/*.ts',
         'src/views/**/*.vue',
+        'src/views/**/*.ts',
     ],
-    ignoreDts: [],
+    ignoreDts: [
+        'src/views/form/libs'
+    ],
     vueTemplate: true,
 }) as PluginOption;

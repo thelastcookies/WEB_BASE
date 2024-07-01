@@ -212,7 +212,7 @@ const handleInputBlur = (e: Event) => {
     .ant-input-password {
         padding: 0 16px 0;
 
-        ::v-deep(.ant-input) {
+        :deep(.ant-input) {
             padding: 16px 0 16px;
             background-color: transparent;
         }
@@ -224,7 +224,7 @@ const handleInputBlur = (e: Event) => {
 
 
     .ant-form-item {
-        ::v-deep(.ant-form-item-explain-error) {
+        :deep(.ant-form-item-explain-error) {
             text-align: right;
         }
     }
