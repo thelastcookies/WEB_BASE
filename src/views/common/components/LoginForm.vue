@@ -30,7 +30,6 @@ const handleSubmitLogin = async (formData: LoginParams) => {
             const tokenRes = res.Data;
             const { setToken } = useTokenStore();
             setToken(tokenRes);
-            submittingDisabled.value = false;
             router.push("/");
         } else {
             message.error({
