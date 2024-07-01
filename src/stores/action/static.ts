@@ -22,6 +22,16 @@ export const staticActions = [
             component: "pages/SamplePage.vue",
         }],
     }, {
+        id: "1",
+        pId: "",
+        actionId: "formDesigner",
+        title: "表单设计器",
+        type: MenuPageType.PAGE,
+        sort: 2,
+        showInMenu: ShowInMenuType.SHOW,
+        url: "form",
+        component: "form/FormDesigner.vue",
+    }, {
         id: "link",
         pId: "",
         actionId: "link",
