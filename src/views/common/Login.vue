@@ -4,7 +4,7 @@ const appTitle = import.meta.env.APP_TITLE;
 
 <template>
     <div class="login-container w-full h-full image-bg-cover flex-c">
-        <div class="w-75% h-82% border-rd-32px flex bg-ant__bg-container">
+        <div class="w-75% h-82% border-rd-32px flex bg-ant.bg-container">
             <div class="h-full w-530px p32px">
                 <header class="flex">
                     <BaseIcon icon="/logo.svg" type="logo" size="32"></BaseIcon>

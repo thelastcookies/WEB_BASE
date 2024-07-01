@@ -148,7 +148,7 @@ const handleInputBlur = (e: Event) => {
 <template>
     <div class="form-container w-400px m-center">
         <div class="text-40px line-height-12 font-700 letter-spacing--1.6px">登录</div>
-        <div class="text-18px c-ant__text-tertiary mt-3">请登录以使用本系统</div>
+        <div class="text-18px c-ant.text-tertiary mt-3">请登录以使用本系统</div>
         <a-form
             mt-8
             name="login"
@@ -172,7 +172,7 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label bg-ant__bg-container absolute left-12.5px p-lr-4px"
+                <div class="form-label bg-ant.bg-container absolute left-12.5px p-lr-4px"
                      :class="[userNameColorClass, {'active': userNameIsActive}]">账号
                 </div>
             </a-form-item>
@@ -187,7 +187,7 @@ const handleInputBlur = (e: Event) => {
                     @focus="handleInputFocus"
                     @blur="handleInputBlur"
                 />
-                <div class="form-label bg-ant__bg-container absolute left-12.5px p-lr-4px"
+                <div class="form-label bg-ant.bg-container absolute left-12.5px p-lr-4px"
                      :class="[passwordColorClass, {'active': passwordIsActive}]">密码
                 </div>
             </a-form-item>
