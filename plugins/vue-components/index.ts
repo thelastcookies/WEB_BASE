@@ -7,10 +7,11 @@ export const VueComponentPluginConfig = Components({
         /\.tsx?$/, // .ts, .tsx
         /\.vue$/,
         /\.vue\?vue/, // .vue
+        /FormComponent.vue/,
     ],
     dirs: [
         'src/components',
-        'src/views/**/components'
+        'src/views/**/components',
     ],
     dts: './plugins/vue-components/components.d.ts',
     resolvers: [

@@ -4,9 +4,8 @@ import type { NumberInputConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<NumberInputConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    max: Infinity,
-    min: -Infinity,
+    ...componentCommonPropsDefault,
+    ...numberInputConfigPropsDefault,
 });
 </script>
 

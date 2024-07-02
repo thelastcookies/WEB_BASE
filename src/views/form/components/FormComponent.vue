@@ -1,10 +1,18 @@
 <script setup lang="ts">
 import type { SpanLayoutConfigProps, ComponentConfig } from "@/views/form/types";
 
-withDefaults(defineProps<ComponentConfig>(), {
-    props: () => {
-        return { ...ComponentCommonPropsDefault };
-    },
+withDefaults(defineProps<{
+    index: number,
+    config: ComponentConfig,
+}>(), {
+    index: 0,
+    config: () => {
+        return {
+            name: "单行输入框",
+            type: "TextInput",
+            props: { ...componentCommonPropsDefault },
+        }
+    }
 });
 
 const emit = defineEmits<{
@@ -16,8 +24,8 @@ const emit = defineEmits<{
 
 <template>
     <div style="position: relative; width: 100%;"
-         :class="{'w-form-cp-active': false, 'w-border-no': !(props as SpanLayoutConfigProps)?.isContainer}">
-        <div class="w-form-component" v-if="props.mode === 'design'">
+         :class="{'w-form-cp-active': false,}">
+        <div class="w-form-component" v-if="config.props && config.props.mode === 'design'">
             <div class="icon" @click="emit('copy')">
                 <BaseIcon icon="CopyOutlined" />
             </div>
@@ -26,8 +34,8 @@ const emit = defineEmits<{
             </div>
         </div>
         <component
-            :is="FormComponents[type]"
-            v-bind="props"
+            :is="FormComponents[config.type]"
+            v-bind="config.props"
         />
     </div>
 </template>

@@ -1,12 +1,12 @@
 <script setup lang="ts">
 import type { PickerConfigProps } from "@/views/form/types";
+import { multiplePickerConfigPropsDefault } from "@/views/form/lib/components/index.ts";
 
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<PickerConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    expanding: false,
-    options: () => ['选项1', '选项2'],
+    ...componentCommonPropsDefault,
+    ...multiplePickerConfigPropsDefault,
 });
 </script>
 

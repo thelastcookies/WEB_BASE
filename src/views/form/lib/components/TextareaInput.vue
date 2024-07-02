@@ -4,8 +4,8 @@ import type { TextareaInputConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<TextareaInputConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    max: 255,
+    ...componentCommonPropsDefault,
+    ...textareaInputConfigPropsDefault,
 });
 
 </script>

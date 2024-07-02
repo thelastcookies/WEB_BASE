@@ -36,20 +36,19 @@ const handleSelect = (comp: ComponentConfig) => {
     currentComp.value = comp;
 };
 
+const dragActive = ref(false);
+const tipVisible = computed(() => {
+    return !dragActive.value || compList.length;
+});
+
+watch(dragActive, (val) => {
+    console.log(val);
+})
+
 </script>
 
 <template>
-    <div class="w-full h-9 flex-sb border border-ant.border border-solid px-3">
-<!--        <div>-->
-<!--            <a-tooltip placement="top">-->
-<!--                <template #title>撤销</template>-->
-<!--                <BaseIcon icon="UndoOutlined" />-->
-<!--            </a-tooltip>-->
-<!--            <a-tooltip placement="top">-->
-<!--                <template #title>重做</template>-->
-<!--                <BaseIcon icon="RedoOutlined" />-->
-<!--            </a-tooltip>-->
-<!--        </div>-->
+    <div class="w-full h-38px flex-sb border-b border-ant.border border-b-solid px-3">
         <div class="flex-sb w-12">
             <a-tooltip placement="top">
                 <template #title>电脑端</template>
@@ -85,65 +84,73 @@ const handleSelect = (comp: ComponentConfig) => {
             </a-tooltip>
         </div>
     </div>
-    <a-form
-        :labelCol="{style: {width: formConf.labelWidth + 'px'}}"
-        :size="formConf.size"
-        :layout="formConf.layout"
-        :label-align="formConf.labelAlign"
-        class="w-form-d-ctx"
-    >
-        <vue-draggable
-            v-model="compList"
-            :animation="150"
-            ghostClass="w-f-cp-select"
-            group="FormDesigner"
-            class="w-form-d-ctx-ep"
+    <div class="w-full h-[calc(100%-38px)] p-3">
+        <a-form
+            class="w-full h-full bg-ant.bg-container border-rd-2 relative"
+            :labelCol="{style: {width: formConf.labelWidth + 'px'}}"
+            :size="formConf.size"
+            :layout="formConf.layout"
+            :label-align="formConf.labelAlign"
         >
-            <template v-for="(comp, i) in compList" :key="cp.id">
-                <template v-if="'isContainer' in comp.props!">
-                    <a-form-item
-                        v-if="!comp.props.isContainer"
-                        :label="comp.name"
-                        @click="handleSelect(comp)"
-                    >
-                        <!--                    <form-component-->
+            <vue-draggable
+                v-model="compList"
+                :animation="150"
+                @add="dragActive = true"
+                @remove="dragActive = false"
+                ghostClass="w-f-cp-select"
+                group="FormDesigner"
+                class="w-full h-full"
+            >
+                <template v-for="(comp, i) in compList" :key="comp.key">
+                    <template v-if="comp.props && 'isContainer' in comp.props">
+                        <a-form-item
+                            v-if="!comp.props.isContainer"
+                            :label="comp.name"
+                            @click="handleSelect(comp)"
+                        >
+                            <FormComponent
+                                :index="i"
+                                @click="handleSelect(comp)"
+                            />
+                            <!--                    <form-component-->
+                            <!--                        :index="i"-->
+                            <!--                        :parents="compList"-->
+                            <!--                        mode="free"-->
+                            <!--                        :type="cp.type"-->
+                            <!--                        :config="cp"-->
+                            <!--                        :size="formConf.size"-->
+                            <!--                        v-model:active="currentComp"-->
+                            <!--                    />-->
+                        </a-form-item>
+                    </template>
+                    <template v-else>
+                        <FormComponent
+                            :index="i"
+                            :config="comp"
+                            @click="handleSelect(comp)"
+                        />
+                        <!--                    <FormComponent-->
+                        <!--                        :type="comp.type"-->
+                        <!--                        class="w-form-d-item"-->
                         <!--                        :index="i"-->
                         <!--                        :parents="compList"-->
-                        <!--                        mode="free"-->
-                        <!--                        :type="cp.type"-->
-                        <!--                        :config="cp"-->
+                        <!--                        :config="comp"-->
                         <!--                        :size="formConf.size"-->
                         <!--                        v-model:active="currentComp"-->
+                        <!--                        @click="handleSelect(comp)"-->
+                        <!--                        mode="free"-->
+                        <!--                        :class="{ 'w-form-d-item': true, 'w-form-cp-active': currentComp?.key === comp.key }"-->
                         <!--                    />-->
-                    </a-form-item>
+                    </template>
                 </template>
-                <template v-else>
-                    <FormComponent
-                        :index="i"
-                        :config="comp"
-                        mode=""
-                        :size="formConf.size"
-                        @click="handleSelect(comp)"
-                    />
-<!--                    <FormComponent-->
-<!--                        :type="comp.type"-->
-<!--                        class="w-form-d-item"-->
-<!--                        :index="i"-->
-<!--                        :parents="compList"-->
-<!--                        :config="comp"-->
-<!--                        :size="formConf.size"-->
-<!--                        v-model:active="currentComp"-->
-<!--                        @click="handleSelect(comp)"-->
-<!--                        mode="free"-->
-<!--                        :class="{ 'w-form-d-item': true, 'w-form-cp-active': currentComp?.key === comp.key }"-->
-<!--                    />-->
-                </template>
-            </template>
-        </vue-draggable>
-        <div class="w-form-d-tip" v-if="compList && compList.length === 0">
-            <span>👈🏻 请从左侧组件库拖拽表单组件到此处</span>
-        </div>
-    </a-form>
+            </vue-draggable>
+            <div v-if="tipVisible"
+                 class="absolute top-50% color-ant.text absolute px-20px py-35px
+                 border border-ant.primary-border border-dashed border-rd-2xl">
+                👈🏻 请从左侧组件库拖拽表单组件到此处
+            </div>
+        </a-form>
+    </div>
 </template>
 
 <style scoped lang="less">
@@ -221,7 +228,33 @@ const handleSelect = (comp: ComponentConfig) => {
 }
 
 .w-f-cp-select {
-    border-radius: 2px;
-    border: 1px dashed var(--el-color-primary) !important;
+    //border-radius: 2px;
+    //border: 1px dashed var(--el-color-primary) !important;
+}
+
+.w-form-d-ctx {
+    margin: 10px;
+    padding: 5px;
+    position: relative;
+    background-color: white;
+    border-radius: 5px;
+    min-height: calc(100vh - 220px);
+
+    .w-form-d-tip {
+        padding: 20px;
+        color: #8D8D8D;
+        position: relative;
+        display: flex;
+        justify-content: center;
+
+        span {
+            position: absolute;
+            top: -25vh;
+        }
+    }
+
+    :deep(.w-form-d-ctx-ep) {
+        min-height: 80%;
+    }
 }
 </style>

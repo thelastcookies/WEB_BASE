@@ -5,17 +5,20 @@ import { cloneDeep } from "lodash";
 import type { ComponentConfig } from "@/views/form/types";
 
 const handleClone = (el: ComponentConfig): ComponentConfig => {
-    return Object.assign(cloneDeep(el), {
-        key: el.type + '_' + nanoid(8),
+    console.log(el);
+    const ele = Object.assign(cloneDeep(el), {
+        key: el.type + '_' + nanoid(10),
     });
+    console.log(ele);
+    return ele;
 };
 
 </script>
 
 <template>
-    <div class="w-full h-full border border-ant.border border-solid">
-        <div class="w-full h-8 line-height-8 text-center
-            bg-ant.fill-quaternary border-b border-ant.border border-b-solid">组件库
+    <div class="w-full h-full">
+        <div class="w-full h-38px line-height-8 text-center
+            border-b border-ant.border border-b-solid">组件库
         </div>
         <div class="p-3">
             <div v-for="(group, gi) in componentGroups" :key="gi">

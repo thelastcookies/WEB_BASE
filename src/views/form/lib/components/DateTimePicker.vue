@@ -4,20 +4,20 @@ import type { TimePickerConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 const props = withDefaults(defineProps<TimePickerConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    format: 'YYYY-MM-DD',
-    showLength: false,
-    placeholder: () => ['开始时间', '结束时间'],
+    ...componentCommonPropsDefault,
+    ...dateTimePickerConfigPropsDefault
 });
 
 const type = computed(() => {
     switch (props.format) {
+        case 'YYYY':
+            return 'year';
+        case 'YYYY-MM':
+            return 'month';
         case 'YYYY-MM-DD':
-            return 'daterange'
-        case 'YYYY-MM-DD HH:mm':
-            return 'datetimerange'
+            return 'date';
         default:
-            return 'daterange'
+            return 'date';
     }
 });
 
@@ -37,7 +37,7 @@ const showTime = computed(() => {
 </script>
 
 <template>
-    <a-range-picker
+    <a-date-picker
         v-model:value="value"
         allow-clear
         :value-format="format"

@@ -4,9 +4,8 @@ import type { PickerConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<PickerConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    expanding: false,
-    options: () => ['选项1', '选项2'],
+    ...componentCommonPropsDefault,
+    ...singlePickerConfigPropsDefault,
 });
 </script>
 

@@ -97,14 +97,14 @@ const formConf = ref({
 </script>
 
 <template>
-    <div class="w-full h-full flex">
-        <aside class="w-300px h-full">
+    <div class="w-full h-full flex border border-ant.border border-solid">
+        <aside class="w-300px h-full border-r border-ant.border border-r-solid">
             <CompLib />
         </aside>
-        <main class="h-full w-[calc(100%-600px)]">
-            <DrawArea :comp-list="compList" :current-comp="currentComp" :form-conf="formConf" />
+        <main class="h-full w-[calc(100%-602px)]">
+            <DrawArea v-model:comp-list="compList" :current-comp="currentComp" :form-conf="formConf" />
         </main>
-        <aside class="w-300px h-full">
+        <aside class="w-300px h-full border-l border-ant.border border-l-solid">
             <CompSetts v-model:comp-conf="currentComp" v-model:form-conf="formConf" />
         </aside>
     </div>
@@ -199,32 +199,6 @@ const formConf = ref({
     }
 }
 
-
-.w-form-d-ctx {
-    margin: 10px;
-    padding: 5px;
-    position: relative;
-    background-color: white;
-    border-radius: 5px;
-    min-height: calc(100vh - 220px);
-
-    .w-form-d-tip {
-        padding: 20px;
-        color: #8D8D8D;
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        span {
-            position: absolute;
-            top: -25vh;
-        }
-    }
-
-    :deep(.w-form-d-ctx-ep) {
-        min-height: 80%;
-    }
-}
 
 
 </style>

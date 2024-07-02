@@ -5,13 +5,8 @@ import type { ScoreConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<ScoreConfigProps>(), {
-    ...ComponentCommonPropsDefault,
-    color: '#F0A732',
-    max: 5,
-    // 尚未实现
-    showScore: true,
-    enableHalf: false,
-    icon: 'Star',
+    ...componentCommonPropsDefault,
+    ...scoreConfigPropsDefault,
 });
 
 </script>

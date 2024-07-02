@@ -17,11 +17,11 @@ const activeTab = ref("comp");
 
 <template>
     <a-form
-        class="w-full h-full border border-ant.border border-solid"
+        class="w-full h-full"
         :label-col="{ span: 8 }"
         :wrapper-col="{ span: 16 }"
     >
-        <a-tabs v-model:activeKey="activeTab" centered>
+        <a-tabs v-model:activeKey="activeTab" centered size="small">
             <a-tab-pane tab="组件设置" key="comp">
                 <div style="padding: 10px" v-if="compConf">
                     <component :is="FormComponentConfigs[compConf.type]" :config="compConf" />
@@ -46,7 +46,7 @@ const activeTab = ref("comp");
                 <a-form-item label="组件尺寸">
                     <a-radio-group v-model:value="formConf.size" button-style="solid">
                         <a-radio-button value="large">大</a-radio-button>
-                        <a-radio-button value="middle">中</a-radio-button>
+                        <a-radio-button>中</a-radio-button>
                         <a-radio-button value="small">小</a-radio-button>
                     </a-radio-group>
                 </a-form-item>
@@ -56,5 +56,8 @@ const activeTab = ref("comp");
 </template>
 
 <style scoped lang="less">
+:deep(.ant-tabs-nav::before) {
+    border-bottom-color: var(--colorBorder);
+}
 
 </style>
