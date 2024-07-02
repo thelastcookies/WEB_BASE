@@ -58,6 +58,15 @@ function copyRow(row){
   _value.value.push(deepCopy(row))
 }
 
+// props: {
+//     required: false,
+//         showBorder: true,
+//         showSummary: false,
+//         summaryColumns: [],
+//         maxSize: 0, //最大条数，为0则不限制
+//         columns: [], //列设置
+// },
+
 </script>
 
 <template>

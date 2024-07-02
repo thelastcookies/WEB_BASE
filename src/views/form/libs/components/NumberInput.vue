@@ -1,18 +1,17 @@
-<script setup>
-import FormComponentMixin from "../FormComponentMixin.ts";
+<script setup lang="ts">
+import type { NumberInputConfigProps } from "@/views/form/types";
 
-const props = defineProps({
-  ...FormComponentMixin.props
-})
+const value = defineModel<string>('value');
 
-/**
- * 无法对应到 Antdv 组件库的属性值：
- * :placeholder="config.props.placeholder"
- */
+withDefaults(defineProps<NumberInputConfigProps>(), {
+    ...ComponentCommonPropsDefault,
+    max: Infinity,
+    min: -Infinity,
+});
 </script>
 
 <template>
-  <a-input-number :max="config.props.max" :min="config.props.min" :size="size" ></a-input-number>
+    <a-input-number v-model:value="value" :max="max" :min="min" :size="size" />
 </template>
 
 <style scoped>

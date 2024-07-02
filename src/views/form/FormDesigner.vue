@@ -91,7 +91,7 @@ const formConf = ref({
     layout: 'horizontal',
     labelAlign: 'right',
     labelWidth: 100,
-    size: 'middle',
+    size: undefined,
 } as FormConfig);
 
 </script>
@@ -105,7 +105,7 @@ const formConf = ref({
             <DrawArea :comp-list="compList" :current-comp="currentComp" :form-conf="formConf" />
         </main>
         <aside class="w-300px h-full">
-            <CompSetts :comp-conf="currentComp" :form-conf="formConf" />
+            <CompSetts v-model:comp-conf="currentComp" v-model:form-conf="formConf" />
         </aside>
     </div>
 </template>

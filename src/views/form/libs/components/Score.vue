@@ -1,71 +1,54 @@
-<script setup>
-import { Rate } from 'ant-design-vue';
-import FormComponentMixin from "../FormComponentMixin.ts";
-import { computed } from "vue";
-import { EyeFilled, HeartFilled, LikeFilled, StarFilled, TrophyFilled } from "@ant-design/icons-vue";
+<script setup lang="ts">
+// import { EyeFilled, HeartFilled, LikeFilled, StarFilled, TrophyFilled } from "@ant-design/icons-vue";
+import type { ScoreConfigProps } from "@/views/form/types";
 
-const props = defineProps({
-  ...FormComponentMixin.props,
-})
-const emit = defineEmits([...FormComponentMixin.emits])
-const _value = computed(FormComponentMixin.computed._value(props, emit))
+const value = defineModel<string>('value');
 
-// const icon = computed(() => {
-//   const ico = props.config.props.icon
-//   return [ico, ico, ico]
-// })
-//
-// const color = computed(() => {
-//   const icoColor = props.config.props.color
-//   return [icoColor, icoColor, icoColor]
-// })
+withDefaults(defineProps<ScoreConfigProps>(), {
+    ...ComponentCommonPropsDefault,
+    color: '#F0A732',
+    max: 5,
+    // 尚未实现
+    showScore: true,
+    enableHalf: false,
+    icon: 'Star',
+});
 
-/**
- * 迁移时发生变化的属性：
- * clearable -> allow-clear
- * max -> count
- * icons -> character
- *
- * 无法对应到 Antdv 组件库的属性：
- * show-score
- * text-color
- * colors
- */
 </script>
 
 <template>
-    <template v-if="props.config.props.icon === 'Star'">
-      <Rate :allow-half="config.props.enableHalf" allow-clear
-              :count="config.props.max" v-model:value="_value">
-        <template #character><StarFilled/></template>
-      </Rate>
-    </template>
-    <template v-else-if="props.config.props.icon === 'Eye'">
-      <Rate :allow-half="config.props.enableHalf" allow-clear
-            :count="config.props.max" v-model:value="_value">
-        <template #character><EyeFilled/></template>
-      </Rate>
-    </template>
-    <template v-else-if="props.config.props.icon === 'Heart'">
-      <Rate :allow-half="config.props.enableHalf" allow-clear
-            :count="config.props.max" v-model:value="_value">
-        <template #character><HeartFilled/></template>
-      </Rate>
-    </template>
-    <template v-else-if="props.config.props.icon === 'Trophy'">
-      <Rate :allow-half="config.props.enableHalf" allow-clear
-            :count="config.props.max" v-model:value="_value">
-        <template #character><TrophyFilled/></template>
-      </Rate>
-    </template>
-    <template v-else-if="props.config.props.icon === 'Like'">
-      <Rate :allow-half="config.props.enableHalf" allow-clear
-            :count="config.props.max" v-model:value="_value">
-        <template #character><LikeFilled/></template>
-      </Rate>
-    </template>
+    <a-rate :allow-half="enableHalf" allow-clear
+            :count="max" v-model:value="value">
+        <template #character><BaseIcon :icon="icon" /></template>
+    </a-rate>
+<!--    <template v-if="icon === 'Star'">-->
+<!--      <a-rate :allow-half="enableHalf" allow-clear-->
+<!--              :count="max" v-model:value="value">-->
+<!--        <template #character><StarFilled/></template>-->
+<!--      </a-rate>-->
+<!--    </template>-->
+<!--    <template v-else-if="icon === 'Eye'">-->
+<!--      <a-rate :allow-half="enableHalf" allow-clear-->
+<!--            :count="max" v-model:value="value">-->
+<!--        <template #character><EyeFilled/></template>-->
+<!--      </a-rate>-->
+<!--    </template>-->
+<!--    <template v-else-if="icon === 'Heart'">-->
+<!--      <a-rate :allow-half="enableHalf" allow-clear-->
+<!--            :count="max" v-model:value="value">-->
+<!--        <template #character><HeartFilled/></template>-->
+<!--      </a-rate>-->
+<!--    </template>-->
+<!--    <template v-else-if="icon === 'Trophy'">-->
+<!--      <a-rate :allow-half="enableHalf" allow-clear-->
+<!--            :count="max" v-model:value="value">-->
+<!--        <template #character><TrophyFilled/></template>-->
+<!--      </a-rate>-->
+<!--    </template>-->
+<!--    <template v-else-if="icon === 'Like'">-->
+<!--      <a-rate :allow-half="enableHalf" allow-clear-->
+<!--            :count="max" v-model:value="value">-->
+<!--        <template #character><LikeFilled/></template>-->
+<!--      </a-rate>-->
+<!--    </template>-->
 </template>
-
-<style scoped>
-
-</style>

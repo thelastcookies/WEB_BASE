@@ -36,6 +36,15 @@
 
   onBeforeMount(reloadSpan);
   watch(() => props.config.props.number, reloadSpan);
+
+
+  // props: {
+  //     isContainer: true,
+  //         span: 24,
+  //         number: 2,
+  //         gutter: 5,
+  //         columns: [],
+  // },
 </script>
 
 <template>

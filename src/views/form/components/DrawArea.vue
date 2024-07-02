@@ -27,7 +27,6 @@ const formConf = defineModel<FormConfig>('formConf', {
         layout: 'horizontal',
         labelAlign: 'right',
         labelWidth: 100,
-        size: 'default',
     },
 });
 
@@ -101,7 +100,7 @@ const handleSelect = (comp: ComponentConfig) => {
             class="w-form-d-ctx-ep"
         >
             <template v-for="(comp, i) in compList" :key="cp.id">
-                <template v-if="'isContainer' in comp.props">
+                <template v-if="'isContainer' in comp.props!">
                     <a-form-item
                         v-if="!comp.props.isContainer"
                         :label="comp.name"
@@ -119,6 +118,13 @@ const handleSelect = (comp: ComponentConfig) => {
                     </a-form-item>
                 </template>
                 <template v-else>
+                    <FormComponent
+                        :index="i"
+                        :config="comp"
+                        mode=""
+                        :size="formConf.size"
+                        @click="handleSelect(comp)"
+                    />
 <!--                    <FormComponent-->
 <!--                        :type="comp.type"-->
 <!--                        class="w-form-d-item"-->

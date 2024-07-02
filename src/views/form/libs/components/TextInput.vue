@@ -1,18 +1,14 @@
-<script setup>
-import FormComponentMixin from "../FormComponentMixin.ts";
-import {computed} from "vue";
+<script setup lang="ts">
+import type { TextInputConfigProps } from "@/views/form/types";
 
-const props = defineProps({
-  ...FormComponentMixin.props
-})
-const emit = defineEmits([...FormComponentMixin.emits])
-const _value = computed(FormComponentMixin.computed._value(props, emit))
+const value = defineModel<string>('value');
+
+withDefaults(defineProps<TextInputConfigProps>(), {
+    ...ComponentCommonPropsDefault,
+});
+
 </script>
 
 <template>
-  <a-input :placeholder="config.props.placeholder" v-model:value="_value" :size="size" />
+    <a-input v-model:value="value" :placeholder="placeholder" :size="size" />
 </template>
-
-<style scoped>
-
-</style>

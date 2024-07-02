@@ -16,6 +16,11 @@ function selectOk(users){
   orgPicker.value.close()
 }
 
+
+// props: {
+//     required: false,
+//         multiple: false,
+// },
 </script>
 
 <template>
