@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VueDraggable } from "vue-draggable-plus";
-import type { ComponentConfig, FormConfig } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps, FormConfig } from "@/views/form/types";
 
 function clearForm() {
     // createConfirm.confirm('您确定要清空表单设计区吗?', '提醒', {
@@ -17,10 +17,10 @@ function previewForm() {
     // previewVisible.value = true;
 }
 
-const compList = defineModel<ComponentConfig[]>('compList', {
+const compList = defineModel<ComponentConfig<ComponentConfigProps>[]>('compList', {
     default: [],
 });
-const currentComp = defineModel<ComponentConfig>('currentComp');
+const currentComp = defineModel<ComponentConfig<ComponentConfigProps>>('currentComp');
 
 const formConf = defineModel<FormConfig>('formConf', {
     default: {
@@ -82,7 +82,7 @@ const tipVisible = computed(() => {
     </div>
     <div class="w-full h-[calc(100%-38px)] p-3">
         <a-form
-            class="w-full h-full bg-ant.bg-container border-rd-2 relative"
+            class="w-full h-full bg-ant.bg-container border-rd-2 relative p-3"
             :labelCol="{style: {width: formConf.labelWidth + 'px'}}"
             :size="formConf.size"
             :layout="formConf.layout"
@@ -90,7 +90,7 @@ const tipVisible = computed(() => {
         >
             <vue-draggable
                 v-model="compList"
-                :animation="150"
+                :animation="200"
                 @add="dragActive = true"
                 @remove="dragActive = false"
                 ghostClass="w-f-cp-select"
@@ -98,14 +98,15 @@ const tipVisible = computed(() => {
                 class="w-full h-full"
             >
                 <template v-for="(comp, i) in compList" :key="comp.key">
-                    <template v-if="comp.props && 'isContainer' in comp.props">
+                    <template v-if="comp.props && !('isContainer' in comp.props)">
                         <a-form-item
-                            v-if="!comp.props.isContainer"
                             :label="comp.name"
+                            :required="comp.props.required"
                             @click="handleSelect(comp)"
                         >
                             <FormComponent
                                 :index="i"
+                                :config="comp"
                                 @click="handleSelect(comp)"
                             />
                         </a-form-item>

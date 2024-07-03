@@ -13,13 +13,15 @@ const formConf = defineModel<FormConfig>('formConf', {
 });
 
 const activeTab = ref("comp");
+
+console.log(FormComponentConfigs);
 </script>
 
 <template>
     <a-form
         class="w-full h-full"
-        :label-col="{ span: 8 }"
-        :wrapper-col="{ span: 16 }"
+        :label-col="{ span: 6 }"
+        :wrapper-col="{ span: 18 }"
     >
         <a-tabs v-model:activeKey="activeTab" centered size="small">
             <a-tab-pane tab="组件设置" key="comp">

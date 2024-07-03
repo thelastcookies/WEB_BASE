@@ -1,9 +1,9 @@
 <script setup lang="ts">
-import type { ComponentConfig } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
 
 withDefaults(defineProps<{
     index: number,
-    config: ComponentConfig,
+    config: ComponentConfig<ComponentConfigProps>,
 }>(), {
     index: 0,
     config: () => {
@@ -25,6 +25,10 @@ const emit = defineEmits<{
 <template>
     <div class="w-full relative"
          :class="{'w-form-cp-active': true,}">
+        <component
+            :is="FormComponents[config.type]"
+            v-bind="config.props"
+        />
         <div class="w-form-component" v-if="config.props && config.props.mode === 'design'">
             <div class="icon" @click="emit('copy')">
                 <BaseIcon icon="CopyOutlined" />
@@ -33,10 +37,6 @@ const emit = defineEmits<{
                 <BaseIcon icon="DeleteOutlined" />
             </div>
         </div>
-        <component
-            :is="FormComponents[config.type]"
-            v-bind="config.props"
-        />
     </div>
 </template>
 

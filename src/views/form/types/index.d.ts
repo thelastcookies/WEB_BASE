@@ -16,15 +16,15 @@ export type ComponentMode = "design" | "view" | "edit";
 
 export type SizeType = "large" | "small" | undefined;
 
-export interface ComponentConfig {
+export interface ComponentConfig<T> {
     key?: string;
     name: string;
     type: string;
     icon?: string;
-    props?: ComponentProps;
+    props: T;
 }
 
-export type ComponentProps =
+export type ComponentConfigProps =
     BaseConfigProps
     | TextInputConfigProps
     | TextareaInputConfigProps
@@ -65,7 +65,7 @@ export interface ScoreConfigProps extends BaseConfigProps {
 
 export interface PickerConfigProps extends BaseConfigProps {
     expanding?: boolean;
-    options?: string[];
+    options: string[];
 }
 
 export interface TimePickerConfigProps extends BaseConfigProps {

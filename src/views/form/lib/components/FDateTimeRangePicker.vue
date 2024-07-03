@@ -4,8 +4,7 @@ import type { TimePickerConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 const props = withDefaults(defineProps<TimePickerConfigProps>(), {
-    ...componentCommonPropsDefault,
-    ...dateTimeRangePickerConfigProps,
+    ...dateTimeRangePickerConfigPropsDefault,
 });
 
 const type = computed(() => {

@@ -1,13 +1,12 @@
 <script setup lang="ts">
 import { computed, onMounted, ref, watch } from 'vue';
-import componentMixin from './FormComponentMixin.ts';
 // import FormRender from './FormRender.vue';
 // import WDialog from '../../common/WDialog.vue';
 // import FormComponent from './component/FormComponent.vue';
 // import { formJson } from './FormInterface.ts';
 // import { useMessage } from '/@/hooks/web/useMessage';
 import * as icons from "@ant-design/icons-vue";
-import { ComponentConfig, FormConfig } from "@/views/form/types";
+import { ComponentConfig, type ComponentConfigProps, FormConfig } from "@/views/form/types";
 
 // const { createConfirm } = useMessage();
 
@@ -21,28 +20,7 @@ import { ComponentConfig, FormConfig } from "@/views/form/types";
 // const formData = ref({});
 //
 // defineExpose({ validate });
-// const props = defineProps({
-//     ...componentMixin.props,
-//     modelValue: {
-//         type: Object,
-//         default: () => {
-//             return {
-//                 conf: {
-//                     labelWidth: 100, //标签宽度，
-//                     size: 'default',
-//                     layout: 'horizontal',
-//                     labelAlign: 'right',
-//                 },
-//                 components: [],
-//             };
-//         },
-//     },
-// });
-// const emit = defineEmits([...componentMixin.emits]);
-// const _value = computed(componentMixin.computed._value(props, emit));
-// const _showTip = computed(() => {
-//     return showTip.value && _value.value.components.length === 0;
-// });
+
 // //初始化设置表单数据
 // onMounted(() => {
 //     formJson.value = _value.value.components;
@@ -70,10 +48,6 @@ import { ComponentConfig, FormConfig } from "@/views/form/types";
 //     console.log(ev);
 // }
 //
-
-//
-
-//
 // function validate() {
 //     return new Promise((resolve, reject) => {
 //         if (_value.value.components.length > 0) {
@@ -85,8 +59,8 @@ import { ComponentConfig, FormConfig } from "@/views/form/types";
 // }
 //
 
-const compList = ref([] as ComponentConfig[]);
-const currentComp = ref({} as ComponentConfig);
+const compList = ref([] as ComponentConfig<ComponentConfigProps>[]);
+const currentComp = ref({} as ComponentConfig<ComponentConfigProps>);
 const formConf = ref({
     layout: 'horizontal',
     labelAlign: 'right',
@@ -102,7 +76,7 @@ const formConf = ref({
             <CompLib />
         </aside>
         <main class="h-full w-[calc(100%-602px)]">
-            <DrawArea v-model:comp-list="compList" :current-comp="currentComp" :form-conf="formConf" />
+            <DrawArea v-model:comp-list="compList" v-model:current-comp="currentComp" :form-conf="formConf" />
         </main>
         <aside class="w-300px h-full border-l border-ant.border border-l-solid">
             <CompSetts v-model:comp-conf="currentComp" v-model:form-conf="formConf" />
@@ -198,7 +172,6 @@ const formConf = ref({
         cursor: grab;
     }
 }
-
 
 
 </style>

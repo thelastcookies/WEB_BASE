@@ -1,17 +1,14 @@
 import type { AsyncComponentLoader, Component } from "vue";
-import {
-    BaseConfigProps,
-    ComponentGroup,
-    NumberInputConfigProps, PickerConfigProps, ScoreConfigProps,
-    TextareaInputConfigProps,
-    TextInputConfigProps, TimePickerConfigProps
+import type {
+    BaseConfigProps, ComponentGroup, NumberInputConfigProps, PickerConfigProps,
+    ScoreConfigProps, TextareaInputConfigProps, TextInputConfigProps, TimePickerConfigProps
 } from "@/views/form/types";
 
 const Components = import.meta.glob('./*.vue');
 export const FormComponents = (() => {
     let formComponents: Record<string, Component> = {};
     Object.keys(Components).forEach((key) => {
-        const name = key.replace(/^.+\/([^/]+)\.vue$/, '$1');
+        const name = key.replace(/^.+\/F([^/]+)\.vue$/, '$1');
         formComponents[name] = defineAsyncComponent(Components[key] as AsyncComponentLoader);
     });
     return formComponents;
@@ -25,43 +22,51 @@ export const componentCommonPropsDefault: BaseConfigProps = {
 };
 
 export const textInputConfigPropsDefault: TextInputConfigProps = {
+    ...componentCommonPropsDefault,
 }
 
 export const textareaInputConfigPropsDefault: TextareaInputConfigProps = {
+    ...componentCommonPropsDefault,
     max: 255,
 }
 
 export const numberInputConfigPropsDefault: NumberInputConfigProps = {
+    ...componentCommonPropsDefault,
     max: Infinity,
     min: -Infinity,
 }
 
 export const scoreConfigPropsDefault: ScoreConfigProps = {
+    ...componentCommonPropsDefault,
     color: '#F0A732',
     max: 5,
     // 尚未实现
     showScore: true,
     enableHalf: false,
-    icon: 'Star',
+    icon: 'StarFilled',
 }
 
 export const singlePickerConfigPropsDefault: PickerConfigProps = {
+    ...componentCommonPropsDefault,
     expanding: false,
     options: ['选项1', '选项2'],
 }
 
 export const multiplePickerConfigPropsDefault: PickerConfigProps = {
+    ...componentCommonPropsDefault,
     expanding: false,
     options: ['选项1', '选项2'],
 }
 
 export const dateTimePickerConfigPropsDefault: TimePickerConfigProps = {
+    ...componentCommonPropsDefault,
     format: 'YYYY-MM-DD',
     showLength: false,
     placeholder: '请选择时间',
 }
 
-export const dateTimeRangePickerConfigProps: TimePickerConfigProps = {
+export const dateTimeRangePickerConfigPropsDefault: TimePickerConfigProps = {
+    ...componentCommonPropsDefault,
     format: 'YYYY-MM-DD',
     showLength: false,
     placeholder: ['开始时间', '结束时间'],
@@ -117,7 +122,7 @@ export const componentGroups: ComponentGroup[] = [
                 name: '时间区间选择',
                 type: 'DateTimeRangePicker',
                 icon: 'CarryOutOutlined',
-                props: dateTimeRangePickerConfigProps,
+                props: dateTimeRangePickerConfigPropsDefault,
             },
             {
                 name: '人员选择',

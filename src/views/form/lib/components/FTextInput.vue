@@ -4,10 +4,8 @@ import type { TextInputConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<TextInputConfigProps>(), {
-    ...componentCommonPropsDefault,
-    ...textInputConfigPropsDefault
+    ...textInputConfigPropsDefault,
 });
-
 </script>
 
 <template>

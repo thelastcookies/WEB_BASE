@@ -4,7 +4,7 @@ import type { ComponentConfig } from "@/views/form/types";
 
 const handleClone = (el: ComponentConfig): ComponentConfig => {
     return Object.assign(cloneDeep(el), {
-        key: el.type + '_' + nanoid(10),
+        key: el.type + '_' + nanoid(8),
     });
 };
 
@@ -27,7 +27,7 @@ const handleClone = (el: ComponentConfig): ComponentConfig => {
                 >
                     <div v-for="comp in group.components" :key="comp.type" class="comp-item">
                         <BaseIcon v-if="comp.icon" :icon="comp.icon" />
-                        <span class="ml-1">{{ comp.name }}</span>
+                        <span class="ml-2">{{ comp.name }}</span>
                     </div>
                 </vue-draggable>
             </div>

@@ -1,4 +1,4 @@
-<script setup>
+<script setup lang="ts">
 import FormComponentMixin from "../FormComponentMixin.ts";
 
 const props = defineProps({

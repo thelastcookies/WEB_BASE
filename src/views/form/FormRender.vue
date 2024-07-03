@@ -1,5 +1,5 @@
-<script setup>
-import { FormItem } from 'ant-design-vue';
+<script setup lang="ts">
+import { a-form-item } from 'ant-design-vue';
 import { FormComponents } from "./FormComponents.ts";
 import componentMixin from "./FormComponentMixin.ts";
 import { computed } from "vue";
@@ -45,7 +45,7 @@ const _value = computed(componentMixin.computed._value(props, emit));
     :label-align="config.conf.labelAlign"
     class="w-form-render">
     <template v-for="(cp, i) in config.components" :key="cp.type + i">
-      <FormItem
+      <a-form-item
         v-if="!cp.props.isContainer" :label="cp.name" :required="cp.props.required"
         :class="{'w-form-cp-nlb':cp.props.hideLabel}" :name="cp.key">
         <component
@@ -54,7 +54,7 @@ const _value = computed(componentMixin.computed._value(props, emit));
           :config="cp"
           v-model="_value[cp.key]"
         />
-      </FormItem>
+      </a-form-item>
       <component v-else :is="FormComponents[cp.type]" :mode="mode" v-model="_value" :config="cp"/>
     </template>
   </a-form>
