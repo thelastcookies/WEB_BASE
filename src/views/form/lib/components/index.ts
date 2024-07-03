@@ -1,4 +1,4 @@
-import type { Component } from "vue";
+import type { AsyncComponentLoader, Component } from "vue";
 import {
     BaseConfigProps,
     ComponentGroup,
@@ -7,12 +7,12 @@ import {
     TextInputConfigProps, TimePickerConfigProps
 } from "@/views/form/types";
 
-const Components = import.meta.glob('./components/*.vue');
+const Components = import.meta.glob('./*.vue');
 export const FormComponents = (() => {
     let formComponents: Record<string, Component> = {};
     Object.keys(Components).forEach((key) => {
         const name = key.replace(/^.+\/([^/]+)\.vue$/, '$1');
-        formComponents[name] = Components[key];
+        formComponents[name] = defineAsyncComponent(Components[key] as AsyncComponentLoader);
     });
     return formComponents;
 })();

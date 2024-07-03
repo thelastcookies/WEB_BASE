@@ -1,12 +1,12 @@
-import type { Component } from "vue";
+import type { AsyncComponentLoader, Component } from "vue";
 
-const Configs = import.meta.glob('./configs/*.vue');
+const Configs = import.meta.glob('./*.vue');
 
 export const FormComponentConfigs = (() => {
     let formComponentConfigs: Record<string, Component> = {};
     Object.keys(Configs).forEach((key) => {
         const name = key.replace(/^.+\/([^/]+)\.vue$/, '$1');
-        formComponentConfigs[name] = Configs[key];
+        formComponentConfigs[name] = defineAsyncComponent(Configs[key] as AsyncComponentLoader);
     });
     return formComponentConfigs;
 })();
