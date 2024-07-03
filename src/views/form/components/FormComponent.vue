@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SpanLayoutConfigProps, ComponentConfig } from "@/views/form/types";
+import type { ComponentConfig } from "@/views/form/types";
 
 withDefaults(defineProps<{
     index: number,
@@ -23,8 +23,8 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div style="position: relative; width: 100%;"
-         :class="{'w-form-cp-active': false,}">
+    <div class="w-full relative"
+         :class="{'w-form-cp-active': true,}">
         <div class="w-form-component" v-if="config.props && config.props.mode === 'design'">
             <div class="icon" @click="emit('copy')">
                 <BaseIcon icon="CopyOutlined" />

@@ -41,10 +41,6 @@ const tipVisible = computed(() => {
     return !dragActive.value || compList.length;
 });
 
-watch(dragActive, (val) => {
-    console.log(val);
-})
-
 </script>
 
 <template>
@@ -112,15 +108,6 @@ watch(dragActive, (val) => {
                                 :index="i"
                                 @click="handleSelect(comp)"
                             />
-                            <!--                    <form-component-->
-                            <!--                        :index="i"-->
-                            <!--                        :parents="compList"-->
-                            <!--                        mode="free"-->
-                            <!--                        :type="cp.type"-->
-                            <!--                        :config="cp"-->
-                            <!--                        :size="formConf.size"-->
-                            <!--                        v-model:active="currentComp"-->
-                            <!--                    />-->
                         </a-form-item>
                     </template>
                     <template v-else>

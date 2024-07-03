@@ -1,16 +1,11 @@
 <script setup lang="ts">
 import { VueDraggable } from "vue-draggable-plus";
-import { nanoid } from "nanoid";
-import { cloneDeep } from "lodash";
 import type { ComponentConfig } from "@/views/form/types";
 
 const handleClone = (el: ComponentConfig): ComponentConfig => {
-    console.log(el);
-    const ele = Object.assign(cloneDeep(el), {
+    return Object.assign(cloneDeep(el), {
         key: el.type + '_' + nanoid(10),
     });
-    console.log(ele);
-    return ele;
 };
 
 </script>
@@ -31,7 +26,7 @@ const handleClone = (el: ComponentConfig): ComponentConfig => {
                     class="grid grid-cols-2 grid-gap-1 mb-4"
                 >
                     <div v-for="comp in group.components" :key="comp.type" class="comp-item">
-                        <BaseIcon :icon="comp.icon" />
+                        <BaseIcon v-if="comp.icon" :icon="comp.icon" />
                         <span class="ml-1">{{ comp.name }}</span>
                     </div>
                 </vue-draggable>
