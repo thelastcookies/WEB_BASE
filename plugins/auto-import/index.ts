@@ -1,7 +1,8 @@
-import { PluginOption } from "vite";
 import AutoImport from "unplugin-auto-import/vite";
+import type { PluginOption } from "vite";
+import { customImports } from "./custom-imports";
 
-export const AutoImportPluginConfig = AutoImport({
+export const AutoImportPluginConfig: PluginOption = AutoImport({
     include: [
         /\.tsx?$/, // .ts, .tsx
         /\.vue$/,
@@ -11,8 +12,9 @@ export const AutoImportPluginConfig = AutoImport({
         'vue',
         'vue-router',
         'pinia',
+        customImports,
     ],
-    dts: './plugins/auto-imports/auto-imports.d.ts',
+    dts: './plugins/auto-import/auto-imports.d.ts',
     dirs: [
         'src/api/**/*.ts',
         'src/enums/**/*.ts',
@@ -28,4 +30,4 @@ export const AutoImportPluginConfig = AutoImport({
         'src/views/form/libs'
     ],
     vueTemplate: true,
-}) as PluginOption;
+});
