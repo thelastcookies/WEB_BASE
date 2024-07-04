@@ -1,24 +1,27 @@
 <script setup lang="ts">
 import type { TimePickerConfigProps } from "@/views/form/types";
+import type { Dayjs } from "dayjs";
 
-const value = defineModel<string>('value');
+const value = defineModel<[string, string] | [Dayjs, Dayjs]>('value');
 
 const props = withDefaults(defineProps<TimePickerConfigProps>(), {
     ...dateTimeRangePickerConfigPropsDefault,
 });
 
-const type = computed(() => {
+const _type = computed(() => {
     switch (props.format) {
+        case 'YYYY':
+            return 'year';
+        case 'YYYY-MM':
+            return 'month';
         case 'YYYY-MM-DD':
-            return 'daterange'
-        case 'YYYY-MM-DD HH:mm':
-            return 'datetimerange'
+            return 'date';
         default:
-            return 'daterange'
+            return 'date';
     }
 });
 
-const showTime = computed(() => {
+const _showTime = computed(() => {
     switch (props.format) {
         case 'YYYY-MM-DD HH':
             return { format: 'HH' };
@@ -31,6 +34,12 @@ const showTime = computed(() => {
     }
 });
 
+const _placeholder = computed(() => {
+    if (dateTimePickerConfigPropsDefault.placeholder?.length) {
+        return dateTimePickerConfigPropsDefault.placeholder.split(',');
+    }
+});
+
 </script>
 
 <template>
@@ -39,9 +48,9 @@ const showTime = computed(() => {
         allow-clear
         :value-format="format"
         :format="format"
-        :show-time="showTime"
-        :picker="type"
-        :placeholder="placeholder"
+        :show-time="_showTime"
+        :picker="_type"
+        :placeholder="_placeholder"
         :size="size"
     />
 </template>

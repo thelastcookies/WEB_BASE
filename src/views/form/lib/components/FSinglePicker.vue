@@ -5,7 +5,9 @@ const value = defineModel<string>('value');
 
 withDefaults(defineProps<PickerConfigProps>(), {
     ...singlePickerConfigPropsDefault,
+    options: () => singlePickerConfigPropsDefault.options,
 });
+
 </script>
 
 <template>

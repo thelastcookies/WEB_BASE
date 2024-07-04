@@ -8,6 +8,7 @@ const config = defineModel<ComponentConfig<TimePickerConfigProps>>('config', {
         props: dateTimePickerConfigPropsDefault,
     }
 });
+
 </script>
 
 <template>

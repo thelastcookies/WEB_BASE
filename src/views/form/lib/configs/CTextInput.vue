@@ -8,6 +8,7 @@ const config = defineModel<ComponentConfig<TextInputConfigProps>>('config', {
         props: textInputConfigPropsDefault,
     }
 });
+
 </script>
 
 <template>

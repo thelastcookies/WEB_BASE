@@ -69,7 +69,7 @@ export const dateTimeRangePickerConfigPropsDefault: TimePickerConfigProps = {
     ...componentCommonPropsDefault,
     format: 'YYYY-MM-DD',
     showLength: false,
-    placeholder: ['开始时间', '结束时间'],
+    placeholder: '开始时间,结束时间',
 }
 
 export const componentGroups: ComponentGroup[] = [

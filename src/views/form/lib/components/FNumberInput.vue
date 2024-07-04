@@ -6,6 +6,7 @@ const value = defineModel<number>('value');
 withDefaults(defineProps<NumberInputConfigProps>(), {
     ...numberInputConfigPropsDefault,
 });
+
 </script>
 
 <template>

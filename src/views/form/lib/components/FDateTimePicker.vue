@@ -1,13 +1,14 @@
 <script setup lang="ts">
 import type { TimePickerConfigProps } from "@/views/form/types";
+import type { Dayjs } from "dayjs";
 
-const value = defineModel<string>('value');
+const value = defineModel<string | Dayjs>('value');
 
 const props = withDefaults(defineProps<TimePickerConfigProps>(), {
     ...dateTimePickerConfigPropsDefault,
 });
 
-const type = computed(() => {
+const _type = computed(() => {
     switch (props.format) {
         case 'YYYY':
             return 'year';
@@ -20,7 +21,7 @@ const type = computed(() => {
     }
 });
 
-const showTime = computed(() => {
+const _showTime = computed(() => {
     switch (props.format) {
         case 'YYYY-MM-DD HH':
             return { format: 'HH' };
@@ -41,8 +42,8 @@ const showTime = computed(() => {
         allow-clear
         :value-format="format"
         :format="format"
-        :show-time="showTime"
-        :picker="type"
+        :show-time="_showTime"
+        :picker="_type"
         :placeholder="placeholder"
         :size="size"
     />

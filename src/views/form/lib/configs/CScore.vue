@@ -8,6 +8,7 @@ const config = defineModel<ComponentConfig<ScoreConfigProps>>('config', {
         props: scoreConfigPropsDefault,
     }
 });
+
 </script>
 
 <template>

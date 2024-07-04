@@ -6,6 +6,7 @@ const value = defineModel<string>('value');
 withDefaults(defineProps<TextareaInputConfigProps>(), {
     ...textareaInputConfigPropsDefault,
 });
+
 </script>
 
 <template>

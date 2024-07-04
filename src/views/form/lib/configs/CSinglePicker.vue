@@ -13,6 +13,7 @@ const config = defineModel<ComponentConfig<PickerConfigProps>>('config', {
 const handleAddOption = () => {
     config.value.props.options.push(`选项${config.value.props.options.length + 1}`)
 };
+
 </script>
 
 <template>

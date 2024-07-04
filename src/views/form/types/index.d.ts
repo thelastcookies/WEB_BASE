@@ -69,7 +69,6 @@ export interface PickerConfigProps extends BaseConfigProps {
 }
 
 export interface TimePickerConfigProps extends BaseConfigProps {
-    placeholder?: string | string[];
     format?: string;
     showLength?: boolean;
 }
