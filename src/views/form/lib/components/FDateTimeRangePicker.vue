@@ -35,8 +35,8 @@ const _showTime = computed(() => {
 });
 
 const _placeholder = computed(() => {
-    if (dateTimePickerConfigPropsDefault.placeholder?.length) {
-        return dateTimePickerConfigPropsDefault.placeholder.split(',');
+    if (dateTimeRangePickerConfigPropsDefault.placeholder?.length) {
+        return dateTimeRangePickerConfigPropsDefault.placeholder.split(',');
     }
 });
 

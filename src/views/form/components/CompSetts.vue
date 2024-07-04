@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { ComponentConfig, FormConfig } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps, FormConfig } from "@/views/form/types";
 
-const compConf = defineModel<ComponentConfig>('compConf');
+const compConf = defineModel<ComponentConfig<ComponentConfigProps>>('compConf');
 
 const formConf = defineModel<FormConfig>('formConf', {
     default: {
@@ -14,7 +14,6 @@ const formConf = defineModel<FormConfig>('formConf', {
 
 const activeTab = ref("comp");
 
-console.log(FormComponentConfigs);
 </script>
 
 <template>

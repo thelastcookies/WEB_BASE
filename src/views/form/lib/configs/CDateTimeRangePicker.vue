@@ -5,7 +5,7 @@ const config = defineModel<ComponentConfig<TimePickerConfigProps>>('config', {
     default: {
         key: 'DateTimeRangePicker_0',
         name: '时间区间选择',
-        props: dateTimePickerConfigPropsDefault,
+        props: dateTimeRangePickerConfigPropsDefault,
     }
 });
 
