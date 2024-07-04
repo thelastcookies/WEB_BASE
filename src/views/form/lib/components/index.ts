@@ -17,7 +17,6 @@ export const FormComponents = (() => {
 export const componentCommonPropsDefault: BaseConfigProps = {
     required: false,
     size: undefined,
-    mode: "view",
     placeholder: "",
 };
 

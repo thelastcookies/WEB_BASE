@@ -20,7 +20,7 @@ function previewForm() {
 const compList = defineModel<ComponentConfig<ComponentConfigProps>[]>('compList', {
     default: [],
 });
-const currentComp = defineModel<ComponentConfig<ComponentConfigProps>>('currentComp');
+const currentComp = defineModel<ComponentConfig<ComponentConfigProps> | null>('currentComp');
 
 const formConf = defineModel<FormConfig>('formConf', {
     default: {
@@ -32,14 +32,31 @@ const formConf = defineModel<FormConfig>('formConf', {
 
 const viewType = ref("desktop" as "desktop" | "mobile");
 
-const handleSelect = (comp: ComponentConfig<ComponentConfigProps>) => {
-    currentComp.value = comp;
-};
-
 const dragActive = ref(false);
 const tipVisible = computed(() => {
     return !dragActive.value || compList.length;
 });
+
+const handleSelect = (comp: ComponentConfig<ComponentConfigProps>) => {
+    currentComp.value = comp;
+};
+
+const clearCurrent = () => {
+    currentComp.value = null;
+};
+
+const handleDelete = (key: string) => {
+    compList.value = compList.value.filter(item => item.key !== key);
+    clearCurrent();
+}
+
+const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) => {
+    const duplicate = Object.assign(cloneDeep(comp), {
+        key: comp.type + '_' + nanoid(8),
+        mode: 'edit',
+    });
+    compList.value.splice(index + 1, 0, duplicate);
+}
 
 </script>
 
@@ -66,14 +83,14 @@ const tipVisible = computed(() => {
         <div class="flex">
             <a-tooltip placement="top">
                 <template #title>清空表单</template>
-                <div @click="clearForm">
+                <div class="cursor-pointer" @click="clearForm">
                     <BaseIcon icon="DeleteOutlined" />
                     <span class="ml-1 mr-2">清除</span>
                 </div>
             </a-tooltip>
             <a-tooltip placement="top">
                 <template #title>预览表单</template>
-                <div @click="previewForm">
+                <div class="cursor-pointer" @click="previewForm">
                     <BaseIcon icon="EyeOutlined" />
                     <span class="ml-1">预览</span>
                 </div>
@@ -82,7 +99,7 @@ const tipVisible = computed(() => {
     </div>
     <div class="w-full h-[calc(100%-38px)] p-3">
         <a-form
-            class="w-full h-full bg-ant.bg-container border-rd-2 relative p-3"
+            class="w-full h-full bg-ant.bg-container border-rd-2 relative p-3 overflow-y-auto"
             :labelCol="{style: {width: formConf.labelWidth + 'px'}}"
             :size="formConf.size"
             :layout="formConf.layout"
@@ -96,45 +113,35 @@ const tipVisible = computed(() => {
                 ghostClass="w-f-cp-select"
                 group="FormDesigner"
                 class="w-full h-full"
+                @click.self="clearCurrent"
             >
                 <template v-for="(comp, i) in compList" :key="comp.key">
                     <template v-if="comp.props && !('isContainer' in comp.props)">
                         <a-form-item
+                            :class="{'form-item-active': currentComp?.key === comp.key}"
                             :label="comp.name"
                             :required="comp.props.required"
                             @click="handleSelect(comp)"
                         >
                             <FormComponent
-                                :index="i"
                                 :config="comp"
-                                @click="handleSelect(comp)"
+                                :active="currentComp?.key === comp.key"
+                                @copy="handleCopy(i, comp)"
+                                @delete="handleDelete(comp.key!)"
                             />
                         </a-form-item>
                     </template>
                     <template v-else>
-                        <FormComponent
-                            :index="i"
-                            :config="comp"
-                            @click="handleSelect(comp)"
-                        />
-                        <!--                    <FormComponent-->
-                        <!--                        :type="comp.type"-->
-                        <!--                        class="w-form-d-item"-->
-                        <!--                        :index="i"-->
-                        <!--                        :parents="compList"-->
-                        <!--                        :config="comp"-->
-                        <!--                        :size="formConf.size"-->
-                        <!--                        v-model:active="currentComp"-->
-                        <!--                        @click="handleSelect(comp)"-->
-                        <!--                        mode="free"-->
-                        <!--                        :class="{ 'w-form-d-item': true, 'w-form-cp-active': currentComp?.key === comp.key }"-->
-                        <!--                    />-->
+                        <!--                        <FormComponent-->
+                        <!--                            :config="comp"-->
+                        <!--                            @click="handleSelect(comp)"-->
+                        <!--                        />-->
                     </template>
                 </template>
             </vue-draggable>
             <div v-if="tipVisible"
                  class="absolute w-290px h-28 line-height-28 text-center
-                 left-[calc(50%-145px)] top-[calc(50%-3.5rem)]color-ant.text
+                 left-[calc(50%-145px)] top-[calc(50%-3.5rem)] color-ant.text
                  border border-ant.primary-border border-dashed border-rd-2xl cursor-grab">
                 👈🏻 请从左侧组件库拖拽表单组件到此处
             </div>
@@ -143,107 +150,27 @@ const tipVisible = computed(() => {
 </template>
 
 <style scoped lang="less">
-.w-form-d-toolbar {
-    display: flex;
-    //height: @tool-nav-height;
-    align-items: center;
-    background: white;
-    position: relative;
-    padding: 0 20px;
+.ant-form-item {
+    margin-bottom: 0;
+    padding: 12px 12px 12px;
+    border: 1px dashed transparent;
+    border-radius: 0.5rem;
+    transition: border-color var(--motionDurationMid);
 
-    .w-f-d-t-active {
-        color: #656363;
+    &:hover {
+        border: 1px dashed var(--colorPrimaryBorderHover);
     }
 
-    & > div {
-        color: #989898;
-        font-size: medium;
+    :deep(.ant-form-item-label) {
+        cursor: grab;
 
-        & > * {
-            padding: 2px;
-            margin: 0 5px;
-            cursor: pointer;
-
-            &:focus {
-                outline: none;
-            }
-
-            &:hover {
-                color: #656363;
-            }
-        }
-    }
-
-    & > div:nth-child(2) {
-        margin-left: 20px;
-    }
-
-    & > div:nth-child(3) {
-        font-size: small;
-        position: absolute;
-        right: 20px;
-        display: flex;
-
-        & > div {
-            display: flex;
-            align-items: center;
-
-            span {
-                margin-left: 5px;
-            }
-        }
-
-        & > div:first-child {
-            color: var(--el-color-danger);
-        }
-
-        & > div:last-child {
-            color: var(--el-color-primary);
+        label {
+            cursor: grab;
         }
     }
 }
 
-.w-form-d-item {
-    position: relative;
-    border: 1px dashed white;
-}
-
-.w-form-d-item:hover {
-    border: 1px dashed #8D8D8D;
-}
-
-.w-form-cp-active {
-    border: 1px dashed var(--el-color-primary) !important;
-}
-
-.w-f-cp-select {
-    //border-radius: 2px;
-    //border: 1px dashed var(--el-color-primary) !important;
-}
-
-.w-form-d-ctx {
-    margin: 10px;
-    padding: 5px;
-    position: relative;
-    background-color: white;
-    border-radius: 5px;
-    min-height: calc(100vh - 220px);
-
-    .w-form-d-tip {
-        padding: 20px;
-        color: #8D8D8D;
-        position: relative;
-        display: flex;
-        justify-content: center;
-
-        span {
-            position: absolute;
-            top: -25vh;
-        }
-    }
-
-    :deep(.w-form-d-ctx-ep) {
-        min-height: 80%;
-    }
+.form-item-active {
+    border: 1px dashed var(--colorPrimaryBorder);
 }
 </style>

@@ -12,7 +12,7 @@ export interface ComponentGroup {
     components: ComponentConfig[];
 }
 
-export type ComponentMode = "design" | "view" | "edit";
+export type ComponentMode = "view" | "edit";
 
 export type SizeType = "large" | "small" | undefined;
 
@@ -21,6 +21,7 @@ export interface ComponentConfig<T> {
     name: string;
     type: string;
     icon?: string;
+    mode?: ComponentMode;
     props: T;
 }
 
@@ -39,7 +40,6 @@ export type ComponentConfigProps =
 export interface BaseConfigProps {
     required?: boolean;
     size?: SizeType;
-    mode?: ComponentMode;
     placeholder?: string;
 }
 

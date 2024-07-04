@@ -2,10 +2,10 @@
 import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
 
 withDefaults(defineProps<{
-    index: number,
-    config: ComponentConfig<ComponentConfigProps>,
+    active: boolean;
+    config: ComponentConfig<ComponentConfigProps>;
 }>(), {
-    index: 0,
+    active: false,
     config: () => {
         return {
             name: "单行输入框",
@@ -23,56 +23,52 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="w-full relative"
-         :class="{'w-form-cp-active': true,}">
+    <div class="w-full relative">
         <component
             :is="FormComponents[config.type]"
             v-bind="config.props"
         />
-        <div class="w-form-component" v-if="config.props && config.props.mode === 'design'">
-            <div class="icon" @click="emit('copy')">
-                <BaseIcon icon="CopyOutlined" />
-            </div>
-            <div class="icon" @click="emit('delete')">
-                <BaseIcon icon="DeleteOutlined" />
-            </div>
+        <div class="component-tools" v-if="active && config.props && config.mode === 'edit'">
+            <a-tooltip>
+                <template #title>复制</template>
+                <div class="icon" @click.stop="emit('copy')">
+                    <BaseIcon icon="CopyOutlined" />
+                </div>
+            </a-tooltip>
+            <a-tooltip>
+                <template #title>删除</template>
+                <div class="icon" @click.stop="emit('delete')">
+                    <BaseIcon icon="DeleteOutlined" />
+                </div>
+            </a-tooltip>
         </div>
     </div>
 </template>
 
 <style scoped lang="less">
-
-.w-border-no {
-    border: none !important;
-}
-
-.w-form-component {
+.component-tools {
     position: absolute;
-    bottom: 0;
-    right: 0;
-    z-index: 9;
-    display: none;
-    border-radius: 5px 0 0 0;
-    overflow: hidden;
+    top: -13px;
+    right: -13px;
+    display: flex;
 
     .icon {
-        //width: 24px;
-        //height: 24px;
-        //line-height: 24px;
-        padding: 0 5px;
+        padding: 0 0.25rem;
         cursor: pointer;
-        color: #FFF;
-        background: var(--el-color-primary);
+        background: var(--colorPrimaryActive);
+
+        &:first-child {
+            border-radius: 0 0 0 0.5rem;
+
+        }
+
+        &:last-child {
+            border-radius: 0 0.5rem 0 0;
+        }
 
         &:hover {
-            background: var(--el-color-primary-light-3);
+            background: var(--colorPrimaryHover);
         }
-    }
-}
-
-.w-form-cp-active {
-    .w-form-component {
-        display: flex;
     }
 }
 </style>

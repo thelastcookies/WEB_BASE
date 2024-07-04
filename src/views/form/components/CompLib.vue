@@ -5,6 +5,7 @@ import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
 const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
     return Object.assign(cloneDeep(el), {
         key: el.type + '_' + nanoid(8),
+        mode: 'edit',
     });
 };
 
@@ -23,7 +24,7 @@ const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
                     :group="{ name: 'FormDesigner', pull: 'clone', put: false }"
                     :sort="false"
                     :clone="handleClone"
-                    class="grid grid-cols-2 grid-gap-1 mb-4"
+                    class="grid grid-cols-2 grid-gap-2 mb-4"
                 >
                     <div v-for="comp in group.components" :key="comp.type" class="comp-item">
                         <BaseIcon v-if="comp.icon" :icon="comp.icon" />
