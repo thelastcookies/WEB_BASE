@@ -23,5 +23,11 @@ app.use(Antd);
 
 // UnoCss
 // import 'virtual:uno.css';
+// UnoCSS
+
+// Day.js
+import dayjs from "dayjs";
+import 'dayjs/locale/zh-cn';
+dayjs.locale('zh-cn');
 
 app.mount('#app');
