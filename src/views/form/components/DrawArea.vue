@@ -32,7 +32,7 @@ const formConf = defineModel<FormConfig>('formConf', {
 
 const viewType = ref("desktop" as "desktop" | "mobile");
 
-const handleSelect = (comp: ComponentConfig) => {
+const handleSelect = (comp: ComponentConfig<ComponentConfigProps>) => {
     currentComp.value = comp;
 };
 
@@ -133,8 +133,9 @@ const tipVisible = computed(() => {
                 </template>
             </vue-draggable>
             <div v-if="tipVisible"
-                 class="absolute top-50% color-ant.text absolute px-20px py-35px
-                 border border-ant.primary-border border-dashed border-rd-2xl">
+                 class="absolute w-290px h-28 line-height-28 text-center
+                 left-[calc(50%-145px)] top-[calc(50%-3.5rem)]color-ant.text
+                 border border-ant.primary-border border-dashed border-rd-2xl cursor-grab">
                 👈🏻 请从左侧组件库拖拽表单组件到此处
             </div>
         </a-form>
