@@ -2,17 +2,6 @@
 import { ref } from 'vue';
 import { ComponentConfig, type ComponentConfigProps, FormConfig } from "@/views/form/types";
 
-/**
- * 待完善：
- * 拖拽表单组件后立马 active
- * 删除所有组件后，编辑提示没有正确显示
- * 预览功能，清除功能
- * 更多表单组件
- * 表单的多端展示功能
- * 历史编辑功能
- * 表单验证功能
- */
-
 const compList = ref([] as ComponentConfig<ComponentConfigProps>[]);
 const currentComp = ref({} as ComponentConfig<ComponentConfigProps>);
 const formConf = ref({
@@ -21,6 +10,9 @@ const formConf = ref({
     labelWidth: 100,
     size: undefined,
 } as FormConfig);
+
+// TODO: 历史编辑功能
+// TODO: 表单验证功能
 
 </script>
 

@@ -2,6 +2,9 @@
 import { VueDraggable } from "vue-draggable-plus";
 import type { ComponentConfig, ComponentConfigProps, FormConfig } from "@/views/form/types";
 
+// TODO：表单的多端展示功能
+
+// TODO: 清空表单
 function clearForm() {
     // createConfirm.confirm('您确定要清空表单设计区吗?', '提醒', {
     //   confirmButtonText: '我再想想',
@@ -12,7 +15,7 @@ function clearForm() {
     //   _value.value.components.length = 0;
     // });
 }
-
+// TODO: 预览功能
 function previewForm() {
     // previewVisible.value = true;
 }
@@ -33,6 +36,7 @@ const formConf = defineModel<FormConfig>('formConf', {
 const viewType = ref("desktop" as "desktop" | "mobile");
 
 const dragActive = ref(false);
+// TODO: 删除所有组件后，编辑提示没有正确显示
 const tipVisible = computed(() => {
     return !dragActive.value || compList.length;
 });
