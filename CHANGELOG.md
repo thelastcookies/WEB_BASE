@@ -1,5 +1,18 @@
 # Changelog
 
+## [0.10.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.9.0...v0.10.0) (2024-07-06)
+
+
+### Features
+
+* 新增表单设计器功能模块 ([a9ee194](https://github.com/thelastcookies/WEB-BASE/commit/a9ee194cc666d6106099b1a44b9a98cbea6929bf))
+
+
+### Bug Fixes
+
+* 修复一个可能导致登录时 disable 状态异常的问题 ([b33a85b](https://github.com/thelastcookies/WEB-BASE/commit/b33a85b849048d6290d8ea4d268c7d11e2c5afb8))
+* 修改 BaseIcon size 配置项 ([b4e45c8](https://github.com/thelastcookies/WEB-BASE/commit/b4e45c81c49b9e0c3fba9a045b739d5114b2a9c4))
+
 ## [0.9.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.8.0...v0.9.0) (2024-06-30)
 
 
