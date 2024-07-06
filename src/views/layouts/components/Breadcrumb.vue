@@ -9,20 +9,20 @@ const { actionTree } = storeToRefs(actionStore);
 const breadcrumb = ref([] as ActionRecordRaw[]);
 // 订阅路由变化，设置面包屑
 listenRouteChange((route: RouteLocationNormalized) => {
-    const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
-    if (!ancestorChain || !ancestorChain.length) return;
-    breadcrumb.value = ancestorChain.reverse();
+  const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
+  if (!ancestorChain || !ancestorChain.length) return;
+  breadcrumb.value = ancestorChain.reverse();
 }, true);
 
 onUnmounted(() => {
-    removeRouteListener();
+  removeRouteListener();
 });
 </script>
 
 <template>
-    <a-breadcrumb h-54px lh-54px p-lr-normal bg-ant.bg-container>
-        <template v-for="menu in breadcrumb">
-            <a-breadcrumb-item>{{ menu.title }}</a-breadcrumb-item>
-        </template>
-    </a-breadcrumb>
+  <a-breadcrumb h-54px lh-54px p-lr-normal bg-ant.bg-container>
+    <template v-for="menu in breadcrumb">
+      <a-breadcrumb-item>{{ menu.title }}</a-breadcrumb-item>
+    </template>
+  </a-breadcrumb>
 </template>

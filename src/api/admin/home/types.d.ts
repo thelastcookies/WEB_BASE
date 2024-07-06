@@ -1,11 +1,11 @@
 export interface LoginParams {
-    userName: string;
-    password: string;
-    remember: boolean;
+  userName: string;
+  password: string;
+  remember: boolean;
 }
 
 export interface UserInfo {
-    id: string;
-    userName: string;
-    realName?: string;
+  id: string;
+  userName: string;
+  realName?: string;
 }

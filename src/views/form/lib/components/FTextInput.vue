@@ -4,11 +4,11 @@ import type { TextInputConfigProps } from "@/views/form/types";
 const value = defineModel<string>('value');
 
 withDefaults(defineProps<TextInputConfigProps>(), {
-    ...textInputConfigPropsDefault,
+  ...textInputConfigPropsDefault,
 });
 
 </script>
 
 <template>
-    <a-input v-model:value="value" :placeholder="placeholder" :size="size" />
+  <a-input v-model:value="value" :placeholder="placeholder" :size="size" />
 </template>

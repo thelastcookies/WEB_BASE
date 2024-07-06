@@ -1,5 +1,10 @@
 <script setup lang="ts">
-import { a-form-item } from 'ant-design-vue';
+import { a
+
+-form - item
+}
+from
+'ant-design-vue';
 import { FormComponents } from "./FormComponents.ts";
 import componentMixin from "./FormComponentMixin.ts";
 import { computed } from "vue";
@@ -55,7 +60,7 @@ const _value = computed(componentMixin.computed._value(props, emit));
           v-model="_value[cp.key]"
         />
       </a-form-item>
-      <component v-else :is="FormComponents[cp.type]" :mode="mode" v-model="_value" :config="cp"/>
+      <component v-else :is="FormComponents[cp.type]" :mode="mode" v-model="_value" :config="cp" />
     </template>
   </a-form>
 </template>

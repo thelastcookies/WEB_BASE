@@ -3,11 +3,11 @@ import { defineConfig, presetAttributify, presetIcons, presetTypography, presetU
 import presetThelastcookies from "./preset";
 
 export default defineConfig({
-    presets: [
-        presetUno(),
-        presetAttributify(),
-        presetIcons(),
-        presetTypography(),
-        presetThelastcookies(),
-    ],
+  presets: [
+    presetUno(),
+    presetAttributify(),
+    presetIcons(),
+    presetTypography(),
+    presetThelastcookies(),
+  ],
 });

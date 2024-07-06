@@ -4,16 +4,16 @@ import type { ScoreConfigProps } from "@/views/form/types";
 const value = defineModel<number>('value');
 
 withDefaults(defineProps<ScoreConfigProps>(), {
-    ...scoreConfigPropsDefault,
+  ...scoreConfigPropsDefault,
 });
 
 </script>
 
 <template>
-    <a-rate :allow-half="enableHalf" allow-clear
-            :count="max" v-model:value="value">
-        <template #character>
-            <BaseIcon :icon="icon" size="1.25" />
-        </template>
-    </a-rate>
+  <a-rate :allow-half="enableHalf" allow-clear
+          :count="max" v-model:value="value">
+    <template #character>
+      <BaseIcon :icon="icon" size="1.25" />
+    </template>
+  </a-rate>
 </template>

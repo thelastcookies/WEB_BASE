@@ -13,20 +13,20 @@ const key = Symbol('ROUTE_CHANGE');
 let latestRoute: RouteLocationNormalized;
 
 export const setRouteEmitter = (to: RouteLocationNormalized) => {
-    emitter.emit(key, to);
-    latestRoute = to;
+  emitter.emit(key, to);
+  latestRoute = to;
 };
 
 export const listenRouteChange = (
-    handler: (route: RouteLocationNormalized) => void,
-    immediate = true,
+  handler: (route: RouteLocationNormalized) => void,
+  immediate = true,
 ) => {
-    emitter.on(key, handler as Handler);
-    if (immediate && latestRoute) {
-        handler(latestRoute);
-    }
+  emitter.on(key, handler as Handler);
+  if (immediate && latestRoute) {
+    handler(latestRoute);
+  }
 };
 
 export const removeRouteListener = () => {
-    emitter.off(key);
+  emitter.off(key);
 };

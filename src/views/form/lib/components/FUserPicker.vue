@@ -25,10 +25,10 @@
 
 <template>
   <div style="display: flex; align-items: center">
-<!--    <el-button icon="plus" @click="orgPicker.open()" round></el-button>-->
-<!--    <w-org-tags inline v-model="_value" v-if="(_value || []).length > 0"/>-->
-<!--    <el-text class="w-placeholder">{{config.props.placeholder}}</el-text>-->
-<!--    <w-org-picker :multiple="config.props.multiple" ref="orgPicker" type="user" :selected="_value" @ok="selectOk"/>-->
+    <!--    <el-button icon="plus" @click="orgPicker.open()" round></el-button>-->
+    <!--    <w-org-tags inline v-model="_value" v-if="(_value || []).length > 0"/>-->
+    <!--    <el-text class="w-placeholder">{{config.props.placeholder}}</el-text>-->
+    <!--    <w-org-picker :multiple="config.props.multiple" ref="orgPicker" type="user" :selected="_value" @ok="selectOk"/>-->
   </div>
 </template>
 

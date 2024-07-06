@@ -70,43 +70,43 @@
 </script>
 
 <template>
-<!--  <vue-draggable v-model="config.props.columns" target=".w-tb-header-cell" group="FormDesign"-->
-<!--                 filter=".w-tb-op" :animation="150" :disabled="!freeMode"-->
-<!--                 :ghostClass="freeMode ? 'w-f-cp-select': ''" class="w-f-cp-ct">-->
-<!--    <el-table :data="_value" :cell-style="{padding: 0}" header-row-class-name="w-tb-header-cell" border-->
-<!--              :header-cell-style="tbCellStyle"  @header-click="ck">-->
-<!--      <template #empty v-if="freeMode">-->
-<!--        <span>👆拖拽字段到上方列内</span>-->
-<!--      </template>-->
-<!--      <el-table-column ref="col" :prop="col.key" :label="col.name" v-for="(col, i) in config.props.columns" :key="`col_${col.id}`"-->
-<!--                       :class-name="`${mode === 'free' ? 'w-form-d-item':''} ${_active?.id === col.id && freeMode ? 'w-form-cp-active':''}`">-->
-<!--        <template #header>-->
-<!--          <div style="border: none !important;" :class="{'w-form-cp-active': _active?.id === col.id && freeMode}">-->
-<!--            <div class="w-form-component" v-if="mode === 'free'">-->
-<!--              <el-icon color="#ffffff" @click="copyField(config.props.columns, i)"><CopyDocument /></el-icon>-->
-<!--              <el-icon color="#ffffff" @click="delField(config.props.columns, i)"><Delete /></el-icon>-->
-<!--            </div>-->
-<!--            <div>{{col.name}}</div>-->
-<!--          </div>-->
-<!--        </template>-->
-<!--        <template v-slot="scope">-->
-<!--          <form-component :index="i" :parents="config.props.columns" :config="col" :mode="mode" v-model:active="_active"-->
-<!--                          v-model="_value[scope.$index][col.key]" :key="col.id" :type="col.type"/>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--      <el-table-column fixed="right" width="120" label="操作" @click.native="ck" class-name="w-tb-op">-->
-<!--        <template #header>-->
-<!--          <span>操作</span>-->
-<!--          <el-button icon="plus" v-if="mode === 'normal'" @click="addRow" circle class="w-tb-op-add"/>-->
-<!--        </template>-->
-<!--        <template v-slot="scope">-->
-<!--          <el-link type="danger" :underline="false" @click="delRow(scope.$index)">删除</el-link>-->
-<!--          <el-divider direction="vertical"/>-->
-<!--          <el-link type="primary" :underline="false" @click="copyRow(scope.row)">复制</el-link>-->
-<!--        </template>-->
-<!--      </el-table-column>-->
-<!--    </el-table>-->
-<!--  </vue-draggable>-->
+  <!--  <vue-draggable v-model="config.props.columns" target=".w-tb-header-cell" group="FormDesign"-->
+  <!--                 filter=".w-tb-op" :animation="150" :disabled="!freeMode"-->
+  <!--                 :ghostClass="freeMode ? 'w-f-cp-select': ''" class="w-f-cp-ct">-->
+  <!--    <el-table :data="_value" :cell-style="{padding: 0}" header-row-class-name="w-tb-header-cell" border-->
+  <!--              :header-cell-style="tbCellStyle"  @header-click="ck">-->
+  <!--      <template #empty v-if="freeMode">-->
+  <!--        <span>👆拖拽字段到上方列内</span>-->
+  <!--      </template>-->
+  <!--      <el-table-column ref="col" :prop="col.key" :label="col.name" v-for="(col, i) in config.props.columns" :key="`col_${col.id}`"-->
+  <!--                       :class-name="`${mode === 'free' ? 'w-form-d-item':''} ${_active?.id === col.id && freeMode ? 'w-form-cp-active':''}`">-->
+  <!--        <template #header>-->
+  <!--          <div style="border: none !important;" :class="{'w-form-cp-active': _active?.id === col.id && freeMode}">-->
+  <!--            <div class="w-form-component" v-if="mode === 'free'">-->
+  <!--              <el-icon color="#ffffff" @click="copyField(config.props.columns, i)"><CopyDocument /></el-icon>-->
+  <!--              <el-icon color="#ffffff" @click="delField(config.props.columns, i)"><Delete /></el-icon>-->
+  <!--            </div>-->
+  <!--            <div>{{col.name}}</div>-->
+  <!--          </div>-->
+  <!--        </template>-->
+  <!--        <template v-slot="scope">-->
+  <!--          <form-component :index="i" :parents="config.props.columns" :config="col" :mode="mode" v-model:active="_active"-->
+  <!--                          v-model="_value[scope.$index][col.key]" :key="col.id" :type="col.type"/>-->
+  <!--        </template>-->
+  <!--      </el-table-column>-->
+  <!--      <el-table-column fixed="right" width="120" label="操作" @click.native="ck" class-name="w-tb-op">-->
+  <!--        <template #header>-->
+  <!--          <span>操作</span>-->
+  <!--          <el-button icon="plus" v-if="mode === 'normal'" @click="addRow" circle class="w-tb-op-add"/>-->
+  <!--        </template>-->
+  <!--        <template v-slot="scope">-->
+  <!--          <el-link type="danger" :underline="false" @click="delRow(scope.$index)">删除</el-link>-->
+  <!--          <el-divider direction="vertical"/>-->
+  <!--          <el-link type="primary" :underline="false" @click="copyRow(scope.row)">复制</el-link>-->
+  <!--        </template>-->
+  <!--      </el-table-column>-->
+  <!--    </el-table>-->
+  <!--  </vue-draggable>-->
 </template>
 
 <style lang="less" scoped>
@@ -119,6 +119,7 @@
 
 .w-tb-op {
   position: relative;
+
   .w-tb-op-add {
     position: absolute;
     top: 5px;
@@ -136,7 +137,7 @@
     border: 1px dashed white;
 
     &:hover {
-      border: 1px dashed #8d8d8d;
+      border: 1px dashed #8D8D8D;
     }
   }
 
@@ -163,6 +164,7 @@
     padding: 5px;
     cursor: pointer;
     background: var(--el-color-primary);
+
     &:hover {
       background: var(--el-color-primary-light-3);
     }

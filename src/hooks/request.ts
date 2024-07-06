@@ -6,57 +6,57 @@ import type { AxiosRequestConfig } from "axios";
 import type { RequestConfigExtra } from "@/hooks/axios-extends.ts";
 
 export const useGet = <R = any, T = any>(
-    url: string,
-    params?: T,
-    config?: AxiosRequestConfig & RequestConfigExtra
+  url: string,
+  params?: T,
+  config?: AxiosRequestConfig & RequestConfigExtra
 ): Promise<R> => {
-    const options = {
-        url,
-        params,
-        method: RequestEnum.GET,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
+  const options = {
+    url,
+    params,
+    method: RequestEnum.GET,
+    ...config,
+  };
+  return instancePromise<R, T>(options);
 };
 
 export const usePost = <R = any, T = any>(
-    url: string,
-    data?: T,
-    config?: AxiosRequestConfig & RequestConfigExtra
+  url: string,
+  data?: T,
+  config?: AxiosRequestConfig & RequestConfigExtra
 ): Promise<R> => {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.POST,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
+  const options = {
+    url,
+    data,
+    method: RequestEnum.POST,
+    ...config,
+  };
+  return instancePromise<R, T>(options);
 };
 
 export const usePut = <R = any, T = any>(
-    url: string,
-    data?: T,
-    config?: AxiosRequestConfig & RequestConfigExtra
+  url: string,
+  data?: T,
+  config?: AxiosRequestConfig & RequestConfigExtra
 ): Promise<R> => {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.PUT,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
+  const options = {
+    url,
+    data,
+    method: RequestEnum.PUT,
+    ...config,
+  };
+  return instancePromise<R, T>(options);
 };
 
 export const useDelete = <R = any, T = any>(
-    url: string,
-    data?: T,
-    config?: AxiosRequestConfig & RequestConfigExtra
+  url: string,
+  data?: T,
+  config?: AxiosRequestConfig & RequestConfigExtra
 ): Promise<R> => {
-    const options = {
-        url,
-        data,
-        method: RequestEnum.DELETE,
-        ...config,
-    };
-    return instancePromise<R, T>(options);
+  const options = {
+    url,
+    data,
+    method: RequestEnum.DELETE,
+    ...config,
+  };
+  return instancePromise<R, T>(options);
 };

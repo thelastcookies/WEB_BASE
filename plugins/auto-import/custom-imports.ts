@@ -1,4 +1,5 @@
 import type { ImportsMap } from "unplugin-auto-import/types";
+
 /**
  * 自定义自动导入
  * '[package-name]': [
@@ -8,14 +9,14 @@ import type { ImportsMap } from "unplugin-auto-import/types";
  * ]
  */
 export const customImports: ImportsMap = {
-    'axios': [
-        // default imports
-        ['default', 'axios'], // alias imports: import { default as axios } from 'axios',
-    ],
-    'nanoid': [
-        'nanoid', // named imports: import { nanoid } from 'nanoid',
-    ],
-    'lodash': [
-        'cloneDeep',
-    ]
+  'axios': [
+    // default imports
+    ['default', 'axios'], // alias imports: import { default as axios } from 'axios',
+  ],
+  'nanoid': [
+    'nanoid', // named imports: import { nanoid } from 'nanoid',
+  ],
+  'lodash': [
+    'cloneDeep',
+  ]
 };

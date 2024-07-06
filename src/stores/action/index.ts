@@ -1,43 +1,43 @@
 import type { Key, RecordName } from "@/types";
 import type {
-    ActionRecordMenu,
-    ActionRecordMenuWithChildren,
-    ActionRecordPage,
-    ActionRecordPageWithChildren,
-    ActionRecordRaw
+  ActionRecordMenu,
+  ActionRecordMenuWithChildren,
+  ActionRecordPage,
+  ActionRecordPageWithChildren,
+  ActionRecordRaw
 } from "@/types/action";
 
 export const useActionStore = defineStore('action', () => {
-    const actionTree = shallowRef([] as ActionRecordRaw[]);
+  const actionTree = shallowRef([] as ActionRecordRaw[]);
 
-    const getActionsFromApi = async () => {
-        const { Data } = await getOperatorMenuList();
-        return preprocessActionTree(Data ?? [])
-    };
+  const getActionsFromApi = async () => {
+    const { Data } = await getOperatorMenuList();
+    return preprocessActionTree(Data ?? [])
+  };
 
-    const getActionsFromConfig = async () => {
-        return staticActions;
-    };
+  const getActionsFromConfig = async () => {
+    return staticActions;
+  };
 
-    const getActions = async () => {
-        // 读取 Actions 获取途径
-        const loadActionType = import.meta.env.APP_LOAD_ACTION_TYPE;
-        const getActionFunc = loadActionType === LoadActionTypeEnum.BACKEND ? getActionsFromApi : getActionsFromConfig;
-        // 获取 Actions 配置并保存
-        actionTree.value = await getActionFunc();
-        return actionTree.value;
-    };
+  const getActions = async () => {
+    // 读取 Actions 获取途径
+    const loadActionType = import.meta.env.APP_LOAD_ACTION_TYPE;
+    const getActionFunc = loadActionType === LoadActionTypeEnum.BACKEND ? getActionsFromApi : getActionsFromConfig;
+    // 获取 Actions 配置并保存
+    actionTree.value = await getActionFunc();
+    return actionTree.value;
+  };
 
 
-    const $reset = () => {
-        actionTree.value = [] as ActionRecordRaw[];
-    };
+  const $reset = () => {
+    actionTree.value = [] as ActionRecordRaw[];
+  };
 
-    return {
-        actionTree,
-        getActions,
-        $reset,
-    }
+  return {
+    actionTree,
+    getActions,
+    $reset,
+  }
 });
 
 /**
@@ -47,27 +47,27 @@ export const useActionStore = defineStore('action', () => {
  * @param field 被查询字段
  */
 export const findAction = (
-    actions: ActionRecordRaw[],
-    key: Key | RecordName,
-    field: 'id' | 'actionId' | 'title' = 'actionId'
+  actions: ActionRecordRaw[],
+  key: Key | RecordName,
+  field: 'id' | 'actionId' | 'title' = 'actionId'
 ): ActionRecordRaw | undefined => {
-    let action: ActionRecordRaw;
-    for (let i = 0, len = actions.length; i < len; i++) {
-        if (actions[i][field] === key) {
-            action = actions[i];
-            return action;
-        }
-        if ('children' in actions[i]) {
-            const p = findAction(
-                (actions[i] as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children,
-                key,
-                field
-            );
-            if (p) {
-                return p;
-            }
-        }
+  let action: ActionRecordRaw;
+  for (let i = 0, len = actions.length; i < len; i++) {
+    if (actions[i][field] === key) {
+      action = actions[i];
+      return action;
     }
+    if ('children' in actions[i]) {
+      const p = findAction(
+        (actions[i] as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children,
+        key,
+        field
+      );
+      if (p) {
+        return p;
+      }
+    }
+  }
 };
 
 /**
@@ -77,20 +77,20 @@ export const findAction = (
  * @param field 被查询字段
  */
 export const findActionAncestorChain = (
-    actions: ActionRecordRaw[],
-    key: Key | RecordName,
-    field: 'id' | 'actionId' | 'title' = 'actionId',
+  actions: ActionRecordRaw[],
+  key: Key | RecordName,
+  field: 'id' | 'actionId' | 'title' = 'actionId',
 ): ActionRecordRaw[] | undefined => {
-    const action = findAction(actions, key, field)!;
-    if (action) {
-        if (action.pId) {
-            return [action, ...findActionAncestorChain(actions, action.pId, 'id')!];
-        } else {
-            return [action];
-        }
+  const action = findAction(actions, key, field)!;
+  if (action) {
+    if (action.pId) {
+      return [action, ...findActionAncestorChain(actions, action.pId, 'id')!];
     } else {
-        return undefined;
+      return [action];
     }
+  } else {
+    return undefined;
+  }
 };
 
 /**
@@ -99,31 +99,31 @@ export const findActionAncestorChain = (
  * @param dataTree 接口数据
  */
 export const preprocessActionTree = (dataTree: any): ActionRecordRaw[] => {
-    return dataTree.map((item: any) => {
-        let action = {} as ActionRecordRaw;
-        action.id = item.Id ?? '';
-        action.pId = item.ParentId ?? '';
-        action.actionId = item.actionId ?? '';
-        action.title = item.Text ?? '';
-        action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
-        action.sort = Number(item.Sort)
-        action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
+  return dataTree.map((item: any) => {
+    let action = {} as ActionRecordRaw;
+    action.id = item.Id ?? '';
+    action.pId = item.ParentId ?? '';
+    action.actionId = item.actionId ?? '';
+    action.title = item.Text ?? '';
+    action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
+    action.sort = Number(item.Sort)
+    action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
 
-        if (item.Url) {
-            (action as ActionRecordPage | ActionRecordPageWithChildren).url = item.Url;
-        }
-        if (item.Component) {
-            (action as ActionRecordPage | ActionRecordPageWithChildren).component = item.Component;
-        }
-        if (item.icon) {
-            (action as ActionRecordMenu | ActionRecordMenuWithChildren).icon = item.icon;
-        }
-        if (item.Query) {
-            (action as ActionRecordPage | ActionRecordPageWithChildren).query = JSON.parse(item.Query);
-        }
-        if (item.Children) {
-            (action as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children = preprocessActionTree(item.Children);
-        }
-        return action;
-    });
+    if (item.Url) {
+      (action as ActionRecordPage | ActionRecordPageWithChildren).url = item.Url;
+    }
+    if (item.Component) {
+      (action as ActionRecordPage | ActionRecordPageWithChildren).component = item.Component;
+    }
+    if (item.icon) {
+      (action as ActionRecordMenu | ActionRecordMenuWithChildren).icon = item.icon;
+    }
+    if (item.Query) {
+      (action as ActionRecordPage | ActionRecordPageWithChildren).query = JSON.parse(item.Query);
+    }
+    if (item.Children) {
+      (action as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children = preprocessActionTree(item.Children);
+    }
+    return action;
+  });
 };

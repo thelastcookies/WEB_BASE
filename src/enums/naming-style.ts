@@ -9,9 +9,9 @@
  */
 
 export enum NamingStyleTransfer {
-    TO_LOWER_CAMEL_CASE = 'lowerCamelCase',
-    TO_UPPER_CAMEL_CASE = 'upperCamelCase',
-    TO_SNAKE_CASE = 'snakeCase',
-    TO_KEBAB_CASE = 'kebabCase',
-    TO_CONSTANT_CASE = 'constantCase'
+  TO_LOWER_CAMEL_CASE = 'lowerCamelCase',
+  TO_UPPER_CAMEL_CASE = 'upperCamelCase',
+  TO_SNAKE_CASE = 'snakeCase',
+  TO_KEBAB_CASE = 'kebabCase',
+  TO_CONSTANT_CASE = 'constantCase'
 }

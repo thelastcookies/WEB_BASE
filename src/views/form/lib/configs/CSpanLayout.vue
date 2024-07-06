@@ -13,7 +13,7 @@ const emit = defineEmits([...FormComponentMixin.emits])
 <template>
   <div>
     <el-form-item label="字段KEY">
-      <el-input v-model="config.key" placeholder="请输入字段唯一key值"/>
+      <el-input v-model="config.key" placeholder="请输入字段唯一key值" />
     </el-form-item>
     <el-form-item label="分栏数">
       <el-select v-model="config.props.number">
@@ -25,7 +25,7 @@ const emit = defineEmits([...FormComponentMixin.emits])
       </el-select>
     </el-form-item>
     <el-form-item label="栏间隔">
-      <el-input v-model="config.props.gutter" type="number" placeholder="每栏间隔多少"/>
+      <el-input v-model="config.props.gutter" type="number" placeholder="每栏间隔多少" />
     </el-form-item>
   </div>
 </template>

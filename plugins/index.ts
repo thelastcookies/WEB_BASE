@@ -18,13 +18,13 @@ import { VueComponentPluginConfig } from "./vue-component";
  */
 // vite.config.ts
 export function createVitePlugins() {
-    const vitePluginList: (PluginOption | PluginOption[])[] = [
-        vue(),
-        vueJsx(),
-        VueDevTools(),
-        UnoCSSPluginConfig,
-        AutoImportPluginConfig,
-        VueComponentPluginConfig,
-    ];
-    return vitePluginList;
+  const vitePluginList: (PluginOption | PluginOption[])[] = [
+    vue(),
+    vueJsx(),
+    VueDevTools(),
+    UnoCSSPluginConfig,
+    AutoImportPluginConfig,
+    VueComponentPluginConfig,
+  ];
+  return vitePluginList;
 }
