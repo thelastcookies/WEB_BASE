@@ -124,36 +124,36 @@ export const componentGroups: ComponentGroup[] = [
                 icon: 'CarryOutOutlined',
                 props: dateTimeRangePickerConfigPropsDefault,
             },
-            {
-                name: '人员选择',
-                type: 'UserPicker',
-                icon: 'TeamOutlined',
-            },
-            {
-                name: '部门选择',
-                type: 'DeptPicker',
-                icon: 'ApartmentOutlined',
-            },
+            // {
+            //     name: '人员选择',
+            //     type: 'UserPicker',
+            //     icon: 'TeamOutlined',
+            // },
+            // {
+            //     name: '部门选择',
+            //     type: 'DeptPicker',
+            //     icon: 'ApartmentOutlined',
+            // },
         ],
     },
-    {
-        name: '布局组件',
-        components: [
-            {
-                name: '分栏布局',
-                type: 'SpanLayout',
-                icon: 'BorderInnerOutlined',
-            },
-        ],
-    },
-    {
-        name: '高级组件',
-        components: [
-            {
-                name: '明细表',
-                type: 'TableList',
-                icon: 'TableOutlined',
-            },
-        ],
-    },
+    // {
+    //     name: '布局组件',
+    //     components: [
+    //         {
+    //             name: '分栏布局',
+    //             type: 'SpanLayout',
+    //             icon: 'BorderInnerOutlined',
+    //         },
+    //     ],
+    // },
+    // {
+    //     name: '高级组件',
+    //     components: [
+    //         {
+    //             name: '明细表',
+    //             type: 'TableList',
+    //             icon: 'TableOutlined',
+    //         },
+    //     ],
+    // },
 ];
