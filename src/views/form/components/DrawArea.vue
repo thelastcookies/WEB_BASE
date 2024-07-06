@@ -35,9 +35,8 @@ const handleFormPreview = () => {
 };
 
 const dragActive = ref(false);
-// TODO: 删除所有组件后，编辑提示没有正确显示
 const tipVisible = computed(() => {
-    return !dragActive.value || compList.length;
+    return !dragActive.value || compList.value.length === 0;
 });
 
 const handleSelect = (comp: ComponentConfig<ComponentConfigProps>) => {
