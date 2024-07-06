@@ -10,7 +10,7 @@ const config = defineModel<ComponentConfig<PickerConfigProps>>('config', {
     }
 });
 
-const handleAddOption = () => {
+const handleOptionAdd = () => {
     config.value.props.options.push(`选项${config.value.props.options.length + 1}`)
 };
 
@@ -19,7 +19,7 @@ const handleAddOption = () => {
 <template>
     <BaseConfig v-model:config="config" />
     <a-form-item label="选项设置">
-        <a-button type="primary" ghost @click="handleAddOption">
+        <a-button type="primary" ghost @click="handleOptionAdd">
             <template #icon>
                 <BaseIcon icon="PlusOutlined" />
             </template>

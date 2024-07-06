@@ -41,7 +41,7 @@ const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
     display: flex;
     align-items: center;
     padding: 0.75rem;
-    border-radius: 0.75rem;
+    border-radius: var(--borderRadiusLG);
     background-color: var(--colorBgContainer);
     border: 1px solid var(--colorBorder);
     transition: all var(--motionDurationMid);

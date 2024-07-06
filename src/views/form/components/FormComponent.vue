@@ -3,9 +3,11 @@ import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
 
 withDefaults(defineProps<{
     active: boolean;
+    layout: string;
     config: ComponentConfig<ComponentConfigProps>;
 }>(), {
     active: false,
+    layout: 'horizontal',
     config: () => {
         return {
             name: "单行输入框",
@@ -16,6 +18,7 @@ withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
+    (e: 'select'): void;
     (e: 'copy'): void;
     (e: 'delete'): void;
 }>();
@@ -23,12 +26,17 @@ const emit = defineEmits<{
 </script>
 
 <template>
-    <div class="w-full relative">
+    <a-form-item
+        :class="[{'active': active}, `${layout}`]"
+        :label="config.name"
+        :required="config.props.required"
+        @click="emit('select')"
+    >
         <component
             :is="FormComponents[config.type]"
             v-bind="config.props"
         />
-        <div class="component-tools" v-if="active && config.props && config.mode === 'edit'">
+        <div :class="['component-tools', 'vertical-tools']" v-if="active && config.props && config.mode === 'edit'">
             <a-tooltip>
                 <template #title>复制</template>
                 <div class="icon" @click.stop="emit('copy')">
@@ -42,33 +50,73 @@ const emit = defineEmits<{
                 </div>
             </a-tooltip>
         </div>
-    </div>
+    </a-form-item>
 </template>
 
 <style scoped lang="less">
-.component-tools {
-    position: absolute;
-    top: -13px;
-    right: -13px;
-    display: flex;
+.ant-form-item {
+    margin-bottom: 0;
+    border: 1px dashed transparent;
+    border-radius: var(--borderRadiusLG);
+    transition: border-color var(--motionDurationMid);
 
-    .icon {
-        padding: 0 0.25rem;
-        cursor: pointer;
-        background: var(--colorPrimaryActive);
+    &:hover {
+        border: 1px dashed var(--colorPrimaryBorderHover);
+    }
 
-        &:first-child {
-            border-radius: 0 0 0 0.5rem;
+    :deep(.ant-form-item-label) {
+        cursor: grab;
 
+        label {
+            cursor: grab;
         }
+    }
 
-        &:last-child {
-            border-radius: 0 0.5rem 0 0;
-        }
+    .component-tools {
+        position: absolute;
+        display: flex;
 
-        &:hover {
-            background: var(--colorPrimaryHover);
+        .icon {
+            padding: 0 0.25rem;
+            cursor: pointer;
+            color: #FFF;
+            background: var(--colorPrimaryActive);
+
+            &:first-child {
+                border-radius: 0 0 0 var(--borderRadiusLG);
+            }
+
+            &:last-child {
+                border-radius: 0 var(--borderRadiusLG) 0 0;
+            }
+
+            &:hover {
+                background: var(--colorPrimaryHover);
+            }
         }
     }
 }
+
+.ant-form-item.active {
+    border: 1px dashed var(--colorPrimaryBorder);
+}
+
+.ant-form-item.horizontal {
+    padding: var(--sizeSM);
+
+    .component-tools {
+        top: -13px;
+        right: -13px;
+    }
+}
+
+.ant-form-item.vertical {
+    padding: var(--sizeXXS);
+
+    .component-tools {
+        top: -35px;
+        right: -5px;
+    }
+}
+
 </style>
