@@ -7,7 +7,15 @@
     src: url('./Square721 BT-Italic.ttf');
 }
 
-.number-font {
-    font-family: "Square721 BT-roman", serif;
+@font-face {
+    font-family: 'SmileySans-Oblique';
+    src: url('./SmileySans-Oblique.ttf.woff2');
 }
 
+.number-font {
+    font-family: Square721 BT-roman, serif;
+}
+
+.smiley-font {
+    font-family: SmileySans-Oblique, serif;
+}
