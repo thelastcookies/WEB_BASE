@@ -13,7 +13,7 @@ const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
 
 <template>
   <div class="w-full h-full">
-    <div class="w-full h-38px line-height-8 text-center
+    <div class="w-full h-38px line-height-38px text-center
             border-b border-ant.border border-b-solid">组件库
     </div>
     <div class="p-3">
