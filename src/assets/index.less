@@ -43,3 +43,49 @@ body {
   width: 100%;
   height: 100%;
 }
+
+/**
+ * 几种常用的 <transition> 过渡样式
+ */
+.fade-enter-active,
+.fade-leave-active {
+  transition: opacity var(--motionDurationMid) ease;
+}
+.fade-enter-from,
+.fade-leave-to {
+  opacity: 0;
+}
+
+.slide-fade-enter-active {
+  transition: all var(--motionDurationMid) ease-out;
+}
+.slide-fade-leave-active {
+  transition: all var(--motionDurationMid) cubic-bezier(1, 0.5, 0.8, 1);
+}
+.slide-fade-enter-from {
+  transform: translateX(-20px);
+  opacity: 0;
+}
+.slide-fade-leave-to {
+  transform: translateX(20px);
+  opacity: 0;
+}
+
+.bounce-enter-active {
+  animation: bounce-in 0.2s;
+}
+.bounce-leave-active {
+  animation: bounce-in 0.2s reverse;
+}
+@keyframes bounce-in {
+  0% {
+    transform: scale(0.96);
+    opacity: 0;
+  }
+  50% {
+    transform: scale(0.99);
+  }
+  100% {
+    transform: scale(1);
+  }
+}

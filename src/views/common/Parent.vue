@@ -12,12 +12,12 @@
   <!--  <ParentCompConsumer>-->
   <RouterView>
     <template #default="{ Component, route }">
-      <!--        <Transition appear :name="layoutSetting.animationName" mode="out-in">-->
-      <!--          <KeepAlive v-if="layoutSetting.keepAlive" :include="cacheList">-->
-      <!--            <component :is="getComp(Component)" :key="route.fullPath" />-->
-      <!--          </KeepAlive>-->
-      <component :is="Component" :key="route.fullPath" />
-      <!--        </Transition>-->
+      <Transition appear name="slide-fade" mode="out-in">
+        <!--<KeepAlive v-if="layoutSetting.keepAlive" :include="cacheList">-->
+          <!--<component :is="getComp(Component)" :key="route.fullPath" />-->
+        <!--</KeepAlive>-->
+        <component :is="Component" :key="route.fullPath" />
+      </Transition>
     </template>
   </RouterView>
   <!--  </ParentCompConsumer>-->
