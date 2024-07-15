@@ -1,5 +1,17 @@
 # Changelog
 
+## [0.11.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.10.0...v0.11.0) (2024-07-15)
+
+
+### Features
+
+* 新增页面切换 transition 效果 ([d7e1595](https://github.com/thelastcookies/WEB-BASE/commit/d7e15958c1b4050a7b662537dda68619b97d1644))
+
+
+### Bug Fixes
+
+* 解决 Windows 系统下项目路径解析错误的问题 ([42c068a](https://github.com/thelastcookies/WEB-BASE/commit/42c068ad59780cad4bb0c5b78ed7b410ae53a544))
+
 ## [0.10.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.9.0...v0.10.0) (2024-07-06)
 
 
