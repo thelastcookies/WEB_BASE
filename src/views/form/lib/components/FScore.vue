@@ -13,7 +13,7 @@ withDefaults(defineProps<ScoreConfigProps>(), {
   <a-rate :allow-half="enableHalf" allow-clear
           :count="max" v-model:value="value">
     <template #character>
-      <BaseIcon :icon="icon" size="1.25" />
+      <BaseIcon :icon="icon" />
     </template>
   </a-rate>
 </template>

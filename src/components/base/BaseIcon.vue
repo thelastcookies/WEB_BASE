@@ -1,14 +1,18 @@
 <script setup lang="ts">
+/**
+ * 0.11.0 版本后引入 iconify-mdi 为主要图标库
+ * https://icones.js.org/collection/mdi
+ */
 import * as icons from '@ant-design/icons-vue';
 import type { VNodeChild } from 'vue';
 
 const props = withDefaults(defineProps<{
   icon: string | ((...args: any[]) => VNodeChild),
-  type?: 'antdv' | 'image' | 'logo',
+  type?: 'iconify' | 'antdv' | 'image' | 'logo',
   size?: number | string
 }>(), {
   size: 1,
-  type: 'antdv',
+  type: 'iconify',
 });
 const iconComp = computed(() => {
   if (props.type === 'antdv') {
@@ -24,11 +28,18 @@ const iconComp = computed(() => {
 });
 
 const sizeStyle = computed(() => {
-  return {
-    height: `${props.size}rem`,
-    width: `${props.size}rem`,
-    'line-height': `${props.size}rem`,
-    'font-size': `${props.size}rem`,
+  if (props.type === 'iconify') {
+    return {
+      height: `${Number(props.size) * 1.2}em`,
+      width: `${Number(props.size) * 1.2}em`,
+    }
+  } else if (props.type === 'antdv') {
+    return {
+      height: `${props.size}rem`,
+      width: `${props.size}rem`,
+      'line-height': `${props.size}rem`,
+      'font-size': `${props.size}rem`,
+    }
   }
 });
 
@@ -47,9 +58,18 @@ const iconUrl = computed(() => {
 </script>
 
 <template>
-  <template v-if="type === 'antdv'">
-    <component v-bind="$attrs" :is="iconComp" v-if="icon"
-               :style="{fontSize: size + 'rem', lineHeight: size + 'rem'}"
+  <template v-if="type === 'iconify'">
+    <span
+      :class="icon"
+      v-bind="$attrs"
+      :style="[sizeStyle]"
+      class="inline-block vertical-text-bottom"
+    />
+  </template>
+  <template v-else-if="type === 'antdv'">
+    <component
+      v-if="icon" v-bind="$attrs" :is="iconComp"
+      :style="{fontSize: size + 'rem', lineHeight: size + 'rem'}"
     />
   </template>
   <template v-else>

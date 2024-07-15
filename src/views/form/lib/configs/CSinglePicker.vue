@@ -21,7 +21,7 @@ const handleOptionAdd = () => {
   <a-form-item label="选项设置">
     <a-button type="primary" ghost @click="handleOptionAdd">
       <template #icon>
-        <BaseIcon icon="PlusOutlined" />
+        <BaseIcon icon="i-mdi-plus" />
       </template>
       添加选项
     </a-button>
@@ -30,10 +30,10 @@ const handleOptionAdd = () => {
                v-model:value="config.props.options[i]"
                class="mt-1">
         <template #addonBefore>
-          <BaseIcon class="moveable cursor-move" icon="DragOutlined" />
+          <BaseIcon class="moveable cursor-move" icon="i-mdi-drag" />
         </template>
         <template #addonAfter>
-          <BaseIcon @click="config.props.options.splice(i, 1)" icon="DeleteOutlined" />
+          <BaseIcon @click="config.props.options.splice(i, 1)" icon="i-mdi-delete-outline" />
         </template>
       </a-input>
     </vue-draggable>

@@ -40,13 +40,13 @@ const emit = defineEmits<{
       <a-tooltip>
         <template #title>复制</template>
         <div class="icon" @click.stop="emit('copy')">
-          <BaseIcon icon="CopyOutlined" />
+          <BaseIcon icon="i-mdi-content-copy" />
         </div>
       </a-tooltip>
       <a-tooltip>
         <template #title>删除</template>
         <div class="icon" @click.stop="emit('delete')">
-          <BaseIcon icon="DeleteOutlined" />
+          <BaseIcon icon="i-mdi-delete-outline" />
         </div>
       </a-tooltip>
     </div>
@@ -80,7 +80,7 @@ const emit = defineEmits<{
       padding: 0 0.25rem;
       cursor: pointer;
       color: #FFF;
-      background: var(--colorPrimaryActive);
+      background: var(--colorPrimaryText);
 
       &:first-child {
         border-radius: 0 0 0 var(--borderRadiusLG);

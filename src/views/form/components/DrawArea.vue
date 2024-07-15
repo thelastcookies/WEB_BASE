@@ -64,11 +64,11 @@ const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) 
 
 <template>
   <div class="w-full h-38px flex-sb border-b border-ant.border border-b-solid px-3">
-    <div class="flex-sb w-12">
+    <div class="flex-sb w-12 text-16px">
       <a-tooltip placement="top">
         <template #title>电脑端</template>
         <BaseIcon
-          icon="DesktopOutlined" size="1.2"
+          icon="i-mdi-desktop-mac"
           :class="{'color-ant.primary-text' : viewType === 'desktop'}"
           @click="viewType = 'desktop'"
         />
@@ -76,14 +76,14 @@ const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) 
       <a-tooltip placement="top">
         <template #title>手机端</template>
         <BaseIcon
-          icon="MobileOutlined" size="1.2"
+          icon="i-mdi-cellphone-iphone"
           :class="{'color-ant.primary-text' : viewType === 'mobile'}"
           @click="viewType = 'mobile'"
         />
       </a-tooltip>
     </div>
     <div class="flex">
-      <a-tooltip placement="top">
+      <a-tooltip placement="top" class="color-ant.error-text">
         <template #title>清空表单</template>
         <a-popconfirm
           title="确定要清空表单设计区吗？"
@@ -91,15 +91,15 @@ const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) 
           @confirm="handleFormClear"
         >
           <div class="cursor-pointer">
-            <BaseIcon icon="DeleteOutlined" />
+            <BaseIcon icon="i-mdi-delete-empty" />
             <span class="ml-1 mr-2">清空</span>
           </div>
         </a-popconfirm>
       </a-tooltip>
-      <a-tooltip placement="top">
+      <a-tooltip placement="top" class="color-ant.primary-text">
         <template #title>预览表单</template>
         <div class="cursor-pointer" @click="handleFormPreview">
-          <BaseIcon icon="EyeOutlined" />
+          <BaseIcon icon="i-mdi-eye" />
           <span class="ml-1">预览</span>
         </div>
       </a-tooltip>

@@ -28,16 +28,18 @@ async function handleClick({ key }: MenuInfo) {
   <a-dropdown>
     <div class="cursor-pointer h-full flex">
       <a-avatar :size="size" mr-8px>
-        <BaseIcon icon="UserOutlined" :size="size"></BaseIcon>
+        <template #icon>
+          <BaseIcon icon="i-mdi-account" class="text-14px"></BaseIcon>
+        </template>
       </a-avatar>
-      <span class="c-ant.white font-size-14px text">{{ realName }}</span>
+      <span class="c-ant.white text">{{ realName }}</span>
     </div>
     <template #overlay>
       <a-menu @click="handleClick">
         <a-menu-divider />
         <a-menu-item key="logout">
           <template #icon>
-            <BaseIcon icon="LogoutOutlined"></BaseIcon>
+            <BaseIcon icon="i-mdi-logout"></BaseIcon>
           </template>
           注销
         </a-menu-item>

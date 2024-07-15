@@ -42,7 +42,7 @@ export const scoreConfigPropsDefault: ScoreConfigProps = {
   // 尚未实现
   showScore: true,
   enableHalf: false,
-  icon: 'StarFilled',
+  icon: 'i-mdi-star',
 }
 
 export const singlePickerConfigPropsDefault: PickerConfigProps = {
@@ -79,61 +79,61 @@ export const componentGroups: ComponentGroup[] = [
       {
         name: '单行输入框',
         type: 'TextInput',
-        icon: 'EditOutlined',
+        icon: 'i-mdi-pencil',
         props: textInputConfigPropsDefault,
       },
       {
         name: '多行输入框',
         type: 'TextareaInput',
-        icon: 'UnorderedListOutlined',
+        icon: 'i-mdi-format-list-bulleted',
         props: textareaInputConfigPropsDefault,
       },
       {
         name: '数字输入框',
         type: 'NumberInput',
-        icon: 'FieldNumberOutlined',
+        icon: 'i-mdi-numeric',
         props: numberInputConfigPropsDefault,
       },
       {
         name: '评分',
         type: 'Score',
-        icon: 'StarOutlined',
+        icon: 'i-mdi-star-check',
         props: scoreConfigPropsDefault,
       },
       {
         name: '单选框',
         type: 'SinglePicker',
-        icon: 'AimOutlined',
+        icon: 'i-mdi-radiobox-marked',
         props: singlePickerConfigPropsDefault,
       },
       {
         name: '多选框',
         type: 'MultiplePicker',
-        icon: 'AppstoreAddOutlined',
+        icon: 'i-mdi-checkbox-marked-outline',
         props: multiplePickerConfigPropsDefault,
       },
       {
         name: '时间选择',
         type: 'DateTimePicker',
-        icon: 'CalendarOutlined',
+        icon: 'i-mdi-calendar',
         props: dateTimePickerConfigPropsDefault,
       },
       {
         name: '时间区间选择',
         type: 'DateTimeRangePicker',
-        icon: 'CarryOutOutlined',
+        icon: 'i-mdi-calendar-clock',
         props: dateTimeRangePickerConfigPropsDefault,
       },
-      // {
-      //     name: '人员选择',
-      //     type: 'UserPicker',
-      //     icon: 'TeamOutlined',
-      // },
-      // {
-      //     name: '部门选择',
-      //     type: 'DeptPicker',
-      //     icon: 'ApartmentOutlined',
-      // },
+      {
+        name: '人员选择',
+        type: 'UserPicker',
+        icon: 'i-mdi-account-check',
+      },
+      {
+        name: '部门选择',
+        type: 'DeptPicker',
+        icon: 'i-mdi-lan',
+      },
     ],
   },
   // {

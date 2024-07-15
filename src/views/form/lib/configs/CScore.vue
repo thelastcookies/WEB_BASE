@@ -9,13 +9,15 @@ const config = defineModel<ComponentConfig<ScoreConfigProps>>('config', {
   }
 });
 
+const iconList = ['i-mdi-star', 'i-mdi-eye', 'i-mdi-heart', 'i-mdi-trophy', 'i-mdi-thumb-up'];
+
 </script>
 
 <template>
   <BaseConfig v-model:config="config" />
   <a-form-item label="图标设置">
     <a-radio-group size="small" v-model:value="config.props.icon">
-      <template v-for="icon in ['StarFilled', 'EyeFilled', 'HeartFilled', 'TrophyFilled', 'LikeFilled']">
+      <template v-for="icon in iconList">
         <a-radio-button :value="icon">
           <BaseIcon :icon="icon" />
         </a-radio-button>

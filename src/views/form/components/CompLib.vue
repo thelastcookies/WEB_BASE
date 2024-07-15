@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { VueDraggable } from "vue-draggable-plus";
-import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps, ComponentGroup } from "@/views/form/types";
 
 const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
   return Object.assign(cloneDeep(el), {
@@ -28,7 +28,7 @@ const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
         >
           <div v-for="comp in group.components" :key="comp.type" class="comp-item">
             <BaseIcon v-if="comp.icon" :icon="comp.icon" />
-            <span class="ml-2">{{ comp.name }}</span>
+            <span class="ml-1">{{ comp.name }}</span>
           </div>
         </vue-draggable>
       </div>
