@@ -46,7 +46,6 @@ const _placeholder = computed(() => {
   <a-range-picker
     v-model:value="value"
     allow-clear
-    :value-format="format"
     :format="format"
     :show-time="_showTime"
     :picker="_type"
