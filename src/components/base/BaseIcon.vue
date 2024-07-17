@@ -11,6 +11,7 @@ const props = withDefaults(defineProps<{
   type?: 'iconify' | 'antdv' | 'image' | 'logo',
   size?: number | string
 }>(), {
+  // 单位：rem
   size: 1,
   type: 'iconify',
 });
@@ -33,7 +34,7 @@ const sizeStyle = computed(() => {
       height: `${Number(props.size) * 1.2}em`,
       width: `${Number(props.size) * 1.2}em`,
     }
-  } else if (props.type === 'antdv') {
+  } else {
     return {
       height: `${props.size}rem`,
       width: `${props.size}rem`,

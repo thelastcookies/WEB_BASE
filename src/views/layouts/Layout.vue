@@ -1,6 +1,6 @@
 <template>
   <a-layout w-full h-full>
-    <a-layout-header h-52px p-lr-16px>
+    <a-layout-header h-13 p-lr-4>
       <Header />
     </a-layout-header>
     <a-layout>

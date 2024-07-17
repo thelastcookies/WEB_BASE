@@ -22,7 +22,7 @@ import 'ant-design-vue/dist/reset.css';
 app.use(Antd);
 
 // UnoCSS
-import 'virtual:uno.css';
+// import 'virtual:uno.css';
 
 // Day.js
 import dayjs from "dayjs";

@@ -26,13 +26,13 @@ async function handleClick({ key }: MenuInfo) {
 
 <template>
   <a-dropdown>
-    <div class="cursor-pointer h-full flex">
-      <a-avatar :size="size" mr-8px>
+    <div class="cursor-pointer h-full flex px-4 lt-sm:px-0">
+      <a-avatar :size="size" mr-8px lt-sm:m-0 bg-ant.bg-container>
         <template #icon>
-          <BaseIcon icon="i-mdi-account" class="text-14px"></BaseIcon>
+          <BaseIcon icon="i-mdi-account" text-14px c-ant.text ></BaseIcon>
         </template>
       </a-avatar>
-      <span class="c-ant.white text">{{ realName }}</span>
+      <span class="c-ant.white text lt-sm:hidden">{{ realName }}</span>
     </div>
     <template #overlay>
       <a-menu @click="handleClick">
