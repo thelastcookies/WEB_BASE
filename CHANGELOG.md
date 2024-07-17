@@ -1,5 +1,19 @@
 # Changelog
 
+## [0.12.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.11.0...v0.12.0) (2024-07-17)
+
+
+### Features
+
+* 完善 Layout，Header 组件的移动端适配 ([58a2188](https://github.com/thelastcookies/WEB-BASE/commit/58a21887566eafedf693d87cdd512b79ceab76fd))
+* 完善登录页的移动端适配 ([3567f23](https://github.com/thelastcookies/WEB-BASE/commit/3567f23a73d3ec7044fdaa0f9bbcb5652e9975b2))
+* 新增禁用路由守卫的功能 ([d9ae733](https://github.com/thelastcookies/WEB-BASE/commit/d9ae733ffb5a77840df487a4fd14470ecb17fda8))
+
+
+### Bug Fixes
+
+* 修复一个可能导致时间选择器所选值非法的问题 ([ac6176a](https://github.com/thelastcookies/WEB-BASE/commit/ac6176ab4d5f0ca57d2c005fdfce7777e158e149))
+
 ## [0.11.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.10.0...v0.11.0) (2024-07-15)
 
 
