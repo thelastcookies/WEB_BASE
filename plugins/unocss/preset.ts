@@ -29,7 +29,7 @@ const shortcuts: UserShortcuts = [
   ['image-bg', 'bg-no-repeat bg-contain bg-center'],
   ['image-bg-cover', 'bg-no-repeat bg-cover bg-center'],
   ['m-center', 'ml-a mr-a mt-0 mb-0'],
-  ['login-input', 'w-400px p-16px line-height-8 border-rd-10px font-size-18px border-width-1'],
+  ['login-input', 'w-full p-16px line-height-8 border-rd-10px font-size-18px border-width-1'],
   ['login-btn', 'h-54px w-full letter-spacing--0.18px font-size-18px font-600 border-rd-10px'],
   ['btn-in-table', 'p-ltrb-0 h-20px'],
   [/^(([pm])-([lrtb]+)-(\w+))$/, ([, , style, direction, val]) => {
