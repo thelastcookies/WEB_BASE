@@ -146,8 +146,8 @@ const handleInputBlur = (e: Event) => {
 
 <template>
   <div class="form-container w-400px m-center">
-    <div class="text-40px line-height-12 font-700 letter-spacing--1.6px lt-md:hidden">登录</div>
-    <div class="text-18px c-ant.text-tertiary mt-3">请登录以使用本系统</div>
+    <div class="text-10 line-height-12 font-700 tracking-wide lt-md:hidden">登录</div>
+    <div class="text-4.5 c-ant.text-tertiary mt-3">请登录以使用本系统</div>
     <a-form
       mt-8
       name="login"
@@ -171,7 +171,7 @@ const handleInputBlur = (e: Event) => {
           @focus="handleInputFocus"
           @blur="handleInputBlur"
         />
-        <div class="form-label bg-ant.bg-container absolute left-12.5px p-lr-4px"
+        <div class="form-label bg-ant.bg-container absolute left-12.5px px-1"
              :class="[userNameColorClass, {'active': userNameIsActive}]">账号
         </div>
       </a-form-item>
@@ -186,11 +186,11 @@ const handleInputBlur = (e: Event) => {
           @focus="handleInputFocus"
           @blur="handleInputBlur"
         />
-        <div class="form-label bg-ant.bg-container absolute left-12.5px p-lr-4px"
+        <div class="form-label bg-ant.bg-container absolute left-12.5px px-1"
              :class="[passwordColorClass, {'active': passwordIsActive}]">密码
         </div>
       </a-form-item>
-      <a-form-item class="mb-20px">
+      <a-form-item class="mb-5">
         <a-form-item name="remember" no-style>
           <a-checkbox v-model:checked="loginForm.remember">记住密码</a-checkbox>
         </a-form-item>
@@ -209,10 +209,10 @@ const handleInputBlur = (e: Event) => {
 <style scoped lang="less">
 .form-container {
   .ant-input-password {
-    padding: 0 16px 0;
+    padding: 0 1rem 0;
 
     :deep(.ant-input) {
-      padding: 16px 0 16px;
+      padding: 1rem 0 1rem;
       background-color: transparent;
     }
   }
