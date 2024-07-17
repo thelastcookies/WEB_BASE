@@ -28,7 +28,7 @@ export const useAppStore = defineStore('app', () => {
       userStore.$reset();
       const tokenStore = useTokenStore();
       tokenStore.$reset();
-      if (import.meta.env.APP_LOGIN_ENABLE) {
+      if (import.meta.env.APP_ROUTER_GUARD_ENABLE === 'true') {
         router.push("/login");
       } else {
         parent.window.location.assign("");

@@ -23,7 +23,7 @@ export default defineConfig(({ command }) => {
       base: '/' + env.APP_BUILD_NAME + '/',
       build: {
         outDir: env.APP_BUILD_NAME,
-        sourcemap: env.APP_SOURCE_MAP,
+        sourcemap: env.APP_SOURCE_MAP === 'true',
       },
     });
   }

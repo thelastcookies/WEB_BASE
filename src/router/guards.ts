@@ -7,6 +7,8 @@ const accessWhileList = [loginPath, '/error', '/401', '/404', '/403'];
 
 router.beforeEach(async (to) => {
   setRouteEmitter(to);
+  // 如果关闭了路由守卫
+  if (import.meta.env.APP_ROUTER_GUARD_ENABLE === 'false') return;
   // 获取 token 进行校验
   const { getToken } = useTokenStore();
   const token = getToken();
