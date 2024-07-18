@@ -1,4 +1,5 @@
 import { App } from 'ant-design-vue';
+import Bowser from "bowser";
 import type { MessageInstance } from 'ant-design-vue/es/message/interface';
 import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm';
 import type { NotificationInstance } from 'ant-design-vue/es/notification/interface';
@@ -6,6 +7,8 @@ import type { NotificationInstance } from 'ant-design-vue/es/notification/interf
 export const useAppStore = defineStore('app', () => {
   const windowInnerWidth = ref(0);
   const windowInnerHeight = ref(0);
+
+  const userAgent = Bowser.getParser(window.navigator.userAgent);
 
   const message = ref({} as MessageInstance);
   const notification = ref({} as NotificationInstance);
@@ -40,6 +43,7 @@ export const useAppStore = defineStore('app', () => {
   return {
     windowInnerWidth,
     windowInnerHeight,
+    userAgent,
     signOut,
     message, notification, modal,
   }
