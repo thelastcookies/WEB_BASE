@@ -11,10 +11,12 @@ const modules = import.meta.glob([
 ]);
 
 export const basicRouteMap = {
-  // 用于 iframe 外嵌页面
+  // 用于 App 的根页面
   Layout: () => import('@/views/layouts/Layout.vue'),
   // 用于 iframe 外嵌页面
   IFrame: () => import('@/views/common/IFrame.vue'),
+  // 用于链接跳转的页面
+  Link: () => import('@/views/common/Link.vue'),
   // 用于存在 children 的页面
   Parent: () => import('@/views/common/Parent.vue'),
   // 空页面

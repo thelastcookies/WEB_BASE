@@ -68,6 +68,7 @@ export interface ActionRecordRedirect extends _ActionBase {
 export interface ActionRecordLink extends _ActionBase {
   type: MenuPageType.LINK;
   url: string;
+  href: string;
 }
 
 export interface ActionRecordIFrame extends _ActionBase {

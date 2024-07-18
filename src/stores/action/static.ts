@@ -24,7 +24,7 @@ export const staticActions = [
   }, {
     id: "settings",
     pId: "",
-    actionId: "SysSettings",
+    actionId: "settings",
     title: "系统管理",
     type: MenuPageType.MENU,
     sort: 9,
@@ -113,7 +113,8 @@ export const staticActions = [
     type: MenuPageType.LINK,
     sort: 97,
     showInMenu: ShowInMenuType.SHOW,
-    url: "https://www.baidu.com",
+    url: "link",
+    href: "https://www.baidu.com",
   }, {
     id: "iframe",
     pId: "",

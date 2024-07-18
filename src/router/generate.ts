@@ -96,6 +96,9 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
   } else if (action.type === MenuPageType.IFRAME) {
     route.component = getRouterModule('IFrame');
     route.meta = { href: action.href };
+  } else if (action.type === MenuPageType.LINK) {
+    route.component = getRouterModule('Link');
+    route.meta = { href: action.href };
   } else if (action.type === MenuPageType.DIAGRAM) {
 
   }

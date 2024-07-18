@@ -17,6 +17,7 @@ const router = createRouter({
     component: () => import('@/views/samples/Sample.vue'),
   }, {
     path: '/:pathMatch(.*)',
+    name: '404',
     meta: {
       title: '找不到页面',
     },
