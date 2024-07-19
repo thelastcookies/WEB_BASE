@@ -22,6 +22,7 @@ async function handleClick({ key }: MenuInfo) {
   }
 }
 
+const { deviceType } = useAppStore();
 </script>
 
 <template>
@@ -32,7 +33,7 @@ async function handleClick({ key }: MenuInfo) {
           <BaseIcon icon="i-mdi-account" text-14px c-ant.text ></BaseIcon>
         </template>
       </a-avatar>
-      <span class="c-ant.white text lt-sm:hidden">{{ realName }}</span>
+      <span v-if="deviceType === 'desktop'" class="c-ant.white text">{{ realName }}</span>
     </div>
     <template #overlay>
       <a-menu @click="handleClick">

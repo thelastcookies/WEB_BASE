@@ -9,6 +9,7 @@ export const useAppStore = defineStore('app', () => {
   const windowInnerHeight = ref(0);
 
   const userAgent = Bowser.getParser(window.navigator.userAgent);
+  const deviceType = userAgent.getPlatformType();
 
   const message = ref({} as MessageInstance);
   const notification = ref({} as NotificationInstance);
@@ -44,6 +45,7 @@ export const useAppStore = defineStore('app', () => {
     windowInnerWidth,
     windowInnerHeight,
     userAgent,
+    deviceType,
     signOut,
     message, notification, modal,
   }
