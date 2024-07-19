@@ -146,7 +146,7 @@ const handleInputBlur = (e: Event) => {
 
 <template>
   <div class="form-container w-400px m-center">
-    <div class="text-10 line-height-12 font-700 tracking-wide lt-md:hidden">登录</div>
+    <div class="text-10 lh-12 font-700 tracking-wide lt-md:hidden">登录</div>
     <div class="text-4.5 c-ant.text-tertiary mt-3">请登录以使用本系统</div>
     <a-form
       mt-8
