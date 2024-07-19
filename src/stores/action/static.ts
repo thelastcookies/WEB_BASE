@@ -124,6 +124,6 @@ export const staticActions = [
     sort: 98,
     showInMenu: ShowInMenuType.SHOW,
     url: "iframe",
-    href: "http://10.0.0.10:6678/",
+    href: "https://next.antdv.com/components/overview-cn",
   }
 ] as ActionRecordRaw[];

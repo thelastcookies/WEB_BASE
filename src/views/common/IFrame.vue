@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const route = useRoute();
-const url = computed(() => route?.meta?.href);
+const url = computed(()=> route?.meta?.href as string);
 const loading = ref(true);
 
 const finishLoading = () => {
@@ -10,21 +10,20 @@ const finishLoading = () => {
 
 <template>
   <div
-    class="bg-[var(--bg-color)] ant-pro-iframe-wrap"
-    w-full h-full b-rd-8px of-hidden
-    flex flex-col flex-1
+    class="w-full h-full of-hidden
+    flex-c bg-ant.bg-layout iframe-wrapper"
   >
     <a-spin
       :spinning="loading"
-      wrapper-class-name="b-rd-8px of-hidden w-full h-full flex flex-col flex-1"
+      wrapper-class-name="of-hidden w-full h-full flex flex-col flex-1"
     >
-      <iframe w-full h-full flex flex-col flex-1 :src="url" style="border: none" @load="finishLoading" />
+      <iframe class="w-full h-full flex flex-col flex-1 border-none" :src="url" @load="finishLoading" />
     </a-spin>
   </div>
 </template>
 
 <style>
-.ant-pro-iframe-wrap {
+.iframe-wrapper {
   .ant-spin-container {
     height: 100% !important;
     width: 100% !important;
