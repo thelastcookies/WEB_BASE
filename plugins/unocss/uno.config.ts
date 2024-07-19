@@ -29,6 +29,10 @@ export default defineConfig({
     'i-mdi-eye',
     'i-mdi-heart',
     'i-mdi-trophy',
-    'i-mdi-thumb-up'
+    'i-mdi-thumb-up',
+    'i-mdi-format-list-text',
+    'i-mdi-cog-outline',
+    'i-mdi-link',
+    'i-mdi-image-filter-drama-outline',
   ]
 });

@@ -22,6 +22,8 @@ interface _ActionBase {
   title?: string;
   // 路由配置的类型
   type: MenuPageType;
+  // 图标
+  icon?: string;
   // 排序
   sort?: number;
   // 该配置项是否在系统中展示
