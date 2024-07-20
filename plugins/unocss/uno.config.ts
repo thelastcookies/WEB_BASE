@@ -1,5 +1,12 @@
 // uno.config.ts
-import { defineConfig, presetAttributify, presetIcons, presetTypography, presetUno } from 'unocss';
+import {
+  defineConfig,
+  presetAttributify,
+  presetIcons,
+  presetTypography,
+  presetUno,
+  transformerDirectives,
+} from 'unocss';
 import presetThelastcookies from "./preset";
 
 export default defineConfig({
@@ -13,6 +20,9 @@ export default defineConfig({
     }),
     presetTypography(),
     presetThelastcookies(),
+  ],
+  transformers: [
+    transformerDirectives(),
   ],
   safelist: [
     'i-mdi-pencil',
