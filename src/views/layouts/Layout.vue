@@ -21,5 +21,8 @@ const { deviceType } = useAppStore();
         </a-layout-content>
       </a-layout>
     </a-layout>
+    <a-layout-footer v-if="deviceType === 'mobile'" class="!p-0">
+      <FooterMenu></FooterMenu>
+    </a-layout-footer>
   </a-layout>
 </template>
