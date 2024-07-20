@@ -7,7 +7,9 @@ openNewTab();
 </script>
 
 <template>
-  <a-result title="已在新标签页中打开页面">
+  <a-result>
+    <template #title>已在新标签页中打开页面</template>
+    <template #subTitle>如果没有正常跳转，请点击按钮重试</template>
     <template #icon>
       <BaseIcon icon="i-mdi-link-variant" size="4.5" c-ant.blue-5 />
     </template>
