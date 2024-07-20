@@ -12,6 +12,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
     'vue',
     'vue-router',
     'pinia',
+    '@vueuse/core',
     customImports,
   ],
   dts: './plugins/auto-import/auto-imports.d.ts',
