@@ -28,11 +28,7 @@ const actionToMenu = (tree: ActionRecordRaw[]): MenuTreeNode[] => {
   return menuTree;
 };
 
-const handleMenuClick = ({ item, key, keyPath }: MenuInfo) => {
-  console.log('handleMenuClick item', item);
-  console.log('handleMenuClick key', key);
-  ///////////
-  console.log('handleMenuClick keyPath', keyPath);
+const handleMenuClick = ({ key }: MenuInfo) => {
   routeTo({ name: key as string });
 }
 
