@@ -1,24 +1,7 @@
-<script setup lang="ts">
-// import { ParentCompConsumer } from '@/layouts/basic-layout/parent-comp-consumer'
-
-// const appStore = useAppStore()
-// const { layoutSetting } = storeToRefs(appStore)
-// const multiTabStore = useMultiTab()
-// const { cacheList } = storeToRefs(multiTabStore)
-// const { getComp } = useCompConsumer()
-</script>
-
 <template>
-  <!--  <ParentCompConsumer>-->
-  <RouterView>
-    <template #default="{ Component, route }">
-      <Transition appear name="slide-fade" mode="out-in">
-        <!--<KeepAlive v-if="layoutSetting.keepAlive" :include="cacheList">-->
-          <!--<component :is="getComp(Component)" :key="route.fullPath" />-->
-        <!--</KeepAlive>-->
-        <component :is="Component" :key="route.fullPath" />
-      </Transition>
-    </template>
+  <RouterView v-slot="{ Component, route }">
+    <Transition appear name="slide-fade" mode="out-in">
+      <component :is="Component" :key="route.fullPath" />
+    </Transition>
   </RouterView>
-  <!--  </ParentCompConsumer>-->
 </template>
