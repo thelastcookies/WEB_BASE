@@ -1,5 +1,25 @@
 # Changelog
 
+## [0.13.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.12.0...v0.13.0) (2024-07-20)
+
+
+### Features
+
+* 增加 antd 的颜色预设到 UnoCSS ([09f7c6d](https://github.com/thelastcookies/WEB-BASE/commit/09f7c6df090a875165ab0e490637f90826acf5af))
+* 新增全局的设备类型状态存储，优化 Header 和 UserAvatar 的移动端适配方式 ([a7c9dbb](https://github.com/thelastcookies/WEB-BASE/commit/a7c9dbba8af11a42106a4ae35549a15478467b6c))
+* 新增外链的占位页面，同时更新路由组织和跳转方法 ([7cd5b06](https://github.com/thelastcookies/WEB-BASE/commit/7cd5b063b7ea04d2e3b70d2f74930a3896852c30))
+* 新增浏览器环境检测功能 ([35f67a7](https://github.com/thelastcookies/WEB-BASE/commit/35f67a7317495e1c0747dca62a2240728a191898))
+* 新增移动端适配的底部菜单栏 ([fe47f95](https://github.com/thelastcookies/WEB-BASE/commit/fe47f9579d3c008bf6ee94dd2ba78f35112aa762))
+* 新增菜单的 icon 配置 ([0bdb1b0](https://github.com/thelastcookies/WEB-BASE/commit/0bdb1b0a32995eaef7c00f99a2b684bae88b0ce9))
+
+
+### Bug Fixes
+
+* 修复环境变量配置问题 ([c8a51f7](https://github.com/thelastcookies/WEB-BASE/commit/c8a51f7a6896f67472abee9152527ac7fa034a4a))
+* 修复环境变量配置问题补充提交 ([0ee6fde](https://github.com/thelastcookies/WEB-BASE/commit/0ee6fde907941726a8acb4dc421fd16ac0daaea1))
+* 修复顶层页面过渡动画失效的问题 ([d76abd5](https://github.com/thelastcookies/WEB-BASE/commit/d76abd53146aa71eb97d86220d9ee5e7f1250ed5))
+* 增加外链页面没有正常跳转的提示 ([5fb8b38](https://github.com/thelastcookies/WEB-BASE/commit/5fb8b389b036586f3b752cbcbfaa97c7375bfb16))
+
 ## [0.12.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.11.0...v0.12.0) (2024-07-17)
 
 
