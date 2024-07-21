@@ -4,3 +4,8 @@ export interface AdminResponseBody<T = any> {
   Data: T;
   Msg: string;
 }
+
+export interface GetOptionRequest {
+  selectedValues?: string[];
+  q?: string;
+}
