@@ -1,32 +1,11 @@
 <script setup lang="ts">
-import type { Key, MenuTreeNode, RecordName } from "@/types";
+import type { Key, RecordName } from "@/types";
 import type { ActionRecordRaw } from "@/types/action";
 import type { MenuInfo, SelectInfo } from "ant-design-vue/es/menu/src/interface";
-import type { Ref } from "vue";
 import type { RouteLocationNormalized } from "vue-router";
 
 const openKeys = ref([] as string[]);
 const selectedKeys = ref([] as string[]);
-
-const actionToMenu = (tree: ActionRecordRaw[]): MenuTreeNode[] => {
-  let menuTree = [] as MenuTreeNode[];
-  for (const item of tree) {
-    if (item.showInMenu !== ShowInMenuType.SHOW) continue;
-    let menuNode: MenuTreeNode = {
-      key: item.actionId ?? item.id ?? '',
-      label: item.title ?? String(item.actionId) ?? String(item.id) ?? '',
-      title: item.title,
-    };
-    if ('icon' in item) {
-      menuNode.icon = item.icon;
-    }
-    if ('children' in item && item.children && item.children.filter(menu => menu.showInMenu === ShowInMenuType.SHOW).length > 0) {
-      menuNode.children = actionToMenu(item.children);
-    }
-    menuTree.push(menuNode);
-  }
-  return menuTree;
-};
 
 const handleMenuClick = ({ key }: MenuInfo) => {
   routeTo({ name: key as string });
@@ -38,17 +17,22 @@ const onOpenChange = (openKeys: (Key)[]) => {
 const onSelect = ({ selectedKeys }: SelectInfo) => {
 }
 
-const actionStore = useActionStore();
-const { actionTree } = storeToRefs(actionStore);
-
-const activeMenu = ref() as Ref<ActionRecordRaw>;
+// Menu 初始化，来源自 actionTree
+const { actionTree } = storeToRefs(useActionStore());
+const menuStore = useMenuStore();
+const { actionToMenu } = menuStore;
+const { menu } = storeToRefs(menuStore);
+watch(actionTree, (tree: ActionRecordRaw[]) => {
+  menu.value = actionToMenu(tree);
+}, {
+  immediate: true,
+});
 
 // 订阅路由变化，设置活跃菜单项
 listenRouteChange((route: RouteLocationNormalized) => {
   const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
   if (!ancestorChain || !ancestorChain.length) return;
 
-  activeMenu.value = ancestorChain[0];
   const indexMenuSelectable = ancestorChain.findIndex(action => action.showInMenu === ShowInMenuType.SHOW);
   selectedKeys.value = [String(ancestorChain[indexMenuSelectable]!.actionId)];
   const parentMenuIndex = indexMenuSelectable + 1 < ancestorChain.length ? indexMenuSelectable + 1 : indexMenuSelectable;
@@ -57,13 +41,6 @@ listenRouteChange((route: RouteLocationNormalized) => {
 
 onUnmounted(() => {
   removeRouteListener();
-});
-
-const menuData = ref([] as MenuTreeNode[]);
-watch(actionTree, (tree: ActionRecordRaw[]) => {
-  menuData.value = actionToMenu(tree);
-}, {
-  immediate: true,
 });
 
 </script>
@@ -78,7 +55,7 @@ watch(actionTree, (tree: ActionRecordRaw[]) => {
     @openChange="onOpenChange"
     @select="onSelect"
   >
-    <template v-for="item in menuData" :key="item.key">
+    <template v-for="item in menu" :key="item.key">
       <SubMenu :item="item" />
     </template>
   </a-menu>
