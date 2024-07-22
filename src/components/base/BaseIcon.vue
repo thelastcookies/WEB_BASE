@@ -31,8 +31,8 @@ const iconComp = computed(() => {
 const sizeStyle = computed(() => {
   if (props.type === 'iconify') {
     return {
-      height: `${Number(props.size) * 1.2}em`,
-      width: `${Number(props.size) * 1.2}em`,
+      height: `${Number(props.size) * 1.1}em`,
+      width: `${Number(props.size) * 1.1}em`,
     }
   } else {
     return {
@@ -64,20 +64,21 @@ const iconUrl = computed(() => {
       :class="icon"
       v-bind="$attrs"
       :style="[sizeStyle]"
-      class="inline-block vertical-text-bottom"
+      class="base-icon inline-block vertical-text-bottom"
     />
   </template>
   <template v-else-if="type === 'antdv'">
     <component
       v-if="icon" v-bind="$attrs" :is="iconComp"
       :style="{fontSize: size + 'rem', lineHeight: size + 'rem'}"
+      class="base-icon"
     />
   </template>
   <template v-else>
     <img
       v-bind="$attrs"
       :class="{'logo': type === 'logo'}"
-      :style="[sizeStyle]"
+      :style="['base-icon', sizeStyle]"
       :src="iconUrl" :alt="type" />
   </template>
 </template>
