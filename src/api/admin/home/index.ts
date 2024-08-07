@@ -1,8 +1,8 @@
-import type { ChangePwdRequest, LoginRequest } from "./types";
+import type { ChangePwdRequestBody, LoginRequestBody } from "./types";
 import type { AdminResponseBody } from "@/api/admin";
 
-export const login = (data: LoginRequest) => {
-  return usePost<AdminResponseBody, LoginRequest>(
+export const login = (data: LoginRequestBody) => {
+  return usePost<AdminResponseBody, LoginRequestBody>(
     `${PERM_URL}/Base_Manage/Home/SubmitLogin`,
     data, {
       // mock: true,
@@ -10,8 +10,8 @@ export const login = (data: LoginRequest) => {
   );
 };
 
-export const changePwd = (data: ChangePwdRequest) => {
-  return usePost<AdminResponseBody, ChangePwdRequest>(
+export const changePwd = (data: ChangePwdRequestBody) => {
+  return usePost<AdminResponseBody, ChangePwdRequestBody>(
     `${PERM_URL}/Base_Manage/Home/ChangePwd`,
     data,
   );

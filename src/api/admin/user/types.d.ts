@@ -1,4 +1,4 @@
-export interface GetUserListRequest {
+export interface GetUserListRequestBody {
   PageIndex?: number;
   PageRows?: number;
   SortField?: string;
@@ -12,7 +12,7 @@ export interface GetUserListRequest {
   }
 }
 
-export interface SaveUserRequest {
+export interface SaveUserRequestBody {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;

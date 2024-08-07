@@ -1,4 +1,4 @@
-export interface GetActionsRequest {
+export interface GetActionsRequestBody {
   ActionIds?: string[];
   parentId?: string;
   types?: number[];
@@ -6,7 +6,7 @@ export interface GetActionsRequest {
   checkEmptyChildren?: boolean;
 }
 
-export interface SaveActionRequest {
+export interface SaveActionRequestBody {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;
@@ -24,5 +24,5 @@ export interface SaveActionRequest {
   ShowInMenu?: string;
   Multi?: boolean;
   Query?: string;
-  permissionList?: SaveActionRequest[];
+  permissionList?: SaveActionRequestBody[];
 }

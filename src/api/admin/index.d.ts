@@ -5,7 +5,7 @@ export interface AdminResponseBody<T = any> {
   Msg: string;
 }
 
-export interface GetOptionRequest {
+export interface GetOptionRequestBody {
   selectedValues?: string[];
   q?: string;
 }

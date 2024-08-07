@@ -1,4 +1,4 @@
-export interface GetRoleListRequest {
+export interface GetRoleListRequestBody {
   PageIndex?: number;
   PageRows?: number;
   SortField?: string;
@@ -9,7 +9,7 @@ export interface GetRoleListRequest {
   }
 }
 
-export interface SaveRoleRequest {
+export interface SaveRoleRequestBody {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;

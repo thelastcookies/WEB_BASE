@@ -1,5 +1,5 @@
 import type { AdminResponseBody } from "@/api/admin";
-import type { GetActionsRequest, SaveActionRequest } from "@/api/admin/action/types";
+import type { GetActionsRequestBody, SaveActionRequestBody } from "@/api/admin/action/types";
 
 export const getAction = (id: string) => {
   return usePost<AdminResponseBody, Record<string, string>>(
@@ -8,8 +8,8 @@ export const getAction = (id: string) => {
   );
 };
 
-export const getPermissionList = (data: GetActionsRequest) => {
-  return usePost<AdminResponseBody, GetActionsRequest>(
+export const getPermissionList = (data: GetActionsRequestBody) => {
+  return usePost<AdminResponseBody, GetActionsRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Action/GetPermissionList`,
     data,
   );
@@ -21,22 +21,22 @@ export const getActionList = () => {
   );
 };
 
-export const getMenuTreeList = (data: GetActionsRequest) => {
-  return usePost<AdminResponseBody, GetActionsRequest>(
+export const getMenuTreeList = (data: GetActionsRequestBody) => {
+  return usePost<AdminResponseBody, GetActionsRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Action/GetMenuTreeList`,
     data,
   );
 };
 
-export const getActionTreeList = (data: GetActionsRequest) => {
-  return usePost<AdminResponseBody, GetActionsRequest>(
+export const getActionTreeList = (data: GetActionsRequestBody) => {
+  return usePost<AdminResponseBody, GetActionsRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Action/GetActionTreeList`,
     data,
   );
 };
 
-export const saveAction = (data: SaveActionRequest) => {
-  return usePost<AdminResponseBody, SaveActionRequest>(
+export const saveAction = (data: SaveActionRequestBody) => {
+  return usePost<AdminResponseBody, SaveActionRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Action/SaveData`,
     data,
   );

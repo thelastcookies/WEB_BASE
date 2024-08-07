@@ -1,8 +1,8 @@
 import type { AdminResponseBody } from "@/api/admin";
-import type { GetRoleListRequest, SaveRoleRequest } from "@/api/admin/role/types";
+import type { GetRoleListRequestBody, SaveRoleRequestBody } from "@/api/admin/role/types";
 
-export const getRoleList = (data: GetRoleListRequest) => {
-  return usePost<AdminResponseBody, GetRoleListRequest>(
+export const getRoleList = (data: GetRoleListRequestBody) => {
+  return usePost<AdminResponseBody, GetRoleListRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Role/GetDataList`,
     data,
   );
@@ -15,8 +15,8 @@ export const getRole = (id: string) => {
   );
 };
 
-export const saveRole = (data: SaveRoleRequest) => {
-  return usePost<AdminResponseBody, SaveRoleRequest>(
+export const saveRole = (data: SaveRoleRequestBody) => {
+  return usePost<AdminResponseBody, SaveRoleRequestBody>(
     `${PERM_URL}/Base_Manage/Base_Role/SaveData`,
     data,
   );

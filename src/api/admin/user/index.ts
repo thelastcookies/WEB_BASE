@@ -1,8 +1,8 @@
-import type { AdminResponseBody, GetOptionRequest } from "@/api/admin";
-import type { GetUserListRequest, SaveUserRequest } from "@/api/admin/user/types";
+import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin";
+import type { GetUserListRequestBody, SaveUserRequestBody } from "@/api/admin/user/types";
 
-export const getUserList = (data: GetUserListRequest) => {
-  return usePost<AdminResponseBody, GetUserListRequest>(
+export const getUserList = (data: GetUserListRequestBody) => {
+  return usePost<AdminResponseBody, GetUserListRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/GetDataList`,
     data,
   );
@@ -15,15 +15,15 @@ export const getUser = (id: string) => {
   );
 };
 
-export const getOptionList = (data: GetOptionRequest) => {
-  return usePost<AdminResponseBody, GetOptionRequest>(
+export const getOptionList = (data: GetOptionRequestBody) => {
+  return usePost<AdminResponseBody, GetOptionRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/GetOptionList`,
     data,
   );
 };
 
-export const saveUser = (data: SaveUserRequest) => {
-  return usePost<AdminResponseBody, SaveUserRequest>(
+export const saveUser = (data: SaveUserRequestBody) => {
+  return usePost<AdminResponseBody, SaveUserRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/SaveData`,
     data,
   );
