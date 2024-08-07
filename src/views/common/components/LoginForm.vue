@@ -1,11 +1,11 @@
 <script setup lang="ts">
-import type { LoginRequest } from "@/api/admin/home/types";
+import type { LoginRequestBody } from "@/api/admin/home/types";
 import type { Rule } from "ant-design-vue/es/form";
 import { message } from "ant-design-vue";
 
 const submittingDisabled = ref(false);
 
-const loginForm = reactive<LoginRequest>({
+const loginForm = reactive<LoginRequestBody>({
   userName: 'Admin',
   password: '123456',
   remember: false,
@@ -18,7 +18,7 @@ const loginFormRules: Record<string, Rule[]> = {
 
 const loginFormRef = ref(null) as Ref<Element | null>;
 const usernameRef = ref(null) as Ref<Element | null>;
-const handleSubmitLogin = async (formData: LoginRequest) => {
+const handleSubmitLogin = async (formData: LoginRequestBody) => {
   submittingDisabled.value = true;
   message.loading({
     content: '正在登录中，请稍候',
