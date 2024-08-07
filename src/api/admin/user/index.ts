@@ -1,15 +1,15 @@
 import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin";
-import type { GetUserListRequestBody, SaveUserRequestBody } from "@/api/admin/user/types";
+import type { GetUserListRequestBody, SaveUserRequestBody, UserInfo } from "@/api/admin/user/types";
 
 export const getUserList = (data: GetUserListRequestBody) => {
-  return usePost<AdminResponseBody, GetUserListRequestBody>(
+  return usePost<AdminResponseBody<UserInfo[]>, GetUserListRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/GetDataList`,
     data,
   );
 };
 
 export const getUser = (id: string) => {
-  return usePost<AdminResponseBody, Record<string, string>>(
+  return usePost<AdminResponseBody<UserInfo>, Record<string, string>>(
     `${PERM_URL}/Base_Manage/Base_User/GetTheData`,
     { id },
   );
@@ -29,7 +29,7 @@ export const saveUser = (data: SaveUserRequestBody) => {
   );
 };
 
-export const deleteData = (ids: string[]) => {
+export const deleteUser = (ids: string[]) => {
   return usePost<AdminResponseBody, string[]>(
     `${PERM_URL}/Base_Manage/Base_User/DeleteData`,
     ids,

@@ -1,3 +1,5 @@
+import { SexEnum } from "@/enums";
+
 export interface GetUserListRequestBody {
   PageIndex?: number;
   PageRows?: number;
@@ -20,7 +22,7 @@ export interface SaveUserRequestBody {
   UserName?: string;
   Password?: string;
   RealName?: string;
-  Sex?: number;
+  Sex?: SexEnum;
   Birthday?: string;
   DepartmentId?: string;
   OrgId?: string;
@@ -29,3 +31,27 @@ export interface SaveUserRequestBody {
   newPwd?: string;
   RoleIdList?: string[];
 }
+
+export interface UserInfo {
+  Id?: string;
+  CreateTime?: string;
+  CreatorId?: string;
+  Deleted?: false,
+  UserName?: string;
+  Password?: string;
+  RealName?: string;
+  Sex?: SexEnum;
+  Birthday?: string;
+  DepartmentId?: string;
+  OrgId?: string;
+  State?: number;
+  Remark?: string;
+  RoleNames?: string;
+  RoleIdList?: string[];
+  RoleNameList?: string[];
+  RoleType?: number;
+  DepartmentName?: string;
+  SexText?: string;
+  BirthdayText?: string;
+}
+
