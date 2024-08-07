@@ -16,7 +16,7 @@ const { deviceType } = useAppStore();
       </a-layout-sider>
       <a-layout>
         <Breadcrumb v-if="deviceType === 'desktop'"></Breadcrumb>
-        <a-layout-content>
+        <a-layout-content overflow-auto>
           <Parent />
         </a-layout-content>
       </a-layout>
