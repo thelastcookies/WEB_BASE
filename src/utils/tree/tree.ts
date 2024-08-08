@@ -1,8 +1,9 @@
 import type { Key } from "@/types";
 import type { TreeLikeItem } from "@/utils/tree/types";
 
-export class TreeNode implements TreeLikeItem {
+class TreeNode implements TreeLikeItem {
   [key: string]: any;
+
   id?: Key;
   Id?: Key;
   key?: Key;
@@ -14,7 +15,11 @@ export class TreeNode implements TreeLikeItem {
   children?: TreeNode[];
   Children?: TreeNode[];
 
-  constructor(data: Partial<TreeLikeItem> = {}) {
+  constructor(
+    data: Partial<TreeLikeItem> = {},
+    handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
+  ) {
+    if (handler) data = handler(data);
     Object.assign(this, data);
   }
 
@@ -22,17 +27,17 @@ export class TreeNode implements TreeLikeItem {
     return this.id || this.Id || this.key || this.Key;
   }
 
-  setId(id: Key) {
+  setId(v: Key) {
     if ("id" in this) {
-      this.id = id;
+      this.id = v;
     } else if ("Id" in this) {
-      this.Id = id;
+      this.Id = v;
     } else if ("key" in this) {
-      this.key = id;
+      this.key = v;
     } else if ("Key" in this) {
-      this.Key = id;
+      this.Key = v;
     } else {
-      this.id = id;
+      this.id = v;
     }
   }
 
@@ -40,31 +45,35 @@ export class TreeNode implements TreeLikeItem {
     return this.pid || this.pId || this.parentId || this.ParentId;
   }
 
-  setParentId(parentId: Key): void {
+  setParentId(v: Key): void {
     if ("pid" in this) {
-      this.pid = parentId;
+      this.pid = v;
     } else if ("pId" in this) {
-      this.pId = parentId;
+      this.pId = v;
     } else if ("parentId" in this) {
-      this.parentId = parentId;
+      this.parentId = v;
     } else if ("ParentId" in this) {
-      this.ParentId = parentId;
+      this.ParentId = v;
     } else {
-      this.parentId = parentId;
+      this.parentId = v;
     }
   }
 
-  getChildren(): TreeNode[] | undefined {
-    return this.children || this.Children;
+  getLabel(): Key | undefined {
+    return this.name || this.label || this.title || this.value;
   }
 
-  setChildren(children: TreeNode[]): void {
-    if ("children" in this) {
-      this.children = children;
-    } else if ("Children" in this) {
-      this.Children = children;
+  setLabel(v: Key): void {
+    if ("name" in this) {
+      this.name = v;
+    } else if ("label" in this) {
+      this.label = v;
+    } else if ("title" in this) {
+      this.title = v;
+    } else if ("value" in this) {
+      this.value = v;
     } else {
-      this.children = children;
+      this.name = v;
     }
   }
 
@@ -72,32 +81,65 @@ export class TreeNode implements TreeLikeItem {
     return this.sort || this.Sort || this.order || this.Order;
   }
 
-  setOrder(order: Key): void {
+  setOrder(v: Key): void {
     if ("sort" in this) {
-      this.sort = order;
+      this.sort = v;
     } else if ("Sort" in this) {
-      this.Sort = order;
+      this.Sort = v;
     } else if ("order" in this) {
-      this.order = order;
+      this.order = v;
     } else if ("Order" in this) {
-      this.Order = order;
+      this.Order = v;
     } else {
-      this.sort = order;
+      this.sort = v;
+    }
+  }
+
+  getChildren(): TreeNode[] | undefined {
+    return this.children || this.Children;
+  }
+
+  setChildren(v: TreeNode[]): void {
+    if ("children" in this) {
+      this.children = v;
+    } else if ("Children" in this) {
+      this.Children = v;
+    } else {
+      this.children = v;
     }
   }
 }
 
-export function createTree(tree: Partial<TreeLikeItem>[]): TreeNode[] {
+/**
+ * 用于创建树
+ * @param tree
+ * @param handler
+ */
+function createTree<P extends TreeNode>(
+  tree: Partial<TreeLikeItem>[],
+  handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
+): P[] {
   return tree.map(node => {
-    const tNode = new TreeNode(node);
+    const tNode = new TreeNode(node, handler) as P;
     const children = tNode.getChildren();
     if (children && children.length) {
-      createTree(children);
+      createTree(children, handler);
     }
     return tNode;
   });
 }
 
-export function createTreeShallow(tree: Partial<TreeLikeItem>[]): TreeNode[] {
-  return tree.map(node => new TreeNode(node));
+/**
+ * 用于创建浅层（单层）树，即只有第一层会被转换为 TreeNode
+ * 因此也会用来创建无嵌套的 TreeNode 数组
+ * @param tree
+ * @param handler
+ */
+function createShallowTree<P extends TreeNode>(
+  tree: Partial<TreeLikeItem>[],
+  handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
+): P[] {
+  return tree.map(node => new TreeNode(node, handler)) as P[];
 }
+
+export { TreeNode, createTree, createShallowTree };

@@ -1,18 +1,22 @@
 import type { Key } from "@/types";
 
 /**
- * 通用的树节点的类型声明，其中
- * 作为节点唯一标识符的字段，键的可选项有 "id" 与 "Id"，值的类型为 Key；
- * 作为父亲节点唯一标识符的字段，键的可选项有 "pid"、"pId"、"parentId" 与 "ParentId"，值的类型为 Key；
- * 作为子级列表的字段，键的可选项有 "children 与 "Children"，值的类型为 TreeLikeItem
+ * 通用的树节点的类型声明，其中，
+ * TreeNodeIdField: 作为节点唯一标识符的字段
+ * TreeNodeParentIdField: 作为父节点唯一标识符的字段
+ * TreeNodeLabelField: 作为节点文本的字段
+ * TreeNodeSortField: 作为节点排序的字段
+ * TreeNodeChildrenField: 作为子层级列表的字段
  */
 export type TreeNodeIdField = "id" | "Id" | "key" | "Key";
 export type TreeNodeParentIdField = "pid" | "pId" | "parentId" | "ParentId";
+export type TreeNodeLabelField = "name" | "label" | "title" | "value";
 export type TreeNodeSortField = "sort" | "Sort" | "order" | "Order";
 export type TreeNodeChildrenField = "children" | "Children";
 
 export interface TreeLikeItem extends Partial<Record<TreeNodeIdField, Key>>,
   Partial<Record<TreeNodeParentIdField, Key>>,
+  Partial<Record<TreeNodeLabelField, Key>>,
   Partial<Record<TreeNodeSortField, Key>>,
   Partial<Record<TreeNodeChildrenField, TreeLikeItem[]>> {
 }
