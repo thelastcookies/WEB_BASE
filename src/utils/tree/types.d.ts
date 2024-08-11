@@ -19,4 +19,5 @@ export interface TreeLikeItem extends Partial<Record<TreeNodeIdField, Key>>,
   Partial<Record<TreeNodeLabelField, Key>>,
   Partial<Record<TreeNodeSortField, Key>>,
   Partial<Record<TreeNodeChildrenField, TreeLikeItem[]>> {
+  [key: string]: any;
 }

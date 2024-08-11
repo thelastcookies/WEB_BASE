@@ -4,17 +4,6 @@ import type { TreeLikeItem } from "@/utils/tree/types";
 class TreeNode implements TreeLikeItem {
   [key: string]: any;
 
-  id?: Key;
-  Id?: Key;
-  key?: Key;
-  Key?: Key;
-  pid?: Key;
-  pId?: Key;
-  parentId?: Key;
-  ParentId?: Key;
-  children?: TreeNode[];
-  Children?: TreeNode[];
-
   constructor(
     data: Partial<TreeLikeItem> = {},
     handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
@@ -59,11 +48,11 @@ class TreeNode implements TreeLikeItem {
     }
   }
 
-  getLabel(): Key | undefined {
+  getLabel(): string | undefined {
     return this.name || this.label || this.title || this.value;
   }
 
-  setLabel(v: Key): void {
+  setLabel(v: string): void {
     if ("name" in this) {
       this.name = v;
     } else if ("label" in this) {
@@ -123,7 +112,8 @@ function createTree<P extends TreeNode>(
     const tNode = new TreeNode(node, handler) as P;
     const children = tNode.getChildren();
     if (children && children.length) {
-      createTree(children, handler);
+      const cl = createTree(children, handler);
+      tNode.setChildren(cl);
     }
     return tNode;
   });
