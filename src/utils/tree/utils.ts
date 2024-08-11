@@ -1,32 +1,41 @@
 /**
  * 用于树形结构数据(TreeNode[])的实用工具
  */
-
-import type { Key, RecordName } from "@/types";
+import type { Key } from "@/types";
 import type { TreeLikeItem } from "@/utils/tree/types";
 import { TreeNode } from "@/utils/tree/tree.ts";
-import type {
-  ActionRecordDiagram,
-  ActionRecordIFrame,
-  ActionRecordLink,
-  ActionRecordPage,
-  ActionRecordPageWithChildren,
-  ActionRecordRaw,
-} from "@/types/action";
-import { findAction } from "@/stores/action";
 
 /**
- * 按 节点唯一标识符 去查找 TreeNode[] 数据中的节点
- * @param tree TreeNode[]
+ * 按 节点唯一标识符 去查找树中的节点
+ * @param tree 由 TreeNode 扩展节点组成的树
  * @param id 节点唯一标识符
  */
 function findTreeNodeById(tree: TreeNode[], id: Key): TreeNode | undefined {
-  return find<TreeNode>(tree, function iterator(node: TreeNode) {
-    if (node.getId() === id) return node;
-    else if (node.getChildren()) {
-      return find<TreeNode>(node.getChildren(), iterator);
+  for (let i = 0, len = tree.length; i < len; i++) {
+    if (tree[i].getId() === id) {
+      return tree[i];
+    } else if (tree[i].getChildren()) {
+      const n = findTreeNodeById(tree[i].getChildren()!, id);
+      if (n) return n;
     }
-  });
+  }
+}
+
+/**
+ * 按 节点 label 去模糊查找树中的节点
+ * @param tree 由 TreeNode 扩展节点组成的树
+ * @param label 节点 label
+ */
+function findTreeNodesByLabel(tree: TreeNode[], label: string): TreeNode[] {
+  let nodes: TreeNode[] = [];
+  for (let i = 0, len = tree.length; i < len; i++) {
+    if (tree[i].getLabel()!.indexOf(label) > -1) {
+      nodes.push(tree[i]);
+    } else if (tree[i].getChildren()) {
+      nodes = [...nodes, ...findTreeNodesByLabel(tree[i].getChildren()!, label)];
+    }
+  }
+  return nodes;
 }
 
 /**
@@ -102,22 +111,22 @@ function treeToList(tree: TreeNode[]) {
  * @param key 查询参数
  * @param field 被查询字段
  */
-const findNodeAncestors = (
-  actions: ActionRecordRaw[],
-  key: Key | RecordName,
-  field: "id" | "actionId" | "title" = "actionId",
-): ActionRecordRaw[] | undefined => {
-  const action = findAction(actions, key, field)!;
-  if (action) {
-    if (action.pId) {
-      return [action, ...findActionAncestorChain(actions, action.pId, "id")!];
-    } else {
-      return [action];
-    }
-  } else {
-    return undefined;
-  }
-};
+// const findNodeAncestors = (
+//   actions: ActionRecordRaw[],
+//   key: Key | RecordName,
+//   field: "id" | "actionId" | "title" = "actionId",
+// ): ActionRecordRaw[] | undefined => {
+//   const action = findAction(actions, key, field)!;
+//   if (action) {
+//     if (action.pId) {
+//       return [action, ...findActionAncestorChain(actions, action.pId, "id")!];
+//     } else {
+//       return [action];
+//     }
+//   } else {
+//     return undefined;
+//   }
+// };
 
 /**
  * 根据长子节点
@@ -126,14 +135,14 @@ const findNodeAncestors = (
  * @param field 被查询字段
  */
 
-const findNodeDescendants = (
-  action: ActionRecordRaw,
-): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
-  if ("children" in action) {
-    if ("url" in action.children[0]) return action.children[0];
-    else findDescendantWithUrlDefined(action.children[0]);
-  } else return undefined;
-};
+// const findNodeDescendants = (
+//   action: ActionRecordRaw,
+// ): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
+//   if ("children" in action) {
+//     if ("url" in action.children[0]) return action.children[0];
+//     else findDescendantWithUrlDefined(action.children[0]);
+//   } else return undefined;
+// };
 
 
-export { findTreeNodeById, listToTree };
+export { findTreeNodeById, findTreeNodesByLabel, listToTree };
