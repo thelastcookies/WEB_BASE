@@ -1,11 +1,11 @@
 export interface AdminResponseBody<T = any> {
   Success: boolean;
   ErrorCode: number;
-  Data: T;
+  Data?: T;
   Msg: string;
 }
 
 export interface GetOptionRequestBody {
-  selectedValues?: string[];
+  selectedValues: string[];
   q?: string;
 }

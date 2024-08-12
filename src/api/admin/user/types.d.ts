@@ -32,7 +32,12 @@ export interface SaveUserRequestBody {
   RoleIdList?: string[];
 }
 
-export interface UserInfo {
+export interface UserListOptionItem {
+  value: string;
+  text: string;
+}
+
+export interface UserRecord {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;

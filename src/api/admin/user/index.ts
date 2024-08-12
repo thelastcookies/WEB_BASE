@@ -1,22 +1,28 @@
 import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin";
-import type { GetUserListRequestBody, SaveUserRequestBody, UserInfo } from "@/api/admin/user/types";
+import type {
+  GetUserListRequestBody,
+  SaveUserRequestBody,
+  UserListOptionItem,
+  UserRecord,
+} from "@/api/admin/user/types";
 
 export const getUserList = (data: GetUserListRequestBody) => {
-  return usePost<AdminResponseBody<UserInfo[]>, GetUserListRequestBody>(
+  return usePost<AdminResponseBody<UserRecord[]>, GetUserListRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/GetDataList`,
     data,
   );
 };
 
 export const getUser = (id: string) => {
-  return usePost<AdminResponseBody<UserInfo>, Record<string, string>>(
+  return usePost<AdminResponseBody<UserRecord>, Record<string, string>>(
     `${PERM_URL}/Base_Manage/Base_User/GetTheData`,
     { id },
   );
 };
 
+// 按照 UserListOptionItem 的结构返回用户列表，便于在组件内使用
 export const getOptionList = (data: GetOptionRequestBody) => {
-  return usePost<AdminResponseBody, GetOptionRequestBody>(
+  return usePost<AdminResponseBody<UserListOptionItem>, GetOptionRequestBody>(
     `${PERM_URL}/Base_Manage/Base_User/GetOptionList`,
     data,
   );
