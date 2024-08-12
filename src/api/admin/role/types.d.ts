@@ -9,7 +9,7 @@ export interface GetRoleListRequestBody {
   }
 }
 
-export interface SaveRoleRequestBody {
+export interface RoleRecord {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;
