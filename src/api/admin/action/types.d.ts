@@ -1,3 +1,6 @@
+import type { TreeNode } from "@/utils/tree/tree.ts";
+import type { MenuPageType } from "@/enums";
+
 export interface GetActionsRequestBody {
   ActionIds?: string[];
   parentId?: string;
@@ -25,4 +28,43 @@ export interface SaveActionRequestBody {
   Multi?: boolean;
   Query?: string;
   permissionList?: SaveActionRequestBody[];
+}
+
+export interface ActionResponseRecord extends TreeNode {
+  Id?: string;
+  MenuId?: string;
+  ParentId?: string;
+  Level?: number;
+  Type?: MenuPageType;
+  Url?: string;
+  Text?: string;
+  Component?: string;
+  NeedAction?: boolean;
+  ShowInMenu?: string;
+  selectable?: boolean;
+  icon?: string;
+  Sort?: number;
+  Multi?: boolean;
+  PermissionValues?: string[],
+  permissionList?: PermissionRecord[],
+  Query?: string;
+  Children?: ActionResponseRecord[];
+
+  // 与「Id」值相同，便于在组件内使用，下同
+  key: string;
+  // 与「Id」值相同
+  value: string;
+  // 与「Text」值相同
+  title: string;
+  // 与「Children」值相同
+  children: ActionResponseRecord[];
+}
+
+export interface PermissionRecord extends TreeNode {
+  Id: string;
+  ParentId: string;
+  Name: string;
+  Value: string;
+  NeedAction: boolean;
+  Type: MenuPageType;
 }
