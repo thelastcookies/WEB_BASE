@@ -1,10 +1,12 @@
-import type { ChangePwdRequestBody, LoginRequestBody } from "./types";
+import type { ChangePwdRequestBody, LoginRequestBody, OperatorInfo, UserNameRequestBody } from "./types";
 import type { AdminResponseBody } from "@/api/admin";
+import type { ActionResponseRecord } from "@/api/admin/action/types";
 
 export const login = (data: LoginRequestBody) => {
-  return usePost<AdminResponseBody, LoginRequestBody>(
+  return usePost<AdminResponseBody<string>, LoginRequestBody>(
     `${PERM_URL}/Base_Manage/Home/SubmitLogin`,
-    data, {
+    data,
+    {
       // mock: true,
     }
   );
@@ -14,13 +16,17 @@ export const changePwd = (data: ChangePwdRequestBody) => {
   return usePost<AdminResponseBody, ChangePwdRequestBody>(
     `${PERM_URL}/Base_Manage/Home/ChangePwd`,
     data,
+    {
+      token: true,
+    }
   );
 }
 
 export const getOperatorInfo = () => {
-  return usePost<AdminResponseBody>(
+  return usePost<AdminResponseBody<OperatorInfo>>(
     `${PERM_URL}/Base_Manage/Home/GetOperatorInfo`,
-    null, {
+    null,
+    {
       token: true,
       // mock: true,
     }
@@ -28,7 +34,7 @@ export const getOperatorInfo = () => {
 };
 
 export const getOperatorMenuList = () => {
-  return usePost<AdminResponseBody>(
+  return usePost<AdminResponseBody<ActionResponseRecord[]>>(
     `${PERM_URL}/Base_Manage/Home/GetOperatorMenuList`,
     null,
     {
@@ -37,8 +43,9 @@ export const getOperatorMenuList = () => {
   );
 };
 
-export const getOperatorMenuListByUsername = () => {
-  return usePost<AdminResponseBody>(
+export const getOperatorMenuListByUsername = (data: UserNameRequestBody) => {
+  return usePost<AdminResponseBody<ActionResponseRecord[]>, UserNameRequestBody>(
     `${PERM_URL}/Base_Manage/Home/GetOperatorMenuListByUserName`,
+    data,
   );
 };

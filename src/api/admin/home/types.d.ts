@@ -1,3 +1,6 @@
+import type { UserRecord } from "@/api/admin/user/types";
+import { getOperatorMenuListByUsername } from "@/api/admin/home/index.ts";
+
 export interface LoginRequestBody {
   userName: string;
   password: string;
@@ -9,8 +12,11 @@ export interface ChangePwdRequestBody {
   newPwd: string;
 }
 
-export interface UserInfo {
-  id: string;
+export interface UserNameRequestBody {
   userName: string;
-  realName?: string;
+}
+
+export interface OperatorInfo {
+  UserInfo: UserRecord;
+  Permissions: string[];
 }
