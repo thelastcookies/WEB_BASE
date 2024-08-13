@@ -27,7 +27,7 @@ const handleSubmitLogin = async (formData: LoginRequestBody) => {
   });
   login(formData).then(res => {
     if (res.Success) {
-      const tokenRes = res.Data;
+      const tokenRes = res.Data!;
       const { setToken } = useTokenStore();
       setToken(tokenRes);
       router.push("/");

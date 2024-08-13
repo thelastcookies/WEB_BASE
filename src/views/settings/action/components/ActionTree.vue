@@ -2,7 +2,7 @@
 import type { MenuResponseRecord } from "@/api/admin/action/types";
 import { EditEnum } from "@/enums";
 import type { Key } from "@/types";
-import type { TreeNode } from "@/utils";
+import type { DataNode } from "ant-design-vue/es/vc-tree/interface";
 
 const value = defineModel<MenuResponseRecord[]>("value", { default: () => [] });
 const selectedKeys = defineModel<Key[]>("selectedKeys", { default: () => [] });
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<ActionTreeProps>(), {
   checkable: false,
 });
 
-const tree = ref<MenuResponseRecord[]>([]);
+const tree = ref<(MenuResponseRecord)[]>([]);
 
 /**
  * 处理节点被选中
@@ -92,7 +92,7 @@ fetch();
       v-model:checked-keys="checkedKeys"
       :expanded-keys="expandedKeys"
       :auto-expand-parent="autoExpandParent"
-      :tree-data="tree"
+      :tree-data="tree as DataNode[]"
       :checkable="checkable"
       @expand="onExpand"
       block-node

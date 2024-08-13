@@ -48,7 +48,7 @@ const modalData = ref({} as UserRecord);
  */
 const fetch = async () => {
   const res = await getUserList({});
-  list.value = res.Data;
+  if(res.Data) list.value = res.Data;
 };
 
 /**

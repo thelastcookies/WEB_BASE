@@ -65,7 +65,7 @@ const handleCancel = () => {
 const fetch = async (id: string) => {
   if (id) {
     const res = await getUser(id);
-    data.value = res.Data;
+    if (res.Data) data.value = res.Data;
   }
 };
 

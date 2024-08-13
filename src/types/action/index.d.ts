@@ -12,7 +12,7 @@ export type ActionRecordRaw =
   | ActionRecordIFrame
   | ActionRecordDiagram;
 
-interface _ActionBase extends TreeLikeItem {
+interface _ActionBase {
   // 路由 id
   id: Key;
   // 父级 id

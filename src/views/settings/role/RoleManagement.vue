@@ -48,7 +48,7 @@ const modalData = ref({} as RoleRecord);
  */
 const fetch = async () => {
   const res = await getRoleList({});
-  list.value = res.Data;
+  if (res.Data) list.value = res.Data;
 };
 
 /**

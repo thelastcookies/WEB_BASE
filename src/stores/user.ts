@@ -11,8 +11,8 @@ export const useUserStore = defineStore('user', () => {
         if (!res.Success) {
           reject(new Error(WITH_UNAUTHORIZED));
         } else {
-          userInfo.value = res.Data.UserInfo;
-          userPerms.value = res.Data.Permissions;
+          userInfo.value = res.Data!.UserInfo;
+          userPerms.value = res.Data!.Permissions;
           resolve();
         }
       }).catch(e => reject(e));
