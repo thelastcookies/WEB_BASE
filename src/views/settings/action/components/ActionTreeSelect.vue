@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ActionResponseRecord } from "@/api/admin/action/types";
+import type { MenuResponseRecord } from "@/api/admin/action/types";
 import { EditEnum } from "@/enums";
 import type { Key } from "@/types";
 import type { TreeNode } from "@/utils";
@@ -21,7 +21,7 @@ withDefaults(defineProps<ActionTreeProps>(), {
   checkable: false,
 });
 
-const tree = ref<ActionResponseRecord[]>([]);
+const tree = ref<MenuResponseRecord[]>([]);
 
 /**
  * 处理节点被选中，更新 value

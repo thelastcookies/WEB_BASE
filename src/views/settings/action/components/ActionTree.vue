@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { ActionResponseRecord } from "@/api/admin/action/types";
+import type { MenuResponseRecord } from "@/api/admin/action/types";
 import { EditEnum } from "@/enums";
 import type { Key } from "@/types";
 import type { TreeNode } from "@/utils";
 
-const value = defineModel<TreeNode[]>("value", { default: () => [] });
+const value = defineModel<MenuResponseRecord[]>("value", { default: () => [] });
 const selectedKeys = defineModel<Key[]>("selectedKeys", { default: () => [] });
 const checkedKeys = defineModel<Key[]>("checkedKeys", { default: () => [] });
 
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<ActionTreeProps>(), {
   checkable: false,
 });
 
-const tree = ref<ActionResponseRecord[]>([]);
+const tree = ref<MenuResponseRecord[]>([]);
 
 /**
  * 处理节点被选中
