@@ -10,12 +10,12 @@ import { TreeNode } from "@/utils/tree/tree.ts";
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param id 节点唯一标识符
  */
-function findTreeNodeById(tree: TreeNode[], id: Key): TreeNode | undefined {
+function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | undefined {
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getId() === id) {
       return tree[i];
     } else if (tree[i].getChildren()) {
-      const n = findTreeNodeById(tree[i].getChildren()!, id);
+      const n = findTreeNodeById<T>(tree[i].getChildren()!, id);
       if (n) return n;
     }
   }
@@ -26,13 +26,13 @@ function findTreeNodeById(tree: TreeNode[], id: Key): TreeNode | undefined {
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param label 节点 label
  */
-function findTreeNodesByLabel(tree: TreeNode[], label: string): TreeNode[] {
-  let nodes: TreeNode[] = [];
+function findTreeNodesByLabel<T extends TreeNode>(tree: T[], label: string): T[] {
+  let nodes: T[] = [];
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getLabel()!.indexOf(label) > -1) {
       nodes.push(tree[i]);
     } else if (tree[i].getChildren()) {
-      nodes = [...nodes, ...findTreeNodesByLabel(tree[i].getChildren()!, label)];
+      nodes = [...nodes, ...findTreeNodesByLabel<T>(tree[i].getChildren()!, label)];
     }
   }
   return nodes;
@@ -43,7 +43,7 @@ function findTreeNodesByLabel(tree: TreeNode[], label: string): TreeNode[] {
  * @param tree TreeNode[]
  * @param id 父亲节点唯一标识符
  */
-function findTreeNodesByPId(tree: TreeNode[], id: Key) {
+function findTreeNodesByPId<T extends TreeNode>(tree: T[], id: Key) {
 
 }
 
@@ -52,20 +52,20 @@ function findTreeNodesByPId(tree: TreeNode[], id: Key) {
  * 根节点的判断依据为：父亲节点唯一标识符的字段为空或不存在
  * @param list 数组
  */
-function listToTree(list: TreeLikeItem[]): TreeNode[] {
-  const treeList = createShallowTree(list);
+function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
+  const treeList = createShallowTree<T>(list);
 
-  const roots: TreeNode[] = [];
-  const nodeMap: Record<Key, TreeNode> = {};
+  const roots: T[] = [];
+  const nodeMap: Record<Key, T> = {};
   treeList.forEach(node => {
     nodeMap[node.getId()!] = node;
   });
 
   treeList.forEach(node => {
-    if (node.getParentId()) {
-      findTreeNodeById(treeList, node.getId()!);
+    const pId = node.getParentId();
+    if (pId) {
       // 否则，将该项添加到父项的 children 数组中
-      nodeMap[node.getParentId()!].getChildren()!.push(nodeMap[node.getId()!]);
+      nodeMap[pId].getChildren()!.push(nodeMap[node.getId()!]);
     } else {
       roots.push(nodeMap[node.getId()!]);
     }

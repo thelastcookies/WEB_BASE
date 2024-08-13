@@ -84,11 +84,11 @@ class TreeNode implements TreeLikeItem {
     }
   }
 
-  getChildren(): TreeNode[] | undefined {
+  getChildren<T extends TreeNode>(): T[] | undefined {
     return this.children || this.Children;
   }
 
-  setChildren(v: TreeNode[]): void {
+  setChildren<T extends TreeNode>(v: T[]): void {
     if ("children" in this) {
       this.children = v;
     } else if ("Children" in this) {
@@ -104,15 +104,15 @@ class TreeNode implements TreeLikeItem {
  * @param tree
  * @param handler
  */
-function createTree<P extends TreeNode>(
+function createTree<T extends TreeNode>(
   tree: Partial<TreeLikeItem>[],
-  handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
-): P[] {
+  handler?: <K extends TreeLikeItem>(arg: TreeLikeItem) => K,
+): T[] {
   return tree.map(node => {
-    const tNode = new TreeNode(node, handler) as P;
+    const tNode = new TreeNode(node, handler) as T;
     const children = tNode.getChildren();
     if (children && children.length) {
-      const cl = createTree(children, handler);
+      const cl = createTree<T>(children, handler);
       tNode.setChildren(cl);
     }
     return tNode;
@@ -125,11 +125,11 @@ function createTree<P extends TreeNode>(
  * @param tree
  * @param handler
  */
-function createShallowTree<P extends TreeNode>(
+function createShallowTree<T extends TreeNode>(
   tree: Partial<TreeLikeItem>[],
-  handler?: <T extends TreeLikeItem>(arg: TreeLikeItem) => T,
-): P[] {
-  return tree.map(node => new TreeNode(node, handler)) as P[];
+  handler?: <K extends TreeLikeItem>(arg: TreeLikeItem) => K,
+): T[] {
+  return tree.map(node => new TreeNode(node, handler)) as T[];
 }
 
 export { TreeNode, createTree, createShallowTree };
