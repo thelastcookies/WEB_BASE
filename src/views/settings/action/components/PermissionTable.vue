@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { PermissionRecord } from "@/api/admin/action/types";
 import { MenuPageType } from "@/enums";
-import type { Key } from "@/types";
 
 const value = defineModel<PermissionRecord[]>("value", { default: () => [] });
 
@@ -42,7 +41,8 @@ const handleInlineDelete = (idx: number) => {
         <div class="flex justify-evenly">
           <span>{{ title }}</span>
           <a-button type="primary" size="small"
-                    @click="handleInlineAdd">新增</a-button>
+                    @click="handleInlineAdd">新增
+          </a-button>
         </div>
       </template>
     </template>
