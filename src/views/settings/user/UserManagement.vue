@@ -1,16 +1,16 @@
 <script setup lang="ts">
 import type { Key } from "@/types";
 import { message } from "ant-design-vue";
-import type { UserInfo } from "@/api/admin/user/types";
+import type { UserRecord } from "@/api/admin/user/types";
 
 /**
  * table 属性与方法
  */
 const selectedRowKeys: Key[] = [];
 
-const list = ref([] as UserInfo[]);
+const list = ref([] as UserRecord[]);
 
-const handleEdit = (type: number, data?: UserInfo) => {
+const handleEdit = (type: number, data?: UserRecord) => {
   modalOpen.value = true;
   modalType.value = type;
   if (type === EditEnum.EDIT) {
@@ -42,7 +42,7 @@ const batchDelete = async (ids: string[]) => {
  */
 const modalOpen = ref(false);
 const modalType = ref(EditEnum.ADD);
-const modalData = ref({} as UserInfo);
+const modalData = ref({} as UserRecord);
 /**
  * 数据交互与处理方法
  */
@@ -90,7 +90,7 @@ fetch();
         </template>
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'operation'">
-            <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as UserInfo)">编辑</a-button>
+            <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as UserRecord)">编辑</a-button>
             <a-divider type="vertical" />
             <a-popconfirm
               title="是否删除当前用户?"

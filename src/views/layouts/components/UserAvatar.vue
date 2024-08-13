@@ -9,7 +9,7 @@ withDefaults(defineProps<{
 });
 
 const userStore = useUserStore();
-const realName = computed(() => userStore.userInfo ? userStore.userInfo.realName : '');
+const realName = computed(() => userStore.userInfo ? userStore.userInfo.RealName : '');
 const appStore = useAppStore();
 
 async function handleClick({ key }: MenuInfo) {

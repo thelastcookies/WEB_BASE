@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { SaveUserRequestBody, UserInfo } from "@/api/admin/user/types";
+import type { SaveUserRequestBody, UserRecord } from "@/api/admin/user/types";
 import { EditEnum, SexEnum } from "@/enums";
 import type { FormInstance } from "ant-design-vue/es/form/Form";
 import { message } from "ant-design-vue";
@@ -28,7 +28,7 @@ const title = computed(() => {
 const formRef = ref<FormInstance>();
 const confirmLoading = ref<boolean>(false);
 
-const data = ref({} as UserInfo);
+const data = ref({} as UserRecord);
 
 const handleOk = async () => {
   confirmLoading.value = true;

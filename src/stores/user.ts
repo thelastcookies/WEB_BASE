@@ -1,8 +1,8 @@
-import type { UserInfo } from "@/api/admin/home/types";
+import type { UserRecord } from "@/api/admin/user/types";
 
 export const useUserStore = defineStore('user', () => {
-  const userInfo = shallowRef({} as UserInfo);
-  const userPerms = shallowRef([] as any[]);
+  const userInfo = shallowRef({} as UserRecord);
+  const userPerms = shallowRef([] as string[]);
 
   const getUserInfo = async () => {
     return new Promise<void | Error>((resolve, reject) => {
@@ -11,7 +11,7 @@ export const useUserStore = defineStore('user', () => {
         if (!res.Success) {
           reject(new Error(WITH_UNAUTHORIZED));
         } else {
-          userInfo.value = preprocessUserInfo(res.Data.UserInfo) as UserInfo;
+          userInfo.value = res.Data.UserInfo;
           userPerms.value = res.Data.Permissions;
           resolve();
         }
@@ -20,7 +20,7 @@ export const useUserStore = defineStore('user', () => {
   };
 
   const $reset = () => {
-    userInfo.value = {} as UserInfo;
+    userInfo.value = {};
     userPerms.value = [];
   };
 
@@ -32,10 +32,3 @@ export const useUserStore = defineStore('user', () => {
   }
 });
 
-export const preprocessUserInfo = (info: any): UserInfo => {
-  return {
-    id: info.Id,
-    userName: info.UserName,
-    realName: info.RealName,
-  } as UserInfo;
-}
