@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.14.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.13.0...v0.14.0) (2024-08-13)
+
+
+### Features
+
+* 增加用户、菜单、权限等页面的静态路由配置 ([6b828de](https://github.com/thelastcookies/WEB-BASE/commit/6b828dea0d7110ba823bb71d1a55fed26df322f6))
+* 完善 ActionTree, SlidePicker 组件的 sample ([49370fe](https://github.com/thelastcookies/WEB-BASE/commit/49370fe501daebe869c1b3eb8befb8eeeccfecd7))
+* 完善 TreeNode 类的功能 ([5db994d](https://github.com/thelastcookies/WEB-BASE/commit/5db994d0d94d059971edca7eb41263faec4efe16))
+* 完成 Action 相关接口迁移 ([51bf5a6](https://github.com/thelastcookies/WEB-BASE/commit/51bf5a6284fd813800a64bd7d875865af332c5a1))
+* 完成 Home 相关接口迁移 ([e7440d5](https://github.com/thelastcookies/WEB-BASE/commit/e7440d5f653859317d9a220fd6c5ade202b74dbc))
+* 完成 Role 相关接口迁移 ([b88a708](https://github.com/thelastcookies/WEB-BASE/commit/b88a7080b8c0b0e8caf89aaf116cedbca8cf47f1))
+* 完成 User 相关接口迁移 ([66bdccb](https://github.com/thelastcookies/WEB-BASE/commit/66bdccbd1c302a2c0d816f3ea2e02acf31a43447))
+* 完成用户管理页面的基本功能 ([f9dab6c](https://github.com/thelastcookies/WEB-BASE/commit/f9dab6c7a59f500467707c54cce3573370bad13e))
+* 完成菜单树组件的封装 ([f9375e0](https://github.com/thelastcookies/WEB-BASE/commit/f9375e00973dc4d68e5cfc40fdf86e48d19658fe))
+* 将菜单树组件进行了完善与拆分，分别为树组件与树下拉选择组件 ([c1e7326](https://github.com/thelastcookies/WEB-BASE/commit/c1e7326bf3e17fa14b6bb446f34f34be1196084a))
+* 新增 BaseQueryForm 封装组件 ([4fc0a0c](https://github.com/thelastcookies/WEB-BASE/commit/4fc0a0c3b87ffa5359e46c01c686e56a0ff31ada))
+* 新增 menuStore 用于作为全局的菜单状态存储 ([1fbef5b](https://github.com/thelastcookies/WEB-BASE/commit/1fbef5b509255720b598c4748345fc7d881f2271))
+* 新增用户，角色，权限的接口以及类型声明 ([c27982c](https://github.com/thelastcookies/WEB-BASE/commit/c27982cf011f14dce2e449124a8172154c18875d))
+* 角色管理页面基本功能 ([75803cc](https://github.com/thelastcookies/WEB-BASE/commit/75803cc8845b64268eb3154f78c8f6f6a7f15c1b))
+* 调整全局的枚举声明 ([71f49b6](https://github.com/thelastcookies/WEB-BASE/commit/71f49b6dd61a1b6d95c1a9b0577885f862313ffe))
+
 ## [0.13.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.12.0...v0.13.0) (2024-07-20)
 
 
