@@ -109,65 +109,65 @@
   <!--  </vue-draggable>-->
 </template>
 
-<style lang="less" scoped>
-.w-f-cp-ct {
-  width: 100%;
-  height: 100%;
-  min-height: 50px;
-  background-color: @main-bgc;
-}
-
-.w-tb-op {
-  position: relative;
-
-  .w-tb-op-add {
-    position: absolute;
-    top: 5px;
-    right: 5px;
-  }
-}
-
-:deep(.w-tb-header-cell) {
-  cursor: grab;
-
-  .w-form-d-item {
-    position: relative;
-    padding: 5px;
-    margin: 2px;
-    border: 1px dashed white;
-
-    &:hover {
-      border: 1px dashed #8D8D8D;
-    }
-  }
-
-  .w-form-cp-active {
-    border: 1px dashed var(--el-color-primary) !important;
-  }
-}
-
-.w-f-cp-select {
-  border-radius: 2px;
-  border: 1px dashed var(--el-color-primary) !important;
-}
-
-.w-form-component {
-  position: absolute;
-  bottom: 0;
-  right: 0;
-  z-index: 9;
-  display: none;
-  border-radius: 5px 0 0 0;
-  overflow: hidden;
-
-  i {
-    padding: 5px;
-    cursor: pointer;
-    background: var(--el-color-primary);
-
-    &:hover {
-      background: var(--el-color-primary-light-3);
-    }
-  }
-}
+<style scoped lang="less">
+//.w-f-cp-ct {
+//  width: 100%;
+//  height: 100%;
+//  min-height: 50px;
+//  background-color: @main-bgc;
+//}
+//
+//.w-tb-op {
+//  position: relative;
+//
+//  .w-tb-op-add {
+//    position: absolute;
+//    top: 5px;
+//    right: 5px;
+//  }
+//}
+//
+//:deep(.w-tb-header-cell) {
+//  cursor: grab;
+//
+//  .w-form-d-item {
+//    position: relative;
+//    padding: 5px;
+//    margin: 2px;
+//    border: 1px dashed white;
+//
+//    &:hover {
+//      border: 1px dashed #8D8D8D;
+//    }
+//  }
+//
+//  .w-form-cp-active {
+//    border: 1px dashed var(--el-color-primary) !important;
+//  }
+//}
+//
+//.w-f-cp-select {
+//  border-radius: 2px;
+//  border: 1px dashed var(--el-color-primary) !important;
+//}
+//
+//.w-form-component {
+//  position: absolute;
+//  bottom: 0;
+//  right: 0;
+//  z-index: 9;
+//  display: none;
+//  border-radius: 5px 0 0 0;
+//  overflow: hidden;
+//
+//  i {
+//    padding: 5px;
+//    cursor: pointer;
+//    background: var(--el-color-primary);
+//
+//    &:hover {
+//      background: var(--el-color-primary-light-3);
+//    }
+//  }
+//}
 </style>

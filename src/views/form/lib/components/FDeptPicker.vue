@@ -32,7 +32,7 @@
   </div>
 </template>
 
-<style scoped>
+<style scoped lang="less">
 //.w-placeholder {
 //  margin-left: 10px;
 //  color: var(--el-text-color-placeholder);
