@@ -1,5 +1,6 @@
 import type { MenuPageType, ShowInMenuType } from "@/enums";
 import type { Key, RecordName } from "@/types";
+import type { TreeLikeItem } from "@/utils/tree/types";
 
 export type ActionRecordRaw =
   ActionRecordPage
@@ -11,7 +12,7 @@ export type ActionRecordRaw =
   | ActionRecordIFrame
   | ActionRecordDiagram;
 
-interface _ActionBase {
+interface _ActionBase extends TreeLikeItem {
   // 路由 id
   id: Key;
   // 父级 id
