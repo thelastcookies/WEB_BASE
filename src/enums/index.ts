@@ -28,10 +28,12 @@ export enum MenuPageType {
   MENU = 0,
   // 页面类型，实际关联 .vue 文件
   PAGE = 1,
+  // 权限类型
+  PERM = 2,
   // 外链
-  LINK = 2,
+  LINK = 3,
   // iframe
-  IFRAME = 3,
+  IFRAME = 4,
   // 组态图
   DIAGRAM = 9
 }
