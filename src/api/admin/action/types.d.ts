@@ -9,7 +9,7 @@ export interface GetActionsRequestBody {
   checkEmptyChildren?: boolean;
 }
 
-export interface SaveActionRequestBody {
+export interface ActionResponseRecord {
   Id?: string;
   CreateTime?: string;
   CreatorId?: string;
@@ -27,10 +27,10 @@ export interface SaveActionRequestBody {
   ShowInMenu?: string;
   Multi?: boolean;
   Query?: string;
-  permissionList?: SaveActionRequestBody[];
+  permissionList?: PermissionRecord[];
 }
 
-export interface ActionResponseRecord extends TreeNode {
+export interface MenuResponseRecord extends TreeNode {
   Id?: string;
   MenuId?: string;
   ParentId?: string;
@@ -48,23 +48,23 @@ export interface ActionResponseRecord extends TreeNode {
   PermissionValues?: string[],
   permissionList?: PermissionRecord[],
   Query?: string;
-  Children?: ActionResponseRecord[];
+  Children?: MenuResponseRecord[];
 
   // 与「Id」值相同，便于在组件内使用，下同
-  key: string;
+  key?: string;
   // 与「Id」值相同
-  value: string;
+  value?: string;
   // 与「Text」值相同
-  title: string;
+  title?: string;
   // 与「Children」值相同
-  children: ActionResponseRecord[];
+  children?: MenuResponseRecord[];
 }
 
 export interface PermissionRecord extends TreeNode {
-  Id: string;
-  ParentId: string;
-  Name: string;
-  Value: string;
-  NeedAction: boolean;
-  Type: MenuPageType;
+  Id?: string;
+  ParentId?: string;
+  Name?: string;
+  Value?: string;
+  NeedAction?: boolean;
+  Type?: MenuPageType;
 }
