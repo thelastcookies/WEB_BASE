@@ -5,6 +5,7 @@ import VueDevTools from 'vite-plugin-vue-devtools'
 import { UnoCSSPluginConfig } from "./unocss";
 import { AutoImportPluginConfig } from "./auto-import";
 import { VueComponentPluginConfig } from "./vue-component";
+import { VisualizerPluginConfig } from "./visualizer";
 
 /**
  * 注入 vite 的插件
@@ -25,6 +26,7 @@ export function createVitePlugins() {
     UnoCSSPluginConfig,
     AutoImportPluginConfig,
     VueComponentPluginConfig,
+    VisualizerPluginConfig,
   ];
   return vitePluginList;
 }
