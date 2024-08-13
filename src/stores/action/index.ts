@@ -103,7 +103,7 @@ export const preprocessActionTree = (dataTree: any): ActionRecordRaw[] => {
     let action = {} as ActionRecordRaw;
     action.id = item.Id ?? '';
     action.pId = item.ParentId ?? '';
-    action.actionId = item.actionId ?? '';
+    action.actionId = item.MenuId ?? '';
     action.title = item.Text ?? '';
     action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
     action.sort = Number(item.Sort)
