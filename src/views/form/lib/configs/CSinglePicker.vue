@@ -33,7 +33,7 @@ const handleOptionAdd = () => {
           <BaseIcon class="moveable cursor-move" icon="i-mdi-drag" />
         </template>
         <template #addonAfter>
-          <BaseIcon @click="config.props.options.splice(i, 1)" icon="i-mdi-delete-outline" />
+          <BaseIcon @click="config.props.options.splice(i, 1)" icon="i-mdi-trash-can-outline" />
         </template>
       </a-input>
     </vue-draggable>

@@ -46,7 +46,7 @@ const emit = defineEmits<{
       <a-tooltip>
         <template #title>删除</template>
         <div class="icon" @click.stop="emit('delete')">
-          <BaseIcon icon="i-mdi-delete-outline" />
+          <BaseIcon icon="i-mdi-trash-can-outline" />
         </div>
       </a-tooltip>
     </div>

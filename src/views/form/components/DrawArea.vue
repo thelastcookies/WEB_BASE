@@ -91,7 +91,7 @@ const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) 
           @confirm="handleFormClear"
         >
           <div class="cursor-pointer">
-            <BaseIcon icon="i-mdi-delete-empty" />
+            <BaseIcon icon="i-mdi-trash-can-outline" />
             <span class="ml-1 mr-2">清空</span>
           </div>
         </a-popconfirm>
@@ -105,7 +105,7 @@ const handleCopy = (index: number, comp: ComponentConfig<ComponentConfigProps>) 
       </a-tooltip>
     </div>
   </div>
-  <div class="w-full h-[calc(100%-38px)] p-3">
+  <div class="w-full h-[calc(100%-38px)] p-3 overflow-y-auto">
     <a-form
       :class="['draw-area', viewType === 'desktop' ? 'as-desktop': 'as-mobile']"
       :labelCol="{style: {width: formConf.labelWidth + 'px'}}"
