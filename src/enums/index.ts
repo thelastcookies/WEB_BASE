@@ -71,3 +71,8 @@ export enum SexEnum {
   FEMALE,
   MALE
 }
+
+export enum HisDataType {
+  "TAG",
+  "TIME"
+}
