@@ -13,6 +13,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
     'vue-router',
     'pinia',
     '@vueuse/core',
+    '@vueuse/math',
     customImports,
   ],
   dts: './plugins/auto-import/auto-imports.d.ts',
@@ -26,6 +27,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
     'src/utils/**/*.ts',
     'src/views/**/*.vue',
     'src/views/**/*.ts',
+    'src/components/common/echarts/*.ts',
   ],
   ignoreDts: [
     'src/views/form/libs'
