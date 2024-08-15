@@ -7,43 +7,31 @@ import echarts from "./echarts";
 type EChartsType = typeof ECharts | undefined;
 
 type EchartsThemeType = "dark" | "light" | null;
+const { isDarkTheme } = useTheme();
 
 function useEcharts(chartRef: Ref<EChartsType>) {
   let chartInstance: echarts.ECharts | null = null;
   let cacheOptions: EChartsOption = {};
 
-  // const { isDark } = usePreferences();
   const { height, width } = useWindowSize();
   const resizeHandler: () => void = useDebounceFn(resize, 200);
-
-  const getOptions = computed((): EChartsOption => {
-    // if (!isDark.value) {
-    //   return cacheOptions;
-    // }
-
-    return {
-      backgroundColor: "transparent",
-      ...cacheOptions,
-    };
-  });
 
   const initCharts = (t?: EchartsThemeType) => {
     const el = chartRef?.value?.$el;
     if (!el) {
       return;
     }
-    // chartInstance = echarts.init(el, t || isDark.value ? 'dark' : null);
-    chartInstance = echarts.init(el);
+    chartInstance = echarts.init(el, t || isDarkTheme.value ? "dark" : null);
 
     return chartInstance;
   };
 
-  const renderEcharts = (options: EChartsOption, clear = true) => {
-    cacheOptions = options;
+  const renderECharts = (options: EChartsOption, clear = true) => {
+    cacheOptions = clear ? options : Object.assign(cacheOptions, options);
     return new Promise((resolve) => {
       if (chartRef.value?.offsetHeight === 0) {
         useTimeoutFn(() => {
-          renderEcharts(getOptions.value);
+          renderECharts(options);
           resolve(null);
         }, 30);
         return;
@@ -55,7 +43,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
             if (!instance) return;
           }
           clear && chartInstance?.clear();
-          chartInstance?.setOption(getOptions.value);
+          chartInstance?.setOption(options);
           resolve(null);
         }, 30);
       });
@@ -75,14 +63,14 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     resizeHandler?.();
   });
 
-  // watch(isDark, () => {
-  //   if (chartInstance) {
-  //     chartInstance.dispose();
-  //     initCharts();
-  //     renderEcharts(cacheOptions);
-  //     resize();
-  //   }
-  // });
+  watch(isDarkTheme, () => {
+    if (chartInstance) {
+      chartInstance.dispose();
+      initCharts();
+      renderECharts(cacheOptions);
+      resize();
+    }
+  });
 
   // watch(
   //   [
@@ -103,8 +91,9 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     // 销毁实例，释放资源
     chartInstance?.dispose();
   });
+
   return {
-    renderEcharts,
+    renderECharts,
     resize,
   };
 }

@@ -15,6 +15,6 @@ export const useTheme = () => {
     return isDarkTheme.value ? theme.darkAlgorithm : theme.defaultAlgorithm;
   });
 
-  return { zhCN, themeAlgo, designToken, legacyLogicalPropertiesTransformer };
+  return { zhCN, themeAlgo, designToken, legacyLogicalPropertiesTransformer, isDarkTheme };
 };
 
