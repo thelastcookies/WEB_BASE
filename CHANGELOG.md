@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.15.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.14.0...v0.15.0) (2024-08-15)
+
+
+### Features
+
+* 完善 ECharts 组件，支持深色模式 ([ba117dd](https://github.com/thelastcookies/WEB-BASE/commit/ba117dd57c4794cc54a0f00a8098afd9182952ce))
+* 完成实时、历史数据接口的迁移，历史数据请求以及数据处理方法的封装 ([f82989e](https://github.com/thelastcookies/WEB-BASE/commit/f82989ec57193d6039af0a9532085094921f6b87))
+* 对 dayjs 进行封装和扩展 ([d8ea77d](https://github.com/thelastcookies/WEB-BASE/commit/d8ea77d284db0fa265596af147ebe3cb64401f9d))
+* 新增 DesignToken 的导入，将 App.vue 中的环境监测和主题应用抽离到 hooks 中 ([bfcfe0e](https://github.com/thelastcookies/WEB-BASE/commit/bfcfe0e7b534e1e268e91769ee8baaf0def016ab))
+* 新增 ECharts 组件 ([a6ebe18](https://github.com/thelastcookies/WEB-BASE/commit/a6ebe18624e549dce4e1c09ed31df2d8a6007014))
+* 新增定时刷新 hook ([05ace01](https://github.com/thelastcookies/WEB-BASE/commit/05ace01bfe56d1d78284c11e61eab72975cae94d))
+
+
+### Bug Fixes
+
+* 将表单编辑器的未完成部分注释 ([22dc963](https://github.com/thelastcookies/WEB-BASE/commit/22dc9634a3f811b0cb86ae024095c1d42377214b))
+* 注释无用代码保证构建成功 ([34eddc9](https://github.com/thelastcookies/WEB-BASE/commit/34eddc96034101ed85a98c021e079435ee20f83b))
+* 调整部分代码以通过 tsc ([ad9fa76](https://github.com/thelastcookies/WEB-BASE/commit/ad9fa764844c092474c821c7e4ab6c47452d1d4e))
+
 ## [0.14.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.13.0...v0.14.0) (2024-08-13)
 
 
