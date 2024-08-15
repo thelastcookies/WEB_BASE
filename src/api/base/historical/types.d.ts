@@ -1,4 +1,4 @@
-import type { TagsRequestBody } from "@/api/base";
+import type { TagsRequestBody } from "@/api/base/types";
 import type { Dayjs } from "dayjs";
 import type { HisDataType } from "@/enums";
 

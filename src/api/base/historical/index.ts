@@ -1,6 +1,6 @@
 import type { AdminResponseBody } from "@/api/admin";
-import type { ValueResponseBody } from "@/api/base";
 import type { HisTagParams, HistoricalRequestBody, IntervalRequestBody } from "@/api/base/historical/types";
+import type { ValueResponseBody } from "@/api/base/types";
 import { HisDataType } from "@/enums";
 
 export const getHistorical = (data: HistoricalRequestBody) => {
@@ -81,7 +81,7 @@ export const getIntervalData = async (
           num = Number(tagValueArr[idx][tIdx]);
           if (decimal) num = unref(usePrecision(num, decimal));
         }
-        tagValueMap.set(time, num);
+        tagValueMap.set(tag, num);
       });
       timeMap.set(time, tagValueMap);
     });
