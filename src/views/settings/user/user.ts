@@ -1,4 +1,5 @@
-import { type ColProps, TableColumnProps } from "ant-design-vue";
+import { TableColumnProps } from "ant-design-vue";
+import type { QueryFormField } from "@/types/form";
 
 export const userTableColumns: TableColumnProps[] = [
   {
@@ -47,15 +48,7 @@ export const userTableColumns: TableColumnProps[] = [
 //     "roleId": "string"
 // }
 
-export interface SearchFormField {
-  label: string;
-  field: string;
-  placeholder: string;
-  component: string;
-  colProps: ColProps;
-}
-
-export const userTableSearchFields: SearchFormField[] = [
+export const userTableSearchFields: QueryFormField[] = [
   {
     label: "关键字",
     field: "keyword",

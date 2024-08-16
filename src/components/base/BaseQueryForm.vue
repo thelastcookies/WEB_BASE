@@ -1,9 +1,9 @@
 <script setup lang="ts">
 import type { FormInstance } from "ant-design-vue";
-import type { SearchFormField } from "@/views/settings/user/user.ts";
+import type { QueryFormField } from "@/types/form";
 
 const props = withDefaults(defineProps<{
-  fields: SearchFormField[],
+  fields: QueryFormField[],
 }>(), {
   fields: () => [],
 });
