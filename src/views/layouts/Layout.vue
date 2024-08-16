@@ -15,7 +15,7 @@ const { deviceType } = useAppStore();
         <SidebarMenu></SidebarMenu>
       </a-layout-sider>
       <a-layout>
-        <Breadcrumb v-if="deviceType === 'desktop'"></Breadcrumb>
+        <PageHeader v-if="deviceType === 'desktop'"></PageHeader>
         <a-layout-content overflow-x-hidden overflow-y-auto>
           <Parent />
         </a-layout-content>
