@@ -8,6 +8,7 @@ const accessWhileList = [loginPath, "/error", "/401", "/404", "/403"];
 router.beforeEach(async (to) => {
   setRouteEmitter(to);
 
+  // TODO 禁用登录时登录页的拦截
   // 获取 token 进行校验
   const { getToken } = useTokenStore();
   const token = getToken();
@@ -46,7 +47,9 @@ router.beforeEach(async (to) => {
           key: SYS_LOADING_KEY,
         });
         return ({
-          path: "/",
+          // path: "/",
+          path: to.path,
+          query: to.query,
           replace: true,
         });
       } catch (e) {
@@ -88,6 +91,12 @@ router.beforeEach(async (to) => {
           });
         }
       }
+    } else if (to.query.redirect) {
+      // 如果有重定向页面
+      return ({
+        path: decodeURIComponent(to.query.redirect as string),
+        replace: true,
+      });
     } else if (to.path === loginPath) {
       // 已登录情况下访问登录页时跳转到首页
       return ({
