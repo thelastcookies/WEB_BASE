@@ -19,6 +19,7 @@ interface _ActionBase {
   pId?: Key;
   // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项，在构建路由时，会将此项作为 'name' 属性填入 Route 中
   actionId: Key | RecordName;
+  url: string;
   // 路由配置的中文描述
   title?: string;
   // 路由配置的类型
@@ -33,7 +34,6 @@ interface _ActionBase {
 
 export interface ActionRecordPage extends _ActionBase {
   type: MenuPageType.PAGE;
-  url: string;
   // 组件配置
   component: string;
   // 重定向
