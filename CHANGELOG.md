@@ -1,5 +1,13 @@
 # Changelog
 
+## [0.16.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.15.0...v0.16.0) (2024-08-16)
+
+
+### Features
+
+* 完善禁用登录功能 ([a5e145a](https://github.com/thelastcookies/WEB-BASE/commit/a5e145ab2cae7219f3722d29f17c735a8c86925a))
+* 新增路由对于地址栏 url 的响应，无论是否启用登录皆有效 ([7060eeb](https://github.com/thelastcookies/WEB-BASE/commit/7060eebbbee3a0e115abbccf0b1a38f48353384e))
+
 ## [0.15.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.14.0...v0.15.0) (2024-08-15)
 
 
