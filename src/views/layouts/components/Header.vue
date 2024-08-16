@@ -1,6 +1,6 @@
 <script setup lang="ts">
 const appTitle = import.meta.env.APP_TITLE;
-const { deviceType } = useAppStore();
+const { deviceType, loginEnable } = useAppStore();
 </script>
 
 <template>
@@ -11,7 +11,7 @@ const { deviceType } = useAppStore();
       <span class="c-ant.white ml-3 font-size-18px font-700 tracking-wide lh-13
                   lt-sm:ml-0 lt-sm:mx-auto">{{ appTitle }}</span>
     </div>
-    <div class="h-full lh-13">
+    <div v-if="loginEnable" class="h-full lh-13">
       <UserAvatar :size="24" />
     </div>
   </div>

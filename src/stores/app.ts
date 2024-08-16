@@ -1,19 +1,21 @@
-import { App } from 'ant-design-vue';
+import { App } from "ant-design-vue";
 import Bowser from "bowser";
-import type { MessageInstance } from 'ant-design-vue/es/message/interface';
-import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm';
-import type { NotificationInstance } from 'ant-design-vue/es/notification/interface';
+import type { MessageInstance } from "ant-design-vue/es/message/interface";
+import type { ModalStaticFunctions } from "ant-design-vue/es/modal/confirm";
+import type { NotificationInstance } from "ant-design-vue/es/notification/interface";
 
-export const useAppStore = defineStore('app', () => {
+export const useAppStore = defineStore("app", () => {
   const windowInnerWidth = ref(0);
   const windowInnerHeight = ref(0);
 
   const userAgent = Bowser.getParser(window.navigator.userAgent);
   const deviceType = userAgent.getPlatformType();
 
+  const loginEnable = ref(import.meta.env.APP_LOGIN_ENABLE === "true");
+
   const message = ref({} as MessageInstance);
   const notification = ref({} as NotificationInstance);
-  const modal = ref({} as Omit<ModalStaticFunctions, 'warn'>);
+  const modal = ref({} as Omit<ModalStaticFunctions, "warn">);
   (() => {
     const staticFunction = App.useApp();
     message.value = staticFunction.message;
@@ -32,7 +34,7 @@ export const useAppStore = defineStore('app', () => {
       userStore.$reset();
       const tokenStore = useTokenStore();
       tokenStore.$reset();
-      if (import.meta.env.APP_ROUTER_GUARD_ENABLE === 'true') {
+      if (loginEnable.value) {
         router.push("/login");
       } else {
         parent.window.location.assign("");
@@ -46,7 +48,8 @@ export const useAppStore = defineStore('app', () => {
     windowInnerHeight,
     userAgent,
     deviceType,
+    loginEnable,
     signOut,
     message, notification, modal,
-  }
+  };
 });
