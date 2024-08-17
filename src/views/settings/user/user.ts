@@ -1,5 +1,5 @@
 import { TableColumnProps } from "ant-design-vue";
-import type { QueryFormField } from "@/types/form";
+import type { QueryFormField } from "@/components/common/query-form/types";
 
 export const userTableColumns: TableColumnProps[] = [
   {
@@ -52,9 +52,10 @@ export const userTableSearchFields: QueryFormField[] = [
   {
     label: "关键字",
     field: "keyword",
-    placeholder: "请输入关键字",
     component: "Input",
-    colProps: { span: 5 },
+    compProps: {
+      placeholder: "请输入关键字",
+    },
   },
 ];
 

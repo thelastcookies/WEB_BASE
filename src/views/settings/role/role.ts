@@ -1,5 +1,5 @@
-import { type ColProps, TableColumnProps } from "ant-design-vue";
-import type { QueryFormField } from "@/types/form";
+import { TableColumnProps } from "ant-design-vue";
+import type { QueryFormField } from "@/components/common/query-form/types";
 
 export const roleTableColumns: TableColumnProps[] = [
   {
@@ -39,9 +39,10 @@ export const roleTableSearchFields: QueryFormField[] = [
   {
     label: "角色名",
     field: "roleName",
-    placeholder: "请输入角色名",
     component: "Input",
-    colProps: { span: 5 },
+    compProps: {
+      placeholder: "请输入角色名",
+    },
   },
 ];
 

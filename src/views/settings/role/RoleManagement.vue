@@ -61,7 +61,7 @@ fetch();
 <template>
   <div class="w-full h-full p-normal">
     <div class="bg-rd-ant.border-radius m-custom.margin-size">
-      <BaseQueryForm :fields="roleTableSearchFields" />
+      <QueryForm :fields="roleTableSearchFields" />
     </div>
     <div class="h-[calc(100%-60px)]">
       <a-table :row-selection="{ selectedRowKeys: selectedRowKeys, columnWidth: 50 }"
