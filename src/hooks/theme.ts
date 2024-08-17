@@ -1,8 +1,11 @@
 import { legacyLogicalPropertiesTransformer, theme } from "ant-design-vue";
 import zhCN from "ant-design-vue/es/locale/zh_CN";
 import designToken from "@/assets/theme/design-token.ts";
+import "dayjs/locale/zh-cn";
 
 export const useTheme = () => {
+  dayjs.locale("zh-cn");
+
   const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
   const isDarkTheme = ref(darkModeMediaQuery.matches);
 
