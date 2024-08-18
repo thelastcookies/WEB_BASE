@@ -7,11 +7,14 @@ const actionStore = useActionStore();
 const { actionTree } = storeToRefs(actionStore);
 
 const breadcrumb = ref([] as ActionRecordRaw[]);
+const currentRoute = ref<RouteLocationNormalized>();
+
 // 订阅路由变化，设置面包屑
 listenRouteChange((route: RouteLocationNormalized) => {
   const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
   if (!ancestorChain || !ancestorChain.length) return;
   breadcrumb.value = ancestorChain.reverse();
+  currentRoute.value = route;
 }, true);
 
 onUnmounted(() => {
@@ -30,18 +33,32 @@ const routes = computed(() => {
 const router = useRouter();
 
 // TODO 插槽迁移
-// TODO title 和 back 的动态
+
+const title = computed(() => {
+  if (!currentRoute.value) return "";
+  return currentRoute.value.query?.title || currentRoute.value.meta?.title as string || "";
+});
+const backBtnEnable = computed(() => {
+  if (!currentRoute.value) return false;
+  if (currentRoute.value.meta?.backEnable) return null;
+  else return false;
+});
 
 </script>
 
 <template>
-  <a-page-header class="!py-4"
-    :title="breadcrumb[breadcrumb.length - 1].title"
+  <a-page-header
+    class="!py-4"
+    :title="title"
     :breadcrumb="{ routes }"
     :ghost="false"
-    :backIcon="breadcrumb.length > 2"
+    :back-icon="backBtnEnable"
     @back="router.go(-1)"
-  />
+  >
+    <template #backIcon>
+      <BaseIcon icon="i-mdi-arrow-left" size="1.2" />
+    </template>
+  </a-page-header>
 </template>
 
 <style scoped lang="less">

@@ -1,5 +1,5 @@
 import type { RecordName, RouteToRecordRaw } from "@/types";
-import type { ActionRecordRaw, ActionRecordLink } from "@/types/action";
+import type { ActionRecordRaw } from "@/types/action";
 import type { RouteLocationRaw } from "vue-router";
 
 const actionStore = useActionStore();
@@ -10,7 +10,7 @@ export const routeTo = (props: RouteToRecordRaw) => {
     const actionId = typeof props === "object" ? props.name : props;
     const action = findAction(actionTree.value, actionId);
     if (!action) {
-      const err = `Router.navigate "routeTo": Cannot find action by id: ${String(actionId)}.`
+      const err = `Router.navigate "routeTo": Cannot find action by id: ${String(actionId)}.`;
       console.error(err);
       reject(Error(err));
     } else if (action.type === MenuPageType.MENU) {
@@ -19,13 +19,16 @@ export const routeTo = (props: RouteToRecordRaw) => {
       if (descendant) {
         resolve(routeTo({ name: descendant.actionId as RecordName }));
       } else {
-        reject(Error(`Router.navigate "routeTo": Cannot find any descendants with a 'url' attribute defined in the action with id: ${String(actionId)}.`))
+        reject(Error(`Router.navigate "routeTo": Cannot find any descendants with a 'url' attribute defined in the action with id: ${String(actionId)}.`));
       }
     } else {
       // 构建 Route
       let route: RouteLocationRaw;
       route = { name: action.actionId as RecordName };
-      typeof props === "object" && props.params && Object.assign(route, { params: props.params });
+      if (typeof props === "object") {
+        props.params && Object.assign(route, { params: props.params });
+        props.query && Object.assign(route, { query: props.query });
+      }
       router.push(route);
       resolve(action);
     }

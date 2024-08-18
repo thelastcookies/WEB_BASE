@@ -20,6 +20,10 @@ export const staticActions = <ActionRecordRaw[]>[
       showInMenu: ShowInMenuType.SHOW,
       url: "",
       component: "pages/SamplePage.vue",
+      meta: {
+        title: '示例页面的示例标题',
+        backEnable: true,
+      }
     }],
   }, {
     id: "1536643442430447616",
