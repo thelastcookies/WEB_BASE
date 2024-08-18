@@ -132,6 +132,7 @@ const queryForm = ref<any>({
   selectName: "valueA",
   RadioName: "valueA",
   CheckboxName: "valueA",
+  RangePickerName: [dayjs().subtract(8, 'h'), dayjs()]
 });
 const onQuery = (form: Record<string, string>) => {
   queryForm.value = form;
