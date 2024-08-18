@@ -5,14 +5,14 @@ import { HisDataType } from "@/enums";
 
 export const getHistorical = (data: HistoricalRequestBody) => {
   return usePost<AdminResponseBody<ValueResponseBody>, HistoricalRequestBody>(
-    `${PERM_URL}/RealTime/GetHst`,
+    `${ADMIN_URL}/RealTime/GetHst`,
     data,
   );
 };
 
 export const getInterval = (data: IntervalRequestBody) => {
   return usePost<AdminResponseBody<ValueResponseBody>, IntervalRequestBody>(
-    `${PERM_URL}/RealTime/GetInterp`,
+    `${ADMIN_URL}/RealTime/GetInterp`,
     data,
   );
 };
