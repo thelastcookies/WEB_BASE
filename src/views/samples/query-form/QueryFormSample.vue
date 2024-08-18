@@ -127,7 +127,12 @@ const queryFields: QueryFormField[] = [
     },
   },
 ];
-const queryForm = ref<any>({});
+const queryForm = ref<any>({
+  inputName: "1234",
+  selectName: "valueA",
+  RadioName: "valueA",
+  CheckboxName: "valueA",
+});
 const onQuery = (form: Record<string, string>) => {
   queryForm.value = form;
 };
@@ -140,6 +145,7 @@ const onQuery = (form: Record<string, string>) => {
       <QueryForm
         :expand="true"
         :fields="queryFields"
+        v-model:form="queryForm"
         @query="onQuery"
       ></QueryForm>
     </div>

@@ -2,6 +2,10 @@
 import type { FormInstance } from "ant-design-vue";
 import type { QueryFormField } from "@/components/common/query-form/types";
 
+const form = defineModel<Record<string, string>>("form", {
+  default: () => {
+  },
+});
 const expand = defineModel<Boolean>("expand", { default: false });
 
 const props = withDefaults(defineProps<{
@@ -22,7 +26,8 @@ const ITEM_IN_LINE = props.itemInLine;
 const SPAN = 24 / ITEM_IN_LINE;
 
 const formRef = ref<FormInstance>();
-const queryForm = reactive({} as any);
+const queryForm = reactive<Record<string, any>>(Object.assign({}, form.value));
+
 const onFinish = () => {
   const query: any = {};
   if (props.allFields) {
@@ -42,6 +47,7 @@ const onFinish = () => {
       }
     }
   }
+  form.value = query;
   emit("query", query);
 };
 
