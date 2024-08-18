@@ -102,6 +102,9 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
   } else if (action.type === MenuPageType.DIAGRAM) {
 
   }
+  if ('meta' in action) {
+    route.meta = action.meta;
+  }
   return route;
 };
 
@@ -109,6 +112,7 @@ export const findDescendantWithUrlDefined = (
   action: ActionRecordRaw
 ): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
   if ('children' in action) {
+    // TODO 解决类型错误问题
     if ('url' in action.children[0]) return action.children[0];
     else findDescendantWithUrlDefined(action.children[0]);
   } else return undefined;

@@ -1,6 +1,6 @@
 import type { MenuPageType, ShowInMenuType } from "@/enums";
 import type { Key, RecordName } from "@/types";
-import type { TreeLikeItem } from "@/utils/tree/types";
+import type { RouteMeta } from "vue-router";
 
 export type ActionRecordRaw =
   ActionRecordPage
@@ -30,6 +30,8 @@ interface _ActionBase {
   sort?: number;
   // 该配置项是否在系统中展示
   showInMenu?: ShowInMenuType;
+  // 自定义的路由元数据
+  meta?: RouteMeta;
 }
 
 export interface ActionRecordPage extends _ActionBase {
@@ -41,7 +43,7 @@ export interface ActionRecordPage extends _ActionBase {
   // 是否为固定页签
   affix?: boolean;
   // 是否 KeepAlive
-  keepAlive?: boolean
+  keepAlive?: boolean;
   // 配置携带的默认查询参数
   query?: object;
 }
