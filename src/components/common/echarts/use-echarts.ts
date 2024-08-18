@@ -1,8 +1,7 @@
-import type { Ref } from "vue";
-import type { EChartsOption } from "echarts";
-import type ECharts from "./ECharts.vue";
-
 import echarts from "./echarts";
+import type { Ref } from "vue";
+import type { ECBasicOption } from "echarts/types/dist/shared";
+import type ECharts from "./ECharts.vue";
 
 type EChartsType = typeof ECharts | undefined;
 
@@ -11,7 +10,7 @@ const { isDarkTheme } = useTheme();
 
 function useEcharts(chartRef: Ref<EChartsType>) {
   let chartInstance: echarts.ECharts | null = null;
-  let cacheOptions: EChartsOption = {};
+  let cacheOptions: ECBasicOption = {};
 
   const { height, width } = useWindowSize();
   const resizeHandler: () => void = useDebounceFn(resize, 200);
@@ -26,8 +25,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     return chartInstance;
   };
 
-  const renderECharts = (options: EChartsOption, clear = true) => {
-    cacheOptions = clear ? options : Object.assign(cacheOptions, options);
+  const renderECharts = (options: ECBasicOption, clear = false) => {
     return new Promise((resolve) => {
       if (chartRef.value?.offsetHeight === 0) {
         useTimeoutFn(() => {
@@ -44,6 +42,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
           }
           clear && chartInstance?.clear();
           chartInstance?.setOption(options);
+          cacheOptions = chartInstance?.getOption()!;
           resolve(null);
         }, 30);
       });
@@ -72,6 +71,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     }
   });
 
+  // TODO resize 功能完善
   // watch(
   //   [
   //     () => preferences.sidebar.collapsed,

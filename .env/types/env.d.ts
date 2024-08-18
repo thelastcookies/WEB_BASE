@@ -27,7 +27,7 @@ interface ImportMetaEnv {
    */
   readonly APP_LOGIN_ENABLE: "true" | "false";
   readonly APP_API_BASE_URL: string;
-  readonly APP_API_PERM_URL: string;
+  readonly APP_API_ADMIN_URL: string;
   readonly APP_API_GO_URL: string;
   readonly APP_API_MOCK_URL: string;
 }

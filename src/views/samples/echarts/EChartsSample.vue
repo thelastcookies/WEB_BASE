@@ -4,8 +4,9 @@ import type { EChartsType } from "@/components/common/echarts";
 const chartRef = ref<EChartsType>();
 const { renderECharts } = useEcharts(chartRef);
 
-onMounted(() => {
-  renderECharts(Object.assign({}, generalLineChartOption,
+onMounted(async () => {
+  await renderECharts(generalLineChartOption);
+  await renderECharts(
     {
       legend: {
         data: [
@@ -16,6 +17,7 @@ onMounted(() => {
       yAxis: {
         name: "MW",
       },
+      xAxis: {},
       series: [
         {
           name: "实时负荷",
@@ -29,7 +31,7 @@ onMounted(() => {
           connectNulls: true,
         },
       ],
-    }));
+    });
 });
 
 const dataMap = ref<any>();
@@ -58,7 +60,7 @@ const getHistoricalData = async () => {
       source: data,
     },
   };
-  await renderECharts(options, false);
+  await renderECharts(options);
 };
 
 getHistoricalData();
