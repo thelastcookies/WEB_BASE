@@ -1,3 +1,7 @@
-export default {
+export const defaultToken = {
+
+}
+
+export const darkToken = {
 
 }

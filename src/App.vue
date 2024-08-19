@@ -1,5 +1,8 @@
 <script setup lang="ts">
-const { zhCN, designToken, themeAlgo, legacyLogicalPropertiesTransformer } = useTheme();
+import { legacyLogicalPropertiesTransformer } from "ant-design-vue";
+import zhCN from "ant-design-vue/es/locale/zh_CN";
+const { designToken, themeAlgorithm } = storeToRefs(useThemeStore());
+
 useEnvironmentCheck();
 </script>
 
@@ -7,7 +10,7 @@ useEnvironmentCheck();
   <a-config-provider
     :locale="zhCN"
     :theme="{
-      algorithm: themeAlgo,
+      algorithm: themeAlgorithm,
       token: designToken,
     }"
   >
