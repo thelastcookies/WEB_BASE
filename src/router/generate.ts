@@ -113,6 +113,7 @@ export const findDescendantWithUrlDefined = (
 ): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
   if ('children' in action) {
     // TODO 解决类型错误问题
+    // @ts-ignore
     if ('url' in action.children[0]) return action.children[0];
     else findDescendantWithUrlDefined(action.children[0]);
   } else return undefined;
