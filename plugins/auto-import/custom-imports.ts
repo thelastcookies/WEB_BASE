@@ -17,6 +17,9 @@ export const customImports: ImportsMap = {
     'nanoid', // named imports: import { nanoid } from 'nanoid',
   ],
   'lodash-es': [
-    'cloneDeep',
+    'cloneDeep', 'merge',
+  ],
+  'mitt': [
+    ['default', 'mitt']
   ]
 };
