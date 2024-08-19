@@ -43,6 +43,9 @@ export const useThemeStore = defineStore("theme", () => {
     }
   };
 
-  return { isDarkTheme, listenThemeChange, designToken, themeAlgorithm };
+  const removeThemeListener = () => {
+    emitter.off(key);
+  };
 
+  return { isDarkTheme, designToken, themeAlgorithm, listenThemeChange, removeThemeListener };
 });
