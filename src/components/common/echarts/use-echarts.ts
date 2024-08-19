@@ -6,7 +6,7 @@ import type ECharts from "./ECharts.vue";
 type EChartsType = typeof ECharts | undefined;
 
 type EchartsThemeType = "dark" | "light" | null;
-const { isDarkTheme } = useTheme();
+const { isDarkTheme } = storeToRefs(useThemeStore());
 
 function useEcharts(chartRef: Ref<EChartsType>) {
   let chartInstance: echarts.ECharts | null = null;
@@ -21,7 +21,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     return chartInstance;
   };
 
-  const renderECharts = (options: ECBasicOption, clear = false) => {
+  const renderECharts = (options: ECBasicOption, notMerge: boolean = false, replaceMerge?: string | string[]) => {
     return new Promise((resolve) => {
       if (chartRef.value?.offsetHeight === 0) {
         useTimeoutFn(() => {
@@ -36,9 +36,8 @@ function useEcharts(chartRef: Ref<EChartsType>) {
             const instance = initCharts();
             if (!instance) return;
           }
-          clear && chartInstance?.clear();
-          chartInstance?.setOption(options);
-          cacheOptions = chartInstance?.getOption()!;
+          chartInstance?.setOption(options, { notMerge, replaceMerge });
+          cacheOptions = merge(cacheOptions, options);
           resolve(null);
         }, 30);
       });
