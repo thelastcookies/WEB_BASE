@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.17.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.16.0...v0.17.0) (2024-08-20)
+
+
+### Features
+
+* 使用 PageHeader 组件来代替 Breadcrumb 组件 ([c0c6183](https://github.com/thelastcookies/WEB-BASE/commit/c0c6183418466abfc25a27b1e3c699a306761bf7))
+* 增加 PageHeader 组件的动态标题和返回按钮支持 ([1669029](https://github.com/thelastcookies/WEB-BASE/commit/1669029f1b58925e7b0c6076a713a0c1c8cfd51a))
+* 完善 ECharts 组件的 resize 功能 ([57b9c4a](https://github.com/thelastcookies/WEB-BASE/commit/57b9c4a2f3c57a22e206d198d463bec689bcce97))
+* 完善 QueryForm 组件 ([d3e313f](https://github.com/thelastcookies/WEB-BASE/commit/d3e313f61cb659c044cb568778080d1e3d9e3880))
+* 完善 QueryForm 组件的初始化注入 ([a482ce7](https://github.com/thelastcookies/WEB-BASE/commit/a482ce76adc4bb54363101fba1e6bd6db557d1a8))
+* 扩充 Action 的 meta 字段支持 ([8dda5c0](https://github.com/thelastcookies/WEB-BASE/commit/8dda5c090290deb4bb8834683a94e6d16cef3fa7))
+* 扩展 ECharts 组件初始化参数，修复主题切换时图表主题没有正确切换的问题 ([5731935](https://github.com/thelastcookies/WEB-BASE/commit/573193525eed959fdc4897a58893f1c4312bb4e8))
+
+
+### Bug Fixes
+
+* 修复 ECharts 组件 option 设置的问题 ([a8e66eb](https://github.com/thelastcookies/WEB-BASE/commit/a8e66eb2fa891ad464057cf085c1c306c4e1c14f))
+* 完善 QueryForm 的时间选择示例 ([03d01d0](https://github.com/thelastcookies/WEB-BASE/commit/03d01d0ac76fbe1d2971063158cdc8ace9b1680b))
+* 将 dayjs 的本地化迁移到 useTheme 中，以修复时间类时间本地化不正确的问题 ([ec0648a](https://github.com/thelastcookies/WEB-BASE/commit/ec0648a2eb794dd1636bad7f6fb6f0375f8d855f))
+* 补充 Theme 变化发布方法的销毁，防止内存泄漏 ([1fede5b](https://github.com/thelastcookies/WEB-BASE/commit/1fede5b65d1391e398bf0733092cc45915ee65de))
+
 ## [0.16.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.15.0...v0.16.0) (2024-08-16)
 
 
