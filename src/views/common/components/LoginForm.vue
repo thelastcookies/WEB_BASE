@@ -33,7 +33,6 @@ const handleSubmitLogin = async (formData: LoginRequestBody) => {
       const tokenRes = res.Data!;
       const { setToken } = useTokenStore();
       setToken(tokenRes);
-      console.log(route);
       router.replace({ path: "/", query: route.query });
     } else {
       message.error({
