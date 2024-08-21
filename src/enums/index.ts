@@ -1,6 +1,6 @@
 export enum AccessEnum {
-  ADMIN = "ADMIN",
-  USER = "USER",
+  ADMIN = 'ADMIN',
+  USER = 'USER',
 }
 
 /**
@@ -9,15 +9,15 @@ export enum AccessEnum {
  * BACKEND 模式向接口请求加载
  */
 export enum LoadActionTypeEnum {
-  FRONTEND = "FRONTEND",
-  BACKEND = "BACKEND",
+  FRONTEND = 'FRONTEND',
+  BACKEND = 'BACKEND',
 }
 
 export enum StatusEnum {
-  OFF = "0",
-  RUNNING = "1",
-  ONLINE = "2",
-  ERROR = "3",
+  OFF = '0',
+  RUNNING = '1',
+  ONLINE = '2',
+  ERROR = '3',
 }
 
 /**
@@ -42,8 +42,8 @@ export enum MenuPageType {
  * 菜单是否展示
  */
 export enum ShowInMenuType {
-  HIDE = "0",
-  SHOW = "1",
+  HIDE = '0',
+  SHOW = '1',
   // 预留扩展
 }
 
@@ -73,6 +73,7 @@ export enum SexEnum {
 }
 
 export enum HisDataType {
-  "TAG",
-  "TIME"
+  'TAG',
+  'TIME',
+  'TIME_VALUE_ARR'
 }

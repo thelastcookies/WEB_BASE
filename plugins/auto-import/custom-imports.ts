@@ -1,4 +1,4 @@
-import type { ImportsMap } from "unplugin-auto-import/types";
+import type { ImportsMap } from 'unplugin-auto-import/types';
 
 /**
  * 自定义自动导入
@@ -17,9 +17,11 @@ export const customImports: ImportsMap = {
     'nanoid', // named imports: import { nanoid } from 'nanoid',
   ],
   'lodash-es': [
-    'cloneDeep', 'merge',
+    'cloneDeep',
+    'merge',
+    'zip',
   ],
   'mitt': [
-    ['default', 'mitt']
-  ]
+    ['default', 'mitt'],
+  ],
 };
