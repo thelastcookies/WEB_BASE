@@ -1,5 +1,5 @@
 import type { ChangePwdRequestBody, LoginRequestBody, OperatorInfo, UserNameRequestBody } from "./types";
-import type { AdminResponseBody } from "@/api/admin";
+import type { AdminResponseBody } from "@/api/admin/types";
 import type { MenuResponseRecord } from "@/api/admin/action/types";
 
 export const login = (data: LoginRequestBody) => {

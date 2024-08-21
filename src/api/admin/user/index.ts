@@ -1,4 +1,4 @@
-import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin";
+import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin/types";
 import type {
   GetUserListRequestBody,
   SaveUserRequestBody,

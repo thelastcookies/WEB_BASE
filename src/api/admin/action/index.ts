@@ -1,4 +1,4 @@
-import type { AdminResponseBody } from "@/api/admin";
+import type { AdminResponseBody } from "@/api/admin/types";
 import type {
   MenuResponseRecord,
   GetActionsRequestBody,

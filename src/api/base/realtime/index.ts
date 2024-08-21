@@ -1,4 +1,4 @@
-import type { AdminResponseBody } from "@/api/admin";
+import type { AdminResponseBody } from "@/api/admin/types";
 import type { TagsRequestBody, ValueResponseBody } from "@/api/base/types";
 
 export const getRealtime = (tags: string) => {

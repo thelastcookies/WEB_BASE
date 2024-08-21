@@ -1,4 +1,4 @@
-import type { AdminResponseBody } from '@/api/admin';
+import type { AdminResponseBody } from '@/api/admin/types';
 import type { HisTagParams, HistoricalRequestBody, IntervalRequestBody } from '@/api/base/historical/types';
 import type { ValueResponseBody } from '@/api/base/types';
 import { HisDataType } from '@/enums';
