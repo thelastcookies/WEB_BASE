@@ -1,15 +1,22 @@
 <script setup lang="ts">
-import type { FormInstance } from "ant-design-vue";
-import type { QueryFormField } from "@/components/common/query-form/types";
+import { type FormInstance, message } from 'ant-design-vue';
+import type { QueryFormField } from '@/components/common/query-form/types';
+import type { Recordable } from '@/types';
+import type { Rule } from 'ant-design-vue/es/form';
+import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 
-const form = defineModel<Record<string, string>>("form", {
+// TODO 前端筛选
+// TODO 插槽-放置其他内容
+
+const form = defineModel<Record<string, string>>('form', {
   default: () => {
   },
 });
-const expand = defineModel<Boolean>("expand", { default: false });
+const expand = defineModel<Boolean>('expand', { default: false });
 
 const props = withDefaults(defineProps<{
-  fields: QueryFormField[],
+  fields: QueryFormField[];
+  rules?: Recordable<Rule[]>;
   itemInLine?: number;
   allFields?: boolean;
 }>(), {
@@ -19,7 +26,7 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: "query", value: Record<string, string>): void;
+  (e: 'query', value: Record<string, string>): void;
 }>();
 
 const ITEM_IN_LINE = props.itemInLine;
@@ -28,18 +35,29 @@ const SPAN = 24 / ITEM_IN_LINE;
 const formRef = ref<FormInstance>();
 const queryForm = reactive<Record<string, any>>(Object.assign({}, form.value));
 
+const validate = () => {
+  message.success('validate');
+  return new Promise((resolve, reject) => {
+    formRef.value!.validate().then(() => {
+      resolve(toRaw(queryForm));
+    }).catch(error => {
+      reject();
+    });
+  });
+};
+
 const onFinish = () => {
   const query: any = {};
   if (props.allFields) {
     props.fields.forEach((item) => {
       query[item.field] = queryForm[item.field] ? queryForm[item.field] :
-        ["Input", "Radio", "DatePicker"].includes(item.component) ? "" :
-          ["Select", "TreeSelect", "Checkbox", "RangePicker"].includes(item.component) ? [] : undefined;
+        ['Input', 'Radio', 'DatePicker'].includes(item.component) ? '' :
+          ['Select', 'TreeSelect', 'Checkbox', 'RangePicker'].includes(item.component) ? [] : undefined;
     });
   } else {
     for (const item in queryForm) {
       if (
-        (typeof queryForm[item] === "string" && queryForm[item]) ||
+        (typeof queryForm[item] === 'string' && queryForm[item]) ||
         (queryForm[item] instanceof Array && queryForm[item].length) ||
         (queryForm[item] instanceof Object && Object.keys(queryForm[item]).length)
       ) {
@@ -48,7 +66,11 @@ const onFinish = () => {
     }
   }
   form.value = query;
-  emit("query", query);
+  emit('query', query);
+};
+
+const onFinishFailed = ({ errorFields }: ValidateErrorEntity) => {
+  message.error(errorFields[0].errors[0]);
 };
 
 const btnGroupOffset = computed(() => {
@@ -61,7 +83,7 @@ const btnGroupOffset = computed(() => {
 
 const handleClear = () => {
   formRef.value!.resetFields();
-  emit("query", {});
+  emit('query', {});
 };
 
 </script>
@@ -73,8 +95,11 @@ const handleClear = () => {
     class="w-full ant-advanced-search-form"
     :labelCol="{span: 6}"
     :wrapperCol="{span: 18}"
+    :hideRequiredMark="true"
     :model="queryForm"
+    :rules="rules"
     @finish="onFinish"
+    @finishFailed="onFinishFailed"
   >
     <a-row :gutter="ITEM_IN_LINE">
       <template v-for="(item, idx) in fields" :key="idx">
@@ -84,6 +109,8 @@ const handleClear = () => {
             :label="item.label"
             :label-col="item.labelCol"
             :wrapper-col="item.wrapperCol"
+            validateStatus="success"
+            help=""
           >
             <template v-if="item.component === 'Input'">
               <a-input v-bind="item.compProps" v-model:value="queryForm[item.field]" />
