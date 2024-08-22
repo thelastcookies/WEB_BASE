@@ -38,7 +38,7 @@ const dataMap = ref<any>();
 
 const getHistoricalData = async () => {
   const startTime = dayjs().startOf("day");
-  const map = await getIntervalData({
+  const map = await getTrendData({
     tags: "tag1|tag2",
     st: startTime,
     interval: 1000,

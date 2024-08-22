@@ -10,7 +10,7 @@ export const getHistorical = (data: HistoricalRequestBody) => {
   );
 };
 
-export const getInterval = (data: IntervalRequestBody) => {
+export const getTrend = (data: IntervalRequestBody) => {
   return usePost<AdminResponseBody<ValueResponseBody>, IntervalRequestBody>(
     `${ADMIN_URL}/RealTime/GetInterp`,
     data,
@@ -31,7 +31,7 @@ export const getInterval = (data: IntervalRequestBody) => {
  *
  * @param decimal 小数位数，默认为 undefined，即不作处理，用于规范返回数据的小数位数
  */
-export const getIntervalData = async (
+export const getTrendData = async (
   {
     tags,
     st,
@@ -43,7 +43,7 @@ export const getIntervalData = async (
 ) => {
   let stStr = st.format('YYYYMMDDHHmmss');
   let edStr = ed.format('YYYYMMDDHHmmss');
-  const res = await getInterval({
+  const res = await getTrend({
     tags,
     time: stStr + '-' + edStr,
     interval,
