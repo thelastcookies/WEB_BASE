@@ -1,10 +1,12 @@
 <script setup lang="ts">
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type { Rule } from 'ant-design-vue/es/form';
+import type { Recordable } from '@/types';
+import { createTree } from '@/utils';
 
 const queryFields: QueryFormField[] = [
   {
-    label: '文本搜索',
+    label: '文本',
     field: 'inputName',
     component: 'Input',
     compProps: {
@@ -12,7 +14,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '下拉框搜索',
+    label: '下拉框',
     field: 'selectName',
     component: 'Select',
     compProps: {
@@ -33,7 +35,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '树结构搜索',
+    label: '树下拉框',
     field: 'TreeSelectName',
     component: 'TreeSelect',
     compProps: {
@@ -70,7 +72,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '单选搜索',
+    label: '单选',
     field: 'RadioName',
     component: 'Radio',
     compProps: {
@@ -90,7 +92,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '勾选搜索',
+    label: '多选',
     field: 'CheckboxName',
     component: 'Checkbox',
     compProps: {
@@ -110,7 +112,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '时间搜索',
+    label: '时间',
     field: 'DatePickerName',
     component: 'DatePicker',
     compProps: {
@@ -119,7 +121,7 @@ const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '起止时间搜索',
+    label: '起止时间',
     field: 'RangePickerName',
     component: 'RangePicker',
     compProps: {
@@ -128,7 +130,7 @@ const queryFields: QueryFormField[] = [
     },
   },
 ];
-const qForm = ref<any>({
+const qForm = ref<Recordable<any>>({
   inputName: '1234',
   selectName: 'valueA',
   RadioName: 'valueA',
@@ -141,10 +143,10 @@ const onQuery = (form: Record<string, string>) => {
 
 const rules: Record<string, Rule[]> = {
   inputName: [
-    { required: true, message: '文本搜索内容不可为空', trigger: 'change' },
-    { min: 3, max: 5, message: '文本搜索内容长度要在 3 到 5 之间', trigger: 'blur' },
+    { required: true, message: '文本内容不可为空', trigger: 'change' },
+    { min: 3, max: 5, message: '文本内容长度要在 3 到 5 之间', trigger: 'blur' },
   ],
-  selectName: [{ required: true, message: '下拉框搜索内容不可为空', trigger: 'change' }],
+  selectName: [{ required: true, message: '下拉框内容不可为空', trigger: 'change' }],
   DatePickerName: [{ required: true, message: '时间选择不可为空', trigger: 'blur' }],
   RangePickerName: [{
     validator(_, value) {
@@ -159,6 +161,52 @@ const rules: Record<string, Rule[]> = {
     },
   }],
 };
+
+const apiQueryFields: QueryFormField[] = [{
+  label: 'Api下拉框',
+  field: 'apiSelectName',
+  component: 'ApiSelect',
+  compProps: {
+    allowClear: true,
+    showSearch: true,
+    optionFilterProp: 'label',
+    mode: 'multiple',
+    maxTagCount: 3,
+    placeholder: '请选择',
+    getOptions: async () => {
+      const res = await getUserList({});
+      return res.Data!.map(user => {
+        return {
+          label: user.RealName,
+          value: user.Id,
+        };
+      });
+    },
+  },
+}, {
+  label: 'Api树下拉框',
+  field: 'apiTreeSelectName',
+  component: 'ApiTreeSelect',
+  compProps: {
+    allowClear: true,
+    showSearch: true,
+    treeNodeFilterProp: 'label',
+    treeCheckable: true,
+    maxTagCount: 3,
+    placeholder: '请选择',
+    getOptions: async () => {
+      const res = await getMenuTreeList({});
+      return createTree(res.Data!).map(menu => {
+        return {
+          label: menu.getLabel(),
+          value: menu.getId(),
+          children: menu.getChildren(),
+        };
+      });
+    },
+  },
+}];
+const apiQForm = ref<Recordable<any>>();
 
 </script>
 <template>
@@ -181,6 +229,20 @@ const rules: Record<string, Rule[]> = {
       <div class="w-50% h-full pl-8 overflow-y-auto">
         <div class="text-5 sticky top-0 bg-pixel-matrix">Rules</div>
         <div v-for="(value, key) in rules">{{ key }}: {{ value }}</div>
+      </div>
+    </div>
+    <div class="p-8">
+      <QueryForm
+        :expand="true"
+        :fields="apiQueryFields"
+        :rules="rules"
+        v-model:form="apiQForm"
+      ></QueryForm>
+    </div>
+    <div class="w-full h-300px flex p-8">
+      <div class="w-50% h-full pl-8 overflow-y-auto">
+        <div class="text-5 sticky top-0 bg-pixel-matrix">QueryForm</div>
+        <div v-for="(value, key) in apiQForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
   </div>

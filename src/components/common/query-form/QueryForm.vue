@@ -35,17 +35,6 @@ const SPAN = 24 / ITEM_IN_LINE;
 const formRef = ref<FormInstance>();
 const queryForm = reactive<Record<string, any>>(Object.assign({}, form.value));
 
-const validate = () => {
-  message.success('validate');
-  return new Promise((resolve, reject) => {
-    formRef.value!.validate().then(() => {
-      resolve(toRaw(queryForm));
-    }).catch(error => {
-      reject();
-    });
-  });
-};
-
 const onFinish = () => {
   const query: any = {};
   if (props.allFields) {
@@ -118,8 +107,14 @@ const handleClear = () => {
             <template v-else-if="item.component === 'Select'">
               <a-select v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
+            <template v-else-if="item.component === 'ApiSelect'">
+              <ApiSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+            </template>
             <template v-else-if="item.component === 'TreeSelect'">
               <a-tree-select v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+            </template>
+            <template v-else-if="item.component === 'ApiTreeSelect'">
+              <ApiTreeSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'Radio'">
               <a-radio-group v-bind="item.compProps" v-model:value="queryForm[item.field]" />
