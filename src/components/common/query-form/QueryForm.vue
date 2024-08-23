@@ -6,7 +6,6 @@ import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 
 // TODO 前端筛选
-// TODO 插槽-放置其他内容
 
 const form = defineModel<Record<string, string>>('form', {
   default: () => {
@@ -17,7 +16,7 @@ const expand = defineModel<Boolean>('expand', { default: false });
 const props = withDefaults(defineProps<{
   fields: QueryFormField[];
   rules?: Recordable<Rule[]>;
-  itemInLine?: number;
+  itemInLine?: 2 | 3 | 4 | 6;
   allFields?: boolean;
 }>(), {
   fields: () => [],
@@ -28,6 +27,9 @@ const props = withDefaults(defineProps<{
 const emit = defineEmits<{
   (e: 'query', value: Record<string, string>): void;
 }>();
+
+const slots = useSlots();
+const slotsCount = Object.keys(slots).length;
 
 const ITEM_IN_LINE = props.itemInLine;
 const SPAN = 24 / ITEM_IN_LINE;
@@ -63,10 +65,11 @@ const onFinishFailed = ({ errorFields }: ValidateErrorEntity) => {
 };
 
 const btnGroupOffset = computed(() => {
-  if (props.fields.length < ITEM_IN_LINE) {
-    return (ITEM_IN_LINE - props.fields.length - 1) * SPAN;
+  const itemCount = props.fields.length + slotsCount;
+  if (itemCount < ITEM_IN_LINE) {
+    return (ITEM_IN_LINE - itemCount - 1) * SPAN;
   } else {
-    return expand.value ? (ITEM_IN_LINE - props.fields.length % ITEM_IN_LINE - 1) * SPAN : 0;
+    return expand.value ? (ITEM_IN_LINE - itemCount % ITEM_IN_LINE - 1) * SPAN : 0;
   }
 });
 
@@ -90,9 +93,9 @@ const handleClear = () => {
     @finish="onFinish"
     @finishFailed="onFinishFailed"
   >
-    <a-row :gutter="ITEM_IN_LINE">
+    <a-row>
       <template v-for="(item, idx) in fields" :key="idx">
-        <a-col v-show="expand || idx < (ITEM_IN_LINE - 1)" :span="SPAN">
+        <a-col v-show="expand || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="SPAN">
           <a-form-item
             :name="item.field"
             :label="item.label"
@@ -131,6 +134,9 @@ const handleClear = () => {
           </a-form-item>
         </a-col>
       </template>
+      <a-col v-if="slotsCount" :span="SPAN">
+        <slot name="default"></slot>
+      </a-col>
       <a-col class="text-right mb-3" :span="SPAN" :offset="btnGroupOffset">
         <a-button type="primary" html-type="submit">
           <BaseIcon icon="i-mdi-magnify" />
@@ -140,7 +146,7 @@ const handleClear = () => {
           <BaseIcon icon="i-mdi-filter-remove-outline" />
           清空
         </a-button>
-        <a-button v-if="fields.length > ITEM_IN_LINE" type="link" @click="expand = !expand">
+        <a-button v-if="(fields.length + slotsCount) > ITEM_IN_LINE" type="link" @click="expand = !expand">
           <template v-if="expand">
             <BaseIcon icon="i-mdi-chevron-up" />
             收起
