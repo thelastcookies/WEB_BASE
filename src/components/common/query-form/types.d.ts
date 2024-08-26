@@ -3,9 +3,7 @@ import type { ColProps } from 'ant-design-vue';
 export type QueryFormComponentType =
   'Input'
   | 'Select'
-  | 'ApiSelect'
   | 'TreeSelect'
-  | 'ApiTreeSelect'
   | 'Radio'
   | 'Checkbox'
   | 'DatePicker'

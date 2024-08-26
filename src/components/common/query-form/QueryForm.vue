@@ -117,10 +117,7 @@ const handleClear = () => {
               <BaseSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'TreeSelect'">
-              <a-tree-select v-bind="item.compProps" v-model:value="queryForm[item.field]" />
-            </template>
-            <template v-else-if="item.component === 'ApiTreeSelect'">
-              <ApiTreeSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+              <BaseTreeSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'Radio'">
               <a-radio-group v-bind="item.compProps" v-model:value="queryForm[item.field]" />

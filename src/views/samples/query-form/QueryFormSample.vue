@@ -248,7 +248,7 @@ const dropdownFields: QueryFormField[] = [
     field: 'TreeSelectName',
     component: 'TreeSelect',
     compProps: {
-      placeholder: '请选择',
+      treeNodeFilterProp: 'label',
       treeData: [{
         label: '选项A',
         value: 'valueA',
@@ -282,25 +282,65 @@ const dropdownFields: QueryFormField[] = [
     },
   },
   {
+    label: '树平铺格式',
+    field: 'TreeIdPidName',
+    component: 'TreeSelect',
+    compProps: {
+      treeCheckable: true,
+      treeDataSimpleMode: true,
+      treeNodeFilterProp: 'label',
+      treeData: [{
+        id: 'valueA',
+        pId: null,
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        id: 'valueAA',
+        pId: 'valueA',
+        label: '选项AA',
+        value: 'valueAA',
+      }, {
+        id: 'valueAB',
+        pId: 'valueA',
+        label: '选项AB',
+        value: 'valueAB',
+      }, {
+        id: 'valueAC',
+        pId: 'valueA',
+        label: '选项AC',
+        value: 'valueAC',
+      }, {
+        id: 'valueB',
+        pId: null,
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        id: 'valueBA',
+        pId: 'valueB',
+        label: '选项BA',
+        value: 'valueBA',
+      }, {
+        id: 'valueBB',
+        pId: 'valueB',
+        label: '选项BB',
+        value: 'valueBB',
+      }, {
+        id: 'valueBC',
+        pId: 'valueB',
+        label: '选项BC',
+        value: 'valueBC',
+      }],
+    },
+  },
+  {
     label: 'Api树下拉框',
     field: 'apiTreeSelectName',
-    component: 'ApiTreeSelect',
+    component: 'TreeSelect',
     compProps: {
-      allowClear: true,
-      showSearch: true,
-      treeNodeFilterProp: 'label',
       treeCheckable: true,
-      maxTagCount: 3,
-      placeholder: '请选择',
-      getOptions: async () => {
+      getTreeData: async () => {
         const res = await getMenuTreeList({});
-        return createTree(res.Data!).map(menu => {
-          return {
-            label: menu.getLabel(),
-            value: menu.getId(),
-            children: menu.getChildren(),
-          };
-        });
+        return createTree(res.Data!);
       },
     },
   }];
