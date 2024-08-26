@@ -81,7 +81,7 @@ const rules: Record<string, Rule[]> = {
   }],
 };
 
-const selectFields: QueryFormField[] = [
+const checkFields: QueryFormField[] = [
   {
     label: '单选',
     field: 'RadioName',
@@ -146,13 +146,13 @@ const selectFields: QueryFormField[] = [
     },
   },
 ];
-const sForm = ref<Recordable<any>>({
+const cForm = ref<Recordable<any>>({
   RadioName: 'valueA',
   CheckboxName: ['valueA'],
   CheckboxAllName: ['valueA', 'valueB', 'valueC', 'valueD'],
 });
 
-const dropdownFields: QueryFormField[] = [
+const selectFields: QueryFormField[] = [
   {
     label: '下拉框',
     field: 'selectName',
@@ -334,7 +334,7 @@ const dropdownFields: QueryFormField[] = [
       },
     },
   }];
-const dForm = ref<Recordable<any>>({
+const sForm = ref<Recordable<any>>({
   selectName: 'valueA',
   selectAllName: ['valueA', 'valueB', 'valueC', 'valueD'],
   apiSelectName: ['1522888670812573696', '1524295838120022016', '1181928860648738816', '1516341240566648832', '1522888566902886400', '1524262249470889984', '1524296840516734976', '1524301898759278592', '1537262531804925952', '1537269946810109952', '1537331782196662272', '1537688013524439040', '38384f3c-f843-467a-85c8-76eec5b11b57', 'Admin', 'ddd902f6-d4ae-4846-8e01-855ef2de8b33'],
@@ -373,28 +373,28 @@ const dForm = ref<Recordable<any>>({
     <div class="p-8">
       <QueryForm
         :expand="true"
-        :fields="selectFields"
-        v-model:form="sForm"
+        :fields="checkFields"
+        v-model:form="cForm"
       ></QueryForm>
     </div>
     <div class="w-full flex p-8">
       <div class="w-50% pl-8 overflow-y-auto">
         <div class="text-5 sticky top-0 bg-pixel-matrix">CheckableForm</div>
-        <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
+        <div v-for="(value, key) in cForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
     <a-divider>选择器、树选择器</a-divider>
     <div class="p-8">
       <QueryForm
         :expand="true"
-        :fields="dropdownFields"
-        v-model:form="dForm"
+        :fields="selectFields"
+        v-model:form="sForm"
       ></QueryForm>
     </div>
     <div class="w-full flex p-8">
       <div class="w-50% pl-8 overflow-y-auto">
         <div class="text-5 sticky top-0 bg-pixel-matrix">SelectableForm</div>
-        <div v-for="(value, key) in dForm">{{ key }}: {{ value }}</div>
+        <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
   </div>

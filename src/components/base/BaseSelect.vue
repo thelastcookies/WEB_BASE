@@ -20,7 +20,7 @@ const getOptions = async () => {
 };
 getOptions();
 
-// 全选 Checkbox 的状态
+// 全选 Checkbox 状态
 const checkAll = ref(false);
 const isIndeterminate = ref(false);
 
@@ -59,12 +59,12 @@ const VNodes = defineComponent({
 
 <template>
   <a-select
-    :showArrow="true"
-    :allowClear="true"
-    :showSearch="true"
-    optionFilterProp="label"
+    show-arrow
+    allow-clear
+    show-search
+    option-filter-prop="label"
     placeholder="请选择"
-    :maxTagCount="3"
+    :max-tag-count="3"
     v-bind="$attrs" v-model:value="value"
     :options="_options"
     @change="handleCheckedChange"

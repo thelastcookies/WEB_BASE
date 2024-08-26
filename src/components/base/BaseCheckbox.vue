@@ -8,7 +8,7 @@ const _options = ref<CheckboxOptionType[]>();
 
 _options.value = attrs.options as CheckboxOptionType[];
 
-// 全选 Checkbox 的状态
+// 全选 Checkbox 状态
 const checkAll = ref(false);
 const isIndeterminate = ref(false);
 

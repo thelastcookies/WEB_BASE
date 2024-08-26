@@ -22,15 +22,15 @@ getOptions();
 
 <template>
   <a-tree-select
-    :maxTagCount="3"
-    :allowClear="true"
-    :showSearch="true"
-    :showArrow="true"
-    treeNodeFilterProp="title"
+    show-arrow
+    allow-clear
+    show-search
+    :max-tag-count="3"
+    tree-node-filter-prop="title"
     placeholder="请选择"
     v-bind="$attrs"
     v-model:value="value"
-    :treeData="_treeData" />
+    :tree-data="_treeData" />
 </template>
 
 <style scoped lang="less">
