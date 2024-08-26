@@ -379,7 +379,7 @@ const dForm = ref<Recordable<any>>({
     </div>
     <div class="w-full flex p-8">
       <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">SelectForm</div>
+        <div class="text-5 sticky top-0 bg-pixel-matrix">CheckableForm</div>
         <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
@@ -393,7 +393,7 @@ const dForm = ref<Recordable<any>>({
     </div>
     <div class="w-full flex p-8">
       <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">DropdownForm</div>
+        <div class="text-5 sticky top-0 bg-pixel-matrix">SelectableForm</div>
         <div v-for="(value, key) in dForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
