@@ -120,7 +120,7 @@ const handleClear = () => {
               <a-radio-group v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'Checkbox'">
-              <a-checkbox-group v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+              <BaseCheckbox v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'DatePicker'">
               <a-date-picker v-bind="item.compProps" v-model:value="queryForm[item.field]" />

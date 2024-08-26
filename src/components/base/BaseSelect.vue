@@ -1,7 +1,6 @@
 <script setup lang="tsx">
-import type { LabeledValue, SelectValue } from 'ant-design-vue/es/select';
-import type { DefaultOptionType } from 'ant-design-vue/es/vc-select/Select';
-import type { CheckboxChangeEvent } from 'ant-design-vue/lib/checkbox/interface';
+import type { DefaultOptionType, LabeledValue, SelectValue } from 'ant-design-vue/es/select';
+import type { CheckboxChangeEvent } from 'ant-design-vue/es/checkbox/interface';
 
 type RawValue = string | number;
 
@@ -28,7 +27,7 @@ const isIndeterminate = ref(false);
 
 // 切换全选切换状态
 const handleCheckAllChange = (e: CheckboxChangeEvent) => {
-  value.value = e.target.checked ? _options.value!.map(item => (item.value as RawValue)) : undefined;
+  value.value = e.target.checked && _options.value ? _options.value.map(item => (item.value as RawValue)) : undefined;
   isIndeterminate.value = false;
 };
 // 选中项发生改变时，计算全选以及半选状态

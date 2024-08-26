@@ -122,10 +122,34 @@ const selectFields: QueryFormField[] = [
       }],
     },
   },
+  {
+    label: '多选全选',
+    field: 'CheckboxAllName',
+    component: 'Checkbox',
+    labelCol: { span: 4 },
+    wrapperCol: { span: 20 },
+    compProps: {
+      selectAllEnable: true,
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
+    },
+  },
 ];
 const sForm = ref<Recordable<any>>({
   RadioName: 'valueA',
   CheckboxName: ['valueA'],
+  CheckboxAllName: [ "valueA", "valueB", "valueC", "valueD" ]
 });
 
 const dropdownFields: QueryFormField[] = [
