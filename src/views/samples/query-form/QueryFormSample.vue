@@ -149,7 +149,7 @@ const selectFields: QueryFormField[] = [
 const sForm = ref<Recordable<any>>({
   RadioName: 'valueA',
   CheckboxName: ['valueA'],
-  CheckboxAllName: [ "valueA", "valueB", "valueC", "valueD" ]
+  CheckboxAllName: ['valueA', 'valueB', 'valueC', 'valueD'],
 });
 
 const dropdownFields: QueryFormField[] = [
@@ -158,7 +158,6 @@ const dropdownFields: QueryFormField[] = [
     field: 'selectName',
     component: 'Select',
     compProps: {
-      placeholder: '请选择',
       options: [{
         label: '选项A',
         value: 'valueA',
@@ -180,7 +179,6 @@ const dropdownFields: QueryFormField[] = [
     component: 'Select',
     compProps: {
       mode: 'multiple',
-      placeholder: '请选择',
       options: [{
         label: '选项A',
         value: 'valueA',
@@ -203,8 +201,6 @@ const dropdownFields: QueryFormField[] = [
     compProps: {
       mode: 'multiple',
       selectAllEnable: true,
-      mode: 'multiple',
-      placeholder: '请选择',
       options: [{
         label: '选项A',
         value: 'valueA',
@@ -226,12 +222,6 @@ const dropdownFields: QueryFormField[] = [
     component: 'Select',
     compProps: {
       mode: 'multiple',
-      selectAllEnable: true,
-      allowClear: true,
-      showSearch: true,
-      optionFilterProp: 'label',
-      maxTagCount: 3,
-      placeholder: '请选择',
       getOptions: async () => {
         const res = await getUserList({});
         return res.Data!.map(user => {

@@ -18,7 +18,6 @@ const getOptions = async () => {
     console.warn(`BaseSelect: Either 'options' or 'getOptions' should not be empty.`);
   }
 };
-
 getOptions();
 
 // 全选 Checkbox 的状态
@@ -59,8 +58,16 @@ const VNodes = defineComponent({
 </script>
 
 <template>
-  <a-select v-bind="$attrs" v-model:value="value"
-            @change="handleCheckedChange" :options="_options"
+  <a-select
+    :showArrow="true"
+    :allowClear="true"
+    :showSearch="true"
+    optionFilterProp="label"
+    placeholder="请选择"
+    :maxTagCount="3"
+    v-bind="$attrs" v-model:value="value"
+    :options="_options"
+    @change="handleCheckedChange"
   >
     <template #dropdownRender="{ menuNode }">
       <template v-if="attrs.selectAllEnable && attrs.mode === 'multiple'">
