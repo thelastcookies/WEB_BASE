@@ -1,157 +1,61 @@
 <script setup lang="ts">
-import type { QueryFormField } from "@/components/common/query-form/types";
-import type { Rule } from "ant-design-vue/es/form";
-import type { Recordable } from "@/types";
-import { createTree } from "@/utils";
+import type { QueryFormField } from '@/components/common/query-form/types';
+import type { Rule } from 'ant-design-vue/es/form';
+import type { Recordable } from '@/types';
+import { createTree } from '@/utils';
 
 const queryFields: QueryFormField[] = [
   {
-    label: "文本",
-    field: "inputName",
-    component: "Input",
+    label: '文本',
+    field: 'inputName',
+    component: 'Input',
     compProps: {
-      placeholder: "请输入",
+      placeholder: '请输入',
     },
   },
   {
-    label: "文本",
-    field: "inputName",
-    component: "Input",
+    label: '下拉框',
+    field: 'selectName',
+    component: 'Select',
     compProps: {
-      placeholder: "请输入",
-    },
-  },
-  {
-    label: "文本",
-    field: "inputName",
-    component: "Input",
-    compProps: {
-      placeholder: "请输入",
-    },
-  },
-  {
-    label: "下拉框",
-    field: "selectName",
-    component: "Select",
-    compProps: {
-      placeholder: "请选择",
+      placeholder: '请选择',
       options: [{
-        label: "选项A",
-        value: "valueA",
+        label: '选项A',
+        value: 'valueA',
       }, {
-        label: "选项B",
-        value: "valueB",
+        label: '选项B',
+        value: 'valueB',
       }, {
-        label: "选项C",
-        value: "valueC",
+        label: '选项C',
+        value: 'valueC',
       }, {
-        label: "选项D",
-        value: "valueD",
+        label: '选项D',
+        value: 'valueD',
       }],
     },
   },
   {
-    label: "树下拉框",
-    field: "TreeSelectName",
-    component: "TreeSelect",
+    label: '时间',
+    field: 'DatePickerName',
+    component: 'DatePicker',
     compProps: {
-      treeData: [{
-        label: "选项A",
-        value: "valueA",
-        children: [{
-          label: "选项AA",
-          value: "valueAA",
-        }, {
-          label: "选项AB",
-          value: "valueAB",
-        }],
-      }, {
-        label: "选项B",
-        value: "valueB",
-        children: [{
-          label: "选项BA",
-          value: "valueBA",
-        }, {
-          label: "选项BB",
-          value: "valueBB",
-        }, {
-          label: "选项BC",
-          value: "valueBC",
-        }],
-      }, {
-        label: "选项C",
-        value: "valueC",
-      }, {
-        label: "选项D",
-        value: "valueD",
-      }],
+      placeholder: '请选择时间',
+      valueFormat: 'YYYY-MM-DD',
     },
   },
   {
-    label: "单选",
-    field: "RadioName",
-    component: "Radio",
+    label: '起止时间',
+    field: 'RangePickerName',
+    component: 'RangePicker',
     compProps: {
-      options: [{
-        label: "选项A",
-        value: "valueA",
-      }, {
-        label: "选项B",
-        value: "valueB",
-      }, {
-        label: "选项C",
-        value: "valueC",
-      }, {
-        label: "选项D",
-        value: "valueD",
-      }],
-    },
-  },
-  {
-    label: "多选",
-    field: "CheckboxName",
-    component: "Checkbox",
-    compProps: {
-      options: [{
-        label: "选项A",
-        value: "valueA",
-      }, {
-        label: "选项B",
-        value: "valueB",
-      }, {
-        label: "选项C",
-        value: "valueC",
-      }, {
-        label: "选项D",
-        value: "valueD",
-      }],
-    },
-  },
-  {
-    label: "时间",
-    field: "DatePickerName",
-    component: "DatePicker",
-    compProps: {
-      placeholder: "请选择时间",
-      valueFormat: "YYYY-MM-DD",
-    },
-  },
-  {
-    label: "起止时间",
-    field: "RangePickerName",
-    component: "RangePicker",
-    compProps: {
-      placeholder: ["请选择开始时间", "请选择结束时间"],
-      valueFormat: "YYYY-MM-DD",
+      placeholder: ['请选择开始时间', '请选择结束时间'],
+      valueFormat: 'YYYY-MM-DD',
     },
   },
 ];
 const qForm = ref<Recordable<any>>({
-  inputName: "1234",
-  selectName: "valueA",
-  RadioName: "valueA",
-  CheckboxName: ["valueA"],
-  RangePickerName: [dayjs().subtract(8, "h"), dayjs()],
+  inputName: '1234',
+  RangePickerName: [dayjs().subtract(8, 'h'), dayjs()],
 });
 const onQuery = (form: Record<string, string>) => {
   qForm.value = form;
@@ -159,74 +63,232 @@ const onQuery = (form: Record<string, string>) => {
 
 const rules: Record<string, Rule[]> = {
   inputName: [
-    { required: true, message: "文本内容不可为空", trigger: "change" },
-    { min: 3, max: 5, message: "文本内容长度要在 3 到 5 之间", trigger: "blur" },
+    { required: true, message: '文本内容不可为空' },
+    { min: 3, max: 5, message: '文本内容长度要在 3 到 5 之间' },
   ],
-  selectName: [{ required: true, message: "下拉框内容不可为空", trigger: "change" }],
-  DatePickerName: [{ required: true, message: "时间选择不可为空", trigger: "blur" }],
+  DatePickerName: [{ required: true, message: '时间选择不可为空' }],
   RangePickerName: [{
     validator(_, value) {
       if (!value || value.length !== 2) {
-        return Promise.reject("请选择时间范围");
+        return Promise.reject('请选择时间范围');
       }
       const [start, end] = value;
-      if (dayjs(start).isSame(end, "day")) {
+      if (dayjs(start).isSame(end, 'day')) {
         return Promise.resolve();
       }
-      return Promise.reject("开始时间和结束时间必须在同一天");
+      return Promise.reject('起止时间必须在同一天');
     },
   }],
 };
 
-const apiQueryFields: QueryFormField[] = [{
-  label: "Api下拉框",
-  field: "apiSelectName",
-  component: "ApiSelect",
-  compProps: {
-    allowClear: true,
-    showSearch: true,
-    optionFilterProp: "label",
-    mode: "multiple",
-    maxTagCount: 3,
-    placeholder: "请选择",
-    getOptions: async () => {
-      const res = await getUserList({});
-      return res.Data!.map(user => {
-        return {
-          label: user.RealName,
-          value: user.Id,
-        };
-      });
+const selectFields: QueryFormField[] = [
+  {
+    label: '单选',
+    field: 'RadioName',
+    component: 'Radio',
+    compProps: {
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
     },
   },
-}, {
-  label: "Api树下拉框",
-  field: "apiTreeSelectName",
-  component: "ApiTreeSelect",
-  compProps: {
-    allowClear: true,
-    showSearch: true,
-    treeNodeFilterProp: "label",
-    treeCheckable: true,
-    maxTagCount: 3,
-    placeholder: "请选择",
-    getOptions: async () => {
-      const res = await getMenuTreeList({});
-      return createTree(res.Data!).map(menu => {
-        return {
-          label: menu.getLabel(),
-          value: menu.getId(),
-          children: menu.getChildren(),
-        };
-      });
+  {
+    label: '多选',
+    field: 'CheckboxName',
+    component: 'Checkbox',
+    compProps: {
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
     },
   },
-}];
-const apiQForm = ref<Recordable<any>>();
+];
+const sForm = ref<Recordable<any>>({
+  RadioName: 'valueA',
+  CheckboxName: ['valueA'],
+});
+
+const dropdownFields: QueryFormField[] = [
+  {
+    label: '下拉框',
+    field: 'selectName',
+    component: 'Select',
+    compProps: {
+      placeholder: '请选择',
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
+    },
+  },
+  {
+    label: '下拉框多选',
+    field: 'selectMultiName',
+    component: 'Select',
+    compProps: {
+      mode: 'multiple',
+      placeholder: '请选择',
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
+    },
+  },
+  {
+    label: '下拉框全选',
+    field: 'selectAllName',
+    component: 'Select',
+    compProps: {
+      selectAllEnable: true,
+      mode: 'multiple',
+      placeholder: '请选择',
+      options: [{
+        label: '选项A',
+        value: 'valueA',
+      }, {
+        label: '选项B',
+        value: 'valueB',
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
+    },
+  },
+  {
+    label: 'Api下拉框',
+    field: 'apiSelectName',
+    component: 'Select',
+    compProps: {
+      selectAllEnable: true,
+      allowClear: true,
+      showSearch: true,
+      optionFilterProp: 'label',
+      mode: 'multiple',
+      maxTagCount: 3,
+      placeholder: '请选择',
+      getOptions: async () => {
+        const res = await getUserList({});
+        return res.Data!.map(user => {
+          return {
+            label: user.RealName,
+            value: user.Id,
+          };
+        });
+      },
+    },
+  },
+  {
+    label: '树下拉框',
+    field: 'TreeSelectName',
+    component: 'TreeSelect',
+    compProps: {
+      placeholder: '请选择',
+      treeData: [{
+        label: '选项A',
+        value: 'valueA',
+        children: [{
+          label: '选项AA',
+          value: 'valueAA',
+        }, {
+          label: '选项AB',
+          value: 'valueAB',
+        }],
+      }, {
+        label: '选项B',
+        value: 'valueB',
+        children: [{
+          label: '选项BA',
+          value: 'valueBA',
+        }, {
+          label: '选项BB',
+          value: 'valueBB',
+        }, {
+          label: '选项BC',
+          value: 'valueBC',
+        }],
+      }, {
+        label: '选项C',
+        value: 'valueC',
+      }, {
+        label: '选项D',
+        value: 'valueD',
+      }],
+    },
+  },
+  {
+    label: 'Api树下拉框',
+    field: 'apiTreeSelectName',
+    component: 'ApiTreeSelect',
+    compProps: {
+      allowClear: true,
+      showSearch: true,
+      treeNodeFilterProp: 'label',
+      treeCheckable: true,
+      maxTagCount: 3,
+      placeholder: '请选择',
+      getOptions: async () => {
+        const res = await getMenuTreeList({});
+        return createTree(res.Data!).map(menu => {
+          return {
+            label: menu.getLabel(),
+            value: menu.getId(),
+            children: menu.getChildren(),
+          };
+        });
+      },
+    },
+  }];
+const dForm = ref<Recordable<any>>({
+  selectName: 'valueA',
+  selectAllName: ['valueA', 'valueB', 'valueC', 'valueD'],
+  apiSelectName: ['1522888670812573696', '1524295838120022016', '1181928860648738816', '1516341240566648832', '1522888566902886400', '1524262249470889984', '1524296840516734976', '1524301898759278592', '1537262531804925952', '1537269946810109952', '1537331782196662272', '1537688013524439040', '38384f3c-f843-467a-85c8-76eec5b11b57', 'Admin', 'ddd902f6-d4ae-4846-8e01-855ef2de8b33'],
+});
 
 </script>
 <template>
-  <div class="w-full h-full">
+  <div class="w-full">
+    <a-divider>文本，时间，插槽与校验</a-divider>
     <div class="p-8">
       <QueryForm
         :expand="true"
@@ -242,34 +304,42 @@ const apiQForm = ref<Recordable<any>>();
         </div>
       </QueryForm>
     </div>
-    <div class="w-full h-300px flex p-8">
-      <div class="w-50% h-full pl-8 overflow-y-auto">
+    <div class="w-full flex p-8">
+      <div class="w-50% pl-8 overflow-y-auto">
         <div class="text-5 sticky top-0 bg-pixel-matrix">QueryForm</div>
         <div v-for="(value, key) in qForm">{{ key }}: {{ value }}</div>
       </div>
-      <div class="w-50% h-full pl-8 overflow-y-auto">
+      <div class="w-50% pl-8 overflow-y-auto">
         <div class="text-5 sticky top-0 bg-pixel-matrix">Rules</div>
         <div v-for="(value, key) in rules">{{ key }}: {{ value }}</div>
       </div>
     </div>
+    <a-divider>选择器</a-divider>
     <div class="p-8">
       <QueryForm
         :expand="true"
-        :fields="apiQueryFields"
-        :rules="rules"
-        v-model:form="apiQForm"
-      >
-        <div class="flex justify-between">
-          <BaseIcon icon="i-mdi:flag-triangle" class="c-red" />
-          插槽内容
-          <BaseIcon icon="i-mdi:flag-triangle" class="c-green" />
-        </div>
-      </QueryForm>
+        :fields="selectFields"
+        v-model:form="sForm"
+      ></QueryForm>
     </div>
-    <div class="w-full h-300px flex p-8">
-      <div class="w-50% h-full pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">QueryForm</div>
-        <div v-for="(value, key) in apiQForm">{{ key }}: {{ value }}</div>
+    <div class="w-full flex p-8">
+      <div class="w-50% pl-8 overflow-y-auto">
+        <div class="text-5 sticky top-0 bg-pixel-matrix">SelectForm</div>
+        <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
+      </div>
+    </div>
+    <a-divider>下拉列表</a-divider>
+    <div class="p-8">
+      <QueryForm
+        :expand="true"
+        :fields="dropdownFields"
+        v-model:form="dForm"
+      ></QueryForm>
+    </div>
+    <div class="w-full flex p-8">
+      <div class="w-50% pl-8 overflow-y-auto">
+        <div class="text-5 sticky top-0 bg-pixel-matrix">DropdownForm</div>
+        <div v-for="(value, key) in dForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
   </div>

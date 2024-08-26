@@ -83,7 +83,7 @@ const handleClear = () => {
 <template>
   <a-form
     ref="formRef"
-    name="高级搜索"
+    name="查询表单示例"
     class="w-full ant-advanced-search-form"
     :labelCol="{span: 6}"
     :wrapperCol="{span: 18}"
@@ -93,7 +93,7 @@ const handleClear = () => {
     @finish="onFinish"
     @finishFailed="onFinishFailed"
   >
-    <a-row>
+    <a-row :gutter="16">
       <template v-for="(item, idx) in fields" :key="idx">
         <a-col v-show="expand || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="SPAN">
           <a-form-item
@@ -108,10 +108,7 @@ const handleClear = () => {
               <a-input v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'Select'">
-              <a-select v-bind="item.compProps" v-model:value="queryForm[item.field]" />
-            </template>
-            <template v-else-if="item.component === 'ApiSelect'">
-              <ApiSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+              <BaseSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'TreeSelect'">
               <a-tree-select v-bind="item.compProps" v-model:value="queryForm[item.field]" />
