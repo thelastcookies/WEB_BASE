@@ -38,30 +38,36 @@ const formRef = ref<FormInstance>();
 const queryForm = reactive<Record<string, any>>(Object.assign({}, form.value));
 
 const onFinish = () => {
-  const query: any = {};
-  if (props.allFields) {
-    props.fields.forEach((item) => {
-      query[item.field] = queryForm[item.field] ? queryForm[item.field] :
-        ['Input', 'Radio', 'DatePicker'].includes(item.component) ? '' :
-          ['Select', 'TreeSelect', 'Checkbox', 'RangePicker'].includes(item.component) ? [] : undefined;
-    });
-  } else {
-    for (const item in queryForm) {
-      if (
-        (typeof queryForm[item] === 'string' && queryForm[item]) ||
-        (queryForm[item] instanceof Array && queryForm[item].length) ||
-        (queryForm[item] instanceof Object && Object.keys(queryForm[item]).length)
-      ) {
-        query[item] = queryForm[item];
+  try {
+    const query: any = {};
+    if (props.allFields) {
+      props.fields.forEach((item) => {
+        query[item.field] = queryForm[item.field] ? queryForm[item.field] :
+          ['Input', 'Radio', 'DatePicker'].includes(item.component) ? '' :
+            ['Select', 'TreeSelect', 'Checkbox', 'RangePicker'].includes(item.component) ? [] : undefined;
+      });
+    } else {
+      for (const item in queryForm) {
+        if (
+          (typeof queryForm[item] === 'string' && queryForm[item]) ||
+          (queryForm[item] instanceof Array && queryForm[item].length) ||
+          (queryForm[item] instanceof Object && Object.keys(queryForm[item]).length)
+        ) {
+          query[item] = queryForm[item];
+        }
       }
     }
+    form.value = query;
+    emit('query', query);
+  } catch (e) {
+    console.error(`QueryForm: 'onFinish'`, e);
   }
-  form.value = query;
-  emit('query', query);
 };
 
 const onFinishFailed = ({ errorFields }: ValidateErrorEntity) => {
-  message.error(errorFields[0].errors[0]);
+  if (errorFields && errorFields.length > 0) {
+    message.error(errorFields[0].errors[0]);
+  }
 };
 
 const btnGroupOffset = computed(() => {
@@ -83,7 +89,7 @@ const handleClear = () => {
 <template>
   <a-form
     ref="formRef"
-    name="查询表单示例"
+    name="查询表单"
     class="w-full ant-advanced-search-form"
     :labelCol="{span: 6}"
     :wrapperCol="{span: 18}"
