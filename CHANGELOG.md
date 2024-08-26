@@ -1,5 +1,24 @@
 # Changelog
 
+## [0.18.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.17.0...v0.18.0) (2024-08-26)
+
+
+### Features
+
+* 历史接口数据处理方法扩展 ([f9bad11](https://github.com/thelastcookies/WEB-BASE/commit/f9bad11941817f30f78dfe905aee7a43404ed59e))
+* 完善 QueryForm 的表单验证功能，表单值不符合规则时弹出提示消息 ([a9e57ca](https://github.com/thelastcookies/WEB-BASE/commit/a9e57caa3510ff3a1c8e613d1462197a7dd61d4f))
+* 扩展 BaseSelect 组件预设 ([2ca4deb](https://github.com/thelastcookies/WEB-BASE/commit/2ca4deb3375eae4add18a0c4762677592a176567))
+* 新增 ApiSelect 和 ApiTreeSelect 组件，并同步补充示例 ([4cbb3c7](https://github.com/thelastcookies/WEB-BASE/commit/4cbb3c7fda4ef38d6a49b8705d5c74bbf4d63573))
+* 新增 BaseTreeSelect 组件，新增 id，pId 格式树示例 ([010fbdd](https://github.com/thelastcookies/WEB-BASE/commit/010fbddb6619ec6b9f9cb7c9fa7d63a767207fbc))
+* 新增 QueryForm 中 Checkbox 组件全选功能支持 ([0294bb8](https://github.com/thelastcookies/WEB-BASE/commit/0294bb8f3e21a8621439914914ba42bc8d4ed473))
+* 新增 QueryForm 中下拉框组件全选功能支持 ([5b5efb6](https://github.com/thelastcookies/WEB-BASE/commit/5b5efb656d6040da32e5f5b71319deccbf0c65af))
+* 新增 QueryForm 组件的插槽支持 ([c85d2a7](https://github.com/thelastcookies/WEB-BASE/commit/c85d2a78dfcd8b4d7b8a866f95631fd285efb700))
+
+
+### Bug Fixes
+
+* 新增 QueryForm onFinish 时的错误处理 ([72415a0](https://github.com/thelastcookies/WEB-BASE/commit/72415a06cc209da80f07769d2519a629cf9f8d42))
+
 ## [0.17.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.16.0...v0.17.0) (2024-08-20)
 
 
