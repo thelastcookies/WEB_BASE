@@ -34,46 +34,35 @@ onMounted(async () => {
     });
 });
 
-const dataMap = ref<any>();
+const data = ref<any>();
 
-const getHistoricalData = async () => {
+const fetchTrend = async () => {
   const startTime = dayjs().startOf("day");
-  const map = await getTrendData({
+  data.value = await getTrendData({
     tags: "tag1|tag2",
     st: startTime,
     interval: 1000,
-    type: HisDataType.TIME,
+    type: HisDataType.TIME_VALUE_ARR,
   });
-  if (!map) return;
-  const data: (string | number)[][] = [];
-  map.forEach((tagValue, time) => {
-    let arr: number[] = [];
-    tagValue.forEach((value, tag) => {
-      arr.push(value);
-    });
-    data.push([dayjs(time).format("HH:mm:ss"), ...arr]);
-  });
-  dataMap.value = map;
-  console.log(data);
   const options = {
     dataset: {
-      source: data,
+      source: data.value,
     },
   };
   await renderECharts(options);
 };
 
-getHistoricalData();
+fetchTrend();
 
 </script>
 
 <template>
-  <div class="w-full h-full">
+  <div class="w-full">
     <div class="w-full h-300px flex p-8">
       <ECharts class="w-50%" ref="chartRef" />
       <div class="w-50% h-full pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">DataMap</div>
-        <div v-for="(item, key) in dataMap" class=""> {{ item }}</div>
+        <div class="text-5 sticky top-0 bg-pixel-matrix">ECharts Dataset</div>
+        <div v-for="(item, key) in data" class=""> {{ item }}</div>
       </div>
     </div>
   </div>

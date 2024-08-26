@@ -201,6 +201,7 @@ const dropdownFields: QueryFormField[] = [
     field: 'selectAllName',
     component: 'Select',
     compProps: {
+      mode: 'multiple',
       selectAllEnable: true,
       mode: 'multiple',
       placeholder: '请选择',
@@ -224,11 +225,11 @@ const dropdownFields: QueryFormField[] = [
     field: 'apiSelectName',
     component: 'Select',
     compProps: {
+      mode: 'multiple',
       selectAllEnable: true,
       allowClear: true,
       showSearch: true,
       optionFilterProp: 'label',
-      mode: 'multiple',
       maxTagCount: 3,
       placeholder: '请选择',
       getOptions: async () => {
@@ -338,7 +339,7 @@ const dForm = ref<Recordable<any>>({
         <div v-for="(value, key) in rules">{{ key }}: {{ value }}</div>
       </div>
     </div>
-    <a-divider>选择器</a-divider>
+    <a-divider>单选、多选框</a-divider>
     <div class="p-8">
       <QueryForm
         :expand="true"
@@ -352,7 +353,7 @@ const dForm = ref<Recordable<any>>({
         <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
-    <a-divider>下拉列表</a-divider>
+    <a-divider>选择器、树选择器</a-divider>
     <div class="p-8">
       <QueryForm
         :expand="true"

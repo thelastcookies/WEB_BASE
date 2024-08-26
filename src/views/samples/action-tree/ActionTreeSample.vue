@@ -24,8 +24,8 @@ const title2 = computed(() => {
 </script>
 
 <template>
-  <div class="w-full h-full p-normal flex gap-4">
-    <div class="w-30% h-full bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
+  <div class="w-full p-normal flex gap-4">
+    <div class="w-30% bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
       <ActionTree
         searchable
         checkable
@@ -34,14 +34,14 @@ const title2 = computed(() => {
         v-model:checked-keys="checkedKeys1"
       />
     </div>
-    <div class="w-30% h-full bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
+    <div class="w-30% bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
       <ActionTreeSelect
         searchable
         v-model:value="value2"
         v-model:keys="keys"
       />
     </div>
-    <div class="w-30% h-50%">
+    <div class="w-30%">
       <div class="text-5">ActionTree</div>
       <div>title1: {{ title1 }}</div>
       <div>selectedKeys: {{ selectedKeys1 }}</div>
