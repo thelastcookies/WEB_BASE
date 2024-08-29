@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { MenuResponseRecord } from "@/api/admin/action/types";
+import type { MenuResponseRecord } from '@/api/admin/action/types';
 
 const currentId = ref<string[]>([]);
 const currentActionList = ref<MenuResponseRecord[]>();

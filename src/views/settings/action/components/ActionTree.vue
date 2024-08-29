@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { MenuResponseRecord } from "@/api/admin/action/types";
-import { EditEnum } from "@/enums";
-import type { Key } from "@/types";
-import type { DataNode } from "ant-design-vue/es/vc-tree/interface";
+import type { MenuResponseRecord } from '@/api/admin/action/types';
+import { EditEnum } from '@/enums';
+import type { Key } from '@/types';
+import type { DataNode } from 'ant-design-vue/es/vc-tree/interface';
 
-const value = defineModel<MenuResponseRecord[]>("value", { default: () => [] });
-const selectedKeys = defineModel<Key[]>("selectedKeys", { default: () => [] });
-const checkedKeys = defineModel<Key[]>("checkedKeys", { default: () => [] });
+const value = defineModel<MenuResponseRecord[]>('value', { default: () => [] });
+const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
+const checkedKeys = defineModel<Key[]>('checkedKeys', { default: () => [] });
 
 interface ActionTreeProps {
   type?: EditEnum;
@@ -41,7 +41,7 @@ watchEffect(() => {
 /**
  * 处理搜索
  */
-const searchValue = ref<string>("");
+const searchValue = ref<string>('');
 watch(searchValue, value => {
   const nodes = findTreeNodesByLabel(tree.value, value);
   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
