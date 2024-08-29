@@ -1,11 +1,13 @@
 <script setup lang="ts">
 import type { TableEditableColumnProps } from '@/components/common/inline-edit-table/types';
 
-const props = withDefaults(defineProps<{
-  dataSource: any[],
+const dataSource = defineModel<any[]>('dataSource', {
+  default: () => [],
+});
+
+withDefaults(defineProps<{
   columns: TableEditableColumnProps[],
 }>(), {
-  dataSource: () => [],
   columns: () => [],
 });
 
@@ -20,10 +22,10 @@ const handleInlineAdd = () => {
   emit('add');
 };
 const onEdit = (idx: number) => {
-  editableData[idx] = cloneDeep(props.dataSource[idx]);
+  editableData[idx] = cloneDeep(dataSource.value[idx]);
 };
 const onSave = (idx: number) => {
-  Object.assign(props.dataSource[idx], editableData[idx]);
+  Object.assign(dataSource.value[idx], editableData[idx]);
   delete editableData[idx];
 };
 const onCancel = (idx: number) => {
@@ -31,7 +33,7 @@ const onCancel = (idx: number) => {
 };
 const onDelete = (idx: number) => {
   delete editableData[idx];
-  props.dataSource.splice(idx, 1);
+  dataSource.value.splice(idx, 1);
 };
 </script>
 
