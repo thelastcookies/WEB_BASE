@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TableEditableColumnProps } from "@/components/common/inline-edit-table/types";
+import type { TableEditableColumnProps } from '@/components/common/inline-edit-table/types';
 
 const props = withDefaults(defineProps<{
   dataSource: any[],
@@ -10,26 +10,26 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: "add"): any;
-  (e: "update:dataSource"): any;
+  (e: 'add'): void;
+  (e: 'update:dataSource'): void;
 }>();
 
 const editableData: Record<string, any> = reactive({});
 
 const handleInlineAdd = () => {
-  editableData[props.dataSource.length - 1] = emit("add");
+  emit('add');
 };
-const handleInlineEdit = (idx: number) => {
+const onEdit = (idx: number) => {
   editableData[idx] = cloneDeep(props.dataSource[idx]);
 };
-const handleInlineSave = (idx: number) => {
+const onSave = (idx: number) => {
   Object.assign(props.dataSource[idx], editableData[idx]);
   delete editableData[idx];
 };
-const handleInlineCancel = (idx: number) => {
+const onCancel = (idx: number) => {
   delete editableData[idx];
 };
-const handleInlineDelete = (idx: number) => {
+const onDelete = (idx: number) => {
   delete editableData[idx];
   props.dataSource.splice(idx, 1);
 };
@@ -47,19 +47,19 @@ const handleInlineDelete = (idx: number) => {
         </div>
       </template>
     </template>
-    <template #bodyCell="{ column, text, record, index }">
+    <template #bodyCell="{ column, text, index }">
       <template v-if="column.dataIndex === 'operation'">
         <div class="editable-row-operations">
           <div v-if="editableData[index]" class="flex justify-evenly">
-            <a class="ml-2" @click="handleInlineSave(index)">保存</a>
-            <a-popconfirm title="是否取消当前变更?" @confirm="handleInlineCancel(index)">
-              <a class="ml-2">取消</a>
+            <a-button type="link" size="small" @click="onSave(index)">保存</a-button>
+            <a-popconfirm title="是否取消当前变更?" @confirm="onCancel(index)">
+              <a-button type="link" size="small">取消</a-button>
             </a-popconfirm>
           </div>
           <div v-else class="flex justify-evenly">
-            <a class="ml-2" @click="handleInlineEdit(index)">编辑</a>
-            <a-popconfirm title="是否确定删除?" @confirm="handleInlineDelete(index)">
-              <a class="ml-2" type="danger">删除</a>
+            <a-button type="link" size="small" @click="onEdit(index)">编辑</a-button>
+            <a-popconfirm title="是否确定删除?" @confirm="onDelete(index)">
+              <a-button type="link" size="small" danger>删除</a-button>
             </a-popconfirm>
           </div>
         </div>
@@ -79,7 +79,3 @@ const handleInlineDelete = (idx: number) => {
     </template>
   </a-table>
 </template>
-
-<style scoped lang="less">
-
-</style>
