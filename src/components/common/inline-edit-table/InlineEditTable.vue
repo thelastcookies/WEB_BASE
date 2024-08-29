@@ -18,20 +18,23 @@ const emit = defineEmits<{
 
 const editableData: Record<string, any> = reactive({});
 
-const handleInlineAdd = () => {
+const handleAdd = () => {
+  const oldLen = dataSource.value.length;
   emit('add');
+  const newLen = dataSource.value.length;
+  if (newLen === oldLen + 1) handleEdit(dataSource.value.length - 1);
 };
-const onEdit = (idx: number) => {
+const handleEdit = (idx: number) => {
   editableData[idx] = cloneDeep(dataSource.value[idx]);
 };
-const onSave = (idx: number) => {
+const handleSave = (idx: number) => {
   Object.assign(dataSource.value[idx], editableData[idx]);
   delete editableData[idx];
 };
-const onCancel = (idx: number) => {
+const handleCancel = (idx: number) => {
   delete editableData[idx];
 };
-const onDelete = (idx: number) => {
+const handleDelete = (idx: number) => {
   delete editableData[idx];
   dataSource.value.splice(idx, 1);
 };
@@ -44,7 +47,7 @@ const onDelete = (idx: number) => {
         <div class="flex justify-evenly">
           <span>{{ title }}</span>
           <a-button type="primary" size="small"
-                    @click="handleInlineAdd">新增
+                    @click="handleAdd">新增
           </a-button>
         </div>
       </template>
@@ -53,14 +56,14 @@ const onDelete = (idx: number) => {
       <template v-if="column.dataIndex === 'operation'">
         <div class="editable-row-operations">
           <div v-if="editableData[index]" class="flex justify-evenly">
-            <a-button type="link" size="small" @click="onSave(index)">保存</a-button>
-            <a-popconfirm title="是否取消当前变更?" @confirm="onCancel(index)">
+            <a-button type="link" size="small" @click="handleSave(index)">保存</a-button>
+            <a-popconfirm title="是否取消当前变更?" @confirm="handleCancel(index)">
               <a-button type="link" size="small">取消</a-button>
             </a-popconfirm>
           </div>
           <div v-else class="flex justify-evenly">
-            <a-button type="link" size="small" @click="onEdit(index)">编辑</a-button>
-            <a-popconfirm title="是否确定删除?" @confirm="onDelete(index)">
+            <a-button type="link" size="small" @click="handleEdit(index)">编辑</a-button>
+            <a-popconfirm title="是否确定删除?" @confirm="handleDelete(index)">
               <a-button type="link" size="small" danger>删除</a-button>
             </a-popconfirm>
           </div>
