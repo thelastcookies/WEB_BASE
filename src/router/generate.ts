@@ -1,12 +1,5 @@
-import type {
-  ActionRecordRaw,
-  ActionRecordPage,
-  ActionRecordPageWithChildren,
-  ActionRecordLink,
-  ActionRecordIFrame,
-  ActionRecordDiagram,
-} from "@/types/action";
-import type { RouteRecordName, RouteRecordRaw } from "vue-router";
+import type { ActionRecordRaw } from '@/types/action';
+import type { RouteRecordName, RouteRecordRaw } from 'vue-router';
 
 /**
  * 根据 Actions 配置，生成路由
@@ -35,7 +28,7 @@ export const generateRouterConf = (actionTree: ActionRecordRaw[]) => {
     name: 'Layout',
     redirect: { name: homePage!.actionId as RouteRecordName },
     component: basicRouteMap.Layout,
-    children: routes
+    children: routes,
   });
 };
 
@@ -46,8 +39,8 @@ export const generateRouterConf = (actionTree: ActionRecordRaw[]) => {
 const generateFlatRoutes = (actions: ActionRecordRaw[]): RouteRecordRaw[] => {
   const routeData = [] as RouteRecordRaw[];
   for (const action of actions) {
-    if ('children' in action && action.children.length) {
-      routeData.push(...generateFlatRoutes(action.children));
+    if ('children' in action && action.getChildren()?.length) {
+      routeData.push(...generateFlatRoutes(action.getChildren()!));
     }
     const route = actionToRoute(action);
     if (!route) continue;
@@ -64,8 +57,8 @@ const generateRoutes = (actions: ActionRecordRaw[]) => {
   const routeData = [] as RouteRecordRaw[];
   for (const action of actions) {
     const route = actionToRoute(action);
-    if ('children' in action && action.children.length) {
-      route.children = generateRoutes(action.children)
+    if (action.children?.length) {
+      route.children = generateRoutes(action.children);
     }
     routeData.push(route);
   }
@@ -80,18 +73,18 @@ const generateRoutes = (actions: ActionRecordRaw[]) => {
 const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
   const route = {} as RouteRecordRaw;
   route.name = typeof action.actionId === 'number' ? String(action.actionId) : action.actionId;
-  if ('url' in action) {
+  if (action.url) {
     route.path = action.url;
     route.props = action.url.search(/:/) > 0;
   } else {
     route.path = '';
   }
-  if ('component' in action) {
+  if (action.component) {
     route.component = getRouterModule(action.component);
   } else if (action.type === MenuPageType.MENU) {
     route.component = getRouterModule('Parent');
     route.redirect = 'redirect' in action ? action.redirect : {
-      name: findDescendantWithUrlDefined(action)?.actionId as RouteRecordName
+      name: findDescendantWithUrlDefined(action)?.actionId as RouteRecordName,
     };
   } else if (action.type === MenuPageType.IFRAME) {
     route.component = getRouterModule('IFrame');
@@ -109,12 +102,10 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
 };
 
 export const findDescendantWithUrlDefined = (
-  action: ActionRecordRaw
-): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
-  if ('children' in action) {
-    // TODO 解决类型错误问题
-    // @ts-ignore
-    if ('url' in action.children[0]) return action.children[0];
+  action: ActionRecordRaw,
+): ActionRecordRaw | undefined => {
+  if (action.children) {
+    if (action.children[0]?.url) return action.children[0];
     else findDescendantWithUrlDefined(action.children[0]);
   } else return undefined;
 };

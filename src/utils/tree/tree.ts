@@ -1,5 +1,5 @@
-import type { Key } from "@/types";
-import type { TreeLikeItem } from "@/utils/tree/types";
+import type { Key } from '@/types';
+import type { TreeLikeItem } from '@/utils/tree/types';
 
 class TreeNode implements TreeLikeItem {
   [key: string]: any;
@@ -13,17 +13,17 @@ class TreeNode implements TreeLikeItem {
   }
 
   getId(): Key | undefined {
-    return this.id || this.Id || this.key || this.Key;
+    return this.id ?? this.Id ?? this.key ?? this.Key;
   }
 
   setId(v: Key) {
-    if ("id" in this) {
+    if ('id' in this) {
       this.id = v;
-    } else if ("Id" in this) {
+    } else if ('Id' in this) {
       this.Id = v;
-    } else if ("key" in this) {
+    } else if ('key' in this) {
       this.key = v;
-    } else if ("Key" in this) {
+    } else if ('Key' in this) {
       this.Key = v;
     } else {
       this.id = v;
@@ -31,35 +31,35 @@ class TreeNode implements TreeLikeItem {
   }
 
   getParentId(): Key | undefined {
-    return this.pid || this.pId || this.parentId || this.ParentId;
+    return this.pid ?? this.pId ?? this.parentId ?? this.ParentId;
   }
 
   setParentId(v: Key): void {
-    if ("pid" in this) {
+    if ('pid' in this) {
       this.pid = v;
-    } else if ("pId" in this) {
+    } else if ('pId' in this) {
       this.pId = v;
-    } else if ("parentId" in this) {
+    } else if ('parentId' in this) {
       this.parentId = v;
-    } else if ("ParentId" in this) {
+    } else if ('ParentId' in this) {
       this.ParentId = v;
     } else {
-      this.parentId = v;
+      this.pid = v;
     }
   }
 
   getLabel(): string | undefined {
-    return this.name || this.label || this.title || this.value;
+    return this.name ?? this.label ?? this.title ?? this.value;
   }
 
   setLabel(v: string): void {
-    if ("name" in this) {
+    if ('name' in this) {
       this.name = v;
-    } else if ("label" in this) {
+    } else if ('label' in this) {
       this.label = v;
-    } else if ("title" in this) {
+    } else if ('title' in this) {
       this.title = v;
-    } else if ("value" in this) {
+    } else if ('value' in this) {
       this.value = v;
     } else {
       this.name = v;
@@ -67,17 +67,17 @@ class TreeNode implements TreeLikeItem {
   }
 
   getOrder(): Key | undefined {
-    return this.sort || this.Sort || this.order || this.Order;
+    return this.sort ?? this.Sort ?? this.order ?? this.Order;
   }
 
   setOrder(v: Key): void {
-    if ("sort" in this) {
+    if ('sort' in this) {
       this.sort = v;
-    } else if ("Sort" in this) {
+    } else if ('Sort' in this) {
       this.Sort = v;
-    } else if ("order" in this) {
+    } else if ('order' in this) {
       this.order = v;
-    } else if ("Order" in this) {
+    } else if ('Order' in this) {
       this.Order = v;
     } else {
       this.sort = v;
@@ -85,13 +85,13 @@ class TreeNode implements TreeLikeItem {
   }
 
   getChildren<T extends TreeNode>(): T[] | undefined {
-    return this.children || this.Children;
+    return this.children ?? this.Children;
   }
 
   setChildren<T extends TreeNode>(v: T[]): void {
-    if ("children" in this) {
+    if ('children' in this) {
       this.children = v;
-    } else if ("Children" in this) {
+    } else if ('Children' in this) {
       this.Children = v;
     } else {
       this.children = v;
@@ -104,7 +104,7 @@ class TreeNode implements TreeLikeItem {
  * @param tree
  * @param handler
  */
-function createTree<T extends TreeNode>(
+function createTree<T extends TreeNode = TreeNode>(
   tree: Partial<TreeLikeItem>[],
   handler?: <K extends TreeLikeItem>(arg: TreeLikeItem) => K,
 ): T[] {
@@ -125,7 +125,7 @@ function createTree<T extends TreeNode>(
  * @param tree
  * @param handler
  */
-function createShallowTree<T extends TreeNode>(
+function createShallowTree<T extends TreeNode = TreeNode>(
   tree: Partial<TreeLikeItem>[],
   handler?: <K extends TreeLikeItem>(arg: TreeLikeItem) => K,
 ): T[] {

@@ -1,25 +1,24 @@
-import type { MenuPageType, ShowInMenuType } from "@/enums";
-import type { Key, RecordName } from "@/types";
-import type { RouteMeta } from "vue-router";
+import type { MenuPageType, ShowInMenuType } from '@/enums';
+import type { Key, RecordName } from '@/types';
+import type { RouteMeta } from 'vue-router';
+import type { TreeNode } from '@/utils';
 
 export type ActionRecordRaw =
   ActionRecordPage
-  | ActionRecordPageWithChildren
   | ActionRecordMenu
-  | ActionRecordMenuWithChildren
   | ActionRecordRedirect
   | ActionRecordLink
   | ActionRecordIFrame
   | ActionRecordDiagram;
 
-interface _ActionBase {
+interface _ActionBase extends TreeNode {
   // 路由 id
   id: Key;
   // 父级 id
   pId?: Key;
   // 路由短 id，与 id 职能相同，实践中一般使用该值来标识路由项，在构建路由时，会将此项作为 'name' 属性填入 Route 中
   actionId: Key | RecordName;
-  url: string;
+  url?: string;
   // 路由配置的中文描述
   title?: string;
   // 路由配置的类型
@@ -32,10 +31,11 @@ interface _ActionBase {
   showInMenu?: ShowInMenuType;
   // 自定义的路由元数据
   meta?: RouteMeta;
+  // 子节点
+  children?: ActionRecordRaw[];
 }
 
 export interface ActionRecordPage extends _ActionBase {
-  type: MenuPageType.PAGE;
   // 组件配置
   component: string;
   // 重定向
@@ -48,41 +48,27 @@ export interface ActionRecordPage extends _ActionBase {
   query?: object;
 }
 
-export interface ActionRecordPageWithChildren extends ActionRecordPage {
-  // 子节点
-  children: ActionRecordRaw[];
-}
-
 export interface ActionRecordMenu extends _ActionBase {
-  type: MenuPageType.MENU;
   // 路由配置的icon，一般用于第一级菜单
   icon?: string;
   redirect: string;
 }
 
-export interface ActionRecordMenuWithChildren extends ActionRecordMenu {
-  children: ActionRecordRaw[];
-}
-
 export interface ActionRecordRedirect extends _ActionBase {
-  type: MenuPageType.PAGE;
   redirect: string;
   component?: string;
 }
 
 export interface ActionRecordLink extends _ActionBase {
-  type: MenuPageType.LINK;
   url: string;
   href: string;
 }
 
 export interface ActionRecordIFrame extends _ActionBase {
-  type: MenuPageType.IFRAME;
   url: string;
   href: string;
 }
 
 export interface ActionRecordDiagram extends _ActionBase {
-  type: MenuPageType.DIAGRAM;
   url: string;
 }

@@ -1,18 +1,14 @@
-import type { Key, RecordName } from "@/types";
-import type {
-  ActionRecordMenu,
-  ActionRecordMenuWithChildren,
-  ActionRecordPage,
-  ActionRecordPageWithChildren,
-  ActionRecordRaw
-} from "@/types/action";
+import type { Key, RecordName } from '@/types';
+import type { ActionRecordMenu, ActionRecordPage, ActionRecordRaw } from '@/types/action';
+import type { MenuResponseRecord } from '@/api/admin/action/types';
+import { MenuPageType } from '@/enums';
 
 export const useActionStore = defineStore('action', () => {
   const actionTree = shallowRef([] as ActionRecordRaw[]);
 
   const getActionsFromApi = async () => {
     const { Data } = await getOperatorMenuList();
-    return preprocessActionTree(Data ?? [])
+    return preprocessMenuTree(Data ?? []);
   };
 
   const getActionsFromConfig = async () => {
@@ -37,7 +33,7 @@ export const useActionStore = defineStore('action', () => {
     actionTree,
     getActions,
     $reset,
-  }
+  };
 });
 
 /**
@@ -49,7 +45,7 @@ export const useActionStore = defineStore('action', () => {
 export const findAction = (
   actions: ActionRecordRaw[],
   key: Key | RecordName,
-  field: 'id' | 'actionId' | 'title' = 'actionId'
+  field: 'id' | 'actionId' | 'title' = 'actionId',
 ): ActionRecordRaw | undefined => {
   let action: ActionRecordRaw;
   for (let i = 0, len = actions.length; i < len; i++) {
@@ -59,9 +55,9 @@ export const findAction = (
     }
     if ('children' in actions[i]) {
       const p = findAction(
-        (actions[i] as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children,
+        actions[i].children!,
         key,
-        field
+        field,
       );
       if (p) {
         return p;
@@ -98,32 +94,32 @@ export const findActionAncestorChain = (
  * 主要进行字段的转换和过滤
  * @param dataTree 接口数据
  */
-export const preprocessActionTree = (dataTree: any): ActionRecordRaw[] => {
-  return dataTree.map((item: any) => {
+export const preprocessMenuTree = (dataTree: MenuResponseRecord[]): ActionRecordRaw[] => {
+  return createTree(dataTree.map((item: MenuResponseRecord) => {
     let action = {} as ActionRecordRaw;
     action.id = item.Id ?? '';
     action.pId = item.ParentId ?? '';
     action.actionId = item.MenuId ?? '';
     action.title = item.Text ?? '';
     action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
-    action.sort = Number(item.Sort)
+    action.sort = Number(item.Sort);
     action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
 
     if (item.Url) {
-      (action as ActionRecordPage | ActionRecordPageWithChildren).url = item.Url;
+      (action as ActionRecordPage).url = item.Url;
     }
     if (item.Component) {
-      (action as ActionRecordPage | ActionRecordPageWithChildren).component = item.Component;
+      (action as ActionRecordPage).component = item.Component;
     }
     if (item.icon) {
-      (action as ActionRecordMenu | ActionRecordMenuWithChildren).icon = item.icon;
+      (action as ActionRecordMenu).icon = item.icon;
     }
     if (item.Query) {
-      (action as ActionRecordPage | ActionRecordPageWithChildren).query = JSON.parse(item.Query);
+      (action as ActionRecordPage).query = JSON.parse(item.Query);
     }
     if (item.Children) {
-      (action as ActionRecordPageWithChildren | ActionRecordMenuWithChildren).children = preprocessActionTree(item.Children);
+      action.children = preprocessMenuTree(item.Children);
     }
     return action;
-  });
+  }));
 };
