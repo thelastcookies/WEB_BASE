@@ -8,7 +8,7 @@ const appTitle = import.meta.env.APP_TITLE;
                 lt-sm:w-full lt-sm:h-full lt-sm:border-rd-0">
       <div class="h-full w-530px lt-sm:w-full p8">
         <header class="flex">
-          <BaseIcon icon="/logo.svg" type="logo" size="2"></BaseIcon>
+          <BaseIcon icon="/vue-icon.svg" type="logo" size="2"></BaseIcon>
           <div class="text-6 font-600 ml lh-9">{{ appTitle }}</div>
         </header>
         <main class="h-[calc(100%-2rem)] flex">

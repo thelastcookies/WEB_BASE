@@ -7,7 +7,7 @@ const { deviceType, loginEnable } = useAppStore();
   <div class="w-full h-full flex-sb">
     <div class="h-full flex">
       <BaseIcon v-if="deviceType === 'desktop'"
-                icon="/logo.svg" type="logo" :size="1.75"></BaseIcon>
+                icon="/vue-icon.svg" type="logo" :size="1.75"></BaseIcon>
       <span class="c-ant.white ml-3 font-size-18px font-700 tracking-wide lh-13
                   lt-sm:ml-0 lt-sm:mx-auto">{{ appTitle }}</span>
     </div>
