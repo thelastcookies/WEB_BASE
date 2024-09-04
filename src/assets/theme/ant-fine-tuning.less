@@ -6,3 +6,10 @@
 .ant-btn > .base-icon + span, .ant-btn > span + .base-icon {
   margin-inline-start: 6px;
 }
+
+// Table 组件斑马纹
+.ant-table .ant-table-tbody tr {
+  &:nth-child(2n) {
+    background-color: var(--tableStripedBg);
+  }
+}

@@ -197,4 +197,7 @@
   --colorInfoTextHover: #3C89E8;
   --colorInfoText: #1668DC;
   --colorInfoTextActive: #1554AD;
+
+  /* 扩展 */
+  --tableStripedBg: #1D1D1D;
 }
