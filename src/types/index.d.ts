@@ -1,5 +1,4 @@
-import { VNodeChild } from "vue";
-import type { ShowInMenuType } from "@/enums";
+import { VNodeChild } from 'vue';
 
 export type Key = string | number;
 export type RecordName = string | symbol;
@@ -64,6 +63,6 @@ export interface MenuTreeNode {
   title?: string;
   icon?: string | (() => VNodeChild);
   disabled?: boolean;
-  showInMenu?: ShowInMenuType;
+  showInMenu?: boolean;
   children?: MenuTreeNode[];
 }

@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { Key, RecordName } from "@/types";
-import type { ActionRecordRaw } from "@/types/action";
-import type { MenuInfo, SelectInfo } from "ant-design-vue/es/menu/src/interface";
-import type { RouteLocationNormalized } from "vue-router";
+import type { Key, RecordName } from '@/types';
+import type { ActionRecordRaw } from '@/types/action';
+import type { MenuInfo, SelectInfo } from 'ant-design-vue/es/menu/src/interface';
+import type { RouteLocationNormalized } from 'vue-router';
 
 const openKeys = ref([] as string[]);
 const selectedKeys = ref([] as string[]);
 
 const handleMenuClick = ({ key }: MenuInfo) => {
   routeTo({ name: key as string });
-}
+};
 
 const onOpenChange = (openKeys: (Key)[]) => {
-}
+};
 
 const onSelect = ({ selectedKeys }: SelectInfo) => {
-}
+};
 
 // Menu 初始化，来源自 actionTree
 const { actionTree } = storeToRefs(useActionStore());
@@ -33,7 +33,7 @@ listenRouteChange((route: RouteLocationNormalized) => {
   const ancestorChain = findActionAncestorChain(actionTree.value, route.name as RecordName);
   if (!ancestorChain || !ancestorChain.length) return;
 
-  const indexMenuSelectable = ancestorChain.findIndex(action => action.showInMenu === ShowInMenuType.SHOW);
+  const indexMenuSelectable = ancestorChain.findIndex(action => action.showInMenu === true);
   selectedKeys.value = [String(ancestorChain[indexMenuSelectable]!.actionId)];
   const parentMenuIndex = indexMenuSelectable + 1 < ancestorChain.length ? indexMenuSelectable + 1 : indexMenuSelectable;
   openKeys.value = [String(ancestorChain[parentMenuIndex].actionId)];

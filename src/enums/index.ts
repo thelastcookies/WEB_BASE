@@ -39,15 +39,6 @@ export enum MenuPageType {
 }
 
 /**
- * 菜单是否展示
- */
-export enum ShowInMenuType {
-  HIDE = '0',
-  SHOW = '1',
-  // 预留扩展
-}
-
-/**
  * 步骤
  */
 export enum StepEnum {

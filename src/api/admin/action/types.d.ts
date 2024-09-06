@@ -1,5 +1,5 @@
 import type { TreeNode } from '@/utils/tree/tree.ts';
-import type { MenuPageType, ShowInMenuType } from '@/enums';
+import type { MenuPageType } from '@/enums';
 
 export interface GetActionsRequestBody {
   ActionIds?: string[];
@@ -40,7 +40,7 @@ export interface MenuResponseRecord extends TreeNode {
   Text?: string;
   Component?: string;
   NeedAction?: boolean;
-  ShowInMenu?: ShowInMenuType;
+  ShowInMenu?: boolean;
   selectable?: boolean;
   icon?: string;
   Sort?: number;

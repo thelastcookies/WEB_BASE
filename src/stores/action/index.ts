@@ -103,7 +103,7 @@ export const preprocessMenuTree = (dataTree: MenuResponseRecord[]): ActionRecord
     action.title = item.Text ?? '';
     action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
     action.sort = Number(item.Sort);
-    action.showInMenu = item.ShowInMenu ?? ShowInMenuType.SHOW;
+    action.showInMenu = item.ShowInMenu ?? true;
 
     if (item.Url) {
       (action as ActionRecordPage).url = item.Url;
