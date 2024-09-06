@@ -36,22 +36,30 @@ export interface MenuResponseRecord extends TreeNode {
   ParentId?: string;
   Level?: number;
   Type?: MenuPageType;
+  TypeText: string;
   Url?: string;
   Text?: string;
-  Component?: string;
+  Resource?: string;
   NeedAction?: boolean;
+  NeedActionText?: string;
   ShowInMenu?: boolean;
   selectable?: boolean;
   icon?: string;
   Sort?: number;
-  Multi?: boolean;
+  Redirect?: string;
+  Affix?: boolean;
+  KeepAlive?: boolean;
+  Meta?: string;
   PermissionValues?: string[],
   permissionList?: PermissionRecord[],
-  Query?: string;
   Children?: MenuResponseRecord[];
 
+  // 与「Url」值相同
+  path?: string;
   // 与「Id」值相同，便于在组件内使用，下同
   key?: string;
+  // 与「Id」值相同
+  Value?: string;
   // 与「Id」值相同
   value?: string;
   // 与「Text」值相同

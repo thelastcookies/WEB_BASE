@@ -1,5 +1,5 @@
 import type { Key, RecordName } from '@/types';
-import type { ActionRecordMenu, ActionRecordPage, ActionRecordRaw } from '@/types/action';
+import type { ActionRecordRaw } from '@/types/action';
 import type { MenuResponseRecord } from '@/api/admin/action/types';
 import { MenuPageType } from '@/enums';
 
@@ -98,24 +98,22 @@ export const preprocessMenuTree = (dataTree: MenuResponseRecord[]): ActionRecord
   return createTree(dataTree.map((item: MenuResponseRecord) => {
     let action = {} as ActionRecordRaw;
     action.id = item.Id ?? '';
-    action.pId = item.ParentId ?? '';
+    action.pId = item.ParentId;
     action.actionId = item.MenuId ?? '';
-    action.title = item.Text ?? '';
-    action.type = item.Type ?? (item.component ? MenuPageType.PAGE : MenuPageType.MENU);
+    action.title = item.Text;
+    action.type = item.Type ?? MenuPageType.MENU;
     action.sort = Number(item.Sort);
-    action.showInMenu = item.ShowInMenu ?? true;
+    action.showInMenu = item.ShowInMenu;
+    action.icon = item.icon;
 
-    if (item.Url) {
-      (action as ActionRecordPage).url = item.Url;
-    }
-    if (item.Component) {
-      (action as ActionRecordPage).component = item.Component;
-    }
-    if (item.icon) {
-      (action as ActionRecordMenu).icon = item.icon;
-    }
-    if (item.Query) {
-      (action as ActionRecordPage).query = JSON.parse(item.Query);
+    action.url = item.Url;
+    action.resource = item.Resource;
+    action.redirect = item.Redirect;
+    action.affix = item.Affix;
+    action.keepAlive = item.KeepAlive;
+
+    if (item.Meta) {
+      action.meta = JSON.parse(item.Meta);
     }
     if (item.Children) {
       action.children = preprocessMenuTree(item.Children);

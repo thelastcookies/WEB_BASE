@@ -79,8 +79,8 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
   } else {
     route.path = '';
   }
-  if (action.component) {
-    route.component = getRouterModule(action.component);
+  if (action.type === MenuPageType.PAGE) {
+    route.component = getRouterModule(action.resource);
   } else if (action.type === MenuPageType.MENU) {
     route.component = getRouterModule('Parent');
     route.redirect = 'redirect' in action ? action.redirect : {
@@ -88,15 +88,15 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
     };
   } else if (action.type === MenuPageType.IFRAME) {
     route.component = getRouterModule('IFrame');
-    route.meta = { href: action.href };
+    route.meta = { href: action.resource };
   } else if (action.type === MenuPageType.LINK) {
     route.component = getRouterModule('Link');
-    route.meta = { href: action.href };
+    route.meta = { href: action.resource };
   } else if (action.type === MenuPageType.DIAGRAM) {
 
   }
   if ('meta' in action) {
-    route.meta = action.meta;
+    route.meta = Object.assign({}, route.meta, action.meta);
   }
   return route;
 };
