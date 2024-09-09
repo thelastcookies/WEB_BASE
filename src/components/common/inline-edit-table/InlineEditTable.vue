@@ -19,10 +19,12 @@ const emit = defineEmits<{
 const editableData: Record<string, any> = reactive({});
 
 const handleAdd = () => {
-  const oldLen = dataSource.value.length;
+  const oldLen = dataSource.value.length ?? 0;
   emit('add');
-  const newLen = dataSource.value.length;
-  if (newLen === oldLen + 1) handleEdit(dataSource.value.length - 1);
+  nextTick(() => {
+    const newLen = dataSource.value.length;
+    if (newLen === oldLen + 1) handleEdit(dataSource.value.length - 1);
+  });
 };
 const handleEdit = (idx: number) => {
   editableData[idx] = cloneDeep(dataSource.value[idx]);
@@ -41,7 +43,7 @@ const handleDelete = (idx: number) => {
 </script>
 
 <template>
-  <a-table :columns="columns" :data-source="dataSource">
+  <a-table :columns="columns" :data-source="dataSource" :pagination="false">
     <template #headerCell="{title, column}">
       <template v-if="column.dataIndex === 'operation'">
         <div class="flex justify-evenly">
