@@ -1,12 +1,13 @@
 <script setup lang="ts">
 import { Empty } from 'ant-design-vue';
 import { EditEnum, MenuPageType } from '@/enums';
-import type { ActionResponseRecord, MenuResponseRecord } from '@/api/admin/action/types';
 import InlineEditTable from '@/components/common/inline-edit-table/InlineEditTable.vue';
-import { permTableColumns } from '@/views/settings/action/action.ts';
+import type { ActionRecordRaw } from '@/types/action';
+import type { Recordable } from '@/types';
 
 const props = withDefaults(defineProps<{
-  value?: MenuResponseRecord;
+  tree?: ActionRecordRaw[];
+  value?: ActionRecordRaw;
   type?: EditEnum;
 }>(), {
   type: EditEnum.VIEW,
@@ -42,14 +43,20 @@ const menuPageTypeOptions = [{
 const formRef = ref<HTMLFormElement>();
 const loading = ref<boolean>(false);
 
-const formData = ref<ActionResponseRecord>();
+const formData = ref<ActionRecordRaw>();
+
+const fieldNames = { value: 'id', label: 'title', children: 'children' };
 
 watch(() => props.value, (val) => {
   if (val) {
-    formData.value = Object.assign({}, val, {
-      Name: val.title,
-      Icon: val.icon,
-    });
+    formData.value = cloneDeep(val);
+    if (val.meta) {
+      let metaList: Recordable<string>[] = [];
+      for (const [key, value] of Object.entries(val.meta)) {
+        metaList.push({ key, value: value as string });
+      }
+      formData.value = Object.assign({}, val, { metaList });
+    }
   } else {
     formData.value = undefined;
   }
@@ -65,18 +72,34 @@ const handleSubmit = () => {
 
 };
 
-const actionTreeData = ref();
-const getActionTreeData = async () => {
-  const res = await getMenuTreeList({});
-  actionTreeData.value = createTree(res.Data!);
+const handlePermAdd = () => {
+  if (!formData.value) return;
+  if (formData.value.permissionList?.length) {
+    formData.value?.permissionList?.push(new TreeNode({
+      Name: '',
+      Value: '',
+    }));
+  } else {
+    formData.value.permissionList = [{
+      Name: '',
+      Value: '',
+    }];
+  }
 };
-getActionTreeData();
 
-const handleAdd = () => {
-  formData.value?.permissionList?.push(new TreeNode({
-    Name: '',
-    Value: '',
-  }));
+const handleMetaAdd = () => {
+  if (!formData.value) return;
+  if (formData.value.metaList?.length) {
+    formData.value?.metaList?.push({
+      key: '',
+      value: '',
+    });
+  } else {
+    formData.value.metaList = [{
+      key: '',
+      value: '',
+    }];
+  }
 };
 
 </script>
@@ -95,63 +118,140 @@ const handleAdd = () => {
         </a-row>
         <a-row>
           <a-col :span="12">
-            <a-form-item label="菜单名称" name="Name">
-              <a-input v-model:value="formData.Name" placeholder="请输入菜单名称" />
+            <a-form-item label="名称" name="title">
+              <a-input v-model:value="formData.title" placeholder="请输入名称" />
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item label="上级菜单" name="RealName">
+            <a-form-item label="编码" name="actionId">
+              <a-input v-model:value="formData.actionId" placeholder="请输入编码" />
+            </a-form-item>
+          </a-col>
+          <a-col :span="12">
+            <a-form-item label="类型" name="type">
+              <a-select v-model:value="formData.type" placeholder="请选择类型"
+                        :options="menuPageTypeOptions"></a-select>
+            </a-form-item>
+          </a-col>
+          <a-col :span="12">
+            <a-form-item label="父级" name="pId">
               <a-tree-select
                 show-arrow
                 allow-clear
                 show-search
                 tree-node-filter-prop="title"
                 placeholder="请选择"
-                v-model:value="formData.ParentId"
-                :tree-data="actionTreeData" />
+                :field-names="fieldNames"
+                :tree-data="props.tree"
+                v-model:value="formData.pId"
+              />
             </a-form-item>
           </a-col>
         </a-row>
         <a-row>
           <a-col :span="12">
-            <a-form-item label="路径配置" name="Url">
-              <a-input v-model:value="formData.Url" placeholder="请输入路径" />
+            <a-form-item label="路径配置" name="url" tooltip="将与父级配置拼接组成地址栏#后显示的地址">
+              <a-input v-model:value="formData.url" placeholder="请输入路径" />
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item label="图标配置" name="Icon">
-              <a-input v-model:value="formData.Icon" placeholder="请输入" />
+            <a-form-item label="图标配置" name="icon">
+              <a-input v-model:value="formData.icon" placeholder="请输入" />
             </a-form-item>
           </a-col>
         </a-row>
         <a-row>
           <a-col :span="12">
-            <a-form-item label="类型" name="Type">
-              <a-select v-model:value="formData.Type" placeholder="请选择类型"
-                        :options="menuPageTypeOptions"></a-select>
+            <a-form-item label="是否启用" name="showInMenu">
+              <a-switch v-model:checked="formData.showInMenu"
+                        checked-children="是" un-checked-children="否"
+              ></a-switch>
             </a-form-item>
           </a-col>
           <a-col :span="12">
-            <a-form-item label="排序" name="Sort">
-              <a-input v-model:value="formData.Sort" placeholder="请输入排序" />
+            <a-form-item label="排序" name="sort">
+              <a-input v-model:value="formData.sort" placeholder="请输入排序" />
             </a-form-item>
           </a-col>
         </a-row>
-        <template v-if="formData.Type === MenuPageType.PAGE">
+        <template v-if="formData.type === MenuPageType.PAGE">
           <a-row>
-            <a-divider orientation="left">权限配置</a-divider>
+            <a-col :span="12">
+              <a-form-item label="组件配置" name="resource" tooltip="页面组件在 src/views 目录下的路径">
+                <a-input v-model:value="formData.resource" placeholder="请输入组件路径" />
+              </a-form-item>
+            </a-col>
+            <a-col :span="12">
+              <a-form-item label="重定向" name="redirect">
+                <a-input v-model:value="formData.redirect" />
+              </a-form-item>
+            </a-col>
           </a-row>
           <a-row>
-            <InlineEditTable
-              class="w-full"
-              v-model:data-source="formData.permissionList"
-              :columns="permTableColumns"
-              @add="handleAdd"
-            ></InlineEditTable>
+            <a-col :span="12">
+              <a-form-item label="是否固定" name="affix" tooltip="勾选后该页面将被固定在 Tab 栏">
+                <a-switch v-model:checked="formData.affix"
+                          checked-children="是" un-checked-children="否"
+                ></a-switch>
+              </a-form-item>
+            </a-col>
+            <a-col :span="12">
+              <a-form-item label="是否保活" name="keepAlive" tooltip="勾选后当菜单切换时，该页面将被缓存">
+                <a-switch v-model:checked="formData.keepAlive"
+                          checked-children="是" un-checked-children="否"
+                ></a-switch>
+              </a-form-item>
+            </a-col>
           </a-row>
         </template>
+        <template v-else-if="formData.type === MenuPageType.LINK">
+          <a-row>
+            <a-col :span="12">
+              <a-form-item label="外链链接" name="resource">
+                <a-input v-model:value="formData.resource" placeholder="请输入链接地址" />
+              </a-form-item>
+            </a-col>
+          </a-row>
+        </template>
+        <template v-else-if="formData.type === MenuPageType.IFRAME">
+          <a-row>
+            <a-col :span="12">
+              <a-form-item label="IFrame 链接" name="resource">
+                <a-input v-model:value="formData.resource" placeholder="请输入链接地址" />
+              </a-form-item>
+            </a-col>
+            <a-col :span="12">
+              <a-form-item label="是否保活" name="keepAlive" tooltip="勾选后当菜单切换时，该页面将被缓存">
+                <a-switch v-model:checked="formData.keepAlive"
+                          checked-children="是" un-checked-children="否"
+                ></a-switch>
+              </a-form-item>
+            </a-col>
+          </a-row>
+        </template>
+        <template v-else-if="formData.type === MenuPageType.DIAGRAM">
+        </template>
         <a-row>
-          <a-divider orientation="left">扩展配置</a-divider>
+          <a-divider orientation="left">权限配置</a-divider>
+        </a-row>
+        <a-row>
+          <InlineEditTable
+            class="w-full"
+            v-model:data-source="formData.permissionList"
+            :columns="permTableColumns"
+            @add="handlePermAdd"
+          ></InlineEditTable>
+        </a-row>
+        <a-row>
+          <a-divider orientation="left">Meta 配置</a-divider>
+        </a-row>
+        <a-row>
+          <InlineEditTable
+            class="w-full"
+            v-model:data-source="formData.metaList"
+            :columns="metaTableColumns"
+            @add="handleMetaAdd"
+          ></InlineEditTable>
         </a-row>
       </a-form>
     </template>
@@ -162,6 +262,3 @@ const handleAdd = () => {
     </a-empty>
   </div>
 </template>
-
-<style scoped lang="less">
-</style>

@@ -18,3 +18,22 @@ export const permTableColumns: TableEditableColumnProps[] = [
     width: 160,
   },
 ];
+
+export const metaTableColumns: TableEditableColumnProps[] = [
+  {
+    title: '键',
+    dataIndex: 'key',
+    width: 250,
+    editable: true,
+  },
+  {
+    title: '值',
+    dataIndex: 'value',
+    editable: true,
+  },
+  {
+    title: '操作',
+    dataIndex: 'operation',
+    width: 160,
+  },
+];

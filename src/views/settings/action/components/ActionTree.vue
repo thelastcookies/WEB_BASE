@@ -1,39 +1,39 @@
 <script setup lang="ts">
-import type { MenuResponseRecord } from '@/api/admin/action/types';
 import { EditEnum } from '@/enums';
 import type { Key } from '@/types';
-import type { DataNode } from 'ant-design-vue/es/vc-tree/interface';
+import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
+import type { ActionRecordRaw } from '@/types/action';
 
-const value = defineModel<MenuResponseRecord[]>('value', { default: () => [] });
+const value = defineModel<ActionRecordRaw[]>('value', { default: () => [] });
 const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
 const checkedKeys = defineModel<Key[]>('checkedKeys', { default: () => [] });
 
-interface ActionTreeProps {
+const props = withDefaults(defineProps<{
+  tree?: ActionRecordRaw[];
   type?: EditEnum;
   searchable?: boolean;
   checkable?: boolean;
-}
-
-const props = withDefaults(defineProps<ActionTreeProps>(), {
+}>(), {
+  tree: () => [],
   type: EditEnum.VIEW,
   searchable: false,
   checkable: false,
 });
 
-const tree = ref<(MenuResponseRecord)[]>([]);
+const fieldNames = { key: 'id', title: 'title', children: 'children' };
 
 /**
  * 处理节点被选中
  */
 watchEffect(() => {
-  if (!tree.value.length) return;
+  if (!props.tree.length) return;
   if (props.checkable) {
     value.value = checkedKeys.value.map(key => {
-      return findTreeNodeById(tree.value, key)!;
+      return findTreeNodeById(props.tree, key)!;
     });
   } else {
     value.value = selectedKeys.value.map(key => {
-      return findTreeNodeById(tree.value, key)!;
+      return findTreeNodeById(props.tree, key)!;
     });
   }
 });
@@ -43,7 +43,7 @@ watchEffect(() => {
  */
 const searchValue = ref<string>('');
 watch(searchValue, value => {
-  const nodes = findTreeNodesByLabel(tree.value, value);
+  const nodes = findTreeNodesByLabel(props.tree, value);
   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
   autoExpandParent.value = true;
 });
@@ -57,19 +57,13 @@ const onExpand = (keys: Key[]) => {
   autoExpandParent.value = false;
 };
 
-/**
- * 数据交互与处理方法
- */
-const fetch = async () => {
-  const res = await getMenuTreeList({});
-  if (res.Data) tree.value = createTree(res.Data);
-};
-
 const handleEdit = (type: EditEnum) => {
 
 };
 
-fetch();
+const filterTreeNode = (node: EventDataNode) => {
+  return searchValue.value ? node.title.indexOf(searchValue.value) > -1 : false;
+};
 
 </script>
 
@@ -92,8 +86,10 @@ fetch();
       v-model:checked-keys="checkedKeys"
       :expanded-keys="expandedKeys"
       :auto-expand-parent="autoExpandParent"
-      :tree-data="tree as DataNode[]"
+      :tree-data="tree as unknown as DataNode[]"
+      :field-names="fieldNames"
       :checkable="checkable"
+      :filter-tree-node="filterTreeNode"
       @expand="onExpand"
       block-node
     >
