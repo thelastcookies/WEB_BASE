@@ -1,9 +1,9 @@
-import { AxiosError } from "axios";
-import { message } from "ant-design-vue";
+import { AxiosError } from 'axios';
+import { message } from 'ant-design-vue';
 
-const loginPath = "/login";
-const samplePath = "/sample";
-const accessWhileList = [loginPath, "/error", "/401", "/404", "/403"];
+const loginPath = '/login';
+const samplePath = '/sample';
+const accessWhileList = [loginPath, '/error', '/401', '/403', '/404', '/500'];
 
 router.beforeEach(async (to) => {
   setRouteEmitter(to);
@@ -31,7 +31,7 @@ router.beforeEach(async (to) => {
     if (!Object.keys(userStore.userInfo).length) {
       // 如果用户信息不存在则视作系统未初始化
       message.loading({
-        content: "系统加载中，请稍候",
+        content: '系统加载中，请稍候',
         key: SYS_LOADING_KEY,
         duration: 0,
       });
@@ -43,7 +43,7 @@ router.beforeEach(async (to) => {
         generateRouterConf(await getActions());
 
         message.success({
-          content: "加载完成",
+          content: '加载完成',
           key: SYS_LOADING_KEY,
         });
         return ({
@@ -55,22 +55,25 @@ router.beforeEach(async (to) => {
       } catch (e) {
         console.error(e);
         if (e instanceof AxiosError) {
-          if (e.code === "ECONNABORTED") {
+          if (e.code === 'ECONNABORTED') {
             message.error({
-              content: "请求超时",
+              content: '请求超时',
               key: SYS_LOADING_KEY,
             });
-          } else if (e.code === "ERR_NETWORK") {
+          } else if (e.code === 'ERR_NETWORK') {
             message.error({
-              content: "网络连接失败",
+              content: '网络连接失败',
               key: SYS_LOADING_KEY,
+            });
+            return ({
+              path: '/500',
             });
           } else if (e?.response?.status === 401) {
             message.destroy(SYS_LOADING_KEY);
             // 跳转到error页面
             return ({
               // TODO: 401 页面
-              path: "/401",
+              path: '/401',
             });
           } else {
             message.destroy(SYS_LOADING_KEY);
@@ -79,14 +82,14 @@ router.beforeEach(async (to) => {
           const { signOut } = useAppStore();
           signOut().then(() => {
             message.error({
-              content: "会话已过期，请重新登录",
+              content: '会话已过期，请重新登录',
               key: SYS_LOADING_KEY,
               duration: 5,
             });
           });
         } else {
           message.error({
-            content: "加载失败",
+            content: '加载失败',
             key: SYS_LOADING_KEY,
           });
         }
@@ -100,7 +103,7 @@ router.beforeEach(async (to) => {
     } else if (to.path === loginPath) {
       // 已登录情况下访问登录页时跳转到首页
       return ({
-        path: "/",
+        path: '/',
       });
     }
   }

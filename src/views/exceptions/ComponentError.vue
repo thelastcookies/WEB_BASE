@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import notFoundSvg from "~/exceptions/404.svg";
+import notFoundSvg from '~/exceptions/404.svg';
 </script>
 
 <template>

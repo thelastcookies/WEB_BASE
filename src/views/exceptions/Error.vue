@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import notFoundSvg from "~/exceptions/404.svg";
+import notFoundSvg from '~/exceptions/404.svg';
 
 const router = useRouter();
 
-function back() {
+const back = () => {
   router.replace({
-    path: "/",
+    path: '/',
   });
-}
+};
 </script>
 
 <template>
-  <a-result title="NOT FOUND" sub-title="对不起，当前访问的页面不存在！">
+  <a-result title="NOT FOUND" sub-title="对不起，当前访问的页面不存在">
     <template #icon>
       <img :src="notFoundSvg" alt="404.svg">
     </template>
