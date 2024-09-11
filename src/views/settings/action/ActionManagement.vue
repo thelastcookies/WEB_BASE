@@ -1,14 +1,13 @@
 <script setup lang="ts">
-import type { ActionRecordRaw } from '@/types/action';
-import { preprocessMenuTree } from '@/stores/action';
+import type { ActionResponseRecord } from '@/api/admin/action/types';
 
 const currentId = ref<string[]>([]);
-const currentActionList = ref<ActionRecordRaw[]>();
+const currentActionList = ref<ActionResponseRecord[]>();
 
-const actionTreeData = ref();
+const actionTreeData = ref<ActionResponseRecord[]>();
 const fetch = async () => {
   const { Data } = await getMenuTreeList({});
-  if (Data) actionTreeData.value = preprocessMenuTree(Data);
+  if (Data) actionTreeData.value = createTree(Data);
 };
 fetch();
 

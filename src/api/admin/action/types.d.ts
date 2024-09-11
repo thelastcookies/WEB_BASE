@@ -1,4 +1,5 @@
 import type { MenuPageType } from '@/enums';
+import type { TreeNode } from '@/utils';
 
 export interface GetActionsRequestBody {
   ActionIds?: string[];
@@ -7,10 +8,8 @@ export interface GetActionsRequestBody {
   selectable?: boolean;
   checkEmptyChildren?: boolean;
 }
-
-export interface ActionResponseRecord {
+export interface ActionResponseRecord extends TreeNode {
   Id?: string;
-  Value?: string;
   CreateTime?: string;
   CreatorId?: string;
   Deleted?: boolean;

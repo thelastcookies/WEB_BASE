@@ -49,7 +49,7 @@ class TreeNode implements TreeLikeItem {
   }
 
   getLabel(): string | undefined {
-    return this.name ?? this.label ?? this.title ?? this.value;
+    return this.name ?? this.label ?? this.title ?? this.value ?? this.Name;
   }
 
   setLabel(v: string): void {
@@ -61,6 +61,8 @@ class TreeNode implements TreeLikeItem {
       this.title = v;
     } else if ('value' in this) {
       this.value = v;
+    } else if ('Name' in this) {
+      this.Name = v;
     } else {
       this.name = v;
     }

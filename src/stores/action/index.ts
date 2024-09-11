@@ -97,11 +97,11 @@ export const findActionAncestorChain = (
 export const preprocessMenuTree = (dataTree: ActionResponseRecord[]): ActionRecordRaw[] => {
   return createTree(dataTree.map((item: ActionResponseRecord) => {
     let action = {} as ActionRecordRaw;
-    action.id = item.Id ?? '';
+    action.id = item.Id!;
     action.pId = item.ParentId;
-    action.actionId = item.MenuId ?? '';
+    action.actionId = item.MenuId!;
     action.title = item.Name;
-    action.type = item.Type ?? MenuPageType.MENU;
+    action.type = item.Type!;
     action.sort = Number(item.Sort);
     action.showInMenu = item.ShowInMenu;
     action.icon = item.Icon;

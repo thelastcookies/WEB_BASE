@@ -2,14 +2,14 @@
 import { EditEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
-import type { ActionRecordRaw } from '@/types/action';
+import type { ActionResponseRecord } from '@/api/admin/action/types';
 
-const value = defineModel<ActionRecordRaw[]>('value', { default: () => [] });
+const value = defineModel<ActionResponseRecord[]>('value', { default: () => [] });
 const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
 const checkedKeys = defineModel<Key[]>('checkedKeys', { default: () => [] });
 
 const props = withDefaults(defineProps<{
-  tree?: ActionRecordRaw[];
+  tree?: ActionResponseRecord[];
   type?: EditEnum;
   searchable?: boolean;
   checkable?: boolean;
@@ -20,7 +20,7 @@ const props = withDefaults(defineProps<{
   checkable: false,
 });
 
-const fieldNames = { key: 'id', title: 'title', children: 'children' };
+const fieldNames = { key: 'Id', title: 'Name', children: 'Children' };
 
 /**
  * 处理节点被选中
@@ -62,7 +62,7 @@ const handleEdit = (type: EditEnum) => {
 };
 
 const filterTreeNode = (node: EventDataNode) => {
-  return searchValue.value ? node.title.indexOf(searchValue.value) > -1 : false;
+  return searchValue.value ? node.Name.indexOf(searchValue.value) > -1 : false;
 };
 
 </script>
@@ -93,13 +93,13 @@ const filterTreeNode = (node: EventDataNode) => {
       @expand="onExpand"
       block-node
     >
-      <template #title="{ title }">
-        <span v-if="title && searchValue && title.indexOf(searchValue) > -1">
-          {{ title.substring(0, title.indexOf(searchValue)) }}
+      <template #title="{ Name }">
+        <span v-if="Name && searchValue && Name.indexOf(searchValue) > -1">
+          {{ Name.substring(0, Name.indexOf(searchValue)) }}
           <span class="c-ant.error">{{ searchValue }}</span>
-          {{ title.substring(title.indexOf(searchValue) + searchValue.length) }}
+          {{ Name.substring(Name.indexOf(searchValue) + searchValue.length) }}
         </span>
-        <span v-else>{{ title }}</span>
+        <span v-else>{{ Name }}</span>
       </template>
     </a-tree>
   </div>

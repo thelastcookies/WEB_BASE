@@ -59,13 +59,13 @@ const handleDelete = (idx: number) => {
         <div class="editable-row-operations">
           <div v-if="editableData[index]" class="flex justify-evenly">
             <a-button type="link" size="small" @click="handleSave(index)">保存</a-button>
-            <a-popconfirm title="是否取消当前变更?" @confirm="handleCancel(index)">
+            <a-popconfirm title="是否取消当前变更？" @confirm="handleCancel(index)">
               <a-button type="link" size="small">取消</a-button>
             </a-popconfirm>
           </div>
           <div v-else class="flex justify-evenly">
             <a-button type="link" size="small" @click="handleEdit(index)">编辑</a-button>
-            <a-popconfirm title="是否确定删除?" @confirm="handleDelete(index)">
+            <a-popconfirm title="是否确定删除？" @confirm="handleDelete(index)">
               <a-button type="link" size="small" danger>删除</a-button>
             </a-popconfirm>
           </div>
