@@ -46,6 +46,7 @@ const fieldNames = { value: 'Id', label: 'Name', children: 'Children' };
 watch(() => props.value, (val) => {
   if (val) {
     formData.value = cloneDeep(val);
+    metas.value = [];
     if (val.Meta) {
       const meta = JSON.parse(val.Meta);
       let metaList: Recordable<string>[] = [];
