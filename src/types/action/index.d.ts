@@ -34,6 +34,8 @@ interface _ActionBase extends TreeNode {
   meta?: RouteMeta;
   // 子节点
   children?: ActionRecordRaw[];
+  // 权限配置
+  permissions?: ActionPermission[];
 }
 
 export interface ActionRecordPage extends _ActionBase {
@@ -76,4 +78,13 @@ export interface ActionRecordDiagram extends _ActionBase {
   // 组态图地址
   resource: string;
   keepAlive?: boolean;
+}
+
+export interface ActionPermission extends TreeNode {
+  id?: string;
+  pId?: string;
+  name?: string;
+  value?: string;
+  needAction?: boolean;
+  type?: MenuPageType;
 }

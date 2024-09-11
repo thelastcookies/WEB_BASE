@@ -1,6 +1,6 @@
 import type { ChangePwdRequestBody, LoginRequestBody, OperatorInfo, UserNameRequestBody } from "./types";
 import type { AdminResponseBody } from "@/api/admin/types";
-import type { MenuResponseRecord } from "@/api/admin/action/types";
+import type { ActionResponseRecord } from "@/api/admin/action/types";
 
 export const login = (data: LoginRequestBody) => {
   return usePost<AdminResponseBody<string>, LoginRequestBody>(
@@ -34,7 +34,7 @@ export const getOperatorInfo = () => {
 };
 
 export const getOperatorMenuList = () => {
-  return usePost<AdminResponseBody<MenuResponseRecord[]>>(
+  return usePost<AdminResponseBody<ActionResponseRecord[]>>(
     `${ADMIN_URL}/Base_Manage/Home/GetOperatorMenuList`,
     null,
     {
@@ -44,7 +44,7 @@ export const getOperatorMenuList = () => {
 };
 
 export const getOperatorMenuListByUsername = (data: UserNameRequestBody) => {
-  return usePost<AdminResponseBody<MenuResponseRecord[]>, UserNameRequestBody>(
+  return usePost<AdminResponseBody<ActionResponseRecord[]>, UserNameRequestBody>(
     `${ADMIN_URL}/Base_Manage/Home/GetOperatorMenuListByUserName`,
     data,
   );

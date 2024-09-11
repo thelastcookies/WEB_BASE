@@ -1,6 +1,6 @@
 import type { Key, RecordName } from '@/types';
-import type { ActionRecordRaw } from '@/types/action';
-import type { MenuResponseRecord } from '@/api/admin/action/types';
+import type { ActionPermission, ActionRecordRaw } from '@/types/action';
+import type { ActionResponseRecord, PermissionRecord } from '@/api/admin/action/types';
 import { MenuPageType } from '@/enums';
 
 export const useActionStore = defineStore('action', () => {
@@ -94,17 +94,17 @@ export const findActionAncestorChain = (
  * 主要进行字段的转换和过滤
  * @param dataTree 接口数据
  */
-export const preprocessMenuTree = (dataTree: MenuResponseRecord[]): ActionRecordRaw[] => {
-  return createTree(dataTree.map((item: MenuResponseRecord) => {
+export const preprocessMenuTree = (dataTree: ActionResponseRecord[]): ActionRecordRaw[] => {
+  return createTree(dataTree.map((item: ActionResponseRecord) => {
     let action = {} as ActionRecordRaw;
     action.id = item.Id ?? '';
     action.pId = item.ParentId;
     action.actionId = item.MenuId ?? '';
-    action.title = item.Text;
+    action.title = item.Name;
     action.type = item.Type ?? MenuPageType.MENU;
     action.sort = Number(item.Sort);
     action.showInMenu = item.ShowInMenu;
-    action.icon = item.icon;
+    action.icon = item.Icon;
 
     action.url = item.Url;
     action.resource = item.Resource;
@@ -115,9 +115,25 @@ export const preprocessMenuTree = (dataTree: MenuResponseRecord[]): ActionRecord
     if (item.Meta) {
       action.meta = JSON.parse(item.Meta);
     }
+    if (item.PermissionList) {
+      action.permissions = preprocessPerms(item.PermissionList);
+    }
     if (item.Children) {
       action.children = preprocessMenuTree(item.Children);
     }
     return action;
   }));
 };
+
+export const preprocessPerms = (permissionList: PermissionRecord[]): ActionPermission[] => {
+  return createTree(permissionList.map(item => {
+    return {
+      id: item.Id,
+      pId: item.ParentId,
+      name: item.Name,
+      value: item.Value,
+      needAction: item.NeedAction,
+      type: MenuPageType.PERM,
+    }
+  }));
+}
