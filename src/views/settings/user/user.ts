@@ -17,10 +17,6 @@ export const userTableColumns: TableColumnProps[] = [
     dataIndex: "SexText",
   },
   {
-    title: "备注",
-    dataIndex: "Remark",
-  },
-  {
     title: "生日",
     dataIndex: "BirthdayText",
   },
@@ -29,24 +25,15 @@ export const userTableColumns: TableColumnProps[] = [
     dataIndex: "RoleNames",
   },
   {
+    title: "备注",
+    dataIndex: "Remark",
+  },
+  {
     title: "操作",
     width: 160,
     dataIndex: "operation",
   },
 ];
-
-
-// "PageIndex": 0,
-//   "PageRows": 0,
-//   "SortField": "string",
-//   "SortType": "string",
-//   "Search": {
-//   "all": true,
-//     "userId": "string",
-//     "keyword": "string",
-//     "userName": "string",
-//     "roleId": "string"
-// }
 
 export const userTableSearchFields: QueryFormField[] = [
   {

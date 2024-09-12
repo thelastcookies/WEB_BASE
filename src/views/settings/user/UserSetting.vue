@@ -1,13 +1,13 @@
 <script setup lang="ts">
 import type { Key } from '@/types';
-import type { RoleRecord } from '@/api/admin/role/types';
 import { message } from 'ant-design-vue';
+import type { UserRecord } from '@/api/admin/user/types';
 
 /**
  * table 属性与方法
  */
 const selectedRowKeys = ref<Key[]>([]);
-const list = ref([] as RoleRecord[]);
+const list = ref([] as UserRecord[]);
 const loading = ref(false);
 
 /**
@@ -15,14 +15,14 @@ const loading = ref(false);
  */
 const modalOpen = ref(false);
 const modalType = ref(EditEnum.ADD);
-const modalData = ref({} as RoleRecord);
+const modalData = ref({} as UserRecord);
 
 /**
  * 数据交互与处理方法
  */
 const fetch = async () => {
   loading.value = true;
-  const res = await getRoleList({});
+  const res = await getUserList({});
   if (res.Data) list.value = res.Data;
   loading.value = false;
 };
@@ -37,7 +37,7 @@ const onSelectChange = (keys: Key[]) => {
   selectedRowKeys.value = keys;
 };
 
-const customRow = (record: RoleRecord) => {
+const customRow = (record: UserRecord) => {
   return {
     onClick: () => {
       const key = record.Id!;
@@ -50,7 +50,7 @@ const customRow = (record: RoleRecord) => {
   };
 };
 
-const handleEdit = (type: number, data?: RoleRecord) => {
+const handleEdit = (type: number, data?: UserRecord) => {
   modalOpen.value = true;
   modalType.value = type;
   if (type === EditEnum.EDIT) {
@@ -74,7 +74,7 @@ const batchDelete = async (ids: string[]) => {
     return;
   }
   try {
-    const { Success } = await deleteRole(ids);
+    const { Success } = await deleteUser(ids);
     if (Success) {
       message.success('删除成功');
       await handleReload();
@@ -90,12 +90,12 @@ const batchDelete = async (ids: string[]) => {
 <template>
   <div class="w-full h-full p-normal">
     <div class="bg-rd-ant.border-radius m-custom.margin-size">
-      <QueryForm class="py-2" :fields="roleTableSearchFields" />
+      <QueryForm class="py-2" :fields="userTableSearchFields" />
     </div>
     <div class="h-[calc(100%-60px)]">
       <a-table
         row-key="Id"
-        :columns="roleTableColumns" :data-source="list"
+        :columns="userTableColumns" :data-source="list"
         :row-selection="{
           type: 'checkbox',
           selectedRowKeys: selectedRowKeys,
@@ -107,7 +107,7 @@ const batchDelete = async (ids: string[]) => {
       >
         <template #title>
           <div class="flex">
-            <div>角色列表</div>
+            <div>用户列表</div>
             <a-button ml-auto type="primary"
                       @click="handleEdit(EditEnum.ADD)">
               <BaseIcon icon="i-mdi-plus" />
@@ -122,14 +122,22 @@ const batchDelete = async (ids: string[]) => {
                 删除
               </a-button>
             </a-popconfirm>
+            <a-button ml-2>
+              <BaseIcon icon="i-mdi-login" />
+              导入
+            </a-button>
+            <a-button ml-2>
+              <BaseIcon icon="i-mdi-logout" />
+              导出
+            </a-button>
           </div>
         </template>
         <template #bodyCell="{ column, record }">
           <template v-if="column.dataIndex === 'operation'">
-            <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as RoleRecord)">编辑</a-button>
+            <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as UserRecord)">编辑</a-button>
             <a-divider type="vertical" />
             <a-popconfirm
-              title="是否确认删除?"
+              title="是否确定删除？"
               @confirm="handleDelete(record.Id)"
             >
               <a-button btn-in-table danger type="link">删除</a-button>
@@ -138,11 +146,11 @@ const batchDelete = async (ids: string[]) => {
         </template>
       </a-table>
     </div>
-    <RoleModal
+    <UserModal
       v-model:open="modalOpen"
       :type="modalType"
       :id="modalData.Id"
       @submit="handleReload"
-    ></RoleModal>
+    ></UserModal>
   </div>
 </template>

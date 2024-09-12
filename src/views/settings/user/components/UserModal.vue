@@ -1,10 +1,13 @@
 <script setup lang="ts">
-import type { SaveUserRequestBody, UserRecord } from "@/api/admin/user/types";
-import { EditEnum, SexEnum } from "@/enums";
-import type { FormInstance } from "ant-design-vue/es/form/Form";
-import { message } from "ant-design-vue";
+import type { UserRecord } from '@/api/admin/user/types';
+import { EditEnum, SexEnum } from '@/enums';
+import type { FormInstance } from 'ant-design-vue/es/form/Form';
+import { message } from 'ant-design-vue';
+import type { Rule } from 'ant-design-vue/es/form';
+import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
+import type { DefaultOptionType } from 'ant-design-vue/es/vc-select/Select';
 
-const open = defineModel("open", { default: false });
+const open = defineModel('open', { default: false });
 
 const props = withDefaults(defineProps<{
   id?: string;
@@ -14,64 +17,67 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: 'ok'): void
+  (e: 'submit'): void
 }>();
 
+const loading = ref<boolean>(false);
+
 const titleEnum = {
-  0: "新增",
-  1: "编辑",
-  2: "查看",
+  0: '新增',
+  1: '编辑',
+  2: '查看',
 };
 const title = computed(() => {
   return titleEnum[props.type];
 });
+
 const formRef = ref<FormInstance>();
-const confirmLoading = ref<boolean>(false);
+const formData = ref({
+  Sex: SexEnum.MALE,
+} as UserRecord);
 
-const data = ref({} as UserRecord);
-
-const handleOk = async () => {
-  confirmLoading.value = true;
-  const params = {
-    // CreateTime: data.value.CreateTime,
-    // CreatorId: data.value.CreatorId,
-    // Deleted: data.value.Deleted,
-    UserName: data.value.UserName,
-    // Password: data.value.Password,
-    RealName: data.value.RealName,
-    Sex: data.value.Sex,
-    Birthday: data.value.Birthday,
-    // DepartmentId: data.value.DepartmentId,
-    // OrgId: data.value.OrgId,
-    // State: data.value.State,
-    Remark: data.value.Remark,
-    RoleIdList: data.value.RoleIdList,
-  } as SaveUserRequestBody;
-  if (props.type === EditEnum.EDIT) {
-    params.Id = data.value.Id;
-  }
-  // console.log(params);
-  await saveUser(params);
-  confirmLoading.value = false;
-  message.success({ content: "成功" });
-  emit("ok");
-  open.value = false;
+const rules: Record<string, Rule[]> = {
+  UserName: [{ required: true, message: '账号不可为空' }],
+  RealName: [{ required: true, message: '姓名不可为空' }],
+  RoleNames: [{ required: true, message: '角色不可为空' }],
 };
 
-const handleCancel = () => {
-  clear();
+const handleSubmit = async () => {
+  loading.value = true;
+  try {
+    await formRef.value?.validate();
+    const { Success } = await saveUser(formData.value);
+
+    if (Success) {
+      message.success('保存成功');
+      emit('submit');
+      handleClear();
+    } else {
+      message.success({ content: '保存失败' });
+    }
+    open.value = false;
+  } catch (e) {
+    if ((e as ValidateErrorEntity)?.errorFields) {
+      message.error((e as ValidateErrorEntity)?.errorFields[0].errors[0]);
+    } else {
+      message.error('保存失败');
+    }
+  }
+  loading.value = false;
+};
+
+const handleClear = () => {
+  formRef.value!.resetFields();
+  formData.value = {
+    Sex: SexEnum.MALE,
+  };
 };
 
 const fetch = async (id: string) => {
   if (id) {
     const res = await getUser(id);
-    if (res.Data) data.value = res.Data;
+    if (res.Data) formData.value = res.Data;
   }
-};
-
-const clear = () => {
-  formRef.value!.resetFields();
-  data.value = {};
 };
 
 watch(open, (v) => {
@@ -80,37 +86,59 @@ watch(open, (v) => {
   }
 });
 
+const roleList = ref<DefaultOptionType[]>([]);
+
+const getRoles = async () => {
+  const { Data } = await getRoleList({});
+  if (!Data?.length) return;
+  roleList.value = Data?.filter(item => item.Id !== 'Admin').map(item => {
+    return {
+      value: item.Id,
+      label: item.RoleName,
+    };
+  });
+};
+getRoles();
+
 </script>
 
 <template>
-  <a-modal v-model:open="open" :title="title" :confirm-loading="confirmLoading" @ok="handleOk" @cancel="handleCancel">
-    <a-form ref="formRef" :model="data" :label-col="{ span: 4 }"
+  <a-modal v-model:open="open"
+           :title="title"
+           :confirm-loading="loading"
+           ok-text="保存"
+           @ok="handleSubmit"
+           @cancel="handleClear"
+  >
+    <a-form ref="formRef" :model="formData" :label-col="{ span: 4 }"
+            :rules="rules" :disabled="loading"
             :wrapper-col="{ span: 18 }" class="px-4 pt-4">
       <a-form-item label="账号" name="UserName">
-        <a-input v-model:value="data.UserName" />
+        <a-input v-model:value="formData.UserName" />
       </a-form-item>
       <a-form-item label="姓名" name="RealName">
-        <a-input v-model:value="data.RealName" />
+        <a-input v-model:value="formData.RealName" />
       </a-form-item>
       <a-form-item label="性别" name="Sex">
-        <a-radio-group v-model:value="data.Sex">
+        <a-radio-group v-model:value="formData.Sex">
           <a-radio :value="SexEnum.MALE">男</a-radio>
           <a-radio :value="SexEnum.FEMALE">女</a-radio>
         </a-radio-group>
       </a-form-item>
       <a-form-item label="生日" name="BirthdayText">
-        <a-input v-model:value="data.BirthdayText" />
+        <a-input v-model:value="formData.BirthdayText" />
       </a-form-item>
       <a-form-item label="角色" name="RoleNames">
-        <a-input v-model:value="data.RoleNames" />
+        <a-select allow-clear
+                  show-search
+                  option-filter-prop="label"
+                  v-model:value="formData.RoleNames"
+                  :options="roleList"
+        />
       </a-form-item>
       <a-form-item label="备注" name="Remark">
-        <a-textarea v-model:value="data.Remark" />
+        <a-textarea v-model:value="formData.Remark" />
       </a-form-item>
     </a-form>
   </a-modal>
 </template>
-
-<style scoped lang="less">
-
-</style>
