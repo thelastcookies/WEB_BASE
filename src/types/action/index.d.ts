@@ -1,4 +1,4 @@
-import type { MenuPageType } from '@/enums';
+import type { MenuTypeEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { RouteMeta } from 'vue-router';
 import type { TreeNode } from '@/utils';
@@ -23,7 +23,7 @@ interface _ActionBase extends TreeNode {
   // 路由配置的中文描述
   title?: string;
   // 路由配置的类型
-  type: MenuPageType;
+  type: MenuTypeEnum;
   // 图标
   icon?: string;
   // 排序
@@ -86,5 +86,5 @@ export interface ActionPermission extends TreeNode {
   name?: string;
   value?: string;
   needAction?: boolean;
-  type?: MenuPageType;
+  type?: MenuTypeEnum;
 }

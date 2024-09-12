@@ -1,7 +1,6 @@
 import type { Key, RecordName } from '@/types';
 import type { ActionPermission, ActionRecordRaw } from '@/types/action';
 import type { ActionResponseRecord, PermissionRecord } from '@/api/admin/action/types';
-import { MenuPageType } from '@/enums';
 
 export const useActionStore = defineStore('action', () => {
   const actionTree = shallowRef([] as ActionRecordRaw[]);
@@ -133,7 +132,7 @@ export const preprocessPerms = (permissionList: PermissionRecord[]): ActionPermi
       name: item.Name,
       value: item.Value,
       needAction: item.NeedAction,
-      type: MenuPageType.PERM,
+      type: MenuTypeEnum.PERM,
     }
   }));
 }

@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { ActionResponseRecord } from '@/api/admin/action/types';
-import { EditEnum, MenuPageType } from '@/enums';
 
 const currentId = ref<string[]>([]);
 const currentActionList = ref<ActionResponseRecord[]>();
@@ -25,7 +24,7 @@ const action = computed(() => {
 const handleMenuAdd = () => {
   formType.value = EditEnum.ADD;
   currentActionList.value = createTree([{
-    Type: MenuPageType.MENU,
+    Type: MenuTypeEnum.MENU,
     ShowInMenu: true,
   }]);
 };

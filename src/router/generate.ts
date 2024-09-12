@@ -79,20 +79,20 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
   } else {
     route.path = '';
   }
-  if (action.type === MenuPageType.PAGE) {
+  if (action.type === MenuTypeEnum.PAGE) {
     route.component = getRouterModule(action.resource);
-  } else if (action.type === MenuPageType.MENU) {
+  } else if (action.type === MenuTypeEnum.MENU) {
     route.component = getRouterModule('Parent');
     route.redirect = 'redirect' in action ? action.redirect : {
       name: findDescendantWithUrlDefined(action)?.actionId as RouteRecordName,
     };
-  } else if (action.type === MenuPageType.IFRAME) {
+  } else if (action.type === MenuTypeEnum.IFRAME) {
     route.component = getRouterModule('IFrame');
     route.meta = { href: action.resource };
-  } else if (action.type === MenuPageType.LINK) {
+  } else if (action.type === MenuTypeEnum.LINK) {
     route.component = getRouterModule('Link');
     route.meta = { href: action.resource };
-  } else if (action.type === MenuPageType.DIAGRAM) {
+  } else if (action.type === MenuTypeEnum.DIAGRAM) {
 
   }
   if ('meta' in action) {

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { MenuPageType } from "@/enums";
 import InlineEditTable from "@/components/common/inline-edit-table/InlineEditTable.vue";
 import type { TableEditableColumnProps } from '@/components/common/inline-edit-table/types';
 

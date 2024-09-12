@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Empty, message } from 'ant-design-vue';
-import { EditEnum, MenuPageType } from '@/enums';
+import { EditEnum } from '@/enums';
 import type { Recordable } from '@/types';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
 import type { Rule } from 'ant-design-vue/es/form';
@@ -62,13 +62,13 @@ const handlePermAdd = () => {
     formData.value?.PermissionList?.push({
       Name: '',
       Value: '',
-      Type: MenuPageType.PERM,
+      Type: MenuTypeEnum.PERM,
     });
   } else {
     formData.value.PermissionList = [{
       Name: '',
       Value: '',
-      Type: MenuPageType.PERM,
+      Type: MenuTypeEnum.PERM,
     }];
   }
 };
@@ -179,7 +179,7 @@ const handleDelete = async () => {
           <a-col :span="12">
             <a-form-item label="类型" name="Type">
               <a-select v-model:value="formData.Type" placeholder="请选择类型"
-                        :options="menuPageTypeOptions"></a-select>
+                        :options="menuTypeOptions"></a-select>
             </a-form-item>
           </a-col>
           <a-col :span="12">
@@ -223,7 +223,7 @@ const handleDelete = async () => {
             </a-form-item>
           </a-col>
         </a-row>
-        <template v-if="formData.Type === MenuPageType.PAGE">
+        <template v-if="formData.Type === MenuTypeEnum.PAGE">
           <a-row>
             <a-col :span="12">
               <a-form-item label="组件配置" name="Resource" tooltip="页面组件在 src/views 目录下的路径">
@@ -253,7 +253,7 @@ const handleDelete = async () => {
             </a-col>
           </a-row>
         </template>
-        <template v-else-if="formData.Type === MenuPageType.LINK">
+        <template v-else-if="formData.Type === MenuTypeEnum.LINK">
           <a-row>
             <a-col :span="12">
               <a-form-item label="外链链接" name="Resource">
@@ -262,7 +262,7 @@ const handleDelete = async () => {
             </a-col>
           </a-row>
         </template>
-        <template v-else-if="formData.Type === MenuPageType.IFRAME">
+        <template v-else-if="formData.Type === MenuTypeEnum.IFRAME">
           <a-row>
             <a-col :span="12">
               <a-form-item label="IFrame 链接" name="Resource">
@@ -278,7 +278,7 @@ const handleDelete = async () => {
             </a-col>
           </a-row>
         </template>
-        <template v-else-if="formData.Type === MenuPageType.DIAGRAM">
+        <template v-else-if="formData.Type === MenuTypeEnum.DIAGRAM">
         </template>
         <a-row>
           <a-divider orientation="left">权限配置</a-divider>

@@ -13,7 +13,7 @@ export const routeTo = (props: RouteToRecordRaw) => {
       const err = `Router.navigate "routeTo": Cannot find action by id: ${String(actionId)}.`;
       console.error(err);
       reject(Error(err));
-    } else if (action.type === MenuPageType.MENU) {
+    } else if (action.type === MenuTypeEnum.MENU) {
       // 如果是菜单页面，则找寻其直系子节点，直到某一个子节点配置了可跳转的页面
       const descendant = findDescendantWithUrlDefined(action);
       if (descendant) {

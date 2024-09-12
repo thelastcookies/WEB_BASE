@@ -23,7 +23,7 @@ export enum StatusEnum {
 /**
  * 菜单页面类型
  */
-export enum MenuPageType {
+export enum MenuTypeEnum {
   // 菜单类型
   MENU = 0,
   // 页面类型，实际关联 .vue 文件

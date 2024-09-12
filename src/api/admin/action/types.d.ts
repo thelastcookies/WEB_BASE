@@ -1,4 +1,4 @@
-import type { MenuPageType } from '@/enums';
+import type { MenuTypeEnum } from '@/enums';
 import type { TreeNode } from '@/utils';
 
 export interface GetActionsRequestBody {
@@ -16,7 +16,7 @@ export interface ActionResponseRecord extends TreeNode {
   MenuId?: string;
   ParentId?: string;
   Level?: number;
-  Type?: MenuPageType;
+  Type?: MenuTypeEnum;
   Url?: string;
   Name?: string;
   Resource?: string;
@@ -39,5 +39,5 @@ export interface PermissionRecord {
   Name?: string;
   Value?: string;
   NeedAction?: boolean;
-  Type?: MenuPageType;
+  Type?: MenuTypeEnum;
 }
