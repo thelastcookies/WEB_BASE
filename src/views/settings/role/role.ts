@@ -1,47 +1,65 @@
-import { TableColumnProps } from "ant-design-vue";
-import type { QueryFormField } from "@/components/common/query-form/types";
+import { TableColumnProps } from 'ant-design-vue';
+import type { QueryFormField } from '@/components/common/query-form/types';
+import type { DefaultOptionType } from 'ant-design-vue/es/vc-select/Select';
+import type { RoleRecord } from '@/api/admin/role/types';
 
-export const roleTableColumns: TableColumnProps[] = [
+export const roleTypeOptions: DefaultOptionType[] = [
   {
-    title: "角色名",
-    dataIndex: "RoleName",
+    value: RoleTypeEnum.SUPER_ADMIN,
+    label: '超级管理员',
+    disabled: true,
   },
   {
-    title: "角色类型",
-    width: 120,
-    dataIndex: "RoleType",
+    value: RoleTypeEnum.LEADER,
+    label: '部门管理员',
   },
   {
-    title: "备注",
-    dataIndex: "Remark",
-  },
-  {
-    title: "操作",
-    width: 160,
-    dataIndex: "operation",
+    value: RoleTypeEnum.NORMAL,
+    label: '普通角色',
   },
 ];
 
-
-// "PageIndex": 0,
-//   "PageRows": 0,
-//   "SortField": "string",
-//   "SortType": "string",
-//   "Search": {
-//   "all": true,
-//     "userId": "string",
-//     "keyword": "string",
-//     "userName": "string",
-//     "roleId": "string"
-// }
+export const roleTableColumns: TableColumnProps[] = [
+  {
+    title: '角色名',
+    dataIndex: 'RoleName',
+    width: 200,
+  },
+  {
+    title: '角色类型',
+    dataIndex: 'RoleType',
+    width: 200,
+    customRender: ({record}) => {
+      return roleTypeOptions.find(it => it.value === (record as RoleRecord).RoleType)?.label;
+    },
+  },
+  {
+    title: '备注',
+    dataIndex: 'Remark',
+  },
+  {
+    title: '操作',
+    width: 160,
+    dataIndex: 'operation',
+  },
+];
 
 export const roleTableSearchFields: QueryFormField[] = [
   {
-    label: "角色名",
-    field: "roleName",
-    component: "Input",
+    label: '角色名',
+    field: 'roleName',
+    component: 'Input',
     compProps: {
-      placeholder: "请输入角色名",
+      placeholder: '请输入角色名',
+    },
+  },
+  {
+    label: '角色类型',
+    field: 'roleType',
+    component: 'Select',
+    compProps: {
+      placeholder: '请选择',
+      options: roleTypeOptions,
     },
   },
 ];

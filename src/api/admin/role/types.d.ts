@@ -1,3 +1,5 @@
+import type { RoleTypeEnum } from '@/enums';
+
 export interface GetRoleListRequestBody {
   PageIndex?: number;
   PageRows?: number;
@@ -16,6 +18,6 @@ export interface RoleRecord {
   Deleted?: boolean;
   RoleName?: string;
   Remark?: string;
-  RoleType?: number;
+  RoleType?: RoleTypeEnum;
   Actions?: string[];
 }

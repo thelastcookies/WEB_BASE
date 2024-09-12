@@ -39,6 +39,15 @@ export enum MenuTypeEnum {
 }
 
 /**
+ * 角色类型
+ */
+export enum RoleTypeEnum {
+  NORMAL = 0,
+  SUPER_ADMIN = 1,
+  LEADER = 2
+}
+
+/**
  * 步骤
  */
 export enum StepEnum {
