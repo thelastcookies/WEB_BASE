@@ -1,19 +1,40 @@
 <script setup lang="ts">
 import type { ActionResponseRecord } from '@/api/admin/action/types';
+import { EditEnum, MenuPageType } from '@/enums';
 
 const currentId = ref<string[]>([]);
 const currentActionList = ref<ActionResponseRecord[]>();
+
+const formType = ref(EditEnum.EDIT);
 
 const actionTreeData = ref<ActionResponseRecord[]>();
 const fetch = async () => {
   const { Data } = await getMenuTreeList({});
   if (Data) actionTreeData.value = createTree(Data);
 };
+
 fetch();
 
 const action = computed(() => {
-  if (currentActionList.value) return currentActionList.value[0];
+  if (currentActionList.value) {
+    formType.value = EditEnum.EDIT;
+    return currentActionList.value[0];
+  }
 });
+
+const handleMenuAdd = () => {
+  formType.value = EditEnum.ADD;
+  currentActionList.value = createTree([{
+    Type: MenuPageType.MENU,
+    ShowInMenu: true,
+  }]);
+};
+
+const handleReload = async () => {
+  currentId.value = [];
+  currentActionList.value = [];
+  await fetch();
+};
 
 </script>
 
@@ -22,15 +43,20 @@ const action = computed(() => {
     <div class="w-30% h-full bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
       <ActionTree
         searchable
+        :type="EditEnum.EDIT"
         :tree="actionTreeData"
         v-model:selected-keys="currentId"
         v-model:value="currentActionList"
+        @add="handleMenuAdd"
       />
     </div>
     <div class="w-70% h-full bg-ant.bg-container p-4">
       <ActionForm
+        :type="formType"
         :tree="actionTreeData"
-        :value="action" />
+        :value="action"
+        @ok="handleReload"
+      />
     </div>
   </div>
 </template>

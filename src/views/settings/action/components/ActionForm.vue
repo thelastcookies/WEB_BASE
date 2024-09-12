@@ -15,7 +15,7 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: 'ok'): void;
+  (e: 'ok'): void
 }>();
 
 const menuPageTypeOptions = [{
@@ -64,40 +64,13 @@ watch(() => props.value, (val) => {
  * 数据交互与处理方法
  */
 const rules: Record<string, Rule[]> = {
-  title: [{ required: true, message: '名称不可为空' }],
-  actionId: [{ required: true, message: '编码不可为空' }],
-  type: [{ required: true, message: '类型不可为空' }],
+  Name: [{ required: true, message: '名称不可为空' }],
+  MenuId: [{ required: true, message: '编码不可为空' }],
+  Type: [{ required: true, message: '类型不可为空' }],
 };
+
 const handleReset = () => {
   formData.value = cloneDeep(props.value);
-};
-const handleSubmit = async () => {
-  try {
-    await formRef.value?.validate();
-    const params = cloneDeep(formData.value);
-    // 处理 meta
-    if (metas.value?.length) {
-      let metaConf: Recordable<string> = {};
-      metas.value.forEach(meta => {
-        metaConf[meta.key] = meta.value;
-      });
-      Object.assign(params, {
-        Meta: JSON.stringify(metaConf),
-      });
-    }
-    const { Success } = await saveAction(params);
-    if (Success) {
-      message.success('保存成功');
-    } else {
-      message.success({ content: '保存失败' });
-    }
-  } catch (e) {
-    if ((e as ValidateErrorEntity)?.errorFields) {
-      message.error((e as ValidateErrorEntity)?.errorFields[0].errors[0]);
-    } else {
-      message.error('保存失败');
-    }
-  }
 };
 
 const handlePermAdd = () => {
@@ -132,23 +105,75 @@ const handleMetaAdd = () => {
   }
 };
 
+const handleSubmit = async () => {
+  try {
+    await formRef.value?.validate();
+    const params = cloneDeep(formData.value);
+    // 处理 meta
+    if (metas.value?.length) {
+      let metaConf: Recordable<string> = {};
+      metas.value.forEach(meta => {
+        metaConf[meta.key] = meta.value;
+      });
+      Object.assign(params, {
+        Meta: JSON.stringify(metaConf),
+      });
+    }
+    const { Success } = await saveAction(params);
+    if (Success) {
+      message.success('保存成功');
+      emit('ok');
+    } else {
+      message.success({ content: '保存失败' });
+    }
+  } catch (e) {
+    if ((e as ValidateErrorEntity)?.errorFields) {
+      message.error((e as ValidateErrorEntity)?.errorFields[0].errors[0]);
+    } else {
+      message.error('保存失败');
+    }
+  }
+};
+
+const handleDelete = async () => {
+  try {
+    const { Success } = await deleteAction([formData.value!.Id!]);
+    if (Success) {
+      message.success('删除成功');
+      emit('ok');
+    } else {
+      message.success({ content: '删除失败' });
+    }
+  } catch (e) {
+    message.error('删除失败');
+  }
+};
+
 </script>
 
 <template>
   <div class="w-full h-full overflow-y-auto">
     <template v-if="formData">
-      <div class="w-full h-12 flex justify-end pb-4 bg-pixel-matrix sticky top-0">
+      <div v-if="type !== EditEnum.VIEW" class="w-full h-12 flex justify-end pb-4 bg-pixel-matrix sticky top-0">
+        <a-popconfirm
+          title="是否确定删除？"
+          @confirm="handleDelete"
+        >
+          <a-button v-if="formData.Id" danger>删除此菜单</a-button>
+        </a-popconfirm>
         <a-popconfirm
           title="是否重置当前变更？"
           @confirm="handleReset"
         >
-          <a-button class="ml-auto mr-2">重置</a-button>
+          <a-button class="ml-auto">重置</a-button>
         </a-popconfirm>
-        <a-button class="mr-2" type="primary" @click="handleSubmit">保存</a-button>
+        <a-button class="ml-2" type="primary" @click="handleSubmit">保存</a-button>
       </div>
+      <a-alert message="菜单配置的编辑，会在页面刷新后启用" type="info" show-icon closable />
       <a-form ref="formRef"
               :model="formData"
               :rules="rules"
+              :disabled="type === EditEnum.VIEW"
               :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
         <a-row>
           <a-divider orientation="left">基本信息</a-divider>

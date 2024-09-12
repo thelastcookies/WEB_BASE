@@ -20,6 +20,14 @@ const props = withDefaults(defineProps<{
   checkable: false,
 });
 
+const emit = defineEmits<{
+  (e: 'add'): void;
+}>();
+
+const handleAdd = () => {
+  emit('add');
+};
+
 const fieldNames = { key: 'Id', title: 'Name', children: 'Children' };
 
 /**
@@ -57,10 +65,6 @@ const onExpand = (keys: Key[]) => {
   autoExpandParent.value = false;
 };
 
-const handleEdit = (type: EditEnum) => {
-
-};
-
 const filterTreeNode = (node: EventDataNode) => {
   return searchValue.value ? node.Name.indexOf(searchValue.value) > -1 : false;
 };
@@ -71,7 +75,7 @@ const filterTreeNode = (node: EventDataNode) => {
   <div class="h-full flex items-start flex-col">
     <div v-if="type !== EditEnum.VIEW" class="mb-4">
       <a-button ml-auto type="primary"
-                @click="handleEdit(EditEnum.ADD)">
+                @click="handleAdd()">
         <BaseIcon icon="i-mdi-plus" />
         新增菜单
       </a-button>
@@ -94,17 +98,31 @@ const filterTreeNode = (node: EventDataNode) => {
       block-node
     >
       <template #title="{ Name }">
-        <span v-if="Name && searchValue && Name.indexOf(searchValue) > -1">
+        <span class="flex pl-1 tree-node-title">
+          <span v-if="Name && searchValue && Name.indexOf(searchValue) > -1">
           {{ Name.substring(0, Name.indexOf(searchValue)) }}
           <span class="c-ant.error">{{ searchValue }}</span>
           {{ Name.substring(Name.indexOf(searchValue) + searchValue.length) }}
         </span>
         <span v-else>{{ Name }}</span>
+          <!--<a-button class="ml-a p-0 btn h-unset" type="link" danger>-->
+          <!--  <BaseIcon icon="i-mdi-trash-can-outline" />-->
+          <!--</a-button>-->
+        </span>
       </template>
     </a-tree>
   </div>
 </template>
 
 <style scoped lang="less">
-
+//.tree-node-title {
+//  .btn {
+//    opacity: 0;
+//  }
+//  &:hover {
+//    .btn {
+//      opacity: 1;
+//    }
+//  }
+//}
 </style>
