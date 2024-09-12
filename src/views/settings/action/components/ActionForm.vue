@@ -146,15 +146,24 @@ const handleDelete = async () => {
           title="是否确定删除？"
           @confirm="handleDelete"
         >
-          <a-button v-if="formData.Id" danger>删除此菜单</a-button>
+          <a-button v-if="formData.Id" danger>
+            <BaseIcon icon="i-mdi-trash-can-outline" />
+            删除此菜单
+          </a-button>
         </a-popconfirm>
         <a-popconfirm
           title="是否重置当前变更？"
           @confirm="handleReset"
         >
-          <a-button class="ml-auto">重置</a-button>
+          <a-button class="ml-auto">
+            <BaseIcon icon="i-mdi-refresh" />
+            重置
+          </a-button>
         </a-popconfirm>
-        <a-button class="ml-2" type="primary" :loading="loading" @click="handleSubmit">保存</a-button>
+        <a-button class="ml-2" type="primary" :loading="loading" @click="handleSubmit">
+          <BaseIcon icon="i-mdi-content-save" />
+          保存
+        </a-button>
       </div>
       <a-alert message="菜单配置的编辑，会在页面刷新后启用" type="info" show-icon closable />
       <a-form ref="formRef"

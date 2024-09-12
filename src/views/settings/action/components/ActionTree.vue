@@ -75,7 +75,10 @@ const filterTreeNode = (node: EventDataNode) => {
   <div class="h-full flex items-start flex-col">
     <div v-if="type !== EditEnum.VIEW" class="mb-4">
       <a-button ml-auto type="primary"
-                @click="handleAdd()">新增菜单</a-button>
+                @click="handleAdd()">
+        <BaseIcon icon="i-mdi-plus" />
+        新增菜单
+      </a-button>
     </div>
     <template v-if="searchable">
       <a-input-search v-model:value="searchValue" placeholder="搜索" />
