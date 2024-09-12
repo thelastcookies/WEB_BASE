@@ -18,23 +18,6 @@ const emit = defineEmits<{
   (e: 'ok'): void
 }>();
 
-const menuPageTypeOptions = [{
-  value: MenuPageType.MENU,
-  label: '菜单',
-}, {
-  value: MenuPageType.PAGE,
-  label: '页面',
-}, {
-  value: MenuPageType.LINK,
-  label: '外链',
-}, {
-  value: MenuPageType.IFRAME,
-  label: 'IFrame',
-}, {
-  value: MenuPageType.DIAGRAM,
-  label: '组态',
-}];
-
 const formRef = ref<HTMLFormElement>();
 const loading = ref<boolean>(false);
 

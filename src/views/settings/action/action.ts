@@ -1,4 +1,29 @@
 import type { TableEditableColumnProps } from '@/components/common/inline-edit-table/types';
+import { MenuPageType } from '@/enums';
+import type { DefaultOptionType } from 'ant-design-vue/es/vc-select/Select';
+
+export const menuPageTypeOptions: DefaultOptionType[] = [
+  {
+    value: MenuPageType.MENU,
+    label: '菜单',
+  },
+  {
+    value: MenuPageType.PAGE,
+    label: '页面',
+  },
+  {
+    value: MenuPageType.LINK,
+    label: '外链',
+  },
+  {
+    value: MenuPageType.IFRAME,
+    label: 'IFrame',
+  },
+  {
+    value: MenuPageType.DIAGRAM,
+    label: '组态',
+  },
+];
 
 export const permTableColumns: TableEditableColumnProps[] = [
   {
