@@ -16,8 +16,10 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: 'ok'): void
+  (e: 'submit'): void
 }>();
+
+const loading = ref<boolean>(false);
 
 const titleEnum = {
   0: '新增',
@@ -27,9 +29,8 @@ const titleEnum = {
 const title = computed(() => {
   return titleEnum[props.type];
 });
-const formRef = ref<FormInstance>();
-const loading = ref<boolean>(false);
 
+const formRef = ref<FormInstance>();
 const formData = ref({
   RoleType: RoleTypeEnum.NORMAL,
 } as RoleRecord);
@@ -39,14 +40,15 @@ const rules: Record<string, Rule[]> = {
   RoleType: [{ required: true, message: '角色类型不可为空' }],
 };
 
-const handleOk = async () => {
+const handleSubmit = async () => {
   loading.value = true;
   try {
     await formRef.value?.validate();
     const { Success } = await saveRole(formData.value);
     if (Success) {
       message.success('保存成功');
-      emit('ok');
+      emit('submit');
+      handleClear();
     } else {
       message.success({ content: '保存失败' });
     }
@@ -61,8 +63,11 @@ const handleOk = async () => {
   loading.value = false;
 };
 
-const handleCancel = () => {
-  clear();
+const handleClear = () => {
+  formRef.value!.resetFields();
+  formData.value = {
+    RoleType: RoleTypeEnum.NORMAL,
+  };
 };
 
 const fetch = async (id: string) => {
@@ -72,29 +77,11 @@ const fetch = async (id: string) => {
   }
 };
 
-const clear = () => {
-  formRef.value!.resetFields();
-  formData.value = {
-    RoleType: RoleTypeEnum.NORMAL,
-  };
-};
-
 watch(open, (v) => {
   if (v && props.id) {
     fetch(props.id);
   }
 });
-
-/**
- *   Id?: string;
- *   CreateTime?: string;
- *   CreatorId?: string;
- *   Deleted?: boolean;
- *   RoleName?: string;
- *   Remark?: string;
- *   RoleType?: number;
- *   Actions?: string[];
- */
 
 </script>
 
@@ -103,8 +90,8 @@ watch(open, (v) => {
            :title="title"
            :confirm-loading="loading"
            ok-text="保存"
-           @ok="handleOk"
-           @cancel="handleCancel"
+           @ok="handleSubmit"
+           @cancel="handleClear"
   >
     <a-form ref="formRef" :model="formData" :label-col="{ span: 5 }"
             :rules="rules" :disabled="loading"

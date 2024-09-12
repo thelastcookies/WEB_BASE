@@ -65,7 +65,8 @@ const VNodes = defineComponent({
     option-filter-prop="label"
     placeholder="请选择"
     :max-tag-count="3"
-    v-bind="$attrs" v-model:value="value"
+    v-bind="$attrs"
+    v-model:value="value"
     :options="_options"
     @change="handleCheckedChange"
   >

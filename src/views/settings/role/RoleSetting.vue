@@ -57,6 +57,7 @@ const handleEdit = (type: number, data?: RoleRecord) => {
     modalData.value = {};
   }
 };
+
 const handleDelete = async (id: string) => {
   await batchDelete([id]);
 };
@@ -130,9 +131,11 @@ const batchDelete = async (ids: string[]) => {
         </template>
       </a-table>
     </div>
-    <RoleModal v-model:open="modalOpen"
-               :type="modalType" :id="modalData.Id"
-               @ok="handleReload"
+    <RoleModal
+      v-model:open="modalOpen"
+      :type="modalType"
+      :id="modalData.Id"
+      @submit="handleReload"
     ></RoleModal>
   </div>
 </template>
