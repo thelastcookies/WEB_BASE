@@ -1,4 +1,4 @@
-import { SexEnum } from "@/enums";
+import type { RoleTypeEnum, SexEnum } from '@/enums';
 
 export interface GetUserListRequestBody {
   PageIndex?: number;
@@ -49,12 +49,12 @@ export interface UserRecord {
   Birthday?: string;
   DepartmentId?: string;
   OrgId?: string;
-  State?: number;
+  State?: string;
   Remark?: string;
   RoleNames?: string;
   RoleIdList?: string[];
   RoleNameList?: string[];
-  RoleType?: number;
+  RoleType?: RoleTypeEnum;
   DepartmentName?: string;
   SexText?: string;
   BirthdayText?: string;
