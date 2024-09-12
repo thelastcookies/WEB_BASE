@@ -27,7 +27,7 @@ const { deviceType } = useAppStore();
 
 <template>
   <a-dropdown>
-    <div class="cursor-pointer h-full flex px-4 lt-sm:px-0">
+    <div class="cursor-pointer h-full flex-s px-4 lt-sm:px-0">
       <a-avatar :size="size" mr-8px lt-sm:m-0 bg-ant.bg-container>
         <template #icon>
           <BaseIcon icon="i-mdi-account" text-14px c-ant.text></BaseIcon>

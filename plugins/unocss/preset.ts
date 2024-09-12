@@ -19,7 +19,7 @@ const rules: Rule<Object>[] = [
 ];
 // 快捷方式
 const shortcuts: UserShortcuts = [
-  ['flex', 'flex flex-items-center flex-justify-start'],
+  ['flex-s', 'flex flex-items-center flex-justify-start'],
   ['flex-c', 'flex flex-items-center flex-justify-center'],
   ['flex-sb', 'flex flex-items-center flex-justify-between'],
   ['flex-sa', 'flex flex-items-center flex-justify-around'],
