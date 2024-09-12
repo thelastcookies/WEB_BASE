@@ -89,6 +89,7 @@ const handleMetaAdd = () => {
 };
 
 const handleSubmit = async () => {
+  loading.value = true;
   try {
     await formRef.value?.validate();
     const params = cloneDeep(formData.value);
@@ -116,9 +117,11 @@ const handleSubmit = async () => {
       message.error('保存失败');
     }
   }
+  loading.value = false;
 };
 
 const handleDelete = async () => {
+  loading.value = true;
   try {
     const { Success } = await deleteAction([formData.value!.Id!]);
     if (Success) {
@@ -130,6 +133,7 @@ const handleDelete = async () => {
   } catch (e) {
     message.error('删除失败');
   }
+  loading.value = false;
 };
 
 </script>
@@ -150,13 +154,13 @@ const handleDelete = async () => {
         >
           <a-button class="ml-auto">重置</a-button>
         </a-popconfirm>
-        <a-button class="ml-2" type="primary" @click="handleSubmit">保存</a-button>
+        <a-button class="ml-2" type="primary" :loading="loading" @click="handleSubmit">保存</a-button>
       </div>
       <a-alert message="菜单配置的编辑，会在页面刷新后启用" type="info" show-icon closable />
       <a-form ref="formRef"
               :model="formData"
               :rules="rules"
-              :disabled="type === EditEnum.VIEW"
+              :disabled="type === EditEnum.VIEW || loading"
               :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
         <a-row>
           <a-divider orientation="left">基本信息</a-divider>
