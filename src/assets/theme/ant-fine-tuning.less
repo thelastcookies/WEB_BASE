@@ -13,3 +13,19 @@
     background-color: var(--tableStripedBg);
   }
 }
+
+// Form 组件 disabled 样式
+.ant-input-disabled {
+  color: var(--colorTextSecondary) !important;
+}
+
+.ant-select-disabled {
+  .ant-select-selector {
+    color: var(--colorTextSecondary) !important;
+  }
+}
+
+// 修复默认样式的鼠标指针闪烁问题
+.ant-form-item-tooltip {
+  cursor: help !important;
+}
