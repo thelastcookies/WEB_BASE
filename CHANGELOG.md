@@ -1,5 +1,38 @@
 # Changelog
 
+## [0.19.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.18.0...v0.19.0) (2024-09-13)
+
+
+### Features
+
+* 使用 TreeNode 改造原 Action 相关内容 ([ccfc9f1](https://github.com/thelastcookies/WEB-BASE/commit/ccfc9f1bd1e6247a101a2c65ed6136469c52f236))
+* 修改菜单解析和路由生成，适配新的菜单结构 ([adfaef2](https://github.com/thelastcookies/WEB-BASE/commit/adfaef261bb29d6576af882a8ac3510d156d9def))
+* 在菜单管理中引入行内编辑表格 ([b846fb6](https://github.com/thelastcookies/WEB-BASE/commit/b846fb6eb19e6aef4aa45c88b7f50aa5038258a7))
+* 完善菜单管理页面 ([a96b26a](https://github.com/thelastcookies/WEB-BASE/commit/a96b26a873b2ebe752027b5a7db5cd81694f95ec))
+* 完善角色管理页面细节 ([6fd994c](https://github.com/thelastcookies/WEB-BASE/commit/6fd994ce2bf91460db93a1a1b6b0ca5ba377526d))
+* 完成权限管理页面 ([b0247e5](https://github.com/thelastcookies/WEB-BASE/commit/b0247e5c16d4016308c5d4b3e17cd02be5438f9a))
+* 完成用户编辑页面 ([8d99073](https://github.com/thelastcookies/WEB-BASE/commit/8d9907353f8348853f65c150ac5e50d6ca6959dc))
+* 完成菜单管理页面的编辑保存功能 ([a67151f](https://github.com/thelastcookies/WEB-BASE/commit/a67151fce6f53531887acd38ae33be26e6c1df54))
+* 完成菜单编辑页面 ([7a33e23](https://github.com/thelastcookies/WEB-BASE/commit/7a33e238332e2f7b2cc165f3d013f5772a93ba71))
+* 完成角色编辑页面 ([c9ef9e8](https://github.com/thelastcookies/WEB-BASE/commit/c9ef9e87f7881b2bad8c86c74a645aae54d0f396))
+* 新增 ActionForm 的 loading 状态 ([76e9d7c](https://github.com/thelastcookies/WEB-BASE/commit/76e9d7c4a7fb16ec81bd137195c12e2f9892f8e9))
+* 新增 ActionTree 的 checkable 状态下节点选择完全受控功能与默认展开全部功能 ([94d940d](https://github.com/thelastcookies/WEB-BASE/commit/94d940df50c107007bbdd6fd8102df394a1acd77))
+* 新增服务器/网络连接失败提示页面 ([a879eeb](https://github.com/thelastcookies/WEB-BASE/commit/a879eeb0cd3c27ce86ee1fd305e5d836f0fbaec2))
+* 新增树实用工具的 treeToList 方法 ([c81d0fc](https://github.com/thelastcookies/WEB-BASE/commit/c81d0fc72d449e6d7cebf5586c0bc5e976c06fd4))
+* 新增用户管理页面搜索功能 ([e99cb4d](https://github.com/thelastcookies/WEB-BASE/commit/e99cb4dc1b22c09bc6a8fe6d3890a180f07bf100))
+* 新增行内编辑表格新增行自动设为编辑模式的功能 ([4eae687](https://github.com/thelastcookies/WEB-BASE/commit/4eae68765fcd317570de94edc3f0a14737d31327))
+* 新增行内编辑表格组件和示例组件 ([057371d](https://github.com/thelastcookies/WEB-BASE/commit/057371d8a6de5ad2aec0d62d64f1a8a54b1ce94b))
+* 新增角色管理页面搜索功能 ([2e053f2](https://github.com/thelastcookies/WEB-BASE/commit/2e053f28f291ebc1b65d1f91f845b0ee23ce21a9))
+* 补充菜单编辑页面按钮图标 ([d08e99d](https://github.com/thelastcookies/WEB-BASE/commit/d08e99d5cc91558e5434148311b8d33dfc22fd53))
+
+
+### Bug Fixes
+
+* 修复用户、角色、菜单页面保存失败提示不正确的问题 ([d0736b2](https://github.com/thelastcookies/WEB-BASE/commit/d0736b21cf56d90da7689a5f0110afb8cff39152))
+* 修复菜单选择切换时 meta 表格没有清空的问题 ([e455750](https://github.com/thelastcookies/WEB-BASE/commit/e455750523e0d22f6caf2619b396bf30f7ce98f6))
+* 修复行内编辑表格首次新增时未进入编辑状态的问题 ([7c035f3](https://github.com/thelastcookies/WEB-BASE/commit/7c035f39cdbeaae89c552fb77b17d379e5169d2e))
+* 修改 UnoCSS 预设，不再覆盖原生定义 ([8c2acc7](https://github.com/thelastcookies/WEB-BASE/commit/8c2acc7afc2e99add6206601a4306542d901d56b))
+
 ## [0.18.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.17.0...v0.18.0) (2024-08-26)
 
 
