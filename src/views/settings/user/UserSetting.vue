@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { Key } from '@/types';
+import type { Key, Recordable } from '@/types';
 import { message } from 'ant-design-vue';
 import type { UserRecord } from '@/api/admin/user/types';
 
@@ -20,11 +20,17 @@ const modalData = ref({} as UserRecord);
 /**
  * 数据交互与处理方法
  */
+const qForm = ref<Recordable<any>>({});
 const fetch = async () => {
   loading.value = true;
-  const res = await getUserList({});
+  const res = await getUserList({ Search: qForm.value });
   if (res.Data) list.value = res.Data;
   loading.value = false;
+};
+
+const onQuery = (form: Record<string, string>) => {
+  qForm.value = form;
+  fetch();
 };
 
 fetch();
@@ -90,7 +96,12 @@ const batchDelete = async (ids: string[]) => {
 <template>
   <div class="w-full h-full p-normal">
     <div class="bg-rd-ant.border-radius m-custom.margin-size">
-      <QueryForm class="py-2" :fields="userTableSearchFields" />
+      <QueryForm
+        class="py-2"
+        :fields="userTableSearchFields"
+        v-model:form="qForm"
+        @query="onQuery"
+      />
     </div>
     <div class="h-[calc(100%-60px)]">
       <a-table

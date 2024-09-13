@@ -21,7 +21,6 @@ const modalData = ref({} as RoleRecord);
  * 数据交互与处理方法
  */
 const qForm = ref<Recordable<any>>({});
-
 const fetch = async () => {
   loading.value = true;
   const res = await getRoleList({ Search: qForm.value });
