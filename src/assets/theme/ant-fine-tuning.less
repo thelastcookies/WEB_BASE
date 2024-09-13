@@ -27,5 +27,7 @@
 
 // 修复默认样式的鼠标指针闪烁问题
 .ant-form-item-tooltip {
-  cursor: help !important;
+  .anticon[tabindex] {
+    cursor: help
+  }
 }
