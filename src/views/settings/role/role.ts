@@ -52,14 +52,5 @@ export const roleTableSearchFields: QueryFormField[] = [
     compProps: {
       placeholder: '请输入角色名',
     },
-  },
-  {
-    label: '角色类型',
-    field: 'roleType',
-    component: 'Select',
-    compProps: {
-      placeholder: '请选择',
-      options: roleTypeOptions,
-    },
-  },
+  }
 ];
