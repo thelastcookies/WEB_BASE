@@ -10,7 +10,7 @@ import { TreeNode } from "@/utils/tree/tree.ts";
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param id 节点唯一标识符
  */
-function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | undefined {
+export function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | undefined {
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getId() === id) {
       return tree[i];
@@ -26,7 +26,7 @@ function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | undefined
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param label 节点 label
  */
-function findTreeNodesByLabel<T extends TreeNode>(tree: T[], label: string): T[] {
+export function findTreeNodesByLabel<T extends TreeNode>(tree: T[], label: string): T[] {
   let nodes: T[] = [];
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getLabel()!.indexOf(label) > -1) {
@@ -48,11 +48,11 @@ function findTreeNodesByPId<T extends TreeNode>(tree: T[], id: Key) {
 }
 
 /**
- * 将 TreeNode 类型的数组转换为树结构
+ * 将 TreeNode 类型的列表转换为树结构
  * 根节点的判断依据为：父亲节点唯一标识符的字段为空或不存在
  * @param list 数组
  */
-function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
+export function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
   const treeList = createShallowTree<T>(list);
 
   const roots: T[] = [];
@@ -70,39 +70,31 @@ function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
       roots.push(nodeMap[node.getId()!]);
     }
   });
-  //
-  // roots.forEach(node => {
-  //
-  // });
-  // return nodeList;
-  // // return nodeList.sort((a, b) => {
-  // //     return a.Order - b.Order
-  // // });
-  //
-
-  // const rootItems: Item[] = [];
-  //
-  // // 创建一个字典用于快速查找每个项
-  // items.forEach(item => {
-  //   lookup[item.id] = { ...item, children: [] };
-  // });
-  //
-  // // 遍历所有项并将其插入到父项的 children 数组中
-  // items.forEach(item => {
-  //   if (item.pId === null) {
-  //     // 如果 pId 为 null，则该项为根节点
-  //     rootItems.push(lookup[item.id]);
-  //   } else {
-  //     // 否则，将该项添加到父项的 children 数组中
-  //     lookup[item.pId].children.push(lookup[item.id]);
-  //   }
-  // });
-
   return roots;
 }
 
-function treeToList(tree: TreeNode[]) {
+/**
+ * 将 TreeNode 类型的树转换为列表
+ * 会将各树节点深度克隆，并去除子级
+ * @param tree 数组
+ */
+export function treeToList<T extends TreeNode>(tree: TreeNode[]): T[] {
+  const list: T[] = [];
 
+  function recursion(nodes) {
+    nodes.forEach(node => {
+      const n = cloneDeep(node);
+      list.push(n);
+
+      // 如果该节点有子节点，则递归遍历
+      if (n.getChildren()?.length > 0) {
+        recursion(n.getChildren());
+        n.setChildren(undefined);
+      }
+    });
+  }
+  recursion(tree);
+  return list;
 }
 
 /**
@@ -143,6 +135,3 @@ function treeToList(tree: TreeNode[]) {
 //     else findDescendantWithUrlDefined(action.children[0]);
 //   } else return undefined;
 // };
-
-
-export { findTreeNodeById, findTreeNodesByLabel, listToTree };
