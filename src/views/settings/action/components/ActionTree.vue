@@ -3,21 +3,34 @@ import { EditEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
+import { treeToList } from '@/utils';
 
 const value = defineModel<ActionResponseRecord[]>('value', { default: () => [] });
 const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
-const checkedKeys = defineModel<Key[]>('checkedKeys', { default: () => [] });
+const checkedKeys = defineModel<{
+  checked: Key[];
+  halfChecked: Key[];
+}>('checkedKeys', {
+  default: () => {
+    return {
+      checked: [],
+      halfChecked: [],
+    };
+  },
+});
 
 const props = withDefaults(defineProps<{
   tree?: ActionResponseRecord[];
   type?: EditEnum;
   searchable?: boolean;
   checkable?: boolean;
+  defaultExpandAll?: boolean;
 }>(), {
   tree: () => [],
   type: EditEnum.VIEW,
   searchable: false,
   checkable: false,
+  defaultExpandAll: false,
 });
 
 const emit = defineEmits<{
@@ -29,14 +42,20 @@ const handleAdd = () => {
 };
 
 const fieldNames = { key: 'Id', title: 'Name', children: 'Children' };
+const expandedKeys = ref<(Key)[]>([]);
+const autoExpandParent = ref<boolean>(true);
 
 /**
  * 处理节点被选中
  */
 watchEffect(() => {
   if (!props.tree.length) return;
+  if (props.defaultExpandAll) {
+    const list = treeToList(props.tree);
+    expandedKeys.value = list.map(it => it.getId());
+  }
   if (props.checkable) {
-    value.value = checkedKeys.value.map(key => {
+    value.value = checkedKeys.value.checked?.map(key => {
       return findTreeNodeById(props.tree, key)!;
     });
   } else {
@@ -55,10 +74,6 @@ watch(searchValue, value => {
   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
   autoExpandParent.value = true;
 });
-
-const expandedKeys = ref<(Key)[]>([]);
-
-const autoExpandParent = ref<boolean>(true);
 
 const onExpand = (keys: Key[]) => {
   expandedKeys.value = keys;
@@ -93,6 +108,7 @@ const filterTreeNode = (node: EventDataNode) => {
       :tree-data="tree as unknown as DataNode[]"
       :field-names="fieldNames"
       :checkable="checkable"
+      :checkStrictly="checkable"
       :filter-tree-node="filterTreeNode"
       @expand="onExpand"
       block-node
