@@ -44,13 +44,13 @@ const handleSubmit = async () => {
   loading.value = true;
   try {
     await formRef.value?.validate();
-    const { Success } = await saveRole(formData.value);
+    const { Success, Msg } = await saveRole(formData.value);
     if (Success) {
       message.success('保存成功');
       emit('submit');
       handleClear();
     } else {
-      message.success({ content: '保存失败' });
+      message.error({ content: '保存失败，' + Msg });
     }
     open.value = false;
   } catch (e) {

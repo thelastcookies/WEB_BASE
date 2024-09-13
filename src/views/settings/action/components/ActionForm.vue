@@ -103,12 +103,12 @@ const handleSubmit = async () => {
         Meta: JSON.stringify(metaConf),
       });
     }
-    const { Success } = await saveAction(params);
+    const { Success, Msg } = await saveAction(params);
     if (Success) {
       message.success('保存成功');
       emit('ok');
     } else {
-      message.success({ content: '保存失败' });
+      message.error({ content: '保存失败，' + Msg });
     }
   } catch (e) {
     if ((e as ValidateErrorEntity)?.errorFields) {
