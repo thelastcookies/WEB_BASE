@@ -32,7 +32,7 @@ export const permTableColumns: TableEditableColumnProps[] = [
     editable: true,
   },
   {
-    title: '配置',
+    title: '配置值',
     dataIndex: 'Value',
     editable: true,
   },

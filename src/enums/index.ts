@@ -1,8 +1,3 @@
-export enum AccessEnum {
-  ADMIN = 'ADMIN',
-  USER = 'USER',
-}
-
 /**
  * 加载 Action 模式
  * FRONTEND 模式从 static-actions.ts 中加载

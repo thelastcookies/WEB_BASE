@@ -219,9 +219,24 @@ const handleDelete = async () => {
           </a-col>
         </a-row>
         <a-row>
-          <a-col :span="12">
-            <a-form-item label="是否启用" name="ShowInMenu">
+          <a-col :span="6">
+            <a-form-item
+              label="是否启用" name="ShowInMenu"
+              :label-col="{ span: 12 }" :wrapper-col="{ span: 12 }"
+            >
               <a-switch v-model:checked="formData.ShowInMenu"
+                        checked-children="是" un-checked-children="否"
+              ></a-switch>
+            </a-form-item>
+          </a-col>
+          <a-col :span="6">
+            <a-form-item
+              label="公共资源" name="NeedAction"
+              :label-col="{ span: 12 }" :wrapper-col="{ span: 12 }"
+              tooltip="勾选后该菜单无需分配权限即可访问"
+            >
+              <a-switch v-model:checked="formData.NeedAction"
+                        :checked-value="false" :un-checked-value="true"
                         checked-children="是" un-checked-children="否"
               ></a-switch>
             </a-form-item>
@@ -293,6 +308,13 @@ const handleDelete = async () => {
           <a-divider orientation="left">权限配置</a-divider>
         </a-row>
         <a-row>
+          <a-alert
+            class="w-full mb-4"
+            message="权限配置值约定为「菜单编码:媒介:功能」的格式，例如：「menu:button:add」"
+            type="info" show-icon closable
+          />
+        </a-row>
+        <a-row>
           <InlineEditTable
             class="w-full"
             v-model:data-source="formData.PermissionList"
@@ -315,7 +337,7 @@ const handleDelete = async () => {
     </template>
     <a-empty v-else class="mt-25%" :image="Empty.PRESENTED_IMAGE_SIMPLE">
       <template #description>
-        请在左侧选择菜单
+        请在左侧选择菜单进行配置
       </template>
     </a-empty>
   </div>

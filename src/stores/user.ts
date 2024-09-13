@@ -2,7 +2,7 @@ import type { UserRecord } from "@/api/admin/user/types";
 
 export const useUserStore = defineStore("user", () => {
   const userInfo = shallowRef({} as UserRecord);
-  const userPerms = shallowRef([] as string[]);
+  const permCodes = shallowRef([] as string[]);
 
   const getUserInfo = async () => {
     return new Promise<void | Error>((resolve, reject) => {
@@ -18,21 +18,26 @@ export const useUserStore = defineStore("user", () => {
           reject(new Error(WITH_UNAUTHORIZED));
         } else {
           userInfo.value = res.Data!.UserInfo;
-          userPerms.value = res.Data!.Permissions;
+          permCodes.value = res.Data!.Permissions;
           resolve();
         }
       }).catch(e => reject(e));
     });
   };
 
+  const hasPerm = (code: string | string[]) => {
+    const codes = (isArray(code) ? code : [code]) as string[];
+    return codes.some(c => permCodes.value.includes(c));
+  };
+
   const $reset = () => {
     userInfo.value = {};
-    userPerms.value = [];
+    permCodes.value = [];
   };
 
   return {
     userInfo,
-    userPerms,
+    hasPerm,
     getUserInfo,
     $reset,
   };
