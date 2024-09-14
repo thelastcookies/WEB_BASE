@@ -5,7 +5,7 @@ const { deviceType } = useAppStore();
 </script>
 <template>
   <a-layout w-full h-full>
-    <a-layout-header class="h-12 px-6">
+    <a-layout-header class="!h-12 px-6">
       <Header />
     </a-layout-header>
     <a-layout>

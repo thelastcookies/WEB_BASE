@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { message } from "ant-design-vue";
-import type { MenuInfo } from "ant-design-vue/es/menu/src/interface";
+import { message } from 'ant-design-vue';
+import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 
 withDefaults(defineProps<{
   size: number
@@ -9,20 +9,34 @@ withDefaults(defineProps<{
 });
 
 const userStore = useUserStore();
-const realName = computed(() => userStore.userInfo ? userStore.userInfo.RealName : "");
+const realName = computed(() => userStore.userInfo ? userStore.userInfo.RealName : '');
 const appStore = useAppStore();
+const { deviceType } = useAppStore();
+
+const pwdModalOpen = ref(false);
+
+const handleSignOut = () => {
+  const hide = message.loading('注销中，请稍候', 0);
+  appStore.signOut().finally(() => {
+    hide();
+    message.success('注销成功', 3);
+  });
+};
 
 async function handleClick({ key }: MenuInfo) {
-  if (key === "logout") {
-    const hide = message.loading("注销中，请稍候。", 0);
-    appStore.signOut().finally(() => {
-      hide();
-      message.success("注销成功", 3);
-    });
+  if (key === 'logout') {
+    handleSignOut();
+  } else if (key === 'pwd') {
+    pwdModalOpen.value = true;
   }
 }
 
-const { deviceType } = useAppStore();
+const handleReLogin = () => {
+  useTimeoutFn(() => {
+    handleSignOut();
+  }, 1000);
+};
+
 </script>
 
 <template>
@@ -37,6 +51,12 @@ const { deviceType } = useAppStore();
     </div>
     <template #overlay>
       <a-menu @click="handleClick">
+        <a-menu-item key="pwd">
+          <template #icon>
+            <BaseIcon icon="i-mdi-lock-outline"></BaseIcon>
+          </template>
+          修改密码
+        </a-menu-item>
         <a-menu-divider />
         <a-menu-item key="logout">
           <template #icon>
@@ -47,4 +67,8 @@ const { deviceType } = useAppStore();
       </a-menu>
     </template>
   </a-dropdown>
+  <change-pwd-modal
+    :open="pwdModalOpen"
+    @ok="handleReLogin"
+  ></change-pwd-modal>
 </template>

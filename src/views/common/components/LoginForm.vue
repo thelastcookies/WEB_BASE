@@ -1,21 +1,21 @@
 <script setup lang="ts">
-import type { LoginRequestBody } from "@/api/admin/home/types";
-import type { Rule } from "ant-design-vue/es/form";
-import { message } from "ant-design-vue";
+import type { LoginRequestBody } from '@/api/admin/home/types';
+import type { Rule } from 'ant-design-vue/es/form';
+import { message } from 'ant-design-vue';
 
 const route = useRoute();
 
 const submittingDisabled = ref(false);
 
 const loginForm = reactive<LoginRequestBody>({
-  userName: "Admin",
-  password: "123456",
+  userName: 'Admin',
+  password: '1qazXSW@',
   remember: false,
 });
 
 const loginFormRules: Record<string, Rule[]> = {
-  userName: [{ required: true, message: "请输入账号", trigger: "blur" }],
-  password: [{ required: true, message: "请输入密码", trigger: "blur" }],
+  userName: [{ required: true, message: '请输入账号', trigger: 'blur' }],
+  password: [{ required: true, message: '请输入密码', trigger: 'blur' }],
 };
 
 const loginFormRef = ref(null) as Ref<Element | null>;
@@ -24,7 +24,7 @@ const usernameRef = ref(null) as Ref<Element | null>;
 const handleSubmitLogin = async (formData: LoginRequestBody) => {
   submittingDisabled.value = true;
   message.loading({
-    content: "正在登录中，请稍候",
+    content: '正在登录中，请稍候',
     key: SYS_LOADING_KEY,
     duration: 0,
   });
@@ -33,7 +33,7 @@ const handleSubmitLogin = async (formData: LoginRequestBody) => {
       const tokenRes = res.Data!;
       const { setToken } = useTokenStore();
       setToken(tokenRes);
-      router.replace({ path: "/", query: route.query });
+      router.replace({ path: '/', query: route.query });
     } else {
       message.error({
         content: res.Msg,
@@ -43,7 +43,7 @@ const handleSubmitLogin = async (formData: LoginRequestBody) => {
     }
   }).catch(() => {
     message.error({
-      content: "登录失败",
+      content: '登录失败',
       key: SYS_LOADING_KEY,
     });
     submittingDisabled.value = false;
@@ -51,12 +51,12 @@ const handleSubmitLogin = async (formData: LoginRequestBody) => {
 };
 
 // 用于保存 input label 的状态颜色值
-let uActiveColor = "primary" as "primary" | "warning";
-let pActiveColor = "primary" as "primary" | "warning";
+let uActiveColor = 'primary' as 'primary' | 'warning';
+let pActiveColor = 'primary' as 'primary' | 'warning';
 
 // 用于决定 label 的呈现颜色
-const userNameColorClass = ref<"" | "primary" | "warning">("");
-const passwordColorClass = ref<"" | "primary" | "warning">("");
+const userNameColorClass = ref<'' | 'primary' | 'warning'>('');
+const passwordColorClass = ref<'' | 'primary' | 'warning'>('');
 
 // 用于标记 input active 状态
 const userNameIsActive = ref(Boolean(loginForm.userName));
@@ -68,10 +68,10 @@ const passwordIsActive = ref(Boolean(loginForm.password));
  * @param status
  */
 const handleValidate = (name: string | number | string[] | number[], status: boolean) => {
-  if (name === "userName") {
-    uActiveColor = status ? "primary" : "warning";
-  } else if (name === "password") {
-    pActiveColor = status ? "primary" : "warning";
+  if (name === 'userName') {
+    uActiveColor = status ? 'primary' : 'warning';
+  } else if (name === 'password') {
+    pActiveColor = status ? 'primary' : 'warning';
   }
 };
 
@@ -87,9 +87,9 @@ const handleValidate = (name: string | number | string[] | number[], status: boo
 const handleInputMEnter = (e: Event) => {
   if (submittingDisabled.value) return;
   const domId = (e.target as Element).id;
-  if (domId === "userName" && loginForm.userName !== "") {
+  if (domId === 'userName' && loginForm.userName !== '') {
     userNameColorClass.value = uActiveColor;
-  } else if (domId === "password-cont" && loginForm.password !== "") {
+  } else if (domId === 'password-cont' && loginForm.password !== '') {
     passwordColorClass.value = pActiveColor;
   }
 };
@@ -102,11 +102,11 @@ const handleInputMEnter = (e: Event) => {
 const handleInputMLeave = (e: Event) => {
   const domId = (e.target as Element).id;
   if (document.activeElement!.id === domId
-    || (document.activeElement!.id === "password" && domId === "password-cont")) return;
-  if (domId === "userName") {
-    userNameColorClass.value = "";
-  } else if (domId === "password-cont") {
-    passwordColorClass.value = "";
+    || (document.activeElement!.id === 'password' && domId === 'password-cont')) return;
+  if (domId === 'userName') {
+    userNameColorClass.value = '';
+  } else if (domId === 'password-cont') {
+    passwordColorClass.value = '';
   }
 };
 
@@ -116,10 +116,10 @@ const handleInputMLeave = (e: Event) => {
  */
 const handleInputFocus = (e: Event) => {
   const domId = (e.target as Element).id;
-  if (domId === "userName") {
+  if (domId === 'userName') {
     userNameColorClass.value = uActiveColor;
     userNameIsActive.value = true;
-  } else if (domId === "password") {
+  } else if (domId === 'password') {
     passwordColorClass.value = pActiveColor;
     passwordIsActive.value = true;
   }
@@ -132,14 +132,14 @@ const handleInputFocus = (e: Event) => {
  */
 const handleInputBlur = (e: Event) => {
   const domId = (e.target as Element).id;
-  if (domId === "userName") {
-    userNameColorClass.value = "";
-    if (loginForm.userName === "") {
+  if (domId === 'userName') {
+    userNameColorClass.value = '';
+    if (loginForm.userName === '') {
       userNameIsActive.value = false;
     }
-  } else if (domId === "password") {
-    passwordColorClass.value = "";
-    if (loginForm.password === "") {
+  } else if (domId === 'password') {
+    passwordColorClass.value = '';
+    if (loginForm.password === '') {
       passwordIsActive.value = false;
     }
   }

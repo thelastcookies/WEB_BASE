@@ -1,8 +1,8 @@
 <script setup lang="ts">
-import type { RecordName } from "@/types";
-import type { ActionRecordRaw } from "@/types/action";
-import type { MenuInfo } from "ant-design-vue/es/menu/src/interface";
-import type { RouteLocationNormalized } from "vue-router";
+import type { RecordName } from '@/types';
+import type { ActionRecordRaw } from '@/types/action';
+import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
+import type { RouteLocationNormalized } from 'vue-router';
 
 const selectedKeys = ref([] as string[]);
 

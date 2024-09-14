@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { VNodeChild } from 'vue'
-import type { MenuTreeNode } from "@/types";
+import type { VNodeChild } from 'vue';
+import type { MenuTreeNode } from '@/types';
 
 defineProps<{
   item: MenuTreeNode,
@@ -11,7 +11,7 @@ const renderTitle = (title: VNodeChild | (() => VNodeChild)) => {
     return title();
   }
   return title;
-}
+};
 
 </script>
 

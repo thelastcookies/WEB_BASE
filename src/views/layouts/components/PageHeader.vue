@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { RecordName } from "@/types";
-import type { ActionRecordRaw } from "@/types/action";
-import type { RouteLocationNormalized } from "vue-router";
+import type { RecordName } from '@/types';
+import type { ActionRecordRaw } from '@/types/action';
+import type { RouteLocationNormalized } from 'vue-router';
 
 const actionStore = useActionStore();
 const { actionTree } = storeToRefs(actionStore);
@@ -24,7 +24,7 @@ onUnmounted(() => {
 const routes = computed(() => {
   return breadcrumb.value.map(item => {
     return {
-      path: "",
+      path: '',
       breadcrumbName: item.title,
     };
   });
@@ -35,8 +35,8 @@ const router = useRouter();
 // TODO 插槽迁移
 
 const title = computed(() => {
-  if (!currentRoute.value) return "";
-  return currentRoute.value.query?.title || currentRoute.value.meta?.title as string || "";
+  if (!currentRoute.value) return '';
+  return currentRoute.value.query?.title || currentRoute.value.meta?.title as string || '';
 });
 const backBtnEnable = computed(() => {
   if (!currentRoute.value) return false;
