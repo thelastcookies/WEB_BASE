@@ -52,7 +52,7 @@ watchEffect(() => {
   if (!props.tree.length) return;
   if (props.defaultExpandAll) {
     const list = treeToList(props.tree);
-    expandedKeys.value = list.map(it => it.getId());
+    expandedKeys.value = list.map(it => it.getId()!);
   }
   if (props.checkable) {
     value.value = checkedKeys.value.checked?.map(key => {

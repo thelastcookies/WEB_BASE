@@ -29,7 +29,7 @@ export const roleTableColumns: TableColumnProps[] = [
     title: '角色类型',
     dataIndex: 'RoleType',
     width: 200,
-    customRender: ({record}) => {
+    customRender: ({ record }) => {
       return roleTypeOptions.find(it => it.value === (record as RoleRecord).RoleType)?.label;
     },
   },
@@ -52,5 +52,5 @@ export const roleTableSearchFields: QueryFormField[] = [
     compProps: {
       placeholder: '请输入角色名',
     },
-  }
+  },
 ];

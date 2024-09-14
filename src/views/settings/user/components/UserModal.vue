@@ -34,6 +34,7 @@ const title = computed(() => {
 const formRef = ref<FormInstance>();
 const formData = ref({
   Sex: SexEnum.MALE,
+  State: UserStateEnum.ENABLE,
 } as UserRecord);
 
 const rules: Record<string, Rule[]> = {
@@ -69,6 +70,7 @@ const handleClear = () => {
   formRef.value!.resetFields();
   formData.value = {
     Sex: SexEnum.MALE,
+    State: UserStateEnum.ENABLE,
   };
 };
 
@@ -137,6 +139,12 @@ getRoles();
       </a-form-item>
       <a-form-item label="备注" name="Remark">
         <a-textarea v-model:value="formData.Remark" />
+      </a-form-item>
+      <a-form-item label="状态" name="State">
+        <a-switch
+          v-model:checked="formData.State"
+          checked-value="1" un-checked-value="0"
+          checked-children="启用" un-checked-children="禁用"></a-switch>
       </a-form-item>
     </a-form>
   </a-modal>
