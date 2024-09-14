@@ -1,5 +1,15 @@
 # Changelog
 
+## [0.20.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.19.0...v0.20.0) (2024-09-14)
+
+
+### Features
+
+* 完善菜单设置功能，初步完成权限到按钮功能 ([3b47ff9](https://github.com/thelastcookies/WEB-BASE/commit/3b47ff91ec45aad71636d7974545fd60a5cee511))
+* 新增修改密码功能，重新格式化部分代码 ([49735b5](https://github.com/thelastcookies/WEB-BASE/commit/49735b5055f8cd11340706dbfa02fb5a10125c3a))
+* 新增用户管理——用户状态的设置 ([76ad45d](https://github.com/thelastcookies/WEB-BASE/commit/76ad45d6c1681e867a0cb057cc759f8dfee40ee0))
+* 新增菜单编辑加载动画 ([ef402d8](https://github.com/thelastcookies/WEB-BASE/commit/ef402d8eefc8ea9a39d3668f962b90c359af9f94))
+
 ## [0.19.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.18.0...v0.19.0) (2024-09-13)
 
 
