@@ -93,7 +93,8 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
     route.component = getRouterModule('Link');
     route.meta = { href: action.resource };
   } else if (action.type === MenuTypeEnum.DIAGRAM) {
-
+    route.component = getRouterModule('Diagram');
+    route.meta = { href: action.resource };
   }
   if ('meta' in action) {
     route.meta = Object.assign({}, route.meta, action.meta);
