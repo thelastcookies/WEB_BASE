@@ -1,0 +1,75 @@
+.diagram-container {
+  background: radial-gradient(circle, #142D4A 0%, #030D24 100%);
+}
+
+// 全局的 ht 右键弹窗样式修改
+.ht-widget-contextmenu {
+  zoom: 1;
+
+  ul {
+    // ul是.menu-item的父节点
+    background-color: #000D1A !important;
+    // 背景色及竖分割线画到ul上
+    background-position: -webkit-calc(5.4em) 0px !important;
+    // 竖分割线的位置(safari6.x)
+    background-position: calc(1.4em + 4px) 0px !important;
+    // 竖分割线的位置
+    border-radius: 4px !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    padding: 7px !important;
+    box-sizing: border-box;
+  }
+
+  .menu-item {
+    // 菜单项相关样式
+    background: rgba(0, 0, 0, 0) !important;
+    // 背景色改为透明，显示ul的背景
+    color: rgba(255, 255, 255, 0.8) !important;
+    // 文字颜色
+    border: 1px solid rgba(0, 0, 0, 0) !important;
+    // 透明边框
+    margin: 3px 2px !important;
+    // 设置margin
+    padding: 3px 10px !important;
+    cursor: pointer;
+  }
+
+  .menu-item.menu-item-hover {
+    // 鼠标滑过菜单项时，设置半透明的渐变背景色
+    background-color: #3F6E9F !important;
+  }
+
+  .menu-item.disabled {
+    // 自定义已禁用菜单项的背景色和文字颜色
+    color: #888 !important;
+    background: rgba(0, 0, 0, 0) !important;
+  }
+
+  .menu-item.disabled.menu-item-hover {
+    // 自定义鼠标滑过已禁用菜单项时，菜单项的背景色,文字颜色及边框
+    color: #888 !important;
+    background: rgba(0, 0, 0, 0) !important;
+    border: 1px solid rgba(0, 0, 0, 0) !important;
+  }
+
+  .prefix {
+    display: none !important;
+    margin-right: 0.8em !important;
+    // 设置菜单项前缀和内容之间的距离
+  }
+
+  .suffix {
+    height: 10px !important;
+    margin-right: 0 !important;
+  }
+
+  .separator {
+    // 分割条样式
+    margin-left: -webkit-calc(6.4em) !important;
+    margin-left: calc(1.4em + 5px) !important;
+    height: 2px !important;
+    background-image: -webkit-linear-gradient(top, #e2e2e2, #e2e2e2 50%, #fcfcfc 50%, #fcfcfc) !important;
+    background-image: linear-gradient(to bottom, #e2e2e2, #e2e2e2 50%, #fcfcfc 50%, #fcfcfc) !important;
+  }
+}
