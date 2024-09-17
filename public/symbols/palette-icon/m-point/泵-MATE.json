@@ -1,0 +1,165 @@
+{
+  "modified": "Tue Nov 03 2020 18:13:39 GMT+0800 (CST)",
+  "dataBindings": [
+    {
+      "attr": "node.cate",
+      "valueType": "String",
+      "defaultValue": "m-point"
+    },
+    {
+      "attr": "node.type",
+      "valueType": "String",
+      "defaultValue": "pump"
+    },
+    {
+      "attr": "node.name",
+      "valueType": "String",
+      "defaultValue": "pump-mate"
+    },
+    {
+      "attr": "node.direction",
+      "valueType": "String",
+      "defaultValue": "up"
+    },
+    {
+      "attr": "node.data",
+      "valueType": "Array",
+      "name": "状态值",
+      "defaultValue": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0]
+    }
+  ],
+  "width": 48,
+  "height": 32,
+  "comps": [
+    {
+      "type": "oval",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='rgba(0,158,61,0.8)';if(d[3]||d[11]){r='rgb(127,127,127,0.8)';}return r;\n}",
+        "values": "rgba(0,158,61,0.8)"
+      },
+      "borderWidth": 2,
+      "borderColor": "#009A3D",
+      "rect": [
+        1,
+        1,
+        30,
+        30
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#FFFFFF';if(d[8]){r='#00FF00';if(d[0]) {r='rgb(192,192,192)'}}return r;\n}",
+        "values": "#FFFFFF"
+      },
+      "borderColor": "rgba(255,255,255,0.6)",
+      "anchorY": 0.9333,
+      "rotation": {
+        "func": "__ht__function(data, view){\nlet dir=data.a('node.direction'),res=0;\nif(dir === 'up')res=180;\nif(dir === 'right')res=270;\nif(dir === 'down')res=0;\nif(dir === 'left')res=90;\nreturn res/180*Math.PI;\n}",
+        "value": 0
+      },
+      "rect": [
+        14.42891,
+        2.84716,
+        3.14219,
+        14.09284
+      ]
+    },
+    {
+      "type": "polygon",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#FFFFFF';if(d[8]){r='#00FF00';if(d[0]) {r='rgb(192,192,192)'}}return r;\n}",
+        "values": "#FFFFFF"
+      },
+      "borderColor": "rgba(255,255,255,0.6)",
+      "polygonSide": 3,
+      "anchorX": 0.2,
+      "rotation": {
+        "func": "__ht__function(data, view){\nlet dir=data.a('node.direction'),res=0;\nif(dir === 'up')res=270;\nif(dir === 'right')res=0;\nif(dir === 'down')res=90;\nif(dir === 'left')res=180;\nreturn res/180*Math.PI;\n}",
+        "value": 1.5708
+      },
+      "rect": [
+        12.50005,
+        7,
+        17.5,
+        18
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[16])?'rgb(255,255,0)':'rgb(0,255,0)';\n}",
+        "value": "rgb(255,255,0)"
+      },
+      "borderWidth": 0.5,
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return !Boolean(data.a('node.data')[18]);\n}",
+        "value": true
+      },
+      "rect": [
+        34.48792,
+        3.02714,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[16])?'M':'A';\n}",
+        "value": "M"
+      },
+      "align": "center",
+      "font": "9px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return !Boolean(data.a('node.data')[18]);\n}",
+        "value": true
+      },
+      "rect": [
+        35.48792,
+        4.3,
+        10,
+        10
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='rgb(255,0,0)';if(!d[25]){r='rgb(255,255,0)';}return r;\n}",
+        "value": "rgb(255,255,0)"
+      },
+      "borderWidth": 0.5,
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=true;if(!d[24]&&!d[25]){r=false}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        34.48792,
+        16.97286,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='E';if(!d[25]){r='T';}return r;\n}",
+        "value": "E"
+      },
+      "align": "center",
+      "font": "9px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=true;if(!d[24]&&!d[25]){r=false}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        35.48792,
+        18.39233,
+        10,
+        10
+      ]
+    }
+  ]
+}

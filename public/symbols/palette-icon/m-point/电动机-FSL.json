@@ -1,0 +1,275 @@
+{
+  "modified": "Wed Nov 04 2020 14:27:10 GMT+0800 (CST)",
+  "dataBindings": [
+    {
+      "attr": "node.cate",
+      "valueType": "String",
+      "defaultValue": "m-point"
+    },
+    {
+      "attr": "node.type",
+      "valueType": "String",
+      "defaultValue": "motor"
+    },
+    {
+      "attr": "node.name",
+      "valueType": "String",
+      "defaultValue": "motor-fsl"
+    },
+    {
+      "attr": "node.data",
+      "valueType": "Array",
+      "name": "状态值",
+      "defaultValue": [0,0,1,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,1,0,0,0,0,0,0,1,0,0,0,0,0,0]
+    }
+  ],
+  "width": 56,
+  "height": 32,
+  "comps": [
+    {
+      "type": "oval",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='rgba(0,158,61,0.8)';if(d[3]||d[11]){r='rgb(127,127,127,0.8)';}return r;\n}",
+        "values": "rgba(0,158,61,0.8)"
+      },
+      "borderWidth": 2,
+      "borderColor": "#009A3D",
+      "rect": [
+        9,
+        1,
+        30,
+        30
+      ]
+    },
+    {
+      "type": "text",
+      "text": "M",
+      "align": "center",
+      "color": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#FFFFFF';if(d[8]){r='#00FF00';if(d[0]) {r='rgb(192,192,192)'}}return r;\n}",
+        "values": "#FFFFFF"
+      },
+      "font": "18px arial, sans-serif",
+      "rect": [
+        19,
+        11,
+        10,
+        10
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(255,0,0)",
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[25]);\n}",
+        "value": true
+      },
+      "rect": [
+        42.91932,
+        19,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 1,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[25]);\n}",
+        "value": true
+      },
+      "rect": [
+        48.16932,
+        21.11157,
+        1.5,
+        5
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[25]);\n}",
+        "value": true
+      },
+      "rect": [
+        47.91932,
+        27.70712,
+        2,
+        2
+      ]
+    },
+    {
+      "type": "rect",
+      "background": "rgb(255,255,0)",
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=false;if(d[24]&&!d[25]){r=true}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        42.91932,
+        19,
+        12,
+        12
+      ]
+    },
+    {
+      "type": "circle",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.5,
+      "borderColor": "rgb(0,0,0)",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=false;if(d[24]&&!d[25]){r=true}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        47.55585,
+        19.89474,
+        2.34664,
+        2.33202
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgb(0,0,0)",
+      "borderWidth": 0.2,
+      "borderColor": "rgb(0,0,0)",
+      "closePath": true,
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=false;if(d[24]&&!d[25]){r=true}return r;\n}",
+        "value": true
+      },
+      "points": [
+        48.29461,
+        22.4537,
+        48.29461,
+        22.96643,
+        46.3102,
+        24.14966,
+        46.15145,
+        24.49302,
+        46.15145,
+        24.97792,
+        46.90553,
+        25.37233,
+        48.29461,
+        25.37233,
+        48.09617,
+        26.94997,
+        47.6596,
+        28.52762,
+        46.90553,
+        29.4742,
+        46.70709,
+        30.10526,
+        47.58023,
+        30.10526,
+        48.73118,
+        30.10526,
+        48.61212,
+        29.67141,
+        47.58023,
+        29.63196,
+        48.29461,
+        28.6065,
+        48.85025,
+        26.94997,
+        50.00121,
+        28.21209,
+        49.48526,
+        29.11923,
+        49.32651,
+        29.67141,
+        51.31092,
+        29.67141,
+        50.95372,
+        29.04035,
+        50.08058,
+        29.07979,
+        50.71559,
+        27.77824,
+        49.48526,
+        26.51612,
+        49.64401,
+        24.74128,
+        49.56464,
+        23.59749,
+        50.67591,
+        23.87357,
+        52.62063,
+        23.91301,
+        52.62063,
+        23.47916,
+        50.63622,
+        23.36084,
+        48.85025,
+        22.84811,
+        48.81056,
+        22.4537
+      ]
+    },
+    {
+      "type": "shape",
+      "background": "rgba(0,0,0,0)",
+      "borderColor": "#979797",
+      "closePath": true,
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=false;if(d[24]&&!d[25]){r=true}return r;\n}",
+        "value": true
+      },
+      "points": [
+        48.18156,
+        23.82426,
+        48.18156,
+        24.86129,
+        47.54877,
+        24.86129,
+        46.96211,
+        24.49302
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='';if(d[2]||d[10]){r='F'}else if(d[3]&&!d[11]&&!d[2]&&!d[10]){r='S'} return r;\n}",
+        "value": "F"
+      },
+      "align": "center",
+      "color": "rgb(255,0,0)",
+      "font": "9px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=false;if((d[3]&&!d[11]&&!d[2]&&!d[10])||(d[2]||d[10])){r=true}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        0,
+        0,
+        8,
+        8
+      ]
+    },
+    {
+      "type": "text",
+      "text": "L",
+      "align": "center",
+      "color": "rgb(255,255,0)",
+      "font": "9px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[18]);\n}",
+        "value": true
+      },
+      "rect": [
+        0,
+        24,
+        8,
+        8
+      ]
+    }
+  ]
+}

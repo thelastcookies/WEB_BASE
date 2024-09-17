@@ -1,0 +1,165 @@
+{
+  "modified": "Mon Jan 11 2021 15:18:29 GMT+0800 (CST)",
+  "dataBindings": [
+    {
+      "attr": "node.cate",
+      "valueType": "String",
+      "defaultValue": "m-point"
+    },
+    {
+      "attr": "node.type",
+      "valueType": "String",
+      "defaultValue": "equip"
+    },
+    {
+      "attr": "node.name",
+      "valueType": "String",
+      "defaultValue": "shaker"
+    },
+    {
+      "attr": "node.data",
+      "valueType": "Array",
+      "name": "状态值",
+      "defaultValue": [0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,0,1,0,0,0,0,0,0,0,1,1,0,0,0,0,0,0]
+    }
+  ],
+  "width": 86,
+  "height": 56,
+  "comps": [
+    {
+      "type": "shape",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#D8D8D8';if(d[0]||d[8]){r='rgb(255,0,0)';}if(d[3]||d[11]){r='#FFFF00'}return r;\n}",
+        "value": "#D8D8D8"
+      },
+      "borderColor": "#979797",
+      "closePath": true,
+      "points": [
+        18.97937,
+        0,
+        42.97937,
+        0,
+        42.97937,
+        24.45626,
+        30.99937,
+        34.22,
+        18.97937,
+        24.45626
+      ]
+    },
+    {
+      "type": "shape",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#D8D8D8';if(d[8]){r='rgb(255,0,0)';}if(d[3]||d[11]){r='#FFFF00'}return r;\n}",
+        "value": "#D8D8D8"
+      },
+      "borderColor": "#979797",
+      "closePath": true,
+      "points": [
+        18.79118,
+        25.10843,
+        30.57135,
+        34.7949,
+        15.94045,
+        56.04,
+        0,
+        56.04
+      ]
+    },
+    {
+      "type": "shape",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='#D8D8D8';if(d[0]){r='rgb(255,0,0)';}if(d[3]||d[11]){r='#FFFF00'}return r;\n}",
+        "value": "#D8D8D8"
+      },
+      "borderColor": "#979797",
+      "closePath": true,
+      "points": [
+        43.20966,
+        25.01042,
+        31.42045,
+        34.82,
+        46.01236,
+        55.97109,
+        62.02045,
+        55.97109
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[16])?'rgb(255,255,0)':'rgb(0,255,0)';\n}",
+        "value": "rgb(255,255,0)"
+      },
+      "borderWidth": 0.5,
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return !Boolean(data.a('node.data')[18]);\n}",
+        "value": true
+      },
+      "rect": [
+        66.45967,
+        8.56271,
+        16,
+        16
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\n return Boolean(data.a('node.data')[16])?'M':'A';\n}",
+        "value": "M"
+      },
+      "align": "center",
+      "font": "12px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n return !Boolean(data.a('node.data')[18]);\n}",
+        "value": true
+      },
+      "rect": [
+        66.45967,
+        8.56271,
+        16,
+        16
+      ]
+    },
+    {
+      "type": "rect",
+      "background": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='rgb(255,0,0)';if(!d[25]){r='rgb(255,255,0)';}return r;\n}",
+        "value": "rgb(255,255,0)"
+      },
+      "borderWidth": 0.5,
+      "borderColor": "#979797",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=true;if(!d[24]&&!d[25]){r=false}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        66.45967,
+        34.97414,
+        16,
+        16
+      ]
+    },
+    {
+      "type": "text",
+      "text": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r='E';if(!d[25]){r='T';}return r;\n}",
+        "value": "E"
+      },
+      "align": "center",
+      "font": "12px arial, sans-serif",
+      "visible": {
+        "func": "__ht__function(data, view) {\n let d=data.a('node.data'),r=true;if(!d[24]&&!d[25]){r=false}return r;\n}",
+        "value": true
+      },
+      "rect": [
+        66.45967,
+        34.97414,
+        16,
+        16
+      ]
+    }
+  ]
+}

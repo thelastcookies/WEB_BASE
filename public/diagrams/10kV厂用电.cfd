@@ -1,0 +1,5873 @@
+{
+  "v": "7.6.2-dev28",
+  "p": {
+    "layers": [
+      "0",
+      1,
+      2,
+      3
+    ],
+    "autoAdjustIndex": true,
+    "hierarchicalRendering": false
+  },
+  "d": [
+    {
+      "c": "ht.Text",
+      "i": 2,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 193,
+          "y": -927
+        }
+      },
+      "s": {
+        "text": "10kV厂用电",
+        "text.align": "center",
+        "text.font": "40px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 3,
+      "p": {
+        "position": {
+          "x": 202.37758,
+          "y": -444.40464
+        },
+        "width": 1600,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -597.62242,
+              "y": -444.40464
+            },
+            {
+              "x": 1002.37758,
+              "y": -444.40464
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 5,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 4,
+      "p": {
+        "name": "电抗",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/电抗.json",
+        "position": {
+          "x": -358,
+          "y": -705
+        },
+        "width": 44,
+        "height": 76
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 5,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": -358,
+          "y": -557
+        }
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA02GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA02GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA02GS000XB02",
+        "node.showName": "#1机10kV I段备用电源进线断路器"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 6,
+      "p": {
+        "position": {
+          "x": -358,
+          "y": -634.50781
+        },
+        "width": 0,
+        "height": 104.40284,
+        "points": {
+          "__a": [
+            {
+              "x": -358,
+              "y": -686.70923
+            },
+            {
+              "x": -358,
+              "y": -582.30639
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 7,
+      "p": {
+        "position": {
+          "x": -358,
+          "y": -488.35219
+        },
+        "width": 0,
+        "height": 87,
+        "points": {
+          "__a": [
+            {
+              "x": -358,
+              "y": -531.85219
+            },
+            {
+              "x": -358,
+              "y": -444.85219
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 8,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": -502.986,
+          "y": -618.71223
+        },
+        "width": 26.71335,
+        "height": 31.27338
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 9,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": -502.986,
+          "y": -622.11151
+        },
+        "width": 26.71335,
+        "height": 31.27338
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 10,
+      "p": {
+        "name": "变压器常用接法2",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/变压器常用接法2.json",
+        "rotation": 2.0944,
+        "position": {
+          "x": -500.98249,
+          "y": -501.29237
+        },
+        "width": 43.51079,
+        "height": 40.07002
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 11,
+      "p": {
+        "name": "接地电阻",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地电阻.json",
+        "position": {
+          "x": -560.41969,
+          "y": -474.58273
+        },
+        "width": 16.02801,
+        "height": 51.66906
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 12,
+      "p": {
+        "name": "熔断器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/熔断器.json",
+        "position": {
+          "x": -502.986,
+          "y": -561.60432
+        },
+        "width": 16.02801,
+        "height": 40.79137
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 13,
+      "p": {
+        "position": {
+          "x": -532.0914,
+          "y": -505.53516
+        },
+        "width": 56.17203,
+        "height": 15.55721,
+        "points": {
+          "__a": [
+            {
+              "x": -504.00538,
+              "y": -513.31377
+            },
+            {
+              "x": -560.17741,
+              "y": -513.31377
+            },
+            {
+              "x": -560.17741,
+              "y": -497.75656
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 14,
+      "p": {
+        "position": {
+          "x": -502.986,
+          "y": -591.52128
+        },
+        "width": 0,
+        "height": 27.32749,
+        "points": {
+          "__a": [
+            {
+              "x": -502.986,
+              "y": -605.18502
+            },
+            {
+              "x": -502.986,
+              "y": -577.85753
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 15,
+      "p": {
+        "position": {
+          "x": -502.986,
+          "y": -533.26483
+        },
+        "width": 0,
+        "height": 16.77655,
+        "points": {
+          "__a": [
+            {
+              "x": -502.986,
+              "y": -541.65311
+            },
+            {
+              "x": -502.986,
+              "y": -524.87656
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 16,
+      "p": {
+        "position": {
+          "x": -430.66112,
+          "y": -651.05491
+        },
+        "width": 144.71575,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -503.019,
+              "y": -651.05491
+            },
+            {
+              "x": -358.30324,
+              "y": -651.05491
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 17,
+      "p": {
+        "rotation": 4.71239,
+        "position": {
+          "x": -503,
+          "y": -644.69435
+        },
+        "width": 14,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -496,
+              "y": -644.69435
+            },
+            {
+              "x": -510,
+              "y": -644.69435
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 18,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": -552.11823,
+          "y": -401.36331
+        },
+        "width": 24.53374,
+        "height": 31.27338
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 19,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": -552.11823,
+          "y": -405.36331
+        },
+        "width": 22.96019,
+        "height": 31.27338
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 20,
+      "p": {
+        "rotation": 4.71239,
+        "position": {
+          "x": -552.11823,
+          "y": -414.36331
+        },
+        "width": 14,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -545.11823,
+              "y": -414.36331
+            },
+            {
+              "x": -559.11823,
+              "y": -414.36331
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 21,
+      "p": {
+        "name": "接地电阻",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地电阻.json",
+        "position": {
+          "x": -556.10657,
+          "y": -232.16547
+        },
+        "width": 14.72024,
+        "height": 51.66906
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 22,
+      "p": {
+        "name": "变压器常用接法2",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/变压器常用接法2.json",
+        "rotation": 2.0944,
+        "position": {
+          "x": -599.07471,
+          "y": -270.14177
+        },
+        "width": 43.51079,
+        "height": 36.80061
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 23,
+      "p": {
+        "position": {
+          "x": -552.11823,
+          "y": -386
+        },
+        "width": 100.76498,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -602.50072,
+              "y": -386
+            },
+            {
+              "x": -501.73574,
+              "y": -386
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 24,
+      "p": {
+        "rotation": 1.5708,
+        "position": {
+          "x": -552.11823,
+          "y": -431
+        },
+        "width": 20,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -562.11823,
+              "y": -431
+            },
+            {
+              "x": -542.11823,
+              "y": -431
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 25,
+      "p": {
+        "name": "接地避雷器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地避雷器.json",
+        "position": {
+          "x": -502.34726,
+          "y": -317.5
+        },
+        "width": 14.69452,
+        "height": 51
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 26,
+      "p": {
+        "position": {
+          "x": -608.15664,
+          "y": -344.27849
+        },
+        "width": 0.15214,
+        "height": 31.00608,
+        "points": {
+          "__a": [
+            {
+              "x": -608.23271,
+              "y": -359.78152
+            },
+            {
+              "x": -608.08057,
+              "y": -328.77545
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 27,
+      "p": {
+        "rotation": 4.71239,
+        "position": {
+          "x": -602.37092,
+          "y": -328.90969
+        },
+        "width": 17.30882,
+        "height": 13.25612,
+        "points": {
+          "__a": [
+            {
+              "x": -602.37092,
+              "y": -335.53774
+            },
+            {
+              "x": -602.37092,
+              "y": -322.28163
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 28,
+      "p": {
+        "rotation": 3.14159,
+        "position": {
+          "x": -595.61096,
+          "y": -344
+        },
+        "width": 0,
+        "height": 32,
+        "points": {
+          "__a": [
+            {
+              "x": -595.61096,
+              "y": -360
+            },
+            {
+              "x": -595.61096,
+              "y": -328
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 29,
+      "p": {
+        "rotation": 7.85398,
+        "position": {
+          "x": -602.03695,
+          "y": -359.27753
+        },
+        "width": 0.1548,
+        "height": 13.62817,
+        "points": {
+          "__a": [
+            {
+              "x": -601.95955,
+              "y": -366.09161
+            },
+            {
+              "x": -602.11435,
+              "y": -352.46344
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 30,
+      "p": {
+        "position": {
+          "x": -602.62183,
+          "y": -372.75585
+        },
+        "width": 0,
+        "height": 26.77416,
+        "points": {
+          "__a": [
+            {
+              "x": -602.62183,
+              "y": -386.14293
+            },
+            {
+              "x": -602.62183,
+              "y": -359.36877
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 31,
+      "p": {
+        "position": {
+          "x": -601.59688,
+          "y": -311.33915
+        },
+        "width": 0,
+        "height": 34.17137,
+        "points": {
+          "__a": [
+            {
+              "x": -601.59688,
+              "y": -328.42484
+            },
+            {
+              "x": -601.59688,
+              "y": -294.25347
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 32,
+      "p": {
+        "position": {
+          "x": -502.34726,
+          "y": -364.18255
+        },
+        "width": 0,
+        "height": 45.03333,
+        "points": {
+          "__a": [
+            {
+              "x": -502.34726,
+              "y": -386.69921
+            },
+            {
+              "x": -502.34726,
+              "y": -341.66588
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 33,
+      "p": {
+        "position": {
+          "x": -578.3862,
+          "y": -269.6512
+        },
+        "width": 44.80704,
+        "height": 25.93223,
+        "points": {
+          "__a": [
+            {
+              "x": -600.78972,
+              "y": -282.61731
+            },
+            {
+              "x": -555.98268,
+              "y": -282.61731
+            },
+            {
+              "x": -555.98268,
+              "y": -256.68508
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 34,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA07GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": -399.48062,
+          "y": -336
+        },
+        "width": 30,
+        "height": 50
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA07GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA07GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA07GS000XB02",
+        "node.showName": "厂前区变10kV侧断路器"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 35,
+      "p": {
+        "name": "三角变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/三角变压器.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": -400,
+          "y": -208.71596
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": "",
+        "shape.border.color": "rgb(139,100,232)"
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 36,
+      "p": {
+        "name": "星型变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/星型变压器.json",
+        "position": {
+          "x": -400,
+          "y": -166.7927
+        },
+        "width": 50,
+        "height": 49.07674
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 37,
+      "p": {
+        "name": "接地",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地.json",
+        "position": {
+          "x": -340,
+          "y": -137
+        }
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 38,
+      "p": {
+        "position": {
+          "x": -369.774,
+          "y": -165.85986
+        },
+        "width": 60.26697,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -399.90748,
+              "y": -165.85986
+            },
+            {
+              "x": -339.64051,
+              "y": -165.85986
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 39,
+      "p": {
+        "position": {
+          "x": -339.9849,
+          "y": -156.04495
+        },
+        "width": 0,
+        "height": 21.00734,
+        "points": {
+          "__a": [
+            {
+              "x": -339.9849,
+              "y": -166.54862
+            },
+            {
+              "x": -339.9849,
+              "y": -145.54128
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 40,
+      "p": {
+        "position": {
+          "x": -399.48062,
+          "y": -399.89502
+        },
+        "width": 0,
+        "height": 82.051,
+        "points": {
+          "__a": [
+            {
+              "x": -399.48062,
+              "y": -440.92052
+            },
+            {
+              "x": -399.48062,
+              "y": -358.86952
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 41,
+      "p": {
+        "position": {
+          "x": -399.48062,
+          "y": -272.28682
+        },
+        "width": 0,
+        "height": 79.09508,
+        "points": {
+          "__a": [
+            {
+              "x": -399.48062,
+              "y": -311.83436
+            },
+            {
+              "x": -399.48062,
+              "y": -232.73928
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 42,
+      "p": {
+        "name": "接地",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地.json",
+        "position": {
+          "x": -176,
+          "y": -137
+        },
+        "width": 24,
+        "height": 20
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 43,
+      "p": {
+        "name": "星型变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/星型变压器.json",
+        "position": {
+          "x": -237,
+          "y": -166.7927
+        },
+        "width": 50,
+        "height": 49.07674
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 44,
+      "p": {
+        "name": "三角变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/三角变压器.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": -237,
+          "y": -208.71596
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": "",
+        "shape.border.color": "rgb(139,100,232)"
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 45,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA04GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": -237.32041,
+          "y": -336
+        },
+        "width": 30,
+        "height": 50
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA04GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA04GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA04GS000XB02",
+        "node.showName": "#1工作变10kV侧断路器"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 46,
+      "p": {
+        "position": {
+          "x": -237,
+          "y": -272.28682
+        },
+        "width": 0,
+        "height": 79.09508,
+        "points": {
+          "__a": [
+            {
+              "x": -237,
+              "y": -311.83436
+            },
+            {
+              "x": -237,
+              "y": -232.73928
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 47,
+      "p": {
+        "position": {
+          "x": -237,
+          "y": -400
+        },
+        "width": 0,
+        "height": 82.051,
+        "points": {
+          "__a": [
+            {
+              "x": -237,
+              "y": -441.0255
+            },
+            {
+              "x": -237,
+              "y": -358.9745
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 48,
+      "p": {
+        "position": {
+          "x": -176,
+          "y": -156
+        },
+        "width": 0,
+        "height": 21.00734,
+        "points": {
+          "__a": [
+            {
+              "x": -176,
+              "y": -166.50367
+            },
+            {
+              "x": -176,
+              "y": -145.49633
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 49,
+      "p": {
+        "position": {
+          "x": -206,
+          "y": -166
+        },
+        "width": 60.26697,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -236.13349,
+              "y": -166
+            },
+            {
+              "x": -175.86651,
+              "y": -166
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 50,
+      "p": {
+        "name": "接地",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地.json",
+        "position": {
+          "x": -15,
+          "y": -136
+        },
+        "width": 24,
+        "height": 20
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 51,
+      "p": {
+        "name": "星型变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/星型变压器.json",
+        "position": {
+          "x": -75.16021,
+          "y": -166.7927
+        },
+        "width": 50,
+        "height": 49.07674
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 52,
+      "p": {
+        "name": "三角变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/三角变压器.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": -75.16021,
+          "y": -208.71596
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": "",
+        "shape.border.color": "rgb(139,100,232)"
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 53,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA05GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": -75.16021,
+          "y": -336
+        },
+        "width": 30,
+        "height": 50
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA05GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA05GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA05GS000XB02",
+        "node.showName": "公用变10kV侧断路器"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 54,
+      "p": {
+        "position": {
+          "x": -75.16021,
+          "y": -272.28682
+        },
+        "width": 0,
+        "height": 79.09508,
+        "points": {
+          "__a": [
+            {
+              "x": -75.16021,
+              "y": -311.83436
+            },
+            {
+              "x": -75.16021,
+              "y": -232.73928
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 55,
+      "p": {
+        "position": {
+          "x": -75.16021,
+          "y": -399.89502
+        },
+        "width": 0,
+        "height": 82.051,
+        "points": {
+          "__a": [
+            {
+              "x": -75.16021,
+              "y": -440.92052
+            },
+            {
+              "x": -75.16021,
+              "y": -358.86952
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 56,
+      "p": {
+        "position": {
+          "x": -15,
+          "y": -156
+        },
+        "width": 0,
+        "height": 21.00734,
+        "points": {
+          "__a": [
+            {
+              "x": -15,
+              "y": -166.50367
+            },
+            {
+              "x": -15,
+              "y": -145.49633
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 57,
+      "p": {
+        "position": {
+          "x": -44.16021,
+          "y": -166
+        },
+        "width": 60.26697,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -74.29369,
+              "y": -166
+            },
+            {
+              "x": -14.02672,
+              "y": -166
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 58,
+      "p": {
+        "name": "接地",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地.json",
+        "position": {
+          "x": 145,
+          "y": -136
+        },
+        "width": 24,
+        "height": 20
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 59,
+      "p": {
+        "name": "星型变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/星型变压器.json",
+        "position": {
+          "x": 86,
+          "y": -166.7927
+        },
+        "width": 50,
+        "height": 49.07674
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 60,
+      "p": {
+        "name": "三角变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/三角变压器.json",
+        "rotation": 4.71239,
+        "position": {
+          "x": 86,
+          "y": -208.71596
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": "",
+        "shape.border.color": "rgb(139,100,232)"
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 61,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA06GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 87,
+          "y": -336
+        },
+        "width": 30,
+        "height": 50
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA06GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA06GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA06GS000XB02",
+        "node.showName": "化水变10kV侧断路器"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 62,
+      "p": {
+        "position": {
+          "x": 87,
+          "y": -272.28682
+        },
+        "width": 0,
+        "height": 79.09508,
+        "points": {
+          "__a": [
+            {
+              "x": 87,
+              "y": -311.83436
+            },
+            {
+              "x": 87,
+              "y": -232.73928
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 63,
+      "p": {
+        "position": {
+          "x": 87,
+          "y": -399.89502
+        },
+        "width": 0,
+        "height": 82.051,
+        "points": {
+          "__a": [
+            {
+              "x": 87,
+              "y": -440.92052
+            },
+            {
+              "x": 87,
+              "y": -358.86952
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 64,
+      "p": {
+        "position": {
+          "x": 145,
+          "y": -156
+        },
+        "width": 0,
+        "height": 21.00734,
+        "points": {
+          "__a": [
+            {
+              "x": 145,
+              "y": -166.50367
+            },
+            {
+              "x": 145,
+              "y": -145.49633
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 65,
+      "p": {
+        "position": {
+          "x": 116,
+          "y": -167
+        },
+        "width": 60.26697,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": 85.86651,
+              "y": -167
+            },
+            {
+              "x": 146.13349,
+              "y": -167
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 66,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -400,
+          "y": -86
+        }
+      },
+      "s": {
+        "text": "厂前区变",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 67,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -237,
+          "y": -86
+        }
+      },
+      "s": {
+        "text": "#1工作变",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 68,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -75.16021,
+          "y": -86
+        }
+      },
+      "s": {
+        "text": "#1 公用变",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 69,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 86,
+          "y": -86
+        }
+      },
+      "s": {
+        "text": "#1 化水变",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 70,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10LAB81AP001XB01",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 438.30289,
+          "y": -336
+        }
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10LAB81AP001XB01",
+        "node.tag.ddfk": "JDRDN1_10LAB81AP001XB01",
+        "node.tag.ddfg": "JDRDN1_10LAB81AP001XB02",
+        "node.showName": "高压给水泵A"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 71,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 598.53526,
+          "y": -336
+        }
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 72,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10PAC01AP001XB01",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 758.76763,
+          "y": -336
+        }
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10PAC01AP001XB01",
+        "node.tag.ddfk": "JDRDN1_10PAC01AP001XB01",
+        "node.tag.ddfg": "JDRDN1_10PAC01AP001XB02",
+        "node.showName": "#1循环水泵"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 73,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 919,
+          "y": -336
+        }
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 74,
+      "p": {
+        "name": "电动机",
+        "layer": 2,
+        "image": "symbols/palette-icon/m-point/电动机.json",
+        "position": {
+          "x": 438.30289,
+          "y": -137
+        },
+        "width": 68,
+        "height": 64
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 75,
+      "p": {
+        "name": "电动机",
+        "layer": 2,
+        "image": "symbols/palette-icon/m-point/电动机.json",
+        "position": {
+          "x": 599,
+          "y": -137
+        },
+        "width": 68,
+        "height": 64
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 76,
+      "p": {
+        "name": "电动机",
+        "layer": 2,
+        "image": "symbols/palette-icon/m-point/电动机.json",
+        "position": {
+          "x": 759,
+          "y": -137
+        },
+        "width": 68,
+        "height": 64
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 77,
+      "p": {
+        "name": "电动机",
+        "layer": 2,
+        "image": "symbols/palette-icon/m-point/电动机.json",
+        "position": {
+          "x": 920,
+          "y": -137
+        },
+        "width": 68,
+        "height": 64
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 78,
+      "p": {
+        "position": {
+          "x": 438.30289,
+          "y": -402.13638
+        },
+        "width": 0,
+        "height": 81.57079,
+        "points": {
+          "__a": [
+            {
+              "x": 438.30289,
+              "y": -442.92178
+            },
+            {
+              "x": 438.30289,
+              "y": -361.35099
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 79,
+      "p": {
+        "position": {
+          "x": 438.30289,
+          "y": -252.59788
+        },
+        "width": 0,
+        "height": 115,
+        "points": {
+          "__a": [
+            {
+              "x": 438.30289,
+              "y": -310.09789
+            },
+            {
+              "x": 438.30289,
+              "y": -195.09789
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 80,
+      "p": {
+        "position": {
+          "x": 599,
+          "y": -252.15591
+        },
+        "width": 0,
+        "height": 115,
+        "points": {
+          "__a": [
+            {
+              "x": 599,
+              "y": -309.65592
+            },
+            {
+              "x": 599,
+              "y": -194.65592
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 81,
+      "p": {
+        "position": {
+          "x": 599,
+          "y": -402.13638
+        },
+        "width": 0,
+        "height": 81.57079,
+        "points": {
+          "__a": [
+            {
+              "x": 599,
+              "y": -442.92178
+            },
+            {
+              "x": 599,
+              "y": -361.35099
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 82,
+      "p": {
+        "position": {
+          "x": 759,
+          "y": -252.15591
+        },
+        "width": 0,
+        "height": 115,
+        "points": {
+          "__a": [
+            {
+              "x": 759,
+              "y": -309.65592
+            },
+            {
+              "x": 759,
+              "y": -194.65592
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 83,
+      "p": {
+        "position": {
+          "x": 759,
+          "y": -402.13638
+        },
+        "width": 0,
+        "height": 81.57079,
+        "points": {
+          "__a": [
+            {
+              "x": 759,
+              "y": -442.92178
+            },
+            {
+              "x": 759,
+              "y": -361.35099
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 84,
+      "p": {
+        "position": {
+          "x": 919,
+          "y": -252.15591
+        },
+        "width": 0,
+        "height": 115,
+        "points": {
+          "__a": [
+            {
+              "x": 919,
+              "y": -309.65592
+            },
+            {
+              "x": 919,
+              "y": -194.65592
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 85,
+      "p": {
+        "position": {
+          "x": 919,
+          "y": -402.13638
+        },
+        "width": 0,
+        "height": 81.57079,
+        "points": {
+          "__a": [
+            {
+              "x": 919,
+              "y": -442.92178
+            },
+            {
+              "x": 919,
+              "y": -361.35099
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 86,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 438.30289,
+          "y": -73
+        }
+      },
+      "s": {
+        "text": "#1炉A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 87,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 438.30289,
+          "y": -48
+        }
+      },
+      "s": {
+        "text": "高压给水泵",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 88,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 599,
+          "y": -48
+        }
+      },
+      "s": {
+        "text": "高压给水泵",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 89,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 599,
+          "y": -73
+        }
+      },
+      "s": {
+        "text": "#3炉B",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 90,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 759,
+          "y": -48
+        }
+      },
+      "s": {
+        "text": "循环水泵",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 91,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 759,
+          "y": -73
+        }
+      },
+      "s": {
+        "text": "#2汽机A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 92,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 919,
+          "y": -48
+        }
+      },
+      "s": {
+        "text": "循环水泵",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 93,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 919,
+          "y": -73
+        }
+      },
+      "s": {
+        "text": "#4汽机B",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 94,
+      "p": {
+        "name": "断路器",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000",
+        "image": "symbols/palette-icon/sxjk/断路器.json",
+        "position": {
+          "x": 683.16095,
+          "y": -557
+        }
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA01GS000",
+        "node.tag.ddfk": "JDRDN1_10BBA01GS000XB01",
+        "node.tag.ddfg": "JDRDN1_10BBA01GS000XB02",
+        "node.showName": "#1机10kV I段备用电源进线断路器"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 95,
+      "p": {
+        "name": "三角变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/三角变压器.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 683.16095,
+          "y": -685.56503
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 96,
+      "p": {
+        "name": "分接开关星型变压器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/分接开关星型变压器.json",
+        "position": {
+          "x": 683.16095,
+          "y": -725.5
+        },
+        "width": 50,
+        "height": 49
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 97,
+      "p": {
+        "position": {
+          "x": 683.16095,
+          "y": -622.32151
+        },
+        "width": 0,
+        "height": 79.02495,
+        "points": {
+          "__a": [
+            {
+              "x": 683.16095,
+              "y": -661.83399
+            },
+            {
+              "x": 683.16095,
+              "y": -582.80903
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 98,
+      "p": {
+        "position": {
+          "x": 683.16095,
+          "y": -787.68653
+        },
+        "width": 0,
+        "height": 75,
+        "points": {
+          "__a": [
+            {
+              "x": 683.16095,
+              "y": -825.18654
+            },
+            {
+              "x": 683.16095,
+              "y": -750.18652
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 99,
+      "p": {
+        "position": {
+          "x": 682.64726,
+          "y": -489.585
+        },
+        "width": 0,
+        "height": 83,
+        "points": {
+          "__a": [
+            {
+              "x": 682.64726,
+              "y": -531.085
+            },
+            {
+              "x": 682.64726,
+              "y": -448.085
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 100,
+      "p": {
+        "name": "接地避雷器",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地避雷器.json",
+        "position": {
+          "x": 826.57401,
+          "y": -553.2055
+        },
+        "width": 7.84245,
+        "height": 27.93506
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 101,
+      "p": {
+        "name": "变压器常用接法2",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/变压器常用接法2.json",
+        "rotation": 2.0944,
+        "position": {
+          "x": 774.80523,
+          "y": -527.46143
+        },
+        "width": 23.83287,
+        "height": 19.64044
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 102,
+      "p": {
+        "name": "接地电阻",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/接地电阻.json",
+        "position": {
+          "x": 797.75428,
+          "y": -506.64707
+        },
+        "width": 7.85617,
+        "height": 28.30154
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 103,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": 799.88907,
+          "y": -601.40718
+        },
+        "width": 12.25382,
+        "height": 17.12988
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 104,
+      "p": {
+        "name": "手车",
+        "layer": 2,
+        "image": "symbols/palette-icon/sxjk/手车.json",
+        "position": {
+          "x": 799.88907,
+          "y": -599.21619
+        },
+        "width": 13.09363,
+        "height": 17.12988
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 105,
+      "p": {
+        "position": {
+          "x": 786.03018,
+          "y": -526.60208
+        },
+        "width": 23.948,
+        "height": 14.82748,
+        "points": {
+          "__a": [
+            {
+              "x": 774.05617,
+              "y": -534.01582
+            },
+            {
+              "x": 798.00418,
+              "y": -534.01582
+            },
+            {
+              "x": 797.79724,
+              "y": -519.18834
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 106,
+      "p": {
+        "position": {
+          "x": 826.57401,
+          "y": -578.94958
+        },
+        "width": 0,
+        "height": 24.66684,
+        "points": {
+          "__a": [
+            {
+              "x": 826.57401,
+              "y": -591.283
+            },
+            {
+              "x": 826.57401,
+              "y": -566.61616
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 107,
+      "p": {
+        "position": {
+          "x": 773.73783,
+          "y": -549.91903
+        },
+        "width": 0,
+        "height": 18.71724,
+        "points": {
+          "__a": [
+            {
+              "x": 773.73783,
+              "y": -559.27765
+            },
+            {
+              "x": 773.73783,
+              "y": -540.56041
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 108,
+      "p": {
+        "position": {
+          "x": 773.20413,
+          "y": -583.33155
+        },
+        "width": 0,
+        "height": 14.66545,
+        "points": {
+          "__a": [
+            {
+              "x": 773.20413,
+              "y": -590.66427
+            },
+            {
+              "x": 773.20413,
+              "y": -575.99883
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 109,
+      "p": {
+        "rotation": 7.85398,
+        "position": {
+          "x": 773.20413,
+          "y": -576.21085
+        },
+        "width": 0.08262,
+        "height": 7.46478,
+        "points": {
+          "__a": [
+            {
+              "x": 773.24544,
+              "y": -579.94324
+            },
+            {
+              "x": 773.16283,
+              "y": -572.47846
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 110,
+      "p": {
+        "rotation": 3.14159,
+        "position": {
+          "x": 776.94003,
+          "y": -567.99465
+        },
+        "width": 0,
+        "height": 17.52788,
+        "points": {
+          "__a": [
+            {
+              "x": 776.94003,
+              "y": -576.7586
+            },
+            {
+              "x": 776.94003,
+              "y": -559.23071
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 111,
+      "p": {
+        "rotation": 4.71239,
+        "position": {
+          "x": 773.20413,
+          "y": -559.23071
+        },
+        "width": 9.48084,
+        "height": 7.07477,
+        "points": {
+          "__a": [
+            {
+              "x": 773.20413,
+              "y": -562.7681
+            },
+            {
+              "x": 773.20413,
+              "y": -555.69333
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 112,
+      "p": {
+        "position": {
+          "x": 770.00194,
+          "y": -567.99465
+        },
+        "width": 0.0812,
+        "height": 16.98347,
+        "points": {
+          "__a": [
+            {
+              "x": 769.96134,
+              "y": -576.48639
+            },
+            {
+              "x": 770.04254,
+              "y": -559.50292
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 113,
+      "p": {
+        "rotation": 1.5708,
+        "position": {
+          "x": 799.88907,
+          "y": -615.64858
+        },
+        "width": 10.95493,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": 794.41161,
+              "y": -615.64858
+            },
+            {
+              "x": 805.36653,
+              "y": -615.64858
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 114,
+      "p": {
+        "position": {
+          "x": 799.88907,
+          "y": -591
+        },
+        "width": 53.77814,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": 773,
+              "y": -591
+            },
+            {
+              "x": 826.77814,
+              "y": -591
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 115,
+      "p": {
+        "rotation": 4.71239,
+        "position": {
+          "x": 799.88907,
+          "y": -606.3369
+        },
+        "width": 7.66845,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": 803.7233,
+              "y": -606.3369
+            },
+            {
+              "x": 796.05485,
+              "y": -606.3369
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 1.2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 116,
+      "p": {
+        "position": {
+          "x": 741.57827,
+          "y": -621.44721
+        },
+        "width": 118,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": 800.57827,
+              "y": -621.44721
+            },
+            {
+              "x": 682.57827,
+              "y": -621.44721
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 117,
+      "p": {
+        "rotation": 3.14159,
+        "position": {
+          "x": -357.99992,
+          "y": -780
+        },
+        "width": 0,
+        "height": 80,
+        "points": {
+          "__a": [
+            {
+              "x": -357.99992,
+              "y": -820
+            },
+            {
+              "x": -357.99992,
+              "y": -740
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 4,
+        "shape.dash.pattern": [
+          8,
+          8
+        ]
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 118,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -787,
+          "y": -740
+        }
+      },
+      "s": {
+        "text": "10KV段工作电源进线",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 119,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -828,
+          "y": -711
+        }
+      },
+      "s": {
+        "text": "进线断路器控制回路断线",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 120,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -681.14286
+        }
+      },
+      "s": {
+        "text": "断路器保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 121,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -651.28571
+        }
+      },
+      "s": {
+        "text": "断路器综保装置运行报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 122,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -621.42857
+        }
+      },
+      "s": {
+        "text": "断路器综保装置闭锁",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 123,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -591.57143
+        }
+      },
+      "s": {
+        "text": "PT保护跳闸",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 124,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -561.71429
+        }
+      },
+      "s": {
+        "text": "PT过压",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 125,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -531.85714
+        }
+      },
+      "s": {
+        "text": "PT零序过压",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 126,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -502
+        }
+      },
+      "s": {
+        "text": "弧光保护装置告警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 127,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -197
+        }
+      },
+      "s": {
+        "text": "PT零序过压",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 128,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -229
+        }
+      },
+      "s": {
+        "text": "PT过压",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 129,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -259
+        }
+      },
+      "s": {
+        "text": "PT保护跳闸",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 130,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -289
+        }
+      },
+      "s": {
+        "text": "断路器综保装置闭锁",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 131,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -319
+        }
+      },
+      "s": {
+        "text": "断路器综保装置运行报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 132,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -349
+        }
+      },
+      "s": {
+        "text": "断路器保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 133,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -827,
+          "y": -379
+        }
+      },
+      "s": {
+        "text": "进线断路器控制回路断线",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 134,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -787,
+          "y": -408
+        }
+      },
+      "s": {
+        "text": "10KV段备用电源进线",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 135,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -501,
+          "y": 5
+        }
+      },
+      "s": {
+        "text": "#1机工作变10V断路器",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 136,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -501,
+          "y": 31.5
+        }
+      },
+      "s": {
+        "text": "保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 137,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -501,
+          "y": 61.5
+        }
+      },
+      "s": {
+        "text": "控制回路电源消失",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 138,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -501,
+          "y": 91.5
+        }
+      },
+      "s": {
+        "text": "保护装置报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 139,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -293,
+          "y": 91.5
+        }
+      },
+      "s": {
+        "text": "保护装置报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 140,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -293,
+          "y": 61.5
+        }
+      },
+      "s": {
+        "text": "控制回路电源消失",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 141,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -293,
+          "y": 31.5
+        }
+      },
+      "s": {
+        "text": "保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 142,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -293,
+          "y": 5
+        }
+      },
+      "s": {
+        "text": "公用变10KV断路器",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 143,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -85,
+          "y": 61.5
+        }
+      },
+      "s": {
+        "text": "控制回路电源消失",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 144,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 123,
+          "y": 5
+        }
+      },
+      "s": {
+        "text": "厂前区变10KV断路器",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 145,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 123,
+          "y": 31.5
+        }
+      },
+      "s": {
+        "text": "保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 146,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 123,
+          "y": 61.5
+        }
+      },
+      "s": {
+        "text": "控制回路电源消失",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 147,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 123,
+          "y": 91.5
+        }
+      },
+      "s": {
+        "text": "保护装置报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 148,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -85,
+          "y": 91.5
+        }
+      },
+      "s": {
+        "text": "保护装置报警",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 149,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -85,
+          "y": 31.5
+        }
+      },
+      "s": {
+        "text": "保护动作",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 150,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -85,
+          "y": 5
+        }
+      },
+      "s": {
+        "text": "化水变10KV断路器",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 151,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -292,
+          "y": -709
+        }
+      },
+      "s": {
+        "text": "#1电抗器",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 152,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -406,
+          "y": -555
+        }
+      },
+      "s": {
+        "text": "511",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 153,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 638,
+          "y": -556
+        }
+      },
+      "s": {
+        "text": "510",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 154,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 683.16095,
+          "y": -861
+        }
+      },
+      "s": {
+        "text": "110kV I母线",
+        "text.align": "center",
+        "text.font": "20px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 155,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 760,
+          "y": -707
+        }
+      },
+      "s": {
+        "text": "#0起备变",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 156,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XQ11",
+        "position": {
+          "x": -292,
+          "y": -518
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA02GS000XQ11",
+        "node.showName": "#1机10kV段工作电源进线电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 157,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -240,
+          "y": -518
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 158,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XQ22",
+        "position": {
+          "x": -292,
+          "y": -482
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA02GS000XQ22",
+        "node.showName": "#1机10kV 段工作电源进线PT电压"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 159,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -240,
+          "y": -482
+        }
+      },
+      "s": {
+        "text": "kV",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 160,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA07GS000XQ11",
+        "position": {
+          "x": -364,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA07GS000XQ11",
+        "node.showName": "厂前区变10kV侧电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 161,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -312,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 162,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA04GS000XQ11",
+        "position": {
+          "x": -202,
+          "y": -292
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA04GS000XQ11",
+        "node.showName": "#1工作变10kV侧电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 163,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -150,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 164,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA05GS000XQ11",
+        "position": {
+          "x": -46,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA05GS000XQ11",
+        "node.showName": "公用变10kV侧电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 165,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 6,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 166,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA06GS000XQ11",
+        "position": {
+          "x": 120,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA06GS000XQ11",
+        "node.showName": "化水变10kV侧电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 167,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 173,
+          "y": -291
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 168,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 164,
+          "y": -477
+        }
+      },
+      "s": {
+        "text": "110kV 厂用1段",
+        "text.align": "center",
+        "text.font": "25px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 169,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XQ11",
+        "position": {
+          "x": 728,
+          "y": -496
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA01GS000XQ11",
+        "node.showName": "#1机10kV段备用电源进线电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 170,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 780,
+          "y": -496
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 171,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 780,
+          "y": -460
+        }
+      },
+      "s": {
+        "text": "kV",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 172,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XQ22",
+        "position": {
+          "x": 729,
+          "y": -459
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA01GS000XQ22",
+        "node.showName": "#1机10kV 段备用电源进线PT电压"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 173,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA03GS000XQ12",
+        "position": {
+          "x": -147,
+          "y": -466
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA03GS000XQ12",
+        "node.showName": "#1机10kV 段母线电压"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 174,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": -95,
+          "y": -466
+        }
+      },
+      "s": {
+        "text": "kV",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 175,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA09GS000XQ11",
+        "position": {
+          "x": 432,
+          "y": -3
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA09GS000XQ11",
+        "node.showName": "#1机高压给水泵A电流"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 176,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 525,
+          "y": -3
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 177,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA09GS000XB61",
+        "position": {
+          "x": 432,
+          "y": 33
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA09GS000XB61",
+        "node.showName": "#1机高压给水泵A有功电度"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 178,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA11GS000XQ11",
+        "position": {
+          "x": 753,
+          "y": -3
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA11GS000XQ11",
+        "node.showName": "#2机循环水泵"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 179,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 848,
+          "y": -3
+        }
+      },
+      "s": {
+        "text": "A",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 180,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA11GS000XB61",
+        "position": {
+          "x": 753,
+          "y": 33
+        }
+      },
+      "s": {
+        "text": "##.##",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      },
+      "a": {
+        "node.tag": "JDRDN1_10BBA11GS000XB61",
+        "node.showName": "#2机循环水泵A有功电度"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 181,
+      "p": {
+        "position": {
+          "x": 263,
+          "y": -392.89502
+        },
+        "width": 0,
+        "height": 96,
+        "points": {
+          "__a": [
+            {
+              "x": 263,
+              "y": -440.89502
+            },
+            {
+              "x": 263,
+              "y": -344.89502
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 182,
+      "p": {
+        "position": {
+          "x": 263,
+          "y": -256.36504
+        },
+        "width": 0,
+        "height": 120,
+        "points": {
+          "__a": [
+            {
+              "x": 263,
+              "y": -316.36504
+            },
+            {
+              "x": 263,
+              "y": -196.36504
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 3,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(139,100,232)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 183,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 260.46996,
+          "y": -156
+        }
+      },
+      "s": {
+        "text": "#1 SFC电源",
+        "text.align": "center",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 184,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -710.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线断路器控制回路断线"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 185,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902,
+          "y": -681
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线断路器保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 186,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -650.92857
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线断路器综保装置运行报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 187,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM05",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -621.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM05",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线断路器综保装置闭锁"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 188,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM11",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -591.35714
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM11",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线PT保护跳闸"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 189,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM12",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -901,
+          "y": -561
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM12",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线PT过压"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 190,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM14",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -502
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM14",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV 段弧光保护装置告警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 191,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM13",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -531.78571
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA02GS000XM13",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段工作电源进线PT零序过压"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 192,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -379
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线断路器控制回路断线"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 193,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM13",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902,
+          "y": -198
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM13",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线PT零序过压"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 194,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM12",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -229
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM12",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线PT过压"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 195,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM11",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -259
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM11",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线PT保护跳闸"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 196,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM05",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -289
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM05",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线断路器综保装置闭锁"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 197,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -319
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线断路器综保装置运行报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 198,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -902.5,
+          "y": -349
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA01GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1机10kV I段备用电源进线断路器保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 199,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA04GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -568.5,
+          "y": 31.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA04GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1工作变10kV侧保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 200,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA04GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -568.5,
+          "y": 61.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA04GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1工作变10kV侧控制回路电源消失"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 201,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA04GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -568.5,
+          "y": 91.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA04GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "#1工作变10kV侧保护装置告警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 202,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA05GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -357.5,
+          "y": 31.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA05GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "公用变10kV侧保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 203,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA05GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -357.5,
+          "y": 91.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA05GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "公用变10kV侧保护装置告警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 204,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA05GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -357.5,
+          "y": 61.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA05GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "公用变10kV侧控制回路电源消失"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 205,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA06GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -151.5,
+          "y": 31.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA06GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "化水变10kV侧保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 206,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA06GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -151.5,
+          "y": 91.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA06GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "化水变10kV侧保护装置告警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 207,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA06GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": -151.5,
+          "y": 61.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA06GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "化水变10kV侧控制回路电源消失"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 208,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA07GS000XM01",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": 58.5,
+          "y": 31.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA07GS000XM01",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "厂前区变10kV侧保护动作"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 209,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA07GS000XM03",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": 58.5,
+          "y": 91.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA07GS000XM03",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "厂前区变10kV侧保护装置告警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 210,
+      "p": {
+        "name": "遥信信号",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA07GS000XM02",
+        "image": "symbols/palette-icon/sxjk/遥信信号.json",
+        "position": {
+          "x": 58.5,
+          "y": 61.5
+        },
+        "width": 18,
+        "height": 18
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(163,132,132)",
+        "node.tag": "JDRDN1_10BBA07GS000XM02",
+        "node.background": "rgb(145,145,145)",
+        "node.showName": "厂前区变10kV侧控制回路电源消失"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 211,
+      "p": {
+        "position": {
+          "x": -600.67937,
+          "y": 49.84361
+        },
+        "width": 0,
+        "height": 142.28859,
+        "points": {
+          "__a": [
+            {
+              "x": -600.67937,
+              "y": -21.30069
+            },
+            {
+              "x": -600.67937,
+              "y": 120.9879
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 212,
+      "p": {
+        "position": {
+          "x": 223,
+          "y": 49.84361
+        },
+        "width": 0,
+        "height": 142.28859,
+        "points": {
+          "__a": [
+            {
+              "x": 223,
+              "y": -21.30069
+            },
+            {
+              "x": 223,
+              "y": 120.9879
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 213,
+      "p": {
+        "position": {
+          "x": -188.8682,
+          "y": 120.33205
+        },
+        "width": 825.55679,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -601.64659,
+              "y": 120.33205
+            },
+            {
+              "x": 223.9102,
+              "y": 120.33205
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 214,
+      "p": {
+        "position": {
+          "x": -189.66131,
+          "y": -20.57646
+        },
+        "width": 824.84779,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -602.08521,
+              "y": -20.57646
+            },
+            {
+              "x": 222.76258,
+              "y": -20.57646
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 215,
+      "p": {
+        "position": {
+          "x": -394.75952,
+          "y": 49.84361
+        },
+        "width": 0,
+        "height": 142,
+        "points": {
+          "__a": [
+            {
+              "x": -394.75952,
+              "y": -21.15639
+            },
+            {
+              "x": -394.75952,
+              "y": 120.84361
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 216,
+      "p": {
+        "position": {
+          "x": -188.83968,
+          "y": 49.84361
+        },
+        "width": 0,
+        "height": 142,
+        "points": {
+          "__a": [
+            {
+              "x": -188.83968,
+              "y": -21.15639
+            },
+            {
+              "x": -188.83968,
+              "y": 120.84361
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 217,
+      "p": {
+        "position": {
+          "x": 17.08016,
+          "y": 49.84361
+        },
+        "width": 0,
+        "height": 142,
+        "points": {
+          "__a": [
+            {
+              "x": 17.08016,
+              "y": -21.15639
+            },
+            {
+              "x": 17.08016,
+              "y": 120.84361
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.dash.color": "rgb(0,0,0)",
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 218,
+      "p": {
+        "position": {
+          "x": -800.5,
+          "y": -782.874
+        },
+        "width": 273,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -937,
+              "y": -782.874
+            },
+            {
+              "x": -664,
+              "y": -782.874
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 219,
+      "p": {
+        "position": {
+          "x": -800.5,
+          "y": -470
+        },
+        "width": 273,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -937,
+              "y": -470
+            },
+            {
+              "x": -664,
+              "y": -470
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 220,
+      "p": {
+        "position": {
+          "x": -937,
+          "y": -627.02299
+        },
+        "width": 0,
+        "height": 312.80698,
+        "points": {
+          "__a": [
+            {
+              "x": -937,
+              "y": -783.42648
+            },
+            {
+              "x": -937,
+              "y": -470.6195
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 221,
+      "p": {
+        "position": {
+          "x": -664,
+          "y": -626.08363
+        },
+        "width": 0,
+        "height": 314.6857,
+        "points": {
+          "__a": [
+            {
+              "x": -664,
+              "y": -783.42648
+            },
+            {
+              "x": -664,
+              "y": -468.74078
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 222,
+      "p": {
+        "position": {
+          "x": -800.5,
+          "y": -443.65715
+        },
+        "width": 273,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -937,
+              "y": -443.65715
+            },
+            {
+              "x": -664,
+              "y": -443.65715
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 223,
+      "p": {
+        "position": {
+          "x": -801,
+          "y": -131.65715
+        },
+        "width": 274,
+        "height": 0,
+        "points": {
+          "__a": [
+            {
+              "x": -938,
+              "y": -131.65715
+            },
+            {
+              "x": -664,
+              "y": -131.65715
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 224,
+      "p": {
+        "position": {
+          "x": -937,
+          "y": -288.65715
+        },
+        "width": 0,
+        "height": 312.80698,
+        "points": {
+          "__a": [
+            {
+              "x": -937,
+              "y": -445.06064
+            },
+            {
+              "x": -937,
+              "y": -132.25366
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Shape",
+      "i": 225,
+      "p": {
+        "position": {
+          "x": -664,
+          "y": -287.65715
+        },
+        "width": 0,
+        "height": 314.6857,
+        "points": {
+          "__a": [
+            {
+              "x": -664,
+              "y": -445
+            },
+            {
+              "x": -664,
+              "y": -130.3143
+            }
+          ]
+        }
+      },
+      "s": {
+        "shape.background": null,
+        "shape.border.width": 2,
+        "shape.dash.pattern": [
+          8,
+          8
+        ],
+        "shape.border.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 226,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 525,
+          "y": 33
+        }
+      },
+      "s": {
+        "text": "kwh",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 227,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "position": {
+          "x": 848,
+          "y": 33
+        }
+      },
+      "s": {
+        "text": "kwh",
+        "text.font": "16px arial, sans-serif",
+        "label": "",
+        "text.color": "rgb(0,0,0)"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 228,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 263,
+          "y": -188.5
+        }
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 229,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 438.30289,
+          "y": -188.5
+        },
+        "width": 18,
+        "height": 15
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 230,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 599,
+          "y": -188.5
+        },
+        "width": 18,
+        "height": 15
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 231,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 759,
+          "y": -188.5
+        },
+        "width": 18,
+        "height": 15
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 232,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": 919,
+          "y": -188.5
+        },
+        "width": 18,
+        "height": 15
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 233,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "position": {
+          "x": 683.16095,
+          "y": -832.5
+        },
+        "width": 18,
+        "height": 15
+      },
+      "s": {
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 234,
+      "p": {
+        "name": "光字牌",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA02GS000XM_ALM",
+        "image": "symbols/palette-icon/basic/光字牌.json",
+        "position": {
+          "x": -117,
+          "y": -701
+        },
+        "width": 200,
+        "height": 40
+      },
+      "s": {
+        "label": "10kV 1段工作电源进线",
+        "label.position": 17,
+        "label.font": "16px sans-serif",
+        "label.offset.y": -1,
+        "label.color": "rgb(0,8,255)"
+      },
+      "a": {
+        "node.background": "rgb(216,216,216)",
+        "node.tag": "JDRDN1_10BBA02GS000XM_ALM",
+        "node.showName": "#1机10kV I段工作电源报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 235,
+      "p": {
+        "name": "光字牌",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA01GS000XM_ALM",
+        "image": "symbols/palette-icon/basic/光字牌.json",
+        "position": {
+          "x": -117,
+          "y": -655.33819
+        },
+        "width": 200,
+        "height": 40
+      },
+      "s": {
+        "label": "10kV 1段备用电源进线",
+        "label.position": 17,
+        "label.font": "16px sans-serif",
+        "label.offset.y": -1,
+        "label.color": "rgb(0,8,255)"
+      },
+      "a": {
+        "node.background": "rgb(216,216,216)",
+        "node.tag": "JDRDN1_10BBA01GS000XM_ALM",
+        "node.showName": "#1机10kV I段备用电源报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 236,
+      "p": {
+        "name": "光字牌",
+        "layer": 2,
+        "tag": "JDRDN1_10BBA03GS000XB_ALM",
+        "image": "symbols/palette-icon/basic/光字牌.json",
+        "position": {
+          "x": -117,
+          "y": -610.1691
+        },
+        "width": 200,
+        "height": 40
+      },
+      "s": {
+        "label": "10kV 厂用1段母线PT",
+        "label.position": 17,
+        "label.font": "16px sans-serif",
+        "label.offset.y": -1,
+        "label.color": "rgb(0,8,255)"
+      },
+      "a": {
+        "node.background": "rgb(216,216,216)",
+        "node.tag": "JDRDN1_10BBA03GS000XB_ALM",
+        "node.showName": "#1机10kV 段母线PT报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 237,
+      "p": {
+        "name": "光字牌",
+        "layer": 2,
+        "tag": "JDRDN1_10CBQ01GH001XM_ALM",
+        "image": "symbols/palette-icon/basic/光字牌.json",
+        "position": {
+          "x": -117,
+          "y": -565
+        },
+        "width": 200,
+        "height": 40
+      },
+      "s": {
+        "label": "高厂用快切装置",
+        "label.position": 17,
+        "label.font": "16px sans-serif",
+        "label.offset.y": -1,
+        "label.color": "rgb(0,8,255)"
+      },
+      "a": {
+        "node.background": "rgb(216,216,216)",
+        "node.tag": "JDRDN1_10CBQ01GH001XM_ALM",
+        "node.showName": "#1机高压厂用电源快切报警"
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 238,
+      "p": {
+        "name": "矩形",
+        "layer": 2,
+        "image": "symbols/palette-icon/basic/矩形.json",
+        "position": {
+          "x": 263,
+          "y": -330
+        },
+        "width": 93,
+        "height": 36.02451
+      },
+      "s": {
+        "label": ""
+      },
+      "a": {
+        "node.line.color": "rgb(181,146,76)"
+      }
+    },
+    {
+      "c": "ht.Text",
+      "i": 239,
+      "p": {
+        "name": "文字",
+        "layer": 2,
+        "host": {
+          "__i": 238
+        },
+        "position": {
+          "x": 263,
+          "y": -330
+        }
+      },
+      "s": {
+        "text": "SFC电源",
+        "text.align": "center",
+        "text.font": "18px arial, sans-serif",
+        "label": ""
+      }
+    },
+    {
+      "c": "ht.Node",
+      "i": 240,
+      "p": {
+        "name": "流向",
+        "layer": 2,
+        "image": "symbols/palette-icon/steam/流向.json",
+        "rotation": 3.14159,
+        "position": {
+          "x": -358,
+          "y": -770.5
+        }
+      },
+      "s": {
+        "label": ""
+      }
+    }
+  ]
+}
