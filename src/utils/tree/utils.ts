@@ -10,7 +10,7 @@ import { TreeNode } from "@/utils/tree/tree.ts";
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param id 节点唯一标识符
  */
-export function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | undefined {
+export function findTreeNodeById<T extends TreeNode = TreeNode>(tree: T[], id: Key): T | undefined {
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getId() === id) {
       return tree[i];
@@ -26,7 +26,7 @@ export function findTreeNodeById<T extends TreeNode>(tree: T[], id: Key): T | un
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param label 节点 label
  */
-export function findTreeNodesByLabel<T extends TreeNode>(tree: T[], label: string): T[] {
+export function findTreeNodesByLabel<T extends TreeNode = TreeNode>(tree: T[], label: string): T[] {
   let nodes: T[] = [];
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getLabel()!.indexOf(label) > -1) {
@@ -43,7 +43,7 @@ export function findTreeNodesByLabel<T extends TreeNode>(tree: T[], label: strin
  * @param tree TreeNode[]
  * @param id 父亲节点唯一标识符
  */
-function findTreeNodesByPId<T extends TreeNode>(tree: T[], id: Key) {
+function findTreeNodesByPId<T extends TreeNode = TreeNode>(tree: T[], id: Key) {
 
 }
 
@@ -52,7 +52,7 @@ function findTreeNodesByPId<T extends TreeNode>(tree: T[], id: Key) {
  * 根节点的判断依据为：父亲节点唯一标识符的字段为空或不存在
  * @param list 数组
  */
-export function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
+export function listToTree<T extends TreeNode = TreeNode>(list: TreeLikeItem[]): T[] {
   const treeList = createShallowTree<T>(list);
 
   const roots: T[] = [];
@@ -63,11 +63,14 @@ export function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
 
   treeList.forEach(node => {
     const pId = node.getParentId();
-    if (pId) {
+    if (node.isRoot()) {
+      const root = nodeMap[node.getId()!];
+      if (!root.getChildren()) root.setChildren([]);
+      roots.push(root);
+    } else if (pId) {
       // 否则，将该项添加到父项的 children 数组中
+      if (!node.getChildren()) node.setChildren([]);
       nodeMap[pId].getChildren()!.push(nodeMap[node.getId()!]);
-    } else {
-      roots.push(nodeMap[node.getId()!]);
     }
   });
   return roots;
@@ -78,10 +81,10 @@ export function listToTree<T extends TreeNode>(list: TreeLikeItem[]): T[] {
  * 会将各树节点深度克隆，并去除子级
  * @param tree 数组
  */
-export function treeToList<T extends TreeNode>(tree: TreeNode[]): T[] {
+export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
   const list: T[] = [];
 
-  function recursion(nodes) {
+  function recursion(nodes: T[]) {
     nodes.forEach(node => {
       const n = cloneDeep(node);
       list.push(n);

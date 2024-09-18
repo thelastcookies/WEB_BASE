@@ -31,7 +31,7 @@ class TreeNode implements TreeLikeItem {
   }
 
   getParentId(): Key | undefined {
-    return this.pid ?? this.pId ?? this.parentId ?? this.ParentId;
+    return this.pid ?? this.PId ?? this.pId ?? this.parentId ?? this.ParentId;
   }
 
   setParentId(v: Key): void {
@@ -39,6 +39,8 @@ class TreeNode implements TreeLikeItem {
       this.pid = v;
     } else if ('pId' in this) {
       this.pId = v;
+    } else if ('PId' in this) {
+      this.PId = v;
     } else if ('parentId' in this) {
       this.parentId = v;
     } else if ('ParentId' in this) {
@@ -98,6 +100,10 @@ class TreeNode implements TreeLikeItem {
     } else {
       this.children = v;
     }
+  }
+
+  isRoot(): boolean {
+    return [null, 'root', 'ROOT'].includes(this.getParentId() as string);
   }
 }
 
