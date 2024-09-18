@@ -1,35 +1,25 @@
-import echarts from "./echarts";
-import type { Ref } from "vue";
-import type { ECBasicOption } from "echarts/types/dist/shared";
-import type ECharts from "./ECharts.vue";
+import echarts from './echarts';
+import type { Ref } from 'vue';
+import type { EChartsOption } from 'echarts/types/dist/shared';
 
-type EChartsType = typeof ECharts | undefined;
-
-type EchartsThemeType = "dark" | "light" | null;
+type EchartsThemeType = 'dark' | 'light' | null;
 const { isDarkTheme } = storeToRefs(useThemeStore());
 
-function useEcharts(chartRef: Ref<EChartsType>) {
+export function useECharts(chartRef: Ref<ComponentPublicInstance | undefined>) {
   let chartInstance: echarts.ECharts | null = null;
-  let cacheOptions: ECBasicOption = {};
+  let cacheOptions: EChartsOption = {};
 
   const initCharts = (t?: EchartsThemeType) => {
     const el = chartRef?.value?.$el;
     if (!el) {
       return;
     }
-    chartInstance = echarts.init(el, t || isDarkTheme.value ? "dark" : null);
+    chartInstance = echarts.init(el, t || isDarkTheme.value ? 'dark' : null);
     return chartInstance;
   };
 
-  const renderECharts = (options: ECBasicOption, notMerge: boolean = false, replaceMerge?: string | string[]) => {
+  const renderECharts = (options: EChartsOption, notMerge: boolean = false, replaceMerge?: string | string[]) => {
     return new Promise((resolve) => {
-      if (chartRef.value?.offsetHeight === 0) {
-        useTimeoutFn(() => {
-          renderECharts(options);
-          resolve(null);
-        }, 30);
-        return;
-      }
       nextTick(() => {
         useTimeoutFn(() => {
           if (!chartInstance) {
@@ -57,7 +47,7 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     chartInstance?.resize({
       animation: {
         duration: 300,
-        easing: "quadraticIn",
+        easing: 'quadraticIn',
       },
     });
   }, 200);
@@ -75,7 +65,3 @@ function useEcharts(chartRef: Ref<EChartsType>) {
     resize,
   };
 }
-
-export { useEcharts };
-
-export type { EChartsType };

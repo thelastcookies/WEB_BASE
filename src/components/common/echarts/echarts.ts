@@ -1,7 +1,5 @@
-import * as echarts from "echarts/core";
-import { CanvasRenderer } from "echarts/renderers";
-
-import { BarChart, LineChart, PieChart, RadarChart } from "echarts/charts";
+import * as echarts from 'echarts/core';
+import { BarChart, LineChart, PieChart, RadarChart } from 'echarts/charts';
 import {
   DatasetComponent,
   DataZoomComponent,
@@ -11,12 +9,11 @@ import {
   ToolboxComponent,
   TooltipComponent,
   TransformComponent,
-} from "echarts/components";
+} from 'echarts/components';
+import { CanvasRenderer } from 'echarts/renderers';
 
 // 常用的组件
 echarts.use([
-  // Renderer
-  CanvasRenderer,
   // 各组件
   DataZoomComponent,
   GridComponent,
@@ -24,15 +21,15 @@ echarts.use([
   TitleComponent,
   ToolboxComponent,
   TooltipComponent,
-  // 数据集
   DatasetComponent,
-  // 数据转换器
   TransformComponent,
   // 各图表类型
   BarChart,
   LineChart,
   PieChart,
   RadarChart,
+  // Renderer
+  CanvasRenderer,
 ]);
 
 export default echarts;

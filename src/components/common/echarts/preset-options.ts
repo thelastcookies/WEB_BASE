@@ -1,29 +1,29 @@
-import type { EChartsOption } from "echarts";
+import type { EChartsOption } from 'echarts/types/dist/shared';
 
 export const generalLineChartOption = <EChartsOption>{
-  grid: { top: "60px", bottom: "30px", left: "40px", right: "20px" },
+  grid: { top: '60px', bottom: '30px', left: '40px', right: '20px' },
   legend: {
     itemWidth: 10,
     itemHeight: 10,
-    top: "20px",
+    top: '20px',
   },
   tooltip: {
-    trigger: "axis",
+    trigger: 'axis',
     textStyle: {
-      align: "left",
+      align: 'left',
     },
     axisPointer: {
-      type: "cross",
+      type: 'cross',
     },
   },
   xAxis: {
-    type: "category",
+    type: 'category',
     gridIndex: 0,
     axisTick: { show: false },
     axisLabel: {},
   },
   yAxis: {
-    type: "value",
+    type: 'value',
     gridIndex: 0,
     axisTick: { show: false },
     axisLabel: {
@@ -32,7 +32,7 @@ export const generalLineChartOption = <EChartsOption>{
     splitLine: {
       show: true,
       lineStyle: {
-        type: "dashed",
+        type: 'dashed',
       },
     },
   },
