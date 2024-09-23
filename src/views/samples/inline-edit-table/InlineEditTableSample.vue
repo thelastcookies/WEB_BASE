@@ -86,7 +86,7 @@ const handleAdd = () => {
 </script>
 
 <template>
-  <div class="w-full h-full p-normal flex gap-4">
+  <div class="w-full p-3 flex gap-3">
     <div class="w-70% flex justify-center">
       <InlineEditTable class="w-full"
         v-model:data-source="tableData"

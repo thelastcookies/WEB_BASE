@@ -94,7 +94,7 @@ const batchDelete = async (ids: string[]) => {
 </script>
 
 <template>
-  <div class="w-full h-full p-normal">
+  <div class="w-full h-full p-3">
     <div class="bg-rd-ant.border-radius m-custom.margin-size">
       <QueryForm
         class="py-2"

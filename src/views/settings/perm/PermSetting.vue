@@ -94,8 +94,8 @@ const handleSubmit = async () => {
 </script>
 
 <template>
-  <div class="w-full h-full p-normal flex gap-4">
-    <div class="w-50% bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
+  <div class="w-full h-full p-3 flex gap-3">
+    <div class="w-50% bg-ant.bg-container rounded-ant.br p-3">
       <div class="bg-rd-ant.border-radius m-custom.margin-size">
         <QueryForm
           class="py-2"
@@ -125,7 +125,7 @@ const handleSubmit = async () => {
         </a-table>
       </div>
     </div>
-    <div class="w-50% h-full bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
+    <div class="w-50% h-full bg-ant.bg-container rounded-ant.br p-3 flex flex-col">
       <template v-if="selectedRowKeys.length">
         <div class="w-full h-12 flex justify-end pb-4 bg-pixel-matrix sticky top-0">
           <a-button class="ml-2" type="primary" :loading="submitLoading" @click="handleSubmit">

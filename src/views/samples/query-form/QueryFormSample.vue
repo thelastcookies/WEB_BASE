@@ -2,7 +2,6 @@
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { Recordable } from '@/types';
-import { createTree } from '@/utils';
 
 const queryFields: QueryFormField[] = [
   {

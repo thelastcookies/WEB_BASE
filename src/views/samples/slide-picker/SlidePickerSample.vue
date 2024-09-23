@@ -85,7 +85,7 @@ const picker = [{
 
 </script>
 <template>
-  <div class="w-full h-50% p-normal flex gap-4">
+  <div class="w-full h-50% p-3 flex gap-3">
     <div class="w-70% flex justify-center">
       <SlidePicker
         :picker="picker"

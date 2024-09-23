@@ -42,8 +42,8 @@ const handleReload = async () => {
 </script>
 
 <template>
-  <div class="w-full h-full p-normal flex gap-4">
-    <div class="w-30% h-full bg-ant.bg-container b-rounded-ant.border-radius-lg p-4">
+  <div class="w-full h-full p-3 flex gap-3">
+    <div class="w-30% h-full bg-ant.bg-container rounded-ant.br p-3">
       <a-spin :spinning="loading">
         <ActionTree
           searchable
@@ -55,7 +55,7 @@ const handleReload = async () => {
         />
       </a-spin>
     </div>
-    <div class="w-70% h-full bg-ant.bg-container p-4">
+    <div class="w-70% h-full bg-ant.bg-container rounded-ant.br p-3">
       <ActionForm
         :type="formType"
         :tree="actionTreeData"
