@@ -2,42 +2,40 @@
 import type { EChartsOption } from 'echarts/types/dist/shared';
 
 const chartRef = ref<ComponentPublicInstance>();
-const { renderECharts } = useECharts(chartRef!);
+const { renderECharts, setEChartsLoading } = useECharts(chartRef!);
 
 onMounted(async () => {
-  await renderECharts(generalLineChartOption);
-  await renderECharts(
-    {
-      legend: {
-        data: [
-          { name: '实时负荷', icon: 'rect' },
-          { name: '预测负荷', icon: 'rect' },
-        ],
-      },
-      yAxis: {
-        name: 'MW',
-      },
-      xAxis: {},
-      series: [
-        {
-          name: '实时负荷',
-          type: 'line',
-          symbol: 'none',
-        },
-        {
-          name: '预测负荷',
-          type: 'line',
-          step: 'start',
-          connectNulls: true,
-        },
+  await renderECharts(merge(generalLineChartOption, {
+    legend: {
+      data: [
+        { name: '实时负荷', icon: 'rect' },
+        { name: '预测负荷', icon: 'rect' },
       ],
-    });
+    },
+    yAxis: {
+      name: 'MW',
+    },
+    xAxis: {},
+    series: [
+      {
+        name: '实时负荷',
+        type: 'line',
+        symbol: 'none',
+      },
+      {
+        name: '预测负荷',
+        type: 'line',
+        step: 'start',
+        connectNulls: true,
+      },
+    ],
+  }));
 });
 
 const data = ref<any>();
 
 const fetchTrend = async () => {
-  const startTime = dayjs().startOf('day');
+  const startTime = dayjs().subtract(8, 'h');
   data.value = await getTrendData({
     tags: 'tag1|tag2',
     st: startTime,
@@ -52,7 +50,12 @@ const fetchTrend = async () => {
   await renderECharts(options);
 };
 
-fetchTrend();
+setEChartsLoading(true);
+useTimeoutFn(async () => {
+  await fetchTrend();
+  setEChartsLoading(false);
+}, 3000);
+
 
 </script>
 
