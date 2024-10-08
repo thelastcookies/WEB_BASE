@@ -3,17 +3,27 @@
  * HT 中所有视图组件都是通过绑定 DataModel，以不同的形式呈现到用户界面；
  * 同时组件也会监听 DataModel 模型的变化事件， 实时同步更新界面数据信息
  */
-import type { Data } from '@/types/diagram/base/data';
+
+export interface NodeTagValue {
+  tag: string;
+  value: boolean | string | number;
+  timestamp?: string;
+}
+
+export interface FormulaTagValue extends NodeTagValue {
+  nodeDesc: string;
+  timestamp: string;
+}
 
 export declare class DataModel {
-  constructor(data?: Data);
+  constructor(data?: ht.Data);
 
   /**
    * 添加 Data 对象，index 一般无需指定，其只在 data 的 parent 为空时才起作用，指定插入 roots 数组的索引位置
    * @param data
    * @param index
    */
-  add(data: Data, index: number);
+  add(data: ht.Data, index: number);
 
   /**
    * 删除 Data 对象，删除节点会同步执行以下操作：
@@ -24,7 +34,7 @@ export declare class DataModel {
    * - Node 类型通过 Data#setHost(null) 断开与宿主吸附节点关系
    * @param data
    */
-  remove(data: Data);
+  remove(data: ht.Data);
 
   /**
    * 删除指定 id 的 Data 对象
@@ -72,7 +82,7 @@ export declare class DataModel {
    * @param matchFunc
    * @param scope
    */
-  toDatas(matchFunc, scope);
+  toDatas(matchFunc, scope?);
 
 
   /**
@@ -80,7 +90,7 @@ export declare class DataModel {
    * @param func
    * @param scope
    */
-  each(func, scope);
+  each(func: ((data: ht.Data) => void), scope?);
 
   /**
    * 以 data 为起始深度优先遍历 Data 对象
@@ -128,6 +138,7 @@ export declare class DataModel {
    * @param scope
    */
   removeDataModelChangeListener(func, scope);
+
   umm(func, scope);
 
   /**
@@ -142,6 +153,7 @@ export declare class DataModel {
    *   - attr类型属性名前加 a: 前缀以区分，如 setAttr('age', 98) 触发事件的 e.property 为 a:age
    */
   addDataPropertyChangeListener(func, scope);
+
   md(func, scope);
 
   /**
@@ -178,4 +190,3 @@ export declare class DataModel {
   getSelectionModel(): ht.SelectionModel;
 
 }
-
