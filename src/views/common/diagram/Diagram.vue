@@ -1,17 +1,16 @@
 <script setup lang="ts">
-import { contextmenuConfig } from '@/views/common/diagram/config/contextmenu.ts';
 import { message } from 'ant-design-vue';
+import type { HTContextMenuConfig } from '@/types/diagram/widget/context-menu';
+import { getNodeTags, setNodeStatusByValue } from '@/views/common/diagram/ht-extends.ts';
+import { getTrendData, type TrendTimeTag } from '@/api/base/historical';
+import { HisDataType } from '@/enums';
 
 const route = useRoute();
-const href = computed(() => route?.meta?.href as string);
-const name = computed(() => route?.meta?.name as string);
+const href = computed(() => (route?.meta as any)?.href);
+const name = computed(() => (route?.meta as any)?.name);
 
 const dmContainer = ref<HTMLElement>();
 const loading = ref(true);
-
-
-const timeSliderOpen = ref(false);
-const backBtnEnable = ref(false);
 
 let dataModel: ht.DataModel;
 let graphView: ht.graph.GraphView;
@@ -20,13 +19,11 @@ const FIT_CONTENT = true;
 
 const nodeTagArr = ref<string[]>([]);
 
-/**
- datePickerHis: [],
- * realTimeInterval
- * nodeTagArr
- *
- * trendDialogVisible
- */
+// 历史回放相关
+const timeSliderOpen = ref(false);
+const hisTimeRange = ref([dayjs().subtract(2, 'h'), dayjs()]);
+const timeSliderValue = ref(0);
+const timeSliderData = ref<TrendTimeTag[]>();
 
 const preprocessHref = (href: string) => {
   return href.startsWith('/') ? '/diagrams' + href : '/diagrams/' + href;
@@ -35,7 +32,7 @@ const preprocessHref = (href: string) => {
 // 实时数据请求定时器
 const { pause, resume } = useIntervalFn(() => {
   getRealTimeData(nodeTagArr.value);
-}, 3000, {
+}, 5000, {
   immediate: false,
 });
 
@@ -56,28 +53,27 @@ const init = () => {
   graphView.addToDOM(dmContainer.value);
 
   // 配置右键菜单
-  // setContextMenu(contextmenuConfig, graphView);
-
+  setContextMenu();
 
   // 给显示区域绑定事件
-  // graphView.mi(e => {
-  //   if (e.kind === 'clickData') {
-  //     if (e.data.a('node.cate') === 'button') {
-  //       let subPageUrl = e.data.a('button.link');
-  //       // console.log(subPageUrl)
-  //       // console.log(pageConf.subPage)
-  //       let subPage = pageConf.children.find(item => item.diagramPath = subPageUrl);
-  //       $store.dispatch('routeTo', { pageId: subPage.id });
-  //     }
-  //     if (e.data.a('node.tag')) {
-  //       $message.success('绑定测点： ' + e.data.a('node.tag'));
-  //     }
-  //   } else if (e.kind === 'doubleClickData') {
-  //
-  //   } else if (e.kind === 'clickBackground') {
-  //
-  //   }
-  // });
+  graphView.mi(e => {
+    if (e.kind === 'clickData') {
+      // if (e.data.a('node.cate') === 'button') {
+      //   let subPageUrl = e.data.a('button.link');
+      //   // console.log(subPageUrl)
+      //   // console.log(pageConf.subPage)
+      //   let subPage = pageConf.children.find(item => item.diagramPath = subPageUrl);
+      //   $store.dispatch('routeTo', { pageId: subPage.id });
+      // }
+      if (e.data.a('node.tag')) {
+        message.success('绑定测点： ' + e.data.a('node.tag'));
+      }
+    } else if (e.kind === 'doubleClickData') {
+
+    } else if (e.kind === 'clickBackground') {
+
+    }
+  });
 };
 
 // 加载组态文件
@@ -91,13 +87,14 @@ const load = async () => {
     dataModel.deserialize(data, null, false);
 
     graphView.fitContent(FIT_CONTENT);
-    // nodeTagArr.value = dataModel.getNodeTags();
+    nodeTagArr.value = getNodeTags(dataModel);
     // 请求实时数据并定时
     resume();
   } catch (_) {
     message.error('加载文件失败: ' + (name.value ? name.value : href.value));
   }
 };
+
 tryOnMounted(() => {
   init();
   load();
@@ -105,56 +102,45 @@ tryOnMounted(() => {
 
 /**
  * setContextMenu 设置右键点击事件
- * @param contextmenu_config - 右键点击配置
- * @param graphView - graphView
  */
-function setContextMenu(contextmenu_config, graphView) {
+function setContextMenu() {
   let contextmenu = new ht.widget.ContextMenu([
     {
       label: '查看测点趋势',
       fordata: 1,
       action: (item, event) => {
-        datePicker = [$moment().subtract(2, 'hours'), $moment()];
-        getTrend();
+        // getTrend();
       },
     },
     {
       label: '查看历史回放',
       fordata: 2,
-      action: (item, event) => {
+      action: () => {
+        hisTimeRange.value = [dayjs().subtract(2, 'hours'), dayjs()];
         timeSliderOpen.value = true;
-        datePickerHis = [$moment().subtract(2, 'hours'), $moment()];
         graphView.fitContent(true);
-        clearInterval(realTimeInterval);
+        pause();
         getHistoricalData();
-        // showHistoryDataDialog();
       },
-      disabled: (item) => {
+      disabled: () => {
         return timeSliderOpen.value;
       },
     },
     {
       label: '关闭历史回放',
       fordata: 2,
-      action: (item, event) => {
+      action: () => {
         timeSliderOpen.value = false;
         graphView.fitContent(true);
-        // progressBar.destroy();
-        // pageMainView.setStatus("cr");
-        // graphView.fitContent(true);
-        // getRealTimeData(nodeArr);
-        getRealTimeData(nodeTagArr);
-        realTimeInterval = setInterval(() => {
-          getRealTimeData(nodeTagArr);
-        }, 3000);
+        resume();
       },
-      disabled: (item) => {
+      disabled: () => {
         return !timeSliderOpen.value;
       },
     },
-  ]);
-  contextmenu.enableGlobalKey();
-  contextmenu.setVisibleFunc(function (item) {
+  ] as HTContextMenuConfig);
+
+  contextmenu.setVisibleFunc((item) => {
     let data = graphView.sm().ld();
     if (data instanceof ht.Node) {
       if (
@@ -170,17 +156,7 @@ function setContextMenu(contextmenu_config, graphView) {
     }
   });
   contextmenu.addTo(graphView.getView());
-};
-
-
-/**
- * handleBackToMainPage 进入子图后点击按钮返回主接线图事件
- */
-const handleBackToMainPage = () => {
-  dataModelUpdate(pageConf);
-  backBtnVisible = false;
-};
-
+}
 
 /**
  * getRealTimeData 获取实时数据
@@ -198,101 +174,54 @@ const getRealTimeData = async (tags: string[]) => {
         value: dataArr[index],
       };
     });
-    dataModel.setNodeStatusByValue(tagData);
+    setNodeStatusByValue(dataModel, tagData);
   }
 };
 /**
  * getHistoricalData 获取页面内所有测点的历史数据，用于历史回放
  */
-const getHistoricalData = () => {
-  $axios({
-    method: 'POST',
-    url: 'http://172.22.116.20:7303/base/getHist',
-    data: {
-      'tags': nodeTagArr.join('|'),
-      'startTime': $moment(datePickerHis[0]).format('yyyyMMDDHHmmss'),
-      'endTime': $moment(datePickerHis[1]).format('yyyyMMDDHHmmss'),
-      'period': 60,
-    },
-  }).then(res => {
-    if (!res.data.values) return;
-    let dataArr = res.data.values.split('|');
-
-    let tagDataArr = dataArr.map(item => item.split(','));
-    let tagDataArrTranspose = tagDataArr[0].map((col, ci) => {
-      return tagDataArr.map((row, ri) => {
-        return {
-          nodeTag: nodeTagArr[ri],
-          value: row[ci],
-        };
-      });
-    });
-    let timestampArr = [];
-    let time = datePickerHis[0];
-    while (time <= datePickerHis[1]) {
-      timestampArr.push($moment(time).format('HH:mm:ss'));
-      time = $moment(time).add('60', 's');
-    }
-    progressData = tagDataArrTranspose;
-    timestampArr = timestampArr;
-    // console.log(tagDataArrTranspose);
-    // console.log(timestampArr);
-
-    dataModel.setNodeStatusByValue(progressData[0]);
-
-    // 初始化时间显示
-    currentTime = timestampArr[0];
-    endTime = timestampArr[progressData.length - 1];
-    //初始化进度条
-    timeSliderMax = progressData.length - 1;
+const getHistoricalData = async () => {
+  timeSliderData.value = await getTrendData({
+    tags: nodeTagArr.value.join('|'),
+    st: dayjs(hisTimeRange.value[0]),
+    ed: dayjs(hisTimeRange.value[1]),
+    interval: 60,
+    type: HisDataType.TIME_ARR
   });
+
+  if (timeSliderData.value) {
+    setNodeStatusByValue(dataModel, timeSliderData.value[0].tagValue);
+  }
 };
 
-
-/**
- * mounted
- */
-
-window.addEventListener('resize', () => {
-  graphView.fitContent(fitContent);
+watch(timeSliderValue, idx => {
+  if (timeSliderData.value) {
+    setNodeStatusByValue(dataModel, timeSliderData.value[idx].tagValue);
+  }
 });
 
-// window.addEventListener("resize", function (e) {
-//   graphView.invalidate();
-// }, false);
-
-
 const resize = useDebounceFn(() => {
-  graphView.fitContent(true);
+  graphView.fitContent(FIT_CONTENT);
 }, 200);
-
 
 useResizeObserver(dmContainer, () => {
   resize();
 });
 
-
-// graphView.setHeight($refs.dmContainer.offsetHeight);
-
-
 tryOnUnmounted(() => {
   pause();
 });
+
 </script>
 
 <template>
   <div class="w-full h-full relative of-hidden diagram-container">
     <div ref="dmContainer"
          class="w-full relative"
-         :class="[timeSliderOpen ? 'h-[calc(100%-60px)]' : 'h-full']"
+         :class="[timeSliderOpen ? 'h-[calc(100%-68px)]' : 'h-full']"
     ></div>
-    <a-button @click="handleBackToMainPage">
-      <BaseIcon icon="i-mdi-arrow-left-bold" />
-    </a-button>
-    <!--    <button v-if="backBtnEnable"-->
-    <!--            class="absolute top-4 left-4"-->
-    <!--            @click="handleBackToMainPage"-->
-    <!--    >返回-->
-    <!--    </button>-->
+    <div v-if="timeSliderOpen" class="p-2">
+      <diagram-time-slider v-model:value="timeSliderValue" v-model:time-range="hisTimeRange"></diagram-time-slider>
+    </div>
   </div>
 </template>
