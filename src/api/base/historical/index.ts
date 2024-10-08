@@ -17,6 +17,26 @@ export const getTrend = (data: IntervalRequestBody) => {
   );
 };
 
+export interface TrendTagValueItem {
+  tag: string;
+  value: number;
+}
+
+export interface TrendTimeValueItem {
+  time: string;
+  value: number;
+}
+
+export interface TrendTimeTag {
+  time: string;
+  tagValue: TrendTagValueItem[];
+}
+
+export interface TrendTagTime {
+  tag: string;
+  timeValue: TrendTimeValueItem[];
+}
+
 /**
  * 获取历史数据
  * @param tags 测点，多个测点中间用|隔开
@@ -74,10 +94,10 @@ export const getTrendData = async (
     });
     return tagMap;
   } else if (type === HisDataType.TAG_ARR) {
-    return tags.split('|').map((tag, idx) => {
+    return tags.split('|').map((tag, idx): TrendTagTime => {
       return {
-        tag,
-        timeValue: timeArr.map((time, tIdx) => {
+        tag: tag,
+        timeValue: timeArr.map((time, tIdx): TrendTimeValueItem => {
           let num = 0;
           if (!isNaN(Number(tagValueArr[idx][tIdx]))) {
             num = Number(tagValueArr[idx][tIdx]);
@@ -106,10 +126,10 @@ export const getTrendData = async (
     });
     return timeMap;
   } else if (type === HisDataType.TIME_ARR) {
-    return timeArr.map((time, tIdx) => {
+    return timeArr.map((time, tIdx): TrendTimeTag => {
       return {
         time,
-        tagValue: tags.split('|').map((tag, idx) => {
+        tagValue: tags.split('|').map((tag, idx): TrendTagValueItem => {
           let num = 0;
           if (!isNaN(Number(tagValueArr[idx][tIdx]))) {
             num = Number(tagValueArr[idx][tIdx]);
