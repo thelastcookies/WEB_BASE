@@ -67,7 +67,7 @@ const formatter = (value?: number) => {
 </script>
 
 <template>
-  <div class="w-full p-2 flex gap-2 items-center
+  <div class="w-full p-2 flex gap-2 items-center bg-ant.bg-elevated
               rounded-ant.br b-ant.border b-1 b-solid">
     <a-button type="primary" ghost shape="circle" @click="isActive = !isActive">
       <BaseIcon size="1.5" :icon="isActive ? 'i-mdi-pause' : 'i-mdi-play'" />
