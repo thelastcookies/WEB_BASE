@@ -1,5 +1,28 @@
 # Changelog
 
+## [0.21.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.20.0...v0.21.0) (2024-10-08)
+
+
+### Features
+
+* 历史接口数据处理方法扩展 ([1876df0](https://github.com/thelastcookies/WEB-BASE/commit/1876df0f124f60202a1ace96c081c43d05ecb944))
+* 完成组态图历史播放进度条功能 ([e1f11c2](https://github.com/thelastcookies/WEB-BASE/commit/e1f11c24af3ea24e70be4bd3e4e0c1e09014d8b5))
+* 扩展树实用工具功能 ([8200b9f](https://github.com/thelastcookies/WEB-BASE/commit/8200b9f8720dc1e987e14c9238babf1e68753102))
+* 新增 ActionForm 组态配置 ([984497b](https://github.com/thelastcookies/WEB-BASE/commit/984497b7dc574ad0de9f30aa5d617e95f1da0517))
+* 新增 Diagram 组件迁移，包含实时数据刷新和历史回放功能 ([e88b326](https://github.com/thelastcookies/WEB-BASE/commit/e88b3265ffd8099bcb095a3249fdff0e721bff33))
+* 新增 Diagram.vue，完成组态图组件的初步功能迁移 ([a1ac403](https://github.com/thelastcookies/WEB-BASE/commit/a1ac4036805be3053b2dc1171b1a427c86655288))
+* 新增 ECharts 组件 loading 功能，暂只支持深色模式 ([1aa4fd6](https://github.com/thelastcookies/WEB-BASE/commit/1aa4fd6bdecd3e8f5390b82b84e3b3c03785f65a))
+* 新增 ht 扩展方法的迁移 ([17f6efe](https://github.com/thelastcookies/WEB-BASE/commit/17f6efe453ba022e5f40453d43fecc12fce0db74))
+* 新增组态路由配置 ([80bc33d](https://github.com/thelastcookies/WEB-BASE/commit/80bc33d17bda6faf0c8c361c8dbe5c474298f0e2))
+
+
+### Bug Fixes
+
+* 修复 ECharts 组件的已知问题 ([18f9cab](https://github.com/thelastcookies/WEB-BASE/commit/18f9cab4f486f1fa9bdce1381be2766669d2a0b3))
+* 修复树实用工具的已知问题 ([5669f3f](https://github.com/thelastcookies/WEB-BASE/commit/5669f3f1024a805c17cc6c6184e29cfa483c5bed))
+* 完善 QueryForm 父级表单数据改变时的内部同步 ([b7c0b28](https://github.com/thelastcookies/WEB-BASE/commit/b7c0b28dd1620db7b7e99f9be26982ecf41f0455))
+* 解决 UnoCSS 中 antdv 预设导入不正常的问题 ([3a865a5](https://github.com/thelastcookies/WEB-BASE/commit/3a865a55dbc0d2f9dd7c0f0688618d9cb00ab231))
+
 ## [0.20.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.19.0...v0.20.0) (2024-09-14)
 
 
