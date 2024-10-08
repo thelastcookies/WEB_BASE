@@ -24,12 +24,12 @@ const activeTab = ref("comp");
   >
     <a-tabs v-model:activeKey="activeTab" centered size="small">
       <a-tab-pane tab="组件设置" key="comp">
-        <div class="p-4" v-if="compConf">
+        <div class="p-3" v-if="compConf">
           <component :is="FormComponentConfigs[compConf.type]" :config="compConf" />
         </div>
       </a-tab-pane>
       <a-tab-pane tab="表单设置" key="form">
-        <div class="p-4">
+        <div class="p-3">
           <a-form-item label="标签布局">
             <a-radio-group v-model:value="formConf.layout" button-style="solid">
               <a-radio-button value="horizontal">水平</a-radio-button>
