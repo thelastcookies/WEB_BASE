@@ -45,5 +45,6 @@ export default defineConfig({
     'i-mdi-link',
     'i-mdi-image-filter-drama-outline',
     'i-mdi-pencil-ruler-outline',
+    'i-mdi-clipboard-list-outline',
   ]
 });
