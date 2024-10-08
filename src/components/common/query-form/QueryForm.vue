@@ -35,25 +35,29 @@ const ITEM_IN_LINE = props.itemInLine;
 const SPAN = 24 / ITEM_IN_LINE;
 
 const formRef = ref<FormInstance>();
-const queryForm = reactive<Record<string, any>>(Object.assign({}, form.value));
+const queryForm = ref<Record<string, any>>({});
+
+watch(form, () => {
+  queryForm.value = Object.assign({}, form.value);
+}, { immediate: true, deep: true });
 
 const onFinish = () => {
   try {
     const query: any = {};
     if (props.allFields) {
       props.fields.forEach((item) => {
-        query[item.field] = queryForm[item.field] ? queryForm[item.field] :
+        query[item.field] = queryForm.value[item.field] ? queryForm.value[item.field] :
           ['Input', 'Radio', 'DatePicker'].includes(item.component) ? '' :
             ['Select', 'TreeSelect', 'Checkbox', 'RangePicker'].includes(item.component) ? [] : undefined;
       });
     } else {
-      for (const item in queryForm) {
+      for (const item in queryForm.value) {
         if (
-          (typeof queryForm[item] === 'string' && queryForm[item]) ||
-          (queryForm[item] instanceof Array && queryForm[item].length) ||
-          (queryForm[item] instanceof Object && Object.keys(queryForm[item]).length)
+          (typeof queryForm.value[item] === 'string' && queryForm.value[item]) ||
+          (queryForm.value[item] instanceof Array && queryForm.value[item].length) ||
+          (queryForm.value[item] instanceof Object && Object.keys(queryForm.value[item]).length)
         ) {
-          query[item] = queryForm[item];
+          query[item] = queryForm.value[item];
         }
       }
     }
