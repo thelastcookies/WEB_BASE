@@ -10,8 +10,9 @@ import type { Text } from './base/text';
 import type { Grid } from './base/grid';
 import type { Points } from './base/points';
 import type { DataModel } from './data-model';
-import type { SelectionModel } from './data-model/selection';
+import type { SelectionModel } from './selection';
 import type { graph } from './graph';
+import type { widget } from './widget';
 
 export declare global {
   declare namespace ht {
@@ -26,6 +27,7 @@ export declare global {
     export { DataModel };
     export { SelectionModel };
     export { graph };
+    export { widget };
   }
 }
 

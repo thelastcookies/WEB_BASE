@@ -3,7 +3,7 @@
  * HT 中所有视图组件都是通过绑定 DataModel，以不同的形式呈现到用户界面；
  * 同时组件也会监听 DataModel 模型的变化事件， 实时同步更新界面数据信息
  */
-import type Data from './data';
+import type { Data } from '@/types/diagram/base/data';
 
 export declare class DataModel {
   constructor(data?: Data);
@@ -112,7 +112,7 @@ export declare class DataModel {
   onRemoved(data)
 
   /**
-   * 增加数据模型自身变化事件监听器，可用简写为 mm
+   * 增加数据模型自身变化事件监听器，简写为 mm
    * - e.kind === 'add' 代表添加 Data 对象，e.data 为被添加的对象
    * - e.kind === 'remove' 代表删除 Data 对象，e.data 为被删除的对象
    * - e.kind === 'clear' 代表容器被清除
@@ -122,10 +122,8 @@ export declare class DataModel {
 
   mm(func, scope);
 
-
-
   /**
-   * 删除数据模型增删变化事件监听器，可用简写为 umm
+   * 删除数据模型增删变化事件监听器，简写为 umm
    * @param func
    * @param scope
    */
@@ -133,7 +131,7 @@ export declare class DataModel {
   umm(func, scope);
 
   /**
-   * 增加对数据模型中 Data 上的数据属性变化事件监听器，可用简写为 md
+   * 增加对数据模型中 Data 上的数据属性变化事件监听器，简写为 md
    * - e.data 代表属性变化的对象
    * - e.property 代表变化属性的名字
    * - e.newValue 代表属性的新值
@@ -147,7 +145,7 @@ export declare class DataModel {
   md(func, scope);
 
   /**
-   * 删除模型中Data数据属性变化事件监听器，可用简写为 umd
+   * 删除模型中Data数据属性变化事件监听器，简写为 umd
    * @param func
    * @param scope
    */
@@ -173,5 +171,11 @@ export declare class DataModel {
    * @param setId 指定反序列化时，是否设置json信息上的id值
    */
   deserialize(json, rootParent, setId)
+
+  /**
+   * 获取数据容器中组件共享的选中模型
+   */
+  getSelectionModel(): ht.SelectionModel;
+
 }
 
