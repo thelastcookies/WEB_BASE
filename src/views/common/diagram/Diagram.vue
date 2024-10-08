@@ -186,7 +186,7 @@ const getHistoricalData = async () => {
     st: dayjs(hisTimeRange.value[0]),
     ed: dayjs(hisTimeRange.value[1]),
     interval: 60,
-    type: HisDataType.TIME_ARR
+    type: HisDataType.TIME_ARR,
   });
 
   if (timeSliderData.value) {

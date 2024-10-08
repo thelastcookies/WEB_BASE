@@ -1,9 +1,9 @@
 /**
  * 用于树形结构数据(TreeNode[])的实用工具
  */
-import type { Key } from "@/types";
-import type { TreeLikeItem } from "@/utils/tree/types";
-import { TreeNode } from "@/utils/tree/tree.ts";
+import type { Key } from '@/types';
+import type { TreeLikeItem } from '@/utils/tree/types';
+import { TreeNode } from '@/utils/tree/tree.ts';
 
 /**
  * 按 节点唯一标识符 去查找树中的节点
@@ -96,6 +96,7 @@ export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
       }
     });
   }
+
   recursion(tree);
   return list;
 }
@@ -124,17 +125,11 @@ export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
 // };
 
 /**
- * 根据长子节点
- * @param actions Actions
- * @param key 查询参数
- * @param field 被查询字段
+ * 查找长子节点直至最深一层
+ * @param treeNode
  */
-
-// const findNodeDescendants = (
-//   action: ActionRecordRaw,
-// ): ActionRecordPage | ActionRecordPageWithChildren | ActionRecordLink | ActionRecordIFrame | ActionRecordDiagram | undefined => {
-//   if ("children" in action) {
-//     if ("url" in action.children[0]) return action.children[0];
-//     else findDescendantWithUrlDefined(action.children[0]);
-//   } else return undefined;
-// };
+export function findNodeDescendants<T extends TreeNode = TreeNode>(treeNode: T): T | undefined {
+  if (treeNode.getChildren()?.length) {
+    return findNodeDescendants(treeNode.getChildren()![0] as T);
+  } else return treeNode;
+}
