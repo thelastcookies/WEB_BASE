@@ -70,5 +70,7 @@ export enum SexEnum {
 export enum HisDataType {
   'TAG',
   'TIME',
-  'TIME_VALUE_ARR'
+  'TAG_ARR',
+  'TIME_ARR',
+  'TIME_VALUE_ARR',
 }

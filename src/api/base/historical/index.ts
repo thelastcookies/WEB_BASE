@@ -23,12 +23,12 @@ export const getTrend = (data: IntervalRequestBody) => {
  * @param st 开始时间
  * @param ed 结束时间，默认为当前时间
  * @param period 间隔，单位为s，默认为30
- * @param type 返回时数据的组织类型，
- *      传参为"TAG"时，按照 tag: [{time: value}, ...] 的格式返回，
- *      传参为"TIME"时，按照 time: [{tag: value}, ...] 的格式返回，
- *      传参为"TIME_VALUE_ARR"时，按照 [[time1, time2, ...], [tag1Value1, tag1Value2, ...], [tag2Value1, tag2Value2, ...]] 的格式返回，如：
- *      默认为"TAG"
- *
+ * @param type 返回时数据的组织类型，默认为 TAG_ARR
+ *   传参为 TAG 时，按照 Map(tag1: Map(time1: value1, ...), ...) 的格式返回，
+ *   传参为 TIME 时，按照 Map(time1: Map(tag1: value1, ...), ...) 的格式返回，
+ *   传参为 TAG_ARR 时，按照 [{tag: tag1, timeValue: [{time: time1, value: value1}, ...], ...] 的格式返回，
+ *   传参为 TIME_ARR 时，按照 [{time: time1, tagValue: [{tag: tag1, value: value1}, ...], ...] 的格式返回，
+ *   传参为 TIME_VALUE_ARR 时，按照 [[time1, time2, ...], [tag1Value1, tag1Value2, ...], [tag2Value1, tag2Value2, ...]] 的格式返回，
  * @param decimal 小数位数，默认为 undefined，即不作处理，用于规范返回数据的小数位数
  */
 export const getTrendData = async (
@@ -37,7 +37,7 @@ export const getTrendData = async (
     st,
     ed = dayjs(),
     interval = 30,
-    type = HisDataType.TAG,
+    type = HisDataType.TAG_ARR,
     decimal,
   }: HisTagParams,
 ) => {
@@ -73,6 +73,23 @@ export const getTrendData = async (
       tagMap.set(tag, timeValueMap);
     });
     return tagMap;
+  } else if (type === HisDataType.TAG_ARR) {
+    return tags.split('|').map((tag, idx) => {
+      return {
+        tag,
+        timeValue: timeArr.map((time, tIdx) => {
+          let num = 0;
+          if (!isNaN(Number(tagValueArr[idx][tIdx]))) {
+            num = Number(tagValueArr[idx][tIdx]);
+            if (decimal) num = unref(usePrecision(num, decimal));
+          }
+          return {
+            time,
+            value: num,
+          };
+        }),
+      };
+    });
   } else if (type === HisDataType.TIME) {
     let timeMap: Map<string, Map<string, number>> = new Map();
     timeArr.forEach((time, tIdx) => {
@@ -88,6 +105,23 @@ export const getTrendData = async (
       timeMap.set(time, tagValueMap);
     });
     return timeMap;
+  } else if (type === HisDataType.TIME_ARR) {
+    return timeArr.map((time, tIdx) => {
+      return {
+        time,
+        tagValue: tags.split('|').map((tag, idx) => {
+          let num = 0;
+          if (!isNaN(Number(tagValueArr[idx][tIdx]))) {
+            num = Number(tagValueArr[idx][tIdx]);
+            if (decimal) num = unref(usePrecision(num, decimal));
+          }
+          return {
+            tag,
+            value: num,
+          };
+        }),
+      };
+    });
   } else if (type === HisDataType.TIME_VALUE_ARR) {
     return zip(timeArr, ...tagValueArr);
   }
