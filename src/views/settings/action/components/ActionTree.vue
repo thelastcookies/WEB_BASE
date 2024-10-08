@@ -3,7 +3,6 @@ import { EditEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
-import { treeToList } from '@/utils';
 
 const value = defineModel<ActionResponseRecord[]>('value', { default: () => [] });
 const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
@@ -69,11 +68,23 @@ watchEffect(() => {
  * 处理搜索
  */
 const searchValue = ref<string>('');
+// TODO 搜索防抖
 watch(searchValue, value => {
   const nodes = findTreeNodesByLabel(props.tree, value);
   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
   autoExpandParent.value = true;
 });
+
+/**
+ * const searchValue = ref<string>('');
+ * watch(searchValue, val => debouncedSearch(val));
+ *
+ * const debouncedSearch = useDebounceFn((value) => {
+ *   const nodes = findTreeNodesByLabel(props.tree, value);
+ *   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
+ *   autoExpandParent.value = true;
+ * }, 500);
+ */
 
 const onExpand = (keys: Key[]) => {
   expandedKeys.value = keys;
