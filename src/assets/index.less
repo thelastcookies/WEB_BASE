@@ -102,6 +102,7 @@ body {
 .bg-frosted-glass {
 
 }
+
 // 像素点阵背景样式
 .bg-pixel-matrix {
   background-image: radial-gradient(transparent 1px, var(--colorBgContainer) 1px);
@@ -109,4 +110,34 @@ body {
   backdrop-filter: saturate(50%) blur(4px);
   -webkit-backdrop-filter: saturate(50%) blur(4px);
   z-index: 12;
+}
+
+/* 滚动条宽高 */
+::-webkit-scrollbar {
+  width: 8px;
+  height: 8px;
+}
+
+/* 滚动条的轨道颜色、内阴影及圆角 */
+::-webkit-scrollbar-track {
+  background-color: var(--colorBgContainer);
+}
+
+/* 滚动条颜色、内阴影及圆角 */
+::-webkit-scrollbar-thumb {
+  box-shadow: inset 0 0 6px var(--colorFill);
+  background-color: var(--colorFill);
+  border: 2px solid var(--colorFillSecondary);
+  border-radius: var(--borderRadiusLG);
+}
+
+/* 鼠标悬停时的滚动条样式 */
+::-webkit-scrollbar-thumb:hover {
+  background-color: var(--colorFillSecondary);
+}
+
+/* 定义两端按钮的样式 */
+::-webkit-scrollbar-button {
+  width: 0;
+  height: 0;
 }
