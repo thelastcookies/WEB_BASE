@@ -139,7 +139,7 @@ const handleDelete = async () => {
 </script>
 
 <template>
-  <div class="w-full h-full overflow-y-auto">
+  <div class="w-full h-full px-3 overflow-y-auto">
     <template v-if="formData">
       <div v-if="type !== EditEnum.VIEW" class="w-full h-12 flex justify-end pb-4 bg-pixel-matrix sticky top-0">
         <a-popconfirm

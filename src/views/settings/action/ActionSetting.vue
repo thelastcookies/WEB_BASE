@@ -55,7 +55,7 @@ const handleReload = async () => {
         />
       </a-spin>
     </div>
-    <div class="w-70% h-full bg-ant.bg-container rounded-ant.br p-3">
+    <div class="w-70% h-full bg-ant.bg-container rounded-ant.br py-3">
       <ActionForm
         :type="formType"
         :tree="actionTreeData"
