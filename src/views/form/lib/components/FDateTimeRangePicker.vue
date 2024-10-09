@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import type { TimePickerConfigProps } from "@/views/form/types";
-import type { Dayjs } from "dayjs";
+import type { TimePickerConfigProps } from '@/views/form/types';
+import type { Dayjs } from 'dayjs';
 
 const value = defineModel<[string, string] | [Dayjs, Dayjs]>('value');
 

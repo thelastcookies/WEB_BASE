@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import Parent from "@/views/common/Parent.vue";
+import Parent from '@/views/common/Parent.vue';
 
 const { deviceType } = useAppStore();
 </script>

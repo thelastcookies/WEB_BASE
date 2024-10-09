@@ -1,9 +1,9 @@
 /**
  * 提供 axios 实例，配置请求拦截器、响应拦截器和错误处理
  */
+import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import type { NamingStyleTransfer } from "@/enums/naming-style.ts";
-import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from "axios";
+import type { NamingStyleTransfer } from '@/enums/naming-style.ts';
 
 export interface RequestConfigExtra {
   // 请求时是否携带 token
@@ -17,19 +17,19 @@ export interface RequestConfigExtra {
 // const axiosLoading = new AxiosLoading();
 
 const requestHandler = async (
-  config: InternalAxiosRequestConfig & RequestConfigExtra
+  config: InternalAxiosRequestConfig & RequestConfigExtra,
 ): Promise<InternalAxiosRequestConfig> => {
   if (import.meta.env.DEV
     && import.meta.env.APP_API_MOCK_URL
     && config.mock) {
-    const urlProc = config.url?.replace(ReCutUrlPrefix, "/");
+    const urlProc = config.url?.replace(ReCutUrlPrefix, '/');
     config.url = import.meta.env.APP_API_MOCK_URL + urlProc;
   }
   if (config.token) {
     const { getToken } = useTokenStore();
     const token = getToken();
     if (token) {
-      config.headers.set('Authorization', "Bearer " + token);
+      config.headers.set('Authorization', 'Bearer ' + token);
     } else {
       console.error(`Axios "requestHandler": Token is required for request '${config.method}' ${config.url}, but it is missing.`);
     }
@@ -38,14 +38,14 @@ const requestHandler = async (
     // axiosLoading.addLoading();
   }
   return config;
-}
+};
 
 const responseHandler = (response: any): AxiosResponse<any> | Promise<any> | any => {
   /******************************************
    * 预留 NamingStyleTransfer 的处理
    */
   return response.data;
-}
+};
 
 /**
  * 全局的 axios 请求错误处理
@@ -90,13 +90,13 @@ const errorHandler = (error: AxiosError): Promise<any> => {
     //     });
     // }
   }
-  return Promise.reject(error)
-}
+  return Promise.reject(error);
+};
 
 interface AxiosOptions<T> {
-  url: string
-  params?: T
-  data?: T
+  url: string;
+  params?: T;
+  data?: T;
 }
 
 export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & RequestConfigExtra): Promise<R> => {

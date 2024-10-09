@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ComponentConfig, ComponentConfigProps } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps } from '@/views/form/types';
 
 withDefaults(defineProps<{
   active: boolean;
@@ -10,11 +10,11 @@ withDefaults(defineProps<{
   layout: 'horizontal',
   config: () => {
     return {
-      name: "单行输入框",
-      type: "TextInput",
+      name: '单行输入框',
+      type: 'TextInput',
       props: { ...componentCommonPropsDefault },
-    }
-  }
+    };
+  },
 });
 
 const emit = defineEmits<{

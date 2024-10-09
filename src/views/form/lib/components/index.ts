@@ -1,8 +1,14 @@
-import type { AsyncComponentLoader, Component } from "vue";
+import type { AsyncComponentLoader, Component } from 'vue';
 import type {
-  BaseConfigProps, ComponentGroup, NumberInputConfigProps, PickerConfigProps,
-  ScoreConfigProps, TextareaInputConfigProps, TextInputConfigProps, TimePickerConfigProps
-} from "@/views/form/types";
+  BaseConfigProps,
+  ComponentGroup,
+  NumberInputConfigProps,
+  PickerConfigProps,
+  ScoreConfigProps,
+  TextareaInputConfigProps,
+  TextInputConfigProps,
+  TimePickerConfigProps,
+} from '@/views/form/types';
 
 const Components = import.meta.glob('./*.vue');
 export const FormComponents = (() => {
@@ -17,23 +23,23 @@ export const FormComponents = (() => {
 export const componentCommonPropsDefault: BaseConfigProps = {
   required: false,
   size: undefined,
-  placeholder: "",
+  placeholder: '',
 };
 
 export const textInputConfigPropsDefault: TextInputConfigProps = {
   ...componentCommonPropsDefault,
-}
+};
 
 export const textareaInputConfigPropsDefault: TextareaInputConfigProps = {
   ...componentCommonPropsDefault,
   max: 255,
-}
+};
 
 export const numberInputConfigPropsDefault: NumberInputConfigProps = {
   ...componentCommonPropsDefault,
   max: Infinity,
   min: -Infinity,
-}
+};
 
 export const scoreConfigPropsDefault: ScoreConfigProps = {
   ...componentCommonPropsDefault,
@@ -43,33 +49,33 @@ export const scoreConfigPropsDefault: ScoreConfigProps = {
   showScore: true,
   enableHalf: false,
   icon: 'i-mdi-star',
-}
+};
 
 export const singlePickerConfigPropsDefault: PickerConfigProps = {
   ...componentCommonPropsDefault,
   expanding: false,
   options: ['选项1', '选项2'],
-}
+};
 
 export const multiplePickerConfigPropsDefault: PickerConfigProps = {
   ...componentCommonPropsDefault,
   expanding: false,
   options: ['选项1', '选项2'],
-}
+};
 
 export const dateTimePickerConfigPropsDefault: TimePickerConfigProps = {
   ...componentCommonPropsDefault,
   format: 'YYYY-MM-DD',
   showLength: false,
   placeholder: '请选择时间',
-}
+};
 
 export const dateTimeRangePickerConfigPropsDefault: TimePickerConfigProps = {
   ...componentCommonPropsDefault,
   format: 'YYYY-MM-DD',
   showLength: false,
   placeholder: '开始时间,结束时间',
-}
+};
 
 // TODO: 更多表单组件
 export const componentGroups: ComponentGroup[] = [

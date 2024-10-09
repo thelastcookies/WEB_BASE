@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { VueDraggable } from "vue-draggable-plus";
-import type { ComponentConfig, ComponentConfigProps, ComponentGroup } from "@/views/form/types";
+import { VueDraggable } from 'vue-draggable-plus';
+import type { ComponentConfig, ComponentConfigProps } from '@/views/form/types';
 
 const handleClone = (el: ComponentConfig<ComponentConfigProps>) => {
   return Object.assign(cloneDeep(el), {

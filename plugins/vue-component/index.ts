@@ -1,7 +1,7 @@
-import Components from "unplugin-vue-components/vite";
-import type { PluginOption } from "vite";
-import { AntDesignVueResolver } from "unplugin-vue-components/resolvers";
-import { customResolver } from "./custom-resolver";
+import Components from 'unplugin-vue-components/vite';
+import type { PluginOption } from 'vite';
+import { AntDesignVueResolver } from 'unplugin-vue-components/resolvers';
+import { customResolver } from './custom-resolver';
 
 export const VueComponentPluginConfig: PluginOption = Components({
   include: [

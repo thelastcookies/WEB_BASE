@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ComponentConfig, ComponentConfigProps, FormConfig } from "@/views/form/types";
+import type { ComponentConfig, ComponentConfigProps, FormConfig } from '@/views/form/types';
 
 const compConf = defineModel<ComponentConfig<ComponentConfigProps>>('compConf');
 
@@ -12,7 +12,7 @@ const formConf = defineModel<FormConfig>('formConf', {
   },
 });
 
-const activeTab = ref("comp");
+const activeTab = ref('comp');
 
 </script>
 

@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ComponentConfig, NumberInputConfigProps } from "@/views/form/types";
+import type { ComponentConfig, NumberInputConfigProps } from '@/views/form/types';
 
 const config = defineModel<ComponentConfig<NumberInputConfigProps>>('config', {
   default: {
     key: 'NumberInput_0',
     name: '数字输入框',
     props: numberInputConfigPropsDefault,
-  }
+  },
 });
 
 </script>

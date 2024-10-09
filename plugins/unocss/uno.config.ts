@@ -7,7 +7,7 @@ import {
   presetUno,
   transformerDirectives,
 } from 'unocss';
-import presetThelastcookies from "./preset";
+import presetThelastcookies from './preset';
 
 export default defineConfig({
   presets: [
@@ -16,7 +16,7 @@ export default defineConfig({
     presetIcons({
       collections: {
         mdi: () => import('@iconify-json/mdi/icons.json').then(i => i.default),
-      }
+      },
     }),
     presetTypography(),
     presetThelastcookies(),
@@ -46,5 +46,5 @@ export default defineConfig({
     'i-mdi-image-filter-drama-outline',
     'i-mdi-pencil-ruler-outline',
     'i-mdi-clipboard-list-outline',
-  ]
+  ],
 });

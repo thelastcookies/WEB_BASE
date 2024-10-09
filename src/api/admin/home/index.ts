@@ -1,6 +1,6 @@
-import type { ChangePwdRequestBody, LoginRequestBody, OperatorInfo, UserNameRequestBody } from "./types";
-import type { AdminResponseBody } from "@/api/admin/types";
-import type { ActionResponseRecord } from "@/api/admin/action/types";
+import type { ChangePwdRequestBody, LoginRequestBody, OperatorInfo, UserNameRequestBody } from './types';
+import type { AdminResponseBody } from '@/api/admin/types';
+import type { ActionResponseRecord } from '@/api/admin/action/types';
 
 export const login = (data: LoginRequestBody) => {
   return usePost<AdminResponseBody<string>, LoginRequestBody>(
@@ -8,7 +8,7 @@ export const login = (data: LoginRequestBody) => {
     data,
     {
       // mock: true,
-    }
+    },
   );
 };
 
@@ -18,9 +18,9 @@ export const changePwd = (data: ChangePwdRequestBody) => {
     data,
     {
       token: true,
-    }
+    },
   );
-}
+};
 
 export const getOperatorInfo = () => {
   return usePost<AdminResponseBody<OperatorInfo>>(
@@ -29,7 +29,7 @@ export const getOperatorInfo = () => {
     {
       token: true,
       // mock: true,
-    }
+    },
   );
 };
 
@@ -39,7 +39,7 @@ export const getOperatorMenuList = () => {
     null,
     {
       token: true,
-    }
+    },
   );
 };
 

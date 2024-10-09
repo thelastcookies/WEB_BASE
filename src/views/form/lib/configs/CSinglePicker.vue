@@ -1,17 +1,17 @@
 <script setup lang="ts">
-import type { ComponentConfig, PickerConfigProps } from "@/views/form/types";
-import { VueDraggable } from "vue-draggable-plus";
+import type { ComponentConfig, PickerConfigProps } from '@/views/form/types';
+import { VueDraggable } from 'vue-draggable-plus';
 
 const config = defineModel<ComponentConfig<PickerConfigProps>>('config', {
   default: {
     key: 'SinglePicker_0',
     name: '单选框',
     props: singlePickerConfigPropsDefault,
-  }
+  },
 });
 
 const handleOptionAdd = () => {
-  config.value.props.options.push(`选项${config.value.props.options.length + 1}`)
+  config.value.props.options.push(`选项${config.value.props.options.length + 1}`);
 };
 
 </script>

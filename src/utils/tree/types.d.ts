@@ -1,4 +1,4 @@
-import type { Key } from "@/types";
+import type { Key } from '@/types';
 
 /**
  * 通用的树节点的类型声明，其中，
@@ -8,11 +8,11 @@ import type { Key } from "@/types";
  * TreeNodeSortField: 作为节点排序的字段
  * TreeNodeChildrenField: 作为子层级列表的字段
  */
-export type TreeNodeIdField = "id" | "Id" | "key" | "Key";
-export type TreeNodeParentIdField = "pid" | "pId" | "parentId" | "ParentId";
-export type TreeNodeLabelField = "name" | "label" | "title" | "value";
-export type TreeNodeSortField = "sort" | "Sort" | "order" | "Order";
-export type TreeNodeChildrenField = "children" | "Children";
+export type TreeNodeIdField = 'id' | 'Id' | 'key' | 'Key';
+export type TreeNodeParentIdField = 'pid' | 'pId' | 'parentId' | 'ParentId';
+export type TreeNodeLabelField = 'name' | 'label' | 'title' | 'value';
+export type TreeNodeSortField = 'sort' | 'Sort' | 'order' | 'Order';
+export type TreeNodeChildrenField = 'children' | 'Children';
 
 /**
  * TODO 整理 TreeNode

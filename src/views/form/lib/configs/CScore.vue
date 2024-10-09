@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ComponentConfig, ScoreConfigProps } from "@/views/form/types";
+import type { ComponentConfig, ScoreConfigProps } from '@/views/form/types';
 
 const config = defineModel<ComponentConfig<ScoreConfigProps>>('config', {
   default: {
     key: 'Score_0',
     name: '评分',
     props: scoreConfigPropsDefault,
-  }
+  },
 });
 
 const iconList = ['i-mdi-star', 'i-mdi-eye', 'i-mdi-heart', 'i-mdi-trophy', 'i-mdi-thumb-up'];

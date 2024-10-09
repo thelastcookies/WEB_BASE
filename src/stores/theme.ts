@@ -1,22 +1,22 @@
-import "dayjs/locale/zh-cn";
-import { theme } from "ant-design-vue";
-import { darkToken, defaultToken } from "@/assets/theme/design-token.ts";
-import type { Handler } from "mitt";
+import 'dayjs/locale/zh-cn';
+import { theme } from 'ant-design-vue';
+import { darkToken, defaultToken } from '@/assets/theme/design-token.ts';
+import type { Handler } from 'mitt';
 
-export const useThemeStore = defineStore("theme", () => {
+export const useThemeStore = defineStore('theme', () => {
   // 语言环境，为 Antdv 初始化
-  dayjs.locale("zh-cn");
+  dayjs.locale('zh-cn');
 
   // 主题配色模式
-  const darkModeMediaQuery = window.matchMedia("(prefers-color-scheme: dark)");
+  const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const isDarkTheme = ref(darkModeMediaQuery.matches);
   const emitter = mitt();
-  const key = Symbol("THEME_CHANGE");
+  const key = Symbol('THEME_CHANGE');
 
   const themeModeChange = (e: MediaQueryListEvent) => {
     isDarkTheme.value = e.matches;
     emitter.emit(key, isDarkTheme.value);
-    console.log(isDarkTheme.value ? "🌒 深色模式开启" : "🌖 浅色模式开启");
+    console.log(isDarkTheme.value ? '🌒 深色模式开启' : '🌖 浅色模式开启');
   };
 
   const themeAlgorithm = computed(() => {
@@ -27,10 +27,10 @@ export const useThemeStore = defineStore("theme", () => {
     return isDarkTheme.value ? darkToken : defaultToken;
   });
 
-  darkModeMediaQuery.addEventListener("change", themeModeChange);
+  darkModeMediaQuery.addEventListener('change', themeModeChange);
 
   tryOnUnmounted(() => {
-    darkModeMediaQuery.removeEventListener("change", themeModeChange);
+    darkModeMediaQuery.removeEventListener('change', themeModeChange);
   });
 
   const listenThemeChange = (

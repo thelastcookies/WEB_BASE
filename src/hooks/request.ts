@@ -2,13 +2,13 @@
  * 对于 axios.ts 提供的 axios 实例的再封装
  * 包括 GET，POST，PUT，DELETE 请求方法
  */
-import type { AxiosRequestConfig } from "axios";
-import type { RequestConfigExtra } from "@/hooks/axios-extends.ts";
+import type { AxiosRequestConfig } from 'axios';
+import type { RequestConfigExtra } from '@/hooks/axios-extends.ts';
 
 export const useGet = <R = any, T = any>(
   url: string,
   params?: T,
-  config?: AxiosRequestConfig & RequestConfigExtra
+  config?: AxiosRequestConfig & RequestConfigExtra,
 ): Promise<R> => {
   const options = {
     url,
@@ -22,7 +22,7 @@ export const useGet = <R = any, T = any>(
 export const usePost = <R = any, T = any>(
   url: string,
   data?: T,
-  config?: AxiosRequestConfig & RequestConfigExtra
+  config?: AxiosRequestConfig & RequestConfigExtra,
 ): Promise<R> => {
   const options = {
     url,
@@ -36,7 +36,7 @@ export const usePost = <R = any, T = any>(
 export const usePut = <R = any, T = any>(
   url: string,
   data?: T,
-  config?: AxiosRequestConfig & RequestConfigExtra
+  config?: AxiosRequestConfig & RequestConfigExtra,
 ): Promise<R> => {
   const options = {
     url,
@@ -50,7 +50,7 @@ export const usePut = <R = any, T = any>(
 export const useDelete = <R = any, T = any>(
   url: string,
   data?: T,
-  config?: AxiosRequestConfig & RequestConfigExtra
+  config?: AxiosRequestConfig & RequestConfigExtra,
 ): Promise<R> => {
   const options = {
     url,

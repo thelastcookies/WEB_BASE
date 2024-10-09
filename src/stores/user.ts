@@ -1,6 +1,6 @@
-import type { UserRecord } from "@/api/admin/user/types";
+import type { UserRecord } from '@/api/admin/user/types';
 
-export const useUserStore = defineStore("user", () => {
+export const useUserStore = defineStore('user', () => {
   const userInfo = shallowRef({} as UserRecord);
   const permCodes = shallowRef([] as string[]);
 
@@ -9,7 +9,7 @@ export const useUserStore = defineStore("user", () => {
       const { loginEnable } = useAppStore();
       // 如果关闭了路由守卫
       if (!loginEnable) {
-        userInfo.value = { Id: "ROUTER_GUARD_DISABLE_PLACEHOLDER" };
+        userInfo.value = { Id: 'ROUTER_GUARD_DISABLE_PLACEHOLDER' };
         return resolve();
       }
       // 获取用户信息

@@ -33,23 +33,23 @@ const sizeStyle = computed(() => {
     return {
       height: `${Number(props.size) * 1.1}em`,
       width: `${Number(props.size) * 1.1}em`,
-    }
+    };
   } else {
     return {
       height: `${props.size}rem`,
       width: `${props.size}rem`,
       'line-height': `${props.size}rem`,
       'font-size': `${props.size}rem`,
-    }
+    };
   }
 });
 
 const iconUrl = computed(() => {
   let url = props.icon as string;
   if (url.startsWith('/')) {
-    return url.replace("/", "");
+    return url.replace('/', '');
   } else if (url.startsWith('~')) {
-    url = url.replace("~/", "");
+    url = url.replace('~/', '');
     return new URL(`../../assets/images/${url}`, import.meta.url).href;
   } else {
     return '';

@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import dayjs from "dayjs";
-import type { PickerItem, PickerTopic } from "@/components/slide-picker/types.ts";
+import dayjs from 'dayjs';
+import type { PickerItem, PickerTopic } from '@/components/slide-picker/types.ts';
 
 // 处理时段选择
 const pickerActive = ref(true);
@@ -46,41 +46,41 @@ const pickerValueToTime = (arr: number[]) => {
   const timeArr = groupedArr.map(item => {
     const st = item[0];
     const ed = item[item.length - 1] + 1;
-    return dayjs().startOf("day").add(st, "hour").format("HH:mm") +
-      "-" + dayjs().startOf("day").add(ed, "hour").format("HH:mm");
+    return dayjs().startOf('day').add(st, 'hour').format('HH:mm') +
+      '-' + dayjs().startOf('day').add(ed, 'hour').format('HH:mm');
   });
-  return timeArr.join(",");
+  return timeArr.join(',');
 };
 
 const max = 24;
 const step = 24 / max * 60;
 
 const picker = [{
-  key: "tip",
-  label: "topic0",
-  color: "#FF4500",
+  key: 'tip',
+  label: 'topic0',
+  color: '#FF4500',
 }, {
-  key: "tip",
-  label: "topic1",
-  color: "#568976",
+  key: 'tip',
+  label: 'topic1',
+  color: '#568976',
 }, {
-  key: "tip",
-  label: "topic2",
+  key: 'tip',
+  label: 'topic2',
 }, {
-  key: "tip",
-  label: "topic3",
+  key: 'tip',
+  label: 'topic3',
 }, {
-  key: "tip",
-  label: "topic4",
+  key: 'tip',
+  label: 'topic4',
 }, {
-  key: "tip",
-  label: "topic5",
+  key: 'tip',
+  label: 'topic5',
 }, {
-  key: "tip",
-  label: "topic6",
+  key: 'tip',
+  label: 'topic6',
 }, {
-  key: "tip",
-  label: "topic7",
+  key: 'tip',
+  label: 'topic7',
 }] as PickerItem[];
 
 </script>
@@ -95,7 +95,7 @@ const picker = [{
         mark-type="center"
       >
         <template #mark="{ value, index }">
-          {{ dayjs().startOf("day").add(index, "hour").format("HH:mm") }}
+          {{ dayjs().startOf('day').add(index, 'hour').format('HH:mm') }}
         </template>
       </SlidePicker>
     </div>

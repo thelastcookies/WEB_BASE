@@ -1,11 +1,11 @@
 <script setup lang="ts">
 const route = useRoute();
-const url = computed(()=> route?.meta?.href as string);
+const url = computed(() => route?.meta?.href as string);
 const loading = ref(true);
 
 const finishLoading = () => {
   loading.value = false;
-}
+};
 </script>
 
 <template>

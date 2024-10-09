@@ -1,5 +1,5 @@
-import type { AdminResponseBody } from "@/api/admin/types";
-import type { GetRoleListRequestBody, RoleRecord } from "@/api/admin/role/types";
+import type { AdminResponseBody } from '@/api/admin/types';
+import type { GetRoleListRequestBody, RoleRecord } from '@/api/admin/role/types';
 
 export const getRoleList = (data: GetRoleListRequestBody) => {
   return usePost<AdminResponseBody<RoleRecord[]>, GetRoleListRequestBody>(

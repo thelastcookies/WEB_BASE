@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { ComponentConfig, TimePickerConfigProps } from "@/views/form/types";
+import type { ComponentConfig, TimePickerConfigProps } from '@/views/form/types';
 
 const config = defineModel<ComponentConfig<TimePickerConfigProps>>('config', {
   default: {
     key: 'DateTimePicker_0',
     name: '时间选择',
     props: dateTimePickerConfigPropsDefault,
-  }
+  },
 });
 
 </script>

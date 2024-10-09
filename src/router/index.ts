@@ -1,4 +1,4 @@
-import { createRouter, createWebHashHistory } from 'vue-router'
+import { createRouter, createWebHashHistory } from 'vue-router';
 
 const router = createRouter({
   history: createWebHashHistory(import.meta.env.BASE_URL),
@@ -10,7 +10,7 @@ const router = createRouter({
     path: '/',
     name: 'Layout',
     component: () => import('@/views/layouts/Layout.vue'),
-    children: []
+    children: [],
   }, {
     path: '/sample',
     name: 'Sample',
@@ -26,7 +26,7 @@ const router = createRouter({
       title: '找不到页面',
     },
     component: () => import('@/views/exceptions/Error.vue'),
-  },],
+  }],
 });
 
 export default router;

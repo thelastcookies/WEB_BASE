@@ -1,4 +1,4 @@
-import type { FormLabelAlign } from "ant-design-vue/es/form/interface";
+import type { FormLabelAlign } from 'ant-design-vue/es/form/interface';
 
 export interface FormConfig {
   layout: string;
@@ -12,9 +12,9 @@ export interface ComponentGroup {
   components: ComponentConfig[];
 }
 
-export type ComponentMode = "view" | "edit";
+export type ComponentMode = 'view' | 'edit';
 
-export type SizeType = "large" | "small" | undefined;
+export type SizeType = 'large' | 'small' | undefined;
 
 export interface ComponentConfig<T> {
   key?: string;
@@ -80,7 +80,7 @@ export interface EntityPickerConfigProps extends BaseConfigProps {
 export interface SpanLayoutConfigProps extends BaseConfigProps {
   isContainer: boolean;
   span: number;
-  number: number
+  number: number;
   gutter: number;
   columns: any[];
 }

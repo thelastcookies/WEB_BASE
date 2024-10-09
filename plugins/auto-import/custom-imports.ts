@@ -22,7 +22,7 @@ export const customImports: ImportsMap = {
     'cloneDeep',
     'merge',
     'zip',
-    'isArray'
+    'isArray',
   ],
   'mitt': [
     ['default', 'mitt'],

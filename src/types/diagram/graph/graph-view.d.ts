@@ -50,18 +50,21 @@ export declare class GraphView {
    */
 
   addInteractorListener(cb: (event: GraphViewEvents) => void)
+
   mi(cb: (event: GraphViewEvents) => void);
 
   /**
    * 移除视图组件事件监听，简写为 umi
    */
   removeInteractorListener();
+
   umi();
 
   /**
    * 不明
    */
   fireInteractorEvent();
+
   fi();
 
   /**

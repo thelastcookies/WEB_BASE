@@ -1,4 +1,4 @@
-import type { AsyncComponentLoader, Component } from "vue";
+import type { AsyncComponentLoader, Component } from 'vue';
 
 const Configs = import.meta.glob('./*.vue');
 

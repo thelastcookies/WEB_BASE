@@ -1,8 +1,4 @@
-import type {
-  ComponentResolver,
-  ComponentResolveResult,
-  ComponentResolverFunction
-} from "unplugin-vue-components/types";
+import type { ComponentResolver, ComponentResolveResult } from 'unplugin-vue-components/types';
 
 export const customResolver: ComponentResolver = {
   type: 'component',
@@ -10,5 +6,5 @@ export const customResolver: ComponentResolver = {
     if (name == 'VueDraggable') {
       return { name, from: 'vue-draggable-plus' };
     }
-  }
+  },
 };

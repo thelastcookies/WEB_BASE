@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { TextareaInputConfigProps } from "@/views/form/types";
+import type { TextareaInputConfigProps } from '@/views/form/types';
 
 const value = defineModel<string>('value');
 

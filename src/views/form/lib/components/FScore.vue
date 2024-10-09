@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { ScoreConfigProps } from "@/views/form/types";
+import type { ScoreConfigProps } from '@/views/form/types';
 
 const value = defineModel<number>('value');
 

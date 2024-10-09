@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import type { PickerConfigProps } from "@/views/form/types";
-import type { CheckboxValueType } from "ant-design-vue/es/checkbox/interface";
-import type { SelectValue } from "ant-design-vue/es/select";
+import type { PickerConfigProps } from '@/views/form/types';
+import type { CheckboxValueType } from 'ant-design-vue/es/checkbox/interface';
+import type { SelectValue } from 'ant-design-vue/es/select';
 
 const value = defineModel<CheckboxValueType[] | SelectValue>('value');
 

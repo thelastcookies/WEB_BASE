@@ -1,5 +1,4 @@
-import type { UserRecord } from "@/api/admin/user/types";
-import { getOperatorMenuListByUsername } from "@/api/admin/home/index.ts";
+import type { UserRecord } from '@/api/admin/user/types';
 
 export interface LoginRequestBody {
   userName: string;

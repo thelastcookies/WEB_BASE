@@ -1,5 +1,5 @@
-import { visualizer } from "rollup-plugin-visualizer";
-import type { PluginOption } from "vite";
+import { visualizer } from 'rollup-plugin-visualizer';
+import type { PluginOption } from 'vite';
 
 export const VisualizerPluginConfig: PluginOption = visualizer({
   open: false,

@@ -8,7 +8,7 @@ export interface GetRoleListRequestBody {
   Search?: {
     roleId?: string;
     roleName?: string;
-  }
+  };
 }
 
 export interface RoleRecord {

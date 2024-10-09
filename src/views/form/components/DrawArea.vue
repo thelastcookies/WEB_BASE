@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { VueDraggable } from "vue-draggable-plus";
-import type { ComponentConfig, ComponentConfigProps, FormConfig } from "@/views/form/types";
+import { VueDraggable } from 'vue-draggable-plus';
+import type { ComponentConfig, ComponentConfigProps, FormConfig } from '@/views/form/types';
 
 const compList = defineModel<ComponentConfig<ComponentConfigProps>[]>('compList', {
   default: [],
@@ -15,9 +15,9 @@ const formConf = defineModel<FormConfig>('formConf', {
   },
 });
 
-const viewType = ref("desktop" as "desktop" | "mobile");
+const viewType = ref('desktop' as 'desktop' | 'mobile');
 watch(viewType, type => {
-  if (type === "desktop") {
+  if (type === 'desktop') {
     formConf.value.layout = 'horizontal';
   } else {
     formConf.value.layout = 'vertical';

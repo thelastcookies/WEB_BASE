@@ -1,5 +1,5 @@
 import type { CSSEntries, Preset, Rule, UserShortcuts, Variant } from 'unocss';
-import antdUnoTheme from './antd-uno-theme.json'
+import antdUnoTheme from './antd-uno-theme.json';
 
 // 规则
 const rules: Rule<Object>[] = [
@@ -66,7 +66,7 @@ const variants: Variant<Object>[] = [{
       body: () => {
         return css;
       },
-    }
+    };
   },
   autocomplete: 'calc:(height|width|top|bottom|left|right)-<num>-<num>',
 }];
@@ -79,5 +79,5 @@ export default function presetThelastcookies(): Preset {
     shortcuts,
     theme,
     variants,
-  }
+  };
 }

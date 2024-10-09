@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { PickerItem, PickerTopic } from "@/components/slide-picker/types.ts";
+import { PickerItem, PickerTopic } from '@/components/slide-picker/types.ts';
 
 // 定义 v-model 类型
 const disabled = defineModel<boolean>('disabled', { default: true });
@@ -19,7 +19,7 @@ const props = withDefaults(defineProps<{
   picker: () => [{
     key: 'key',
     label: '主题1',
-  }]
+  }],
 });
 
 // 定义 emit 事件
@@ -115,7 +115,7 @@ const setPickerTopic = (el: HTMLDivElement, topic: PickerTopic, prefix: string) 
   const reg = new RegExp(`${prefix}topic[0-7]`);
   const match = className.match(reg);
   if (match && match.length) {
-    el.className = className.split(" ").filter(item => item !== match[0]).join(' ');
+    el.className = className.split(' ').filter(item => item !== match[0]).join(' ');
   }
   if (topic) el.className += ` ${prefix}${topic}`;
 };
@@ -127,7 +127,7 @@ const clearTempTopic = () => {
     const className = children[i].className;
     const match = className.match(/is-temp-topic[0-7]/);
     if (match && match.length) {
-      children[i].className = className.split(" ").filter(item => item !== match[0]).join(' ');
+      children[i].className = className.split(' ').filter(item => item !== match[0]).join(' ');
     }
   }
 };

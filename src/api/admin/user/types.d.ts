@@ -11,7 +11,7 @@ export interface GetUserListRequestBody {
     keyword?: string;
     userName?: string;
     roleId?: string;
-  }
+  };
 }
 
 export interface SaveUserRequestBody {

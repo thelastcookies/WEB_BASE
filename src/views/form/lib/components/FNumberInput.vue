@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import type { NumberInputConfigProps } from "@/views/form/types";
+import type { NumberInputConfigProps } from '@/views/form/types';
 
 const value = defineModel<number>('value');
 

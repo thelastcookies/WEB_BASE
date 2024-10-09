@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { ComponentConfig, type ComponentConfigProps, FormConfig } from "@/views/form/types";
+import { ComponentConfig, type ComponentConfigProps, FormConfig } from '@/views/form/types';
 
 const compList = ref([] as ComponentConfig<ComponentConfigProps>[]);
 const currentComp = ref({} as ComponentConfig<ComponentConfigProps>);

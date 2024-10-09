@@ -1,10 +1,10 @@
-import type { AdminResponseBody, GetOptionRequestBody } from "@/api/admin/types";
+import type { AdminResponseBody, GetOptionRequestBody } from '@/api/admin/types';
 import type {
   GetUserListRequestBody,
   SaveUserRequestBody,
   UserListOptionItem,
   UserRecord,
-} from "@/api/admin/user/types";
+} from '@/api/admin/user/types';
 
 export const getUserList = (data: GetUserListRequestBody) => {
   return usePost<AdminResponseBody<UserRecord[]>, GetUserListRequestBody>(

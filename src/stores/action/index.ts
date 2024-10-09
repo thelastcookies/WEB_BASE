@@ -133,6 +133,6 @@ export const preprocessPerms = (permissionList: PermissionRecord[]): ActionPermi
       value: item.Value,
       needAction: item.NeedAction,
       type: MenuTypeEnum.PERM,
-    }
+    };
   }));
-}
+};

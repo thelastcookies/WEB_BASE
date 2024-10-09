@@ -1,9 +1,5 @@
-import type { AdminResponseBody } from "@/api/admin/types";
-import type {
-  GetActionsRequestBody,
-  PermissionRecord,
-  ActionResponseRecord,
-} from "@/api/admin/action/types";
+import type { AdminResponseBody } from '@/api/admin/types';
+import type { ActionResponseRecord, GetActionsRequestBody, PermissionRecord } from '@/api/admin/action/types';
 
 export const getAction = (id: string) => {
   return usePost<AdminResponseBody<ActionResponseRecord>, Record<string, string>>(

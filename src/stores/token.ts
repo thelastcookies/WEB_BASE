@@ -1,5 +1,5 @@
 export const useTokenStore = defineStore('token', () => {
-  const token = ref("");
+  const token = ref('');
   const TOKEN_KEY = 'token';
 
 
@@ -10,7 +10,7 @@ export const useTokenStore = defineStore('token', () => {
 
   const getToken = () => {
     let t = null;
-    if (token.value !== "") {
+    if (token.value !== '') {
       t = token.value;
     } else if (localStorage.getItem(TOKEN_KEY)) {
       t = localStorage.getItem(TOKEN_KEY);
@@ -20,12 +20,12 @@ export const useTokenStore = defineStore('token', () => {
 
   const $reset = () => {
     localStorage.removeItem(TOKEN_KEY);
-    token.value = "";
+    token.value = '';
   };
 
   return {
     setToken,
     getToken,
-    $reset
-  }
+    $reset,
+  };
 });

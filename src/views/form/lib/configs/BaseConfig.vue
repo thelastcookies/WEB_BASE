@@ -1,12 +1,12 @@
 <script setup lang="ts">
-import type { BaseConfigProps, ComponentConfig } from "@/views/form/types";
+import type { BaseConfigProps, ComponentConfig } from '@/views/form/types';
 
 const config = defineModel<ComponentConfig<BaseConfigProps>>('config', {
   default: {
     key: 'FormComponent',
     name: '表单组件',
     props: componentCommonPropsDefault,
-  }
+  },
 });
 
 </script>

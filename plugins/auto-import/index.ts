@@ -1,6 +1,6 @@
-import AutoImport from "unplugin-auto-import/vite";
-import type { PluginOption } from "vite";
-import { customImports } from "./custom-imports";
+import AutoImport from 'unplugin-auto-import/vite';
+import type { PluginOption } from 'vite';
+import { customImports } from './custom-imports';
 
 export const AutoImportPluginConfig: PluginOption = AutoImport({
   include: [
@@ -30,7 +30,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
     'src/components/common/echarts/*.ts',
   ],
   ignoreDts: [
-    'src/views/form/libs'
+    'src/views/form/libs',
   ],
   vueTemplate: true,
 });
