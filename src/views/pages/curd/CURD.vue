@@ -3,6 +3,7 @@ import type { Key, Recordable } from '@/types';
 import { message, type TableColumnProps } from 'ant-design-vue';
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type QueryForm from '@/components/common/query-form/QueryForm.vue';
+import EditModal from './components/EditModal.vue';
 
 /**
  * 查询栏
@@ -10,10 +11,6 @@ import type QueryForm from '@/components/common/query-form/QueryForm.vue';
 const queryFormRef = ref<InstanceType<typeof QueryForm> | null>(null);
 const qForm = ref<Recordable<any>>({});
 const qFormExpand = ref(false);
-
-const handleReload = async () => {
-  await fetch();
-};
 
 const queryFields: QueryFormField[] = [
   {
@@ -331,6 +328,10 @@ const modalOpen = ref(false);
 const modalType = ref(EditEnum.ADD);
 const modalData = ref({} as any);
 
+const handleReload = async () => {
+  await fetch();
+};
+
 const handleEdit = (type: number, data?: any) => {
   modalOpen.value = true;
   modalType.value = type;
@@ -429,6 +430,12 @@ const batchDelete = async (ids: string[]) => {
         </template>
       </template>
     </a-table>
+    <EditModal
+      v-model:open="modalOpen"
+      :type="modalType"
+      :id="modalData.Id"
+      @submit="handleReload"
+    ></EditModal>
   </div>
 </template>
 
