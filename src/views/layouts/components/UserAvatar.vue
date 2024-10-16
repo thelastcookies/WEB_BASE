@@ -68,7 +68,7 @@ const handleReLogin = () => {
     </template>
   </a-dropdown>
   <change-pwd-modal
-    :open="pwdModalOpen"
+    v-model:open="pwdModalOpen"
     @ok="handleReLogin"
   ></change-pwd-modal>
 </template>
