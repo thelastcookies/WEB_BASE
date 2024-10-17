@@ -22,6 +22,7 @@ export const staticActions: ActionRecordRaw[] = createTree([
       resource: 'pages/SamplePage.vue',
       meta: {
         title: '示例页面的示例标题',
+        subTitle: '副标题',
         backEnable: true,
       },
     }],

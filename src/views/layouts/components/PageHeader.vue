@@ -38,6 +38,11 @@ const title = computed(() => {
   if (!currentRoute.value) return '';
   return currentRoute.value.query?.title || currentRoute.value.meta?.title as string || '';
 });
+const subTitle = computed(() => {
+  if (!currentRoute.value) return '';
+  return currentRoute.value.query?.subTitle || currentRoute.value.meta?.subTitle as string || '';
+});
+
 const backBtnEnable = computed(() => {
   if (!currentRoute.value) return false;
   if (currentRoute.value.meta?.backEnable) return null;
@@ -50,6 +55,7 @@ const backBtnEnable = computed(() => {
   <a-page-header
     class="!py-4"
     :title="title"
+    :sub-title="subTitle"
     :breadcrumb="{ routes }"
     :ghost="false"
     :back-icon="backBtnEnable"
