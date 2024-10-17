@@ -25,6 +25,7 @@ export default defineConfig({
     transformerDirectives(),
   ],
   safelist: [
+    // 表单生成器 icon
     'i-mdi-pencil',
     'i-mdi-format-list-bulleted',
     'i-mdi-numeric',
@@ -40,6 +41,7 @@ export default defineConfig({
     'i-mdi-heart',
     'i-mdi-trophy',
     'i-mdi-thumb-up',
+    // 菜单 icon
     'i-mdi-format-list-text',
     'i-mdi-cog-outline',
     'i-mdi-link',
