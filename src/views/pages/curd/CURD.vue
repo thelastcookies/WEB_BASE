@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Key, Recordable } from '@/types';
-import { message, type TableColumnProps } from 'ant-design-vue';
+import { message, type TableColumnProps, type TablePaginationConfig } from 'ant-design-vue';
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type QueryForm from '@/components/common/query-form/QueryForm.vue';
 import EditModal from './components/EditModal.vue';
@@ -315,9 +315,9 @@ const fetch = async () => {
   loading.value = false;
 };
 
-const handleTableChange = (p: { pageSize: number; current: number }) => {
-  pagination.value.current = p.current;
-  pagination.value.pageSize = p.pageSize;
+const handleTableChange = (p: TablePaginationConfig) => {
+  pagination.value.current = p.current ?? 1;
+  pagination.value.pageSize = p.pageSize ?? 20;
   fetch();
 };
 
@@ -327,10 +327,6 @@ const handleTableChange = (p: { pageSize: number; current: number }) => {
 const modalOpen = ref(false);
 const modalType = ref(EditEnum.ADD);
 const modalData = ref({} as any);
-
-const handleReload = async () => {
-  await fetch();
-};
 
 const handleEdit = (type: number, data?: any) => {
   modalOpen.value = true;
@@ -359,9 +355,9 @@ const batchDelete = async (ids: string[]) => {
     const { Success } = await deleteUser(ids);
     if (Success) {
       message.success('删除成功');
-      await handleReload();
+      await fetch();
     } else {
-      message.success({ content: '删除失败' });
+      message.error('删除失败');
     }
   } catch (e) {
     message.error('删除失败');
@@ -371,20 +367,14 @@ const batchDelete = async (ids: string[]) => {
 
 <template>
   <div class="w-full h-full px-3 overflow-y-auto">
-    <query-form
-      ref="queryFormRef"
-      class="pt-4 pb-1 sticky top-0 z-12 bg-ant.bg-base"
-      :fields="queryFields"
+    <query-form class="pt-4 pb-1 sticky top-0 z-12 bg-ant.bg-base"
+      ref="queryFormRef" :fields="queryFields"
       v-model:form="qForm"
       v-model:expand="qFormExpand"
       @query="handleQuery"
-      :itemInLine="4"
-    ></query-form>
-    <a-table
-      :columns="tableColumns"
-      :data-source="list"
-      :pagination="pagination"
-      :loading="loading"
+      :itemInLine="4"></query-form>
+    <a-table :columns="tableColumns" :data-source="list"
+      :pagination="pagination" :loading="loading"
       row-key="id"
       :row-selection="{
         type: 'checkbox',
@@ -393,20 +383,18 @@ const batchDelete = async (ids: string[]) => {
         columnWidth: 50
       }"
       :scroll="scroll"
-      @change="handleTableChange"
-    >
+      @change="handleTableChange">
       <template #title>
         <div class="flex">
           <div>列表CRUD</div>
           <a-button ml-auto type="primary"
-                    @click="handleEdit(EditEnum.ADD)">
+            @click="handleEdit(EditEnum.ADD)">
             <BaseIcon icon="i-mdi-plus" />
             新增
           </a-button>
           <a-popconfirm
             title="是否确认删除?"
-            @confirm="handleBatchDelete"
-          >
+            @confirm="handleBatchDelete">
             <a-button ml-2 danger>
               <BaseIcon icon="i-mdi-trash-can-outline" />
               删除
@@ -420,8 +408,7 @@ const batchDelete = async (ids: string[]) => {
           <a-divider type="vertical" />
           <a-popconfirm
             title="是否确定删除？"
-            @confirm="handleDelete(record.Id)"
-          >
+            @confirm="handleDelete(record.Id)">
             <a-button btn-in-table danger type="link">删除</a-button>
           </a-popconfirm>
         </template>
@@ -434,7 +421,7 @@ const batchDelete = async (ids: string[]) => {
       v-model:open="modalOpen"
       :type="modalType"
       :id="modalData.Id"
-      @submit="handleReload"
+      @submit="fetch"
     ></EditModal>
   </div>
 </template>

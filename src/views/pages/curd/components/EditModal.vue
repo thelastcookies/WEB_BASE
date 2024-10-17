@@ -8,8 +8,8 @@ import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 const open = defineModel('open', { default: false });
 
 const props = withDefaults(defineProps<{
-  id?: string;
   type: EditEnum;
+  id?: string;
 }>(), {
   type: EditEnum.VIEW,
 });
@@ -21,9 +21,9 @@ const emit = defineEmits<{
 const loading = ref<boolean>(false);
 
 const titleEnum = {
-  0: '新增',
-  1: '编辑',
-  2: '查看',
+  [EditEnum.ADD]: '新增',
+  [EditEnum.EDIT]: '编辑',
+  [EditEnum.VIEW]: '查看',
 };
 const title = computed(() => {
   return titleEnum[props.type];
@@ -81,16 +81,15 @@ watch(open, (v) => {
 </script>
 
 <template>
-  <a-modal v-model:open="open"
-           :title="title"
-           :confirm-loading="loading"
-           ok-text="保存"
-           @ok="handleSubmit"
-           @cancel="handleClear"
-  >
-    <a-form ref="formRef" :model="formData" :label-col="{ span: 4 }" :wrapper-col="{ span: 18 }"
-            :rules="rules" :disabled="loading"
-            class="px-4 pt-4">
+  <a-modal v-model:open="open" :title="title"
+    :confirm-loading="loading" :mask-closable="false"
+    ok-text="保存"
+    @ok="handleSubmit"
+    @cancel="handleClear">
+    <a-form ref="formRef" autocomplete="off" :model="formData"
+      :label-col="{ span: 4 }" :wrapper-col="{ span: 18 }"
+      :rules="rules" :disabled="loading"
+      class="px-3 pt-3">
       <a-form-item label="账号" name="UserName">
         <a-input v-model:value="formData.UserName" />
       </a-form-item>
@@ -110,8 +109,7 @@ watch(open, (v) => {
         <a-input v-model:value="formData.Remark" />
       </a-form-item>
       <a-form-item label="状态" name="State">
-        <a-switch
-          v-model:checked="formData.State"
+        <a-switch v-model:checked="formData.State"
           checked-value="1" un-checked-value="0"
           checked-children="启用" un-checked-children="禁用"></a-switch>
       </a-form-item>
