@@ -150,7 +150,7 @@ const handleClear = () => {
           <BaseIcon icon="i-mdi-filter-remove-outline" />
           清空
         </a-button>
-        <a-button v-if="(fields.length + slotsCount) > ITEM_IN_LINE" type="link" @click="expand = !expand">
+        <a-button v-if="(fields.length + slotsCount) >= ITEM_IN_LINE" type="link" @click="expand = !expand">
           <template v-if="expand">
             <BaseIcon icon="i-mdi-chevron-up" />
             收起
