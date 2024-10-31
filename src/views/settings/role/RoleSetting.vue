@@ -43,19 +43,6 @@ const onSelectChange = (keys: Key[]) => {
   selectedRowKeys.value = keys;
 };
 
-const customRow = (record: RoleRecord) => {
-  return {
-    onClick: () => {
-      const key = record.Id!;
-      if (selectedRowKeys.value.includes(key)) {
-        selectedRowKeys.value = selectedRowKeys.value.filter(k => k !== key);
-      } else {
-        selectedRowKeys.value = [...selectedRowKeys.value, key];
-      }
-    },
-  };
-};
-
 const handleEdit = (type: number, data?: RoleRecord) => {
   modalOpen.value = true;
   modalType.value = type;
@@ -113,14 +100,13 @@ const batchDelete = async (ids: string[]) => {
           onChange: onSelectChange,
           columnWidth: 50
         }"
-        :custom-row="customRow"
         :loading="loading"
       >
         <template #title>
           <div class="flex">
             <div>角色列表</div>
             <a-button ml-auto type="primary"
-                      @click="handleEdit(EditEnum.ADD)">
+              @click="handleEdit(EditEnum.ADD)">
               <BaseIcon icon="i-mdi-plus" />
               新增
             </a-button>

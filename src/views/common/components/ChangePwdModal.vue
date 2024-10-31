@@ -77,11 +77,7 @@ const handleSubmit = async () => {
 
 const handleClear = () => {
   open.value = false;
-  formData.value = {
-    oldPwd: '',
-    newPwd: '',
-    newPwdConfirm: '',
-  };
+  formRef.value!.resetFields();
 };
 </script>
 

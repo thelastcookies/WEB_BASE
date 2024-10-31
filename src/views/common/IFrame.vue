@@ -6,6 +6,17 @@ const loading = ref(true);
 const finishLoading = () => {
   loading.value = false;
 };
+
+// 接收来自 iframe 页面中的消息
+window.addEventListener('message', function(event) {
+  // 确认消息来源是预期的域名
+  if (event.origin !== 'http://10.0.0.10:8195') {
+    return;
+  }
+
+  // 处理消息
+  console.log('来自 iframe 的消息:', event.data);
+});
 </script>
 
 <template>

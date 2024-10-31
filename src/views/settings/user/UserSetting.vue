@@ -43,19 +43,6 @@ const onSelectChange = (keys: Key[]) => {
   selectedRowKeys.value = keys;
 };
 
-const customRow = (record: UserRecord) => {
-  return {
-    onClick: () => {
-      const key = record.Id!;
-      if (selectedRowKeys.value.includes(key)) {
-        selectedRowKeys.value = selectedRowKeys.value.filter(k => k !== key);
-      } else {
-        selectedRowKeys.value = [...selectedRowKeys.value, key];
-      }
-    },
-  };
-};
-
 const handleEdit = (type: number, data?: UserRecord) => {
   modalOpen.value = true;
   modalType.value = type;
@@ -113,7 +100,6 @@ const batchDelete = async (ids: string[]) => {
           onChange: onSelectChange,
           columnWidth: 50
         }"
-        :custom-row="customRow"
         :loading="loading"
       >
         <template #title>
