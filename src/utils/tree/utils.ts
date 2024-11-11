@@ -2,61 +2,109 @@
  * 用于树形结构数据(TreeNode[])的实用工具
  */
 import type { Key } from '@/types';
-import type { TreeLikeItem } from '@/utils/tree/types';
-import { TreeNode } from '@/utils/tree/tree.ts';
+import type { TreeNodeInterface } from '@/utils/tree/types';
+import { TreeNode } from '@/utils/tree';
+
+/**
+ * 用于创建树
+ * @param tree
+ * @param handler
+ */
+export const createTree = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: T[],
+  handler?: <T extends TreeNodeInterface>(arg: TreeNodeInterface) => T,
+): TreeNode<T>[] => {
+  return tree.map(node => {
+    const tNode = new TreeNode(node, handler);
+    const children = tNode.children ?? tNode.Children;
+    if (children && children.length) {
+      const cl = createTree<T>(children, handler);
+      tNode.setChildren(cl);
+    }
+    return tNode;
+  });
+};
+
+/**
+ * 用于创建浅层（单层）树，即只有第一层会被转换为 TreeNode
+ * 因此也会用来创建无嵌套的 TreeNode 数组
+ * @param tree
+ * @param handler
+ */
+export const createShallowTree = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: T[],
+  handler?: <T extends TreeNodeInterface>(arg: TreeNodeInterface) => T,
+): TreeNode<T>[] => {
+  return tree.map(node => new TreeNode(node, handler));
+};
 
 /**
  * 按 节点唯一标识符 去查找树中的节点
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param id 节点唯一标识符
  */
-export function findTreeNodeById<T extends TreeNode = TreeNode>(tree: T[], id: Key): T | undefined {
+export const findTreeNodeById = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: TreeNode<T>[], id: Key,
+): TreeNode<T> | undefined => {
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getId() === id) {
       return tree[i];
     } else if (tree[i].getChildren()) {
-      const n = findTreeNodeById<T>(tree[i].getChildren()!, id);
+      const n = findTreeNodeById(tree[i].getChildren()!, id);
       if (n) return n;
     }
   }
-}
+};
 
 /**
  * 按 节点 label 去模糊查找树中的节点
  * @param tree 由 TreeNode 扩展节点组成的树
  * @param label 节点 label
  */
-export function findTreeNodesByLabel<T extends TreeNode = TreeNode>(tree: T[], label: string): T[] {
-  let nodes: T[] = [];
+export const findTreeNodesByLabel = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: TreeNode<T>[], label: string,
+): TreeNode<T>[] => {
+  let nodes: TreeNode<T>[] = [];
   for (let i = 0, len = tree.length; i < len; i++) {
     if (tree[i].getLabel()!.indexOf(label) > -1) {
       nodes.push(tree[i]);
     } else if (tree[i].getChildren()) {
-      nodes = [...nodes, ...findTreeNodesByLabel<T>(tree[i].getChildren()!, label)];
+      nodes = [...nodes, ...findTreeNodesByLabel(tree[i].getChildren()!, label)];
     }
   }
   return nodes;
-}
+};
 
 /**
  * 按 父节点唯一标识符 去查找 TreeNode[] 数据中符合特征的所有节点
  * @param tree TreeNode[]
  * @param id 父亲节点唯一标识符
  */
-function findTreeNodesByPId<T extends TreeNode = TreeNode>(tree: T[], id: Key) {
-
-}
+export const findTreeNodesByPId = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: TreeNode<T>[], id: Key,
+): TreeNode<T> | undefined => {
+  for (let i = 0, len = tree.length; i < len; i++) {
+    if (tree[i].getParentId() === id) {
+      return tree[i];
+    } else if (tree[i].getChildren()) {
+      const n = findTreeNodesByPId(tree[i].getChildren()!, id);
+      if (n) return n;
+    }
+  }
+};
 
 /**
  * 将 TreeNode 类型的列表转换为树结构
  * 根节点的判断依据为：父亲节点唯一标识符的字段为空或不存在
  * @param list 数组
  */
-export function listToTree<T extends TreeNode = TreeNode>(list: TreeLikeItem[]): T[] {
-  const treeList = createShallowTree<T>(list);
+export const listToTree = <T extends TreeNodeInterface = TreeNodeInterface>(
+  list: TreeNodeInterface[],
+): TreeNode<T>[] => {
+  const treeList = createShallowTree(list);
 
-  const roots: T[] = [];
-  const nodeMap: Record<Key, T> = {};
+  const roots: TreeNode<T>[] = [];
+  const nodeMap: Record<Key, TreeNode<T>> = {};
   treeList.forEach(node => {
     nodeMap[node.getId()!] = node;
   });
@@ -74,17 +122,19 @@ export function listToTree<T extends TreeNode = TreeNode>(list: TreeLikeItem[]):
     }
   });
   return roots;
-}
+};
 
 /**
  * 将 TreeNode 类型的树转换为列表
  * 会将各树节点深度克隆，并去除子级
  * @param tree 数组
  */
-export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
-  const list: T[] = [];
+export const treeToList = <T extends TreeNodeInterface = TreeNodeInterface>(
+  tree: TreeNode<T>[],
+): TreeNode<T>[] => {
+  const list: TreeNode<T>[] = [];
 
-  function recursion(nodes: T[]) {
+  function recursion(nodes: TreeNode<T>[]) {
     nodes.forEach(node => {
       const n = cloneDeep(node);
       list.push(n);
@@ -99,7 +149,7 @@ export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
 
   recursion(tree);
   return list;
-}
+};
 
 /**
  * 根据查询条件查找父节点直到根节点
@@ -128,8 +178,10 @@ export function treeToList<T extends TreeNode = TreeNode>(tree: T[]): T[] {
  * 查找长子节点直至最深一层
  * @param treeNode
  */
-export function findNodeDescendants<T extends TreeNode = TreeNode>(treeNode: T): T | undefined {
+export const findNodeDescendants = <T extends TreeNodeInterface = TreeNodeInterface>(
+  treeNode: TreeNode<T>,
+): TreeNode<T> | undefined => {
   if (treeNode.getChildren()?.length) {
-    return findNodeDescendants(treeNode.getChildren()![0] as T);
+    return findNodeDescendants(treeNode.getChildren()![0]);
   } else return treeNode;
-}
+};
