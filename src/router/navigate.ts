@@ -1,12 +1,13 @@
 import type { RecordName, RouteToRecordRaw } from '@/types';
 import type { ActionRecordRaw } from '@/types/action';
 import type { RouteLocationRaw } from 'vue-router';
+import type { TreeNode } from '@/utils/tree';
 
 const actionStore = useActionStore();
 const { actionTree } = storeToRefs(actionStore);
 
 export const routeTo = (props: RouteToRecordRaw) => {
-  return new Promise<ActionRecordRaw>((resolve, reject) => {
+  return new Promise<TreeNode<ActionRecordRaw>>((resolve, reject) => {
     const actionId = typeof props === 'object' ? props.name : props;
     const action = findAction(actionTree.value, actionId);
     if (!action) {

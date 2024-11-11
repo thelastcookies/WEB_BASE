@@ -3,8 +3,9 @@ import { EditEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
+import type { TreeNode } from '@/utils/tree';
 
-const value = defineModel<ActionResponseRecord[]>('value', { default: () => [] });
+const value = defineModel<TreeNode<ActionResponseRecord>[]>('value', { default: () => [] });
 const selectedKeys = defineModel<Key[]>('selectedKeys', { default: () => [] });
 const checkedKeys = defineModel<{
   checked: Key[];
@@ -19,7 +20,7 @@ const checkedKeys = defineModel<{
 });
 
 const props = withDefaults(defineProps<{
-  tree?: ActionResponseRecord[];
+  tree?: TreeNode<ActionResponseRecord>[];
   type?: EditEnum;
   searchable?: boolean;
   checkable?: boolean;
@@ -68,23 +69,11 @@ watchEffect(() => {
  * 处理搜索
  */
 const searchValue = ref<string>('');
-// TODO 搜索防抖
 watch(searchValue, value => {
   const nodes = findTreeNodesByLabel(props.tree, value);
   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
   autoExpandParent.value = true;
 });
-
-/**
- * const searchValue = ref<string>('');
- * watch(searchValue, val => debouncedSearch(val));
- *
- * const debouncedSearch = useDebounceFn((value) => {
- *   const nodes = findTreeNodesByLabel(props.tree, value);
- *   expandedKeys.value = nodes.map(node => node.getId()) as Key[];
- *   autoExpandParent.value = true;
- * }, 500);
- */
 
 const onExpand = (keys: Key[]) => {
   expandedKeys.value = keys;
@@ -101,7 +90,7 @@ const filterTreeNode = (node: EventDataNode) => {
   <div class="h-full flex items-start flex-col">
     <div v-if="type !== EditEnum.VIEW" class="mb-4">
       <a-button ml-auto type="primary"
-                @click="handleAdd()">
+        @click="handleAdd()">
         <BaseIcon icon="i-mdi-plus" />
         新增菜单
       </a-button>
@@ -127,29 +116,13 @@ const filterTreeNode = (node: EventDataNode) => {
       <template #title="{ Name }">
         <span class="flex pl-1 tree-node-title">
           <span v-if="Name && searchValue && Name.indexOf(searchValue) > -1">
-          {{ Name.substring(0, Name.indexOf(searchValue)) }}
-          <span class="c-ant.error">{{ searchValue }}</span>
-          {{ Name.substring(Name.indexOf(searchValue) + searchValue.length) }}
-        </span>
-        <span v-else>{{ Name }}</span>
-          <!--<a-button class="ml-a p-0 btn h-unset" type="link" danger>-->
-          <!--  <BaseIcon icon="i-mdi-trash-can-outline" />-->
-          <!--</a-button>-->
+            {{ Name.substring(0, Name.indexOf(searchValue)) }}
+            <span class="c-ant.error">{{ searchValue }}</span>
+            {{ Name.substring(Name.indexOf(searchValue) + searchValue.length) }}
+          </span>
+          <span v-else>{{ Name }}</span>
         </span>
       </template>
     </a-tree>
   </div>
 </template>
-
-<style scoped lang="less">
-//.tree-node-title {
-//  .btn {
-//    opacity: 0;
-//  }
-//  &:hover {
-//    .btn {
-//      opacity: 1;
-//    }
-//  }
-//}
-</style>

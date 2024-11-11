@@ -3,6 +3,7 @@ import type { RecordName } from '@/types';
 import type { ActionRecordRaw } from '@/types/action';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 import type { RouteLocationNormalized } from 'vue-router';
+import type { TreeNode } from '@/utils/tree';
 
 const selectedKeys = ref([] as string[]);
 
@@ -16,7 +17,7 @@ const { actionTree } = storeToRefs(useActionStore());
 const menuStore = useMenuStore();
 const { actionToMenu } = menuStore;
 const { menu } = storeToRefs(menuStore);
-watch(actionTree, (tree: ActionRecordRaw[]) => {
+watch(actionTree, (tree: TreeNode<ActionRecordRaw>[]) => {
   // 为防止一级菜单过多导致的样式问题，将一级菜单限制为 6 个以下
   if (tree.length > 6) {
     tree = tree.slice(0, 6);

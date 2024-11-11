@@ -39,7 +39,7 @@ const handleReload = async () => {
   await fetch();
 };
 
-const onSelectChange = (keys: Key[]) => {
+const onSelectionChange = (keys: Key[]) => {
   selectedRowKeys.value = keys;
 };
 
@@ -97,7 +97,7 @@ const batchDelete = async (ids: string[]) => {
         :row-selection="{
           type: 'checkbox',
           selectedRowKeys: selectedRowKeys,
-          onChange: onSelectChange,
+          onChange: onSelectionChange,
           columnWidth: 50
         }"
         :loading="loading"

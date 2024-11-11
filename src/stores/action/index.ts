@@ -1,9 +1,10 @@
 import type { Key, RecordName } from '@/types';
 import type { ActionPermission, ActionRecordRaw } from '@/types/action';
 import type { ActionResponseRecord, PermissionRecord } from '@/api/admin/action/types';
+import type { TreeNode } from '@/utils/tree';
 
 export const useActionStore = defineStore('action', () => {
-  const actionTree = shallowRef([] as ActionRecordRaw[]);
+  const actionTree = shallowRef([] as TreeNode<ActionRecordRaw>[]);
 
   const getActionsFromApi = async () => {
     const { Data } = await getOperatorMenuList();
@@ -25,7 +26,7 @@ export const useActionStore = defineStore('action', () => {
 
 
   const $reset = () => {
-    actionTree.value = [] as ActionRecordRaw[];
+    actionTree.value = [] as TreeNode<ActionRecordRaw>[];
   };
 
   return {
@@ -42,11 +43,11 @@ export const useActionStore = defineStore('action', () => {
  * @param field 被查询字段
  */
 export const findAction = (
-  actions: ActionRecordRaw[],
+  actions: TreeNode<ActionRecordRaw>[],
   key: Key | RecordName,
   field: 'id' | 'actionId' | 'title' = 'actionId',
-): ActionRecordRaw | undefined => {
-  let action: ActionRecordRaw;
+): TreeNode<ActionRecordRaw> | undefined => {
+  let action: TreeNode<ActionRecordRaw>;
   for (let i = 0, len = actions.length; i < len; i++) {
     if (actions[i][field] === key) {
       action = actions[i];
@@ -72,10 +73,10 @@ export const findAction = (
  * @param field 被查询字段
  */
 export const findActionAncestorChain = (
-  actions: ActionRecordRaw[],
+  actions: TreeNode<ActionRecordRaw>[],
   key: Key | RecordName,
   field: 'id' | 'actionId' | 'title' = 'actionId',
-): ActionRecordRaw[] | undefined => {
+): TreeNode<ActionRecordRaw>[] | undefined => {
   const action = findAction(actions, key, field)!;
   if (action) {
     if (action.pId) {
@@ -93,7 +94,7 @@ export const findActionAncestorChain = (
  * 主要进行字段的转换和过滤
  * @param dataTree 接口数据
  */
-export const preprocessMenuTree = (dataTree: ActionResponseRecord[]): ActionRecordRaw[] => {
+export const preprocessMenuTree = (dataTree: ActionResponseRecord[]): TreeNode<ActionRecordRaw>[] => {
   return createTree(dataTree.map((item: ActionResponseRecord) => {
     let action = {} as ActionRecordRaw;
     action.id = item.Id!;
@@ -124,7 +125,7 @@ export const preprocessMenuTree = (dataTree: ActionResponseRecord[]): ActionReco
   }));
 };
 
-export const preprocessPerms = (permissionList: PermissionRecord[]): ActionPermission[] => {
+export const preprocessPerms = (permissionList: PermissionRecord[]): TreeNode<ActionPermission>[] => {
   return createTree(permissionList.map(item => {
     return {
       id: item.Id,

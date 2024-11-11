@@ -1,14 +1,15 @@
 <script setup lang="ts">
 import type { ActionResponseRecord } from '@/api/admin/action/types';
+import type { TreeNode } from '@/utils/tree';
 
 const loading = ref(false);
 
 const currentId = ref<string[]>([]);
-const currentActionList = ref<ActionResponseRecord[]>();
+const currentActionList = ref<TreeNode<ActionResponseRecord>[]>();
 
 const formType = ref(EditEnum.EDIT);
 
-const actionTreeData = ref<ActionResponseRecord[]>();
+const actionTreeData = ref<TreeNode<ActionResponseRecord>[]>();
 const fetch = async () => {
   loading.value = true;
   const { Data } = await getMenuTreeList({});

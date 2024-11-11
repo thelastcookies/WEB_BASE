@@ -2,11 +2,12 @@
 import type { RecordName } from '@/types';
 import type { ActionRecordRaw } from '@/types/action';
 import type { RouteLocationNormalized } from 'vue-router';
+import type { TreeNode } from '@/utils/tree';
 
 const actionStore = useActionStore();
 const { actionTree } = storeToRefs(actionStore);
 
-const breadcrumb = ref([] as ActionRecordRaw[]);
+const breadcrumb = ref([] as TreeNode<ActionRecordRaw>[]);
 const currentRoute = ref<RouteLocationNormalized>();
 
 // 订阅路由变化，设置面包屑

@@ -1,7 +1,8 @@
 import type { MenuTypeEnum } from '@/enums';
 import type { Key } from '@/types';
 import type { RouteMeta } from 'vue-router';
-import type { TreeNode } from '@/utils';
+import type { TreeNodeInterface } from '@/utils/tree/types';
+import type { TreeNode } from '@/utils/tree';
 
 export type ActionRecordRaw =
   ActionRecordPage
@@ -11,7 +12,7 @@ export type ActionRecordRaw =
   | ActionRecordIFrame
   | ActionRecordDiagram;
 
-interface _ActionBase extends TreeNode {
+interface _ActionBase extends TreeNodeInterface {
   // 路由 id
   id: Key;
   // 父级 id
@@ -33,9 +34,9 @@ interface _ActionBase extends TreeNode {
   // 自定义的路由元数据
   meta?: RouteMeta;
   // 子节点
-  children?: ActionRecordRaw[];
+  children?: (ActionRecordRaw | TreeNode<ActionRecordRaw>)[];
   // 权限配置
-  permissions?: ActionPermission[];
+  permissions?: TreeNode<ActionPermission>[];
 }
 
 export interface ActionRecordPage extends _ActionBase {

@@ -5,10 +5,11 @@ import type { Recordable } from '@/types';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
+import type { TreeNode } from '@/utils/tree';
 
 const props = withDefaults(defineProps<{
-  tree?: ActionResponseRecord[];
-  value?: ActionResponseRecord;
+  tree?: TreeNode<ActionResponseRecord>[];
+  value?: TreeNode<ActionResponseRecord>;
   type?: EditEnum;
 }>(), {
   type: EditEnum.VIEW,
@@ -21,7 +22,7 @@ const emit = defineEmits<{
 const formRef = ref<HTMLFormElement>();
 const loading = ref<boolean>(false);
 
-const formData = ref<ActionResponseRecord>();
+const formData = ref<TreeNode<ActionResponseRecord>>();
 const metas = ref<Recordable<string>[]>();
 
 const fieldNames = { value: 'Id', label: 'Name', children: 'Children' };
@@ -167,10 +168,10 @@ const handleDelete = async () => {
       </div>
       <a-alert message="菜单配置的编辑，会在页面刷新后启用" type="info" show-icon closable />
       <a-form ref="formRef"
-              :model="formData"
-              :rules="rules"
-              :disabled="type === EditEnum.VIEW || loading"
-              :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
+        :model="formData"
+        :rules="rules"
+        :disabled="type === EditEnum.VIEW || loading"
+        :label-col="{ span: 6 }" :wrapper-col="{ span: 16 }">
         <a-row>
           <a-divider orientation="left">基本信息</a-divider>
         </a-row>
@@ -188,7 +189,7 @@ const handleDelete = async () => {
           <a-col :span="12">
             <a-form-item label="类型" name="Type">
               <a-select v-model:value="formData.Type" placeholder="请选择类型"
-                        :options="menuTypeOptions"></a-select>
+                :options="menuTypeOptions"></a-select>
             </a-form-item>
           </a-col>
           <a-col :span="12">
@@ -225,7 +226,7 @@ const handleDelete = async () => {
               :label-col="{ span: 12 }" :wrapper-col="{ span: 12 }"
             >
               <a-switch v-model:checked="formData.ShowInMenu"
-                        checked-children="是" un-checked-children="否"
+                checked-children="是" un-checked-children="否"
               ></a-switch>
             </a-form-item>
           </a-col>
@@ -236,8 +237,8 @@ const handleDelete = async () => {
               tooltip="勾选后该菜单无需分配权限即可访问"
             >
               <a-switch v-model:checked="formData.NeedAction"
-                        :checked-value="false" :un-checked-value="true"
-                        checked-children="是" un-checked-children="否"
+                :checked-value="false" :un-checked-value="true"
+                checked-children="是" un-checked-children="否"
               ></a-switch>
             </a-form-item>
           </a-col>
@@ -264,14 +265,14 @@ const handleDelete = async () => {
             <a-col :span="12">
               <a-form-item label="是否固定" name="Affix" tooltip="勾选后该页面将被固定在 Tab 栏">
                 <a-switch v-model:checked="formData.Affix"
-                          checked-children="是" un-checked-children="否"
+                  checked-children="是" un-checked-children="否"
                 ></a-switch>
               </a-form-item>
             </a-col>
             <a-col :span="12">
               <a-form-item label="是否保活" name="KeepAlive" tooltip="勾选后当菜单切换时，该页面将被缓存">
                 <a-switch v-model:checked="formData.KeepAlive"
-                          checked-children="是" un-checked-children="否"
+                  checked-children="是" un-checked-children="否"
                 ></a-switch>
               </a-form-item>
             </a-col>
@@ -296,7 +297,7 @@ const handleDelete = async () => {
             <a-col :span="12">
               <a-form-item label="是否保活" name="KeepAlive" tooltip="勾选后当菜单切换时，该页面将被缓存">
                 <a-switch v-model:checked="formData.KeepAlive"
-                          checked-children="是" un-checked-children="否"
+                  checked-children="是" un-checked-children="否"
                 ></a-switch>
               </a-form-item>
             </a-col>
@@ -312,7 +313,7 @@ const handleDelete = async () => {
             <a-col :span="12">
               <a-form-item label="是否保活" name="KeepAlive" tooltip="勾选后当菜单切换时，该页面将被缓存">
                 <a-switch v-model:checked="formData.KeepAlive"
-                          checked-children="是" un-checked-children="否"
+                  checked-children="是" un-checked-children="否"
                 ></a-switch>
               </a-form-item>
             </a-col>

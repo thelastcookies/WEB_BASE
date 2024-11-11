@@ -3,6 +3,7 @@ import type { Key, RecordName } from '@/types';
 import type { ActionRecordRaw } from '@/types/action';
 import type { MenuInfo, SelectInfo } from 'ant-design-vue/es/menu/src/interface';
 import type { RouteLocationNormalized } from 'vue-router';
+import type { TreeNode } from '@/utils/tree';
 
 const openKeys = ref([] as string[]);
 const selectedKeys = ref([] as string[]);
@@ -22,7 +23,7 @@ const { actionTree } = storeToRefs(useActionStore());
 const menuStore = useMenuStore();
 const { actionToMenu } = menuStore;
 const { menu } = storeToRefs(menuStore);
-watch(actionTree, (tree: ActionRecordRaw[]) => {
+watch(actionTree, (tree: TreeNode<ActionRecordRaw>[]) => {
   menu.value = actionToMenu(tree);
 }, {
   immediate: true,

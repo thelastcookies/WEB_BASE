@@ -1,9 +1,9 @@
 <script setup lang="ts">
+import { Empty, message } from 'ant-design-vue';
 import type { Key, Recordable } from '@/types';
 import type { RoleRecord } from '@/api/admin/role/types';
-import { Empty, message } from 'ant-design-vue';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
-import { getActionTreeList } from '@/api/admin/action';
+import type { TreeNode } from '@/utils/tree';
 
 /**
  * table 属性与方法
@@ -30,7 +30,7 @@ const submitLoading = ref(false);
  * 数据交互与处理方法
  */
 const qForm = ref<Recordable<any>>({});
-const actionTreeData = ref<ActionResponseRecord[]>();
+const actionTreeData = ref<TreeNode<ActionResponseRecord>[]>();
 
 const fetch = async () => {
   loading.value = true;
@@ -70,6 +70,10 @@ const customRow = (record: RoleRecord) => {
       selectedRowKeys.value = [record.Id!];
     },
   };
+};
+
+const onSelectionChange = (keys: Key[]) => {
+  selectedRowKeys.value = keys;
 };
 
 const handleSubmit = async () => {
@@ -112,7 +116,8 @@ const handleSubmit = async () => {
           :row-selection="{
             type: 'radio',
             selectedRowKeys: selectedRowKeys,
-            columnWidth: 50
+            columnWidth: 50,
+            onChange: onSelectionChange,
           }"
           :custom-row="customRow"
           :loading="loading"

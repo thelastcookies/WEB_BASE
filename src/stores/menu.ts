@@ -1,10 +1,11 @@
 import type { MenuTreeNode } from '@/types';
 import type { ActionRecordRaw } from '@/types/action';
+import type { TreeNode } from '@/utils/tree';
 
 export const useMenuStore = defineStore('menu', () => {
   const menu = ref([] as MenuTreeNode[]);
 
-  const actionToMenu = (tree: ActionRecordRaw[]): MenuTreeNode[] => {
+  const actionToMenu = (tree: TreeNode<ActionRecordRaw>[]): MenuTreeNode[] => {
     let menuTree = [] as MenuTreeNode[];
     const treeSorted = tree.sort((a, b) => (a.sort || Infinity) - (b.sort || Infinity));
     for (const item of treeSorted) {
@@ -17,7 +18,11 @@ export const useMenuStore = defineStore('menu', () => {
       if ('icon' in item) {
         menuNode.icon = item.icon;
       }
-      if ('children' in item && item.children && item.children.filter(menu => menu.showInMenu === true).length > 0) {
+      if (
+        'children' in item
+        && item.children
+        && item.children.filter((menu: TreeNode<ActionRecordRaw>,
+        ) => menu.showInMenu === true).length > 0) {
         menuNode.children = actionToMenu(item.children);
       }
       menuTree.push(menuNode);

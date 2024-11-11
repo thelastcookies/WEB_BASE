@@ -1,15 +1,16 @@
 import type { ActionRecordRaw } from '@/types/action';
 import type { RouteRecordName, RouteRecordRaw } from 'vue-router';
+import type { TreeNode } from '@/utils/tree';
 
 /**
  * 根据 Actions 配置，生成路由
  */
-export const generateRouterConf = (actionTree: ActionRecordRaw[]) => {
+export const generateRouterConf = (actionTree: TreeNode<ActionRecordRaw>[]) => {
   // 生成路由配置
   const routes = generateRoutes(actionTree);
   // 获取首页配置
   const homePageId = import.meta.env.APP_HOMEPAGE_ID;
-  let homePage: ActionRecordRaw | undefined;
+  let homePage: TreeNode<ActionRecordRaw> | undefined;
   if (!homePageId) {
     console.info(`Router.generate "generateRouterConf": Empty configuration item 'APP_HOMEPAGE_ID'.`);
     homePage = findDescendantWithUrlDefined(actionTree[0]);
@@ -36,7 +37,7 @@ export const generateRouterConf = (actionTree: ActionRecordRaw[]) => {
  * 将 Actions 处理为 RouteMap 并拉平。
  * @param actions 待处理的 actionList
  */
-const generateFlatRoutes = (actions: ActionRecordRaw[]): RouteRecordRaw[] => {
+const generateFlatRoutes = (actions: TreeNode<ActionRecordRaw>[]): RouteRecordRaw[] => {
   const routeData = [] as RouteRecordRaw[];
   for (const action of actions) {
     if ('children' in action && action.getChildren()?.length) {
@@ -53,7 +54,7 @@ const generateFlatRoutes = (actions: ActionRecordRaw[]): RouteRecordRaw[] => {
  * 将 Actions 处理为 RouteMap。
  * @param actions 待处理的 actionList
  */
-const generateRoutes = (actions: ActionRecordRaw[]) => {
+const generateRoutes = (actions: TreeNode<ActionRecordRaw>[]) => {
   const routeData = [] as RouteRecordRaw[];
   for (const action of actions) {
     const route = actionToRoute(action);
@@ -70,7 +71,7 @@ const generateRoutes = (actions: ActionRecordRaw[]) => {
  * 如果 Action 没有配置 component 与 url 属性，则视作非实体组件而不会被加入到 router 中
  * @param action
  */
-const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
+const actionToRoute = (action: TreeNode<ActionRecordRaw>): RouteRecordRaw => {
   const route = {} as RouteRecordRaw;
   route.name = typeof action.actionId === 'number' ? String(action.actionId) : action.actionId;
   if (action.url) {
@@ -103,8 +104,8 @@ const actionToRoute = (action: ActionRecordRaw): RouteRecordRaw => {
 };
 
 export const findDescendantWithUrlDefined = (
-  action: ActionRecordRaw,
-): ActionRecordRaw | undefined => {
+  action: TreeNode<ActionRecordRaw>,
+): TreeNode<ActionRecordRaw> | undefined => {
   if (action.children) {
     if (action.children[0]?.url) return action.children[0];
     else findDescendantWithUrlDefined(action.children[0]);

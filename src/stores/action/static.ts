@@ -1,6 +1,6 @@
 import type { ActionRecordRaw } from '@/types/action';
 
-export const staticActions: ActionRecordRaw[] = createTree([
+export const staticActions = createTree<ActionRecordRaw>([
   {
     id: '1336647905518030848',
     actionId: 'menu',
