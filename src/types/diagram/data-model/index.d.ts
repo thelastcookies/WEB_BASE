@@ -15,7 +15,7 @@ export interface FormulaTagValue extends NodeTagValue {
   timestamp: string;
 }
 
-export declare class DataModel {
+export class DataModel {
   constructor(data?: ht.Data);
 
   /**

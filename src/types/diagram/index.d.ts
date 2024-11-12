@@ -1,18 +1,18 @@
 /**
  * declare ht types
  */
-import type { Data } from './base/data';
-import type { Node } from './base/node';
-import type { Shape } from './base/shape';
-import type { Polyline } from './base/polyline';
-import type { Block } from './base/block';
-import type { Text } from './base/text';
-import type { Grid } from './base/grid';
-import type { Points } from './base/points';
-import type { DataModel } from './data-model';
-import type { SelectionModel } from './selection';
-import type { graph } from './graph';
-import type { widget } from './widget';
+import { Data } from './base/data';
+import { Node } from './base/node';
+import { Shape } from './base/shape';
+import { Polyline } from './base/polyline';
+import { Block } from './base/block';
+import { Text } from './base/text';
+import { Grid } from './base/grid';
+import { Points } from './base/points';
+import { DataModel } from './data-model';
+import { SelectionModel } from './selection';
+import { graph } from './graph';
+import { widget } from './widget';
 
 export declare global {
   declare namespace ht {

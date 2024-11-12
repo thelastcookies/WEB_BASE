@@ -5,18 +5,18 @@ export declare type HTContextMenuConfig = (HTContextMenuConfigItem | 'separator'
 export declare interface HTContextMenuConfigItem {
   label: string;
   // 菜单 icon
-  icon: string;
+  icon?: string;
   // 可多选的菜单项
-  type: 'radio' | 'check';
+  type?: 'radio' | 'check';
   // 菜单项分组
   groupId?: number | string;
   // 禁用菜单项，可以是函数，由返回值决定是否禁用
   disabled?: boolean | ((item: any) => boolean);
   // 点击时的回调
-  action?: (item: any, event: Event) => void;
+  action?: (item?: any, event?: Event) => void;
 
   // 用于动态构建菜单
-  fordata: string;
+  fordata?: number | string;
 
   // 配置超链接
   href?: string;
