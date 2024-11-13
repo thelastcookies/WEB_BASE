@@ -82,7 +82,7 @@ const rules: Record<string, Rule[]> = {
 
 const checkFields: QueryFormField[] = [
   {
-    label: '单选',
+    label: '单选组',
     field: 'RadioName',
     component: 'Radio',
     compProps: {
@@ -102,7 +102,7 @@ const checkFields: QueryFormField[] = [
     },
   },
   {
-    label: '多选',
+    label: '多选组',
     field: 'CheckboxName',
     component: 'Checkbox',
     compProps: {
@@ -122,7 +122,7 @@ const checkFields: QueryFormField[] = [
     },
   },
   {
-    label: '多选全选',
+    label: '多选组全选',
     field: 'CheckboxAllName',
     component: 'Checkbox',
     labelCol: { span: 4 },

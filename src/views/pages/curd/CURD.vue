@@ -367,12 +367,12 @@ const batchDelete = async (ids: string[]) => {
 
 <template>
   <div class="w-full h-full px-3 overflow-y-auto">
-    <query-form class="pt-4 pb-1 sticky top-0 z-12 bg-ant.bg-base"
+    <QueryForm class="pt-4 pb-1 sticky top-0 z-12 bg-ant.bg-base"
       ref="queryFormRef" :fields="queryFields"
       v-model:form="qForm"
       v-model:expand="qFormExpand"
       @query="handleQuery"
-      :itemInLine="4"></query-form>
+      :itemInLine="4"></QueryForm>
     <a-table :columns="tableColumns" :data-source="list"
       :pagination="pagination" :loading="loading"
       row-key="id"
