@@ -23,6 +23,9 @@ export const customImports: ImportsMap = {
     'merge',
     'zip',
     'isArray',
+    'max',
+    'min',
+    'sum',
   ],
   'mitt': [
     ['default', 'mitt'],

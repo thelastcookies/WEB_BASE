@@ -1,16 +1,15 @@
 <script setup lang="ts">
 import { message } from 'ant-design-vue';
-import type { HTContextMenuConfig } from '@/types/diagram/widget/context-menu';
-import { getNodeTags, setNodeStatusByValue } from '@/views/common/diagram/ht-extends.ts';
-import { getTrendData, type TrendTimeTag } from '@/api/base/historical';
 import { HisDataType } from '@/enums';
+import type { Dayjs } from 'dayjs';
+import type { TrendTimeTag } from '@/api/base/historical';
 
 const route = useRoute();
 const href = computed(() => (route?.meta as any)?.href);
 const name = computed(() => (route?.meta as any)?.name);
 
 const dmContainer = ref<HTMLElement>();
-const loading = ref(true);
+// const loading = ref(true);
 
 let dataModel: ht.DataModel;
 let graphView: ht.graph.GraphView;
@@ -21,7 +20,7 @@ const nodeTagArr = ref<string[]>([]);
 
 // 历史回放相关
 const timeSliderOpen = ref(false);
-const hisTimeRange = ref([dayjs().subtract(2, 'h'), dayjs()]);
+const hisTimeRange = ref<[Dayjs, Dayjs]>([dayjs().subtract(2, 'h'), dayjs()]);
 const timeSliderValue = ref(0);
 const timeSliderData = ref<TrendTimeTag[]>();
 
@@ -82,7 +81,6 @@ const load = async () => {
     const res = await fetch(preprocessHref(href.value));
     const data = await res.json();
 
-    // if (realTimeInterval) clearInterval(realTimeInterval);
     dataModel.clear();
     dataModel.deserialize(data, null, false);
 
@@ -103,13 +101,13 @@ tryOnMounted(() => {
 /**
  * setContextMenu 设置右键点击事件
  */
-function setContextMenu() {
+const setContextMenu = () => {
   let contextmenu = new ht.widget.ContextMenu([
     {
       label: '查看测点趋势',
       fordata: 1,
-      action: (item, event) => {
-        // getTrend();
+      action: () => {
+        showTrendModal();
       },
     },
     {
@@ -138,7 +136,7 @@ function setContextMenu() {
         return !timeSliderOpen.value;
       },
     },
-  ] as HTContextMenuConfig);
+  ]);
 
   contextmenu.setVisibleFunc((item) => {
     let data = graphView.sm().ld();
@@ -156,7 +154,7 @@ function setContextMenu() {
     }
   });
   contextmenu.addTo(graphView.getView());
-}
+};
 
 /**
  * getRealTimeData 获取实时数据
@@ -212,16 +210,40 @@ tryOnUnmounted(() => {
   pause();
 });
 
+/**
+ * 模态框
+ */
+const modalOpen = ref(false);
+const tagsList = ref<string[]>();
+
+const showTrendModal = () => {
+  let slModel = graphView.sm().getSelection();
+  let nodeTagArr: string[] = [];
+  if (slModel.length === 0) {
+    message.warn('请至少选择一个设备');
+    return;
+  }
+  slModel.forEach((item: ht.Node) => {
+    nodeTagArr.push(item.getTag());
+  });
+  tagsList.value = nodeTagArr;
+  modalOpen.value = true;
+};
+
 </script>
 
 <template>
   <div class="w-full h-full relative of-hidden diagram-container">
     <div ref="dmContainer"
-         class="w-full relative"
-         :class="[timeSliderOpen ? 'h-[calc(100%-68px)]' : 'h-full']"
+      class="w-full relative"
+      :class="[timeSliderOpen ? 'h-[calc(100%-68px)]' : 'h-full']"
     ></div>
     <div v-if="timeSliderOpen" class="p-2">
       <diagram-time-slider v-model:value="timeSliderValue" v-model:time-range="hisTimeRange"></diagram-time-slider>
     </div>
+    <diagram-trend-modal
+      v-model:open="modalOpen"
+      :tags="tagsList"
+    ></diagram-trend-modal>
   </div>
 </template>
