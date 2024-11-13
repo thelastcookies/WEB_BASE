@@ -1,5 +1,26 @@
 # Changelog
 
+## [0.22.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.21.0...v0.22.0) (2024-11-13)
+
+
+### Features
+
+* 增加 PageHeader 的副标题支持 ([a7e9e5d](https://github.com/thelastcookies/WEB-BASE/commit/a7e9e5d364f6e75e767482422e1836d35d9eb961))
+* 完善模板页面和模板弹窗的细节 ([1404c4d](https://github.com/thelastcookies/WEB-BASE/commit/1404c4dd730c616b777e5cd6b56bdc023ca58f55))
+* 完成单表生成页面模板的基本样式布局 ([daca528](https://github.com/thelastcookies/WEB-BASE/commit/daca52892208fa2b73bcbfcc808d780f81d5710a))
+* 完成组态图趋势弹窗功能 ([ff545e7](https://github.com/thelastcookies/WEB-BASE/commit/ff545e7b59ed8b2afd759123f44e9324d8ed1e73))
+* 完成页面对 TreeNode 类的适配 ([8018a83](https://github.com/thelastcookies/WEB-BASE/commit/8018a8373a765ce2f8f1df6c7b051d60c2528a3c))
+* 新增 IFrame.vue 接收 iframe 内消息传递的功能 ([48efc34](https://github.com/thelastcookies/WEB-BASE/commit/48efc34f86974016910ed6e8d08a2763d0b553a0))
+* 新增编辑表单 ([3145341](https://github.com/thelastcookies/WEB-BASE/commit/314534168a436136b59cbb259b31bc5b697af7e0))
+* 重构 TreeNode 类的声明和方法 ([1fee021](https://github.com/thelastcookies/WEB-BASE/commit/1fee0216f4e56bdfbfaf567607834f516d937045))
+
+
+### Bug Fixes
+
+* 修复修改密码弹窗关闭后无法再次打开的问题 ([bf8d7b3](https://github.com/thelastcookies/WEB-BASE/commit/bf8d7b3ca64e4275651925f5c2ad88d55a212fa6))
+* 修复查询字段数与每行限制字段数相同时字段显示确实的问题 ([392e85e](https://github.com/thelastcookies/WEB-BASE/commit/392e85e1e2d439d85fff2e6ef4b17b6add41999a))
+* 移除用户、角色页面表格点击选中功能 ([03891c0](https://github.com/thelastcookies/WEB-BASE/commit/03891c0d4642e96f4aabfec61bdb323ca65e300d))
+
 ## [0.21.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.20.0...v0.21.0) (2024-10-08)
 
 
