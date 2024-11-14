@@ -64,7 +64,7 @@ const iconUrl = computed(() => {
       :class="icon"
       v-bind="$attrs"
       :style="[sizeStyle]"
-      class="base-icon inline-block vertical-text-bottom"
+      class="base-icon inline-block vertical-sub"
     />
   </template>
   <template v-else-if="type === 'antdv'">
