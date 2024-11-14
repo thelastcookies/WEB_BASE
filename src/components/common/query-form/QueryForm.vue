@@ -119,7 +119,7 @@ const handleClear = () => {
             help=""
           >
             <template v-if="item.component === 'Input'">
-              <a-input v-bind="item.compProps" v-model:value="queryForm[item.field]" />
+              <a-input-search v-bind="item.compProps" v-model:value="queryForm[item.field]" />
             </template>
             <template v-else-if="item.component === 'Select'">
               <BaseSelect v-bind="item.compProps" v-model:value="queryForm[item.field]" />
