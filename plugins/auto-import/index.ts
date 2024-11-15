@@ -28,6 +28,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
     'src/views/**/*.vue',
     'src/views/**/*.ts',
     'src/components/common/echarts/*.ts',
+    '!src/views/curd/**/*.ts',
   ],
   ignoreDts: [
     'src/views/form/libs',
