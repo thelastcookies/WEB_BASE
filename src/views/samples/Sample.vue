@@ -6,6 +6,7 @@
 import QueryFormSample from '@/views/samples/query-form/QueryFormSample.vue';
 import EChartsSample from '@/views/samples/echarts/EChartsSample.vue';
 import InlineEditTableSample from '@/views/samples/inline-edit-table/InlineEditTableSample.vue';
+import UploadSample from '@/views/samples/upload/UploadSample.vue';
 </script>
 <template>
   <QueryFormSample />
@@ -13,6 +14,8 @@ import InlineEditTableSample from '@/views/samples/inline-edit-table/InlineEditT
   <EChartsSample />
   <a-divider>InlineEditTable</a-divider>
   <InlineEditTableSample></InlineEditTableSample>
+  <a-divider>Upload</a-divider>
+  <UploadSample />
 </template>
 <style scoped lang="less">
 
