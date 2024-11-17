@@ -38,11 +38,11 @@ watch([height, qFormExpand], () => {
   tableResize();
 });
 const scroll = ref({
-  y: height.value - 300 - (queryFormRef.value?.$el.offsetHeight ?? 0),
+  y: height.value - 310 - (queryFormRef.value?.$el.offsetHeight ?? 0),
 });
 const tableResize = useDebounceFn(() => {
   nextTick(() => {
-    scroll.value.y = height.value - 300 - (queryFormRef.value?.$el.offsetHeight ?? 0);
+    scroll.value.y = height.value - 310 - (queryFormRef.value?.$el.offsetHeight ?? 0);
   });
 }, 200);
 
@@ -117,14 +117,15 @@ const batchDelete = async (ids: string[]) => {
 </script>
 
 <template>
-  <div class="w-full h-full px-3 overflow-y-auto">
-    <QueryForm class="pt-4 pb-1 sticky top-0 z-12 bg-ant.bg-base"
+  <div class="w-full h-full p-3 overflow-y-auto">
+    <QueryForm class="py-2"
       ref="queryFormRef" :fields="queryFields"
       v-model:form="qForm"
       v-model:expand="qFormExpand"
       @query="handleQuery"
       :itemInLine="4"></QueryForm>
-    <a-table :columns="tableColumns" :data-source="list"
+    <a-table id="table"
+      :columns="tableColumns" :data-source="list"
       :pagination="pagination" :loading="loading"
       row-key="id"
       :row-selection="{
@@ -151,6 +152,7 @@ const batchDelete = async (ids: string[]) => {
               删除
             </a-button>
           </a-popconfirm>
+          <BaseExport export-name="列表CURD" dom-id="table"></BaseExport>
         </div>
       </template>
       <template #bodyCell="{ column, index, record }">

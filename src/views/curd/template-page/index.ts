@@ -4,10 +4,19 @@ import type { DataRecord } from '@/views/curd/template-page/types';
 
 export const queryFields: QueryFormField[] = [
   {
+    label: '文本',
+    field: 'inputName',
+    component: 'Input',
+    compProps: {
+      placeholder: '请输入',
+    },
+  },
+  {
     label: '下拉框',
     field: 'selectName',
     component: 'Select',
     compProps: {
+      placeholder: '请选择',
       options: [{
         label: '选项A',
         value: 'valueA',
@@ -24,62 +33,12 @@ export const queryFields: QueryFormField[] = [
     },
   },
   {
-    label: '下拉框',
-    field: 'selectName',
-    component: 'Select',
+    label: '起止时间',
+    field: 'RangePickerName',
+    component: 'RangePicker',
     compProps: {
-      options: [{
-        label: '选项A',
-        value: 'valueA',
-      }, {
-        label: '选项B',
-        value: 'valueB',
-      }, {
-        label: '选项C',
-        value: 'valueC',
-      }, {
-        label: '选项D',
-        value: 'valueD',
-      }],
-    },
-  },
-  {
-    label: '下拉框',
-    field: 'selectName',
-    component: 'Select',
-    compProps: {
-      options: [{
-        label: '选项A',
-        value: 'valueA',
-      }, {
-        label: '选项B',
-        value: 'valueB',
-      }, {
-        label: '选项C',
-        value: 'valueC',
-      }, {
-        label: '选项D',
-        value: 'valueD',
-      }],
-    },
-  }, {
-    label: '下拉框',
-    field: 'selectName',
-    component: 'Select',
-    compProps: {
-      options: [{
-        label: '选项A',
-        value: 'valueA',
-      }, {
-        label: '选项B',
-        value: 'valueB',
-      }, {
-        label: '选项C',
-        value: 'valueC',
-      }, {
-        label: '选项D',
-        value: 'valueD',
-      }],
+      placeholder: ['请选择开始时间', '请选择结束时间'],
+      valueFormat: 'YYYY-MM-DD',
     },
   },
   {
@@ -103,16 +62,7 @@ export const queryFields: QueryFormField[] = [
       }],
     },
   },
-  {
-    field: 'time',
-    component: 'RangePicker',
-    labelCol: { span: 4 },
-    wrapperCol: { span: 24 },
-    compProps: {
-      placeholder: ['请选择开始时间', '请选择结束时间'],
-      showTime: { defaultValue: dayjs('00:00:00', 'HH:mm:ss') },
-    },
-  },
+
 ];
 
 export const tableColumns: TableColumnProps[] = [
