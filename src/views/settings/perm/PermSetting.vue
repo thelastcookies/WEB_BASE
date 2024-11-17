@@ -113,6 +113,7 @@ const handleSubmit = async () => {
         <a-table
           row-key="Id"
           :columns="roleTableCols" :data-source="roleList"
+          :pagination="false"
           :row-selection="{
             type: 'radio',
             selectedRowKeys: selectedRowKeys,

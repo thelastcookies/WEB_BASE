@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Key, Recordable } from '@/types';
-import { message } from 'ant-design-vue';
+import { message, type TablePaginationConfig } from 'ant-design-vue';
 import type { UserRecord } from '@/api/admin/user/types';
 
 /**
@@ -9,6 +9,19 @@ import type { UserRecord } from '@/api/admin/user/types';
 const selectedRowKeys = ref<Key[]>([]);
 const list = ref([] as UserRecord[]);
 const loading = ref(false);
+
+const pagination = ref({
+  total: 0,
+  current: 1,
+  pageSize: 20,
+  showSizeChanger: true,
+});
+
+const handleTableChange = (p: TablePaginationConfig) => {
+  pagination.value.current = p.current ?? 1;
+  pagination.value.pageSize = p.pageSize ?? 20;
+  fetch();
+};
 
 /**
  * 模态框
@@ -92,21 +105,21 @@ const batchDelete = async (ids: string[]) => {
     </div>
     <div class="h-[calc(100%-60px)]">
       <a-table
-        row-key="Id"
+        id="user-table" row-key="Id" :loading="loading"
         :columns="userTableColumns" :data-source="list"
+        :pagination="pagination"
+        @change="handleTableChange"
         :row-selection="{
           type: 'checkbox',
           selectedRowKeys: selectedRowKeys,
           onChange: onSelectionChange,
           columnWidth: 50
-        }"
-        :loading="loading"
-      >
+        }">
         <template #title>
           <div class="flex">
             <div>用户列表</div>
             <a-button ml-auto type="primary"
-                      @click="handleEdit(EditEnum.ADD)">
+              @click="handleEdit(EditEnum.ADD)">
               <BaseIcon icon="i-mdi-plus" />
               新增
             </a-button>
@@ -123,10 +136,7 @@ const batchDelete = async (ids: string[]) => {
               <BaseIcon icon="i-mdi-login" />
               导入
             </a-button>
-            <a-button ml-2>
-              <BaseIcon icon="i-mdi-logout" />
-              导出
-            </a-button>
+            <BaseExport export-name="用户表" dom-id="user-table" />
           </div>
         </template>
         <template #bodyCell="{ column, record }">
