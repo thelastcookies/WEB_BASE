@@ -1,12 +1,15 @@
 import { notification } from 'ant-design-vue';
 
+/**
+ * 浏览器版本号对齐至 2022.09
+ */
 export const useEnvironmentCheck = () => {
   const { userAgent } = useAppStore();
   const browser = userAgent.getBrowser();
   if (
-    (browser.name === 'Chrome' && Number(browser.version?.split('.')[0]) < 90)
-    || (browser.name === 'Microsoft Edge' && Number(browser.version?.split('.')[0]) < 90)
-    || (browser.name === 'Safari' && Number(browser.version?.split('.')[0]) < 14)
+    (browser.name === 'Chrome' && Number(browser.version?.split('.')[0]) < 103)
+    || (browser.name === 'Microsoft Edge' && Number(browser.version?.split('.')[0]) < 103)
+    || (browser.name === 'Safari' && Number(browser.version?.split('.')[0]) < 16)
   ) {
     notification.warning({
       message: '浏览器版本过低',
