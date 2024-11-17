@@ -199,5 +199,6 @@
   --colorInfoTextActive: #0958D9;
 
   /* 扩展 */
-  --tableStripedBg: #FCFCFC;
+  --tableTrBg: #FFFFFF;
+  --tableTrStripedBg: #F8F8F8;
 }

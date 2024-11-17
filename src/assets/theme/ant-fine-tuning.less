@@ -15,8 +15,14 @@
 
 // Table 组件斑马纹
 .ant-table .ant-table-tbody tr {
-  &:nth-child(2n) {
-    background-color: var(--tableStripedBg);
+  background-color: var(--tableTrBg);
+
+  &:nth-child(odd of .ant-table-row) {
+    background-color: var(--tableTrBg);
+  }
+
+  &:nth-child(even of .ant-table-row) {
+    background-color: var(--tableTrStripedBg);
   }
 }
 
