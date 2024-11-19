@@ -12,7 +12,7 @@
 </script>
 
 <template>
-  <a-table v-bind="$attrs" ref="table">
+  <a-table v-bind="$attrs">
     <template
       v-for="(_, name) in $slots" :key="name"
       v-slot:[name]="slotProps"

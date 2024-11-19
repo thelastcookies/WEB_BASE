@@ -37,7 +37,7 @@ const qForm = ref<Recordable<any>>({});
 const fetch = async () => {
   loading.value = true;
   const res = await getUserList({ Search: qForm.value });
-  if (res.Data) list.value = res.Data;
+  if (res.Data) list.value = [...res.Data, ...res.Data, ...res.Data, ...res.Data, ...res.Data, ...res.Data];
   loading.value = false;
 };
 
@@ -103,56 +103,54 @@ const batchDelete = async (ids: string[]) => {
         @query="onQuery"
       />
     </div>
-    <div class="h-[calc(100%-60px)]">
-      <a-table
-        id="user-table" row-key="Id" :loading="loading"
-        :columns="userTableColumns" :data-source="list"
-        :pagination="pagination"
-        @change="handleTableChange"
-        :row-selection="{
+    <FixedTable class="h-[calc(100%-60px)]"
+      id="user-table" row-key="Id" :loading="loading"
+      :columns="userTableColumns" :data-source="list"
+      :pagination="pagination"
+      @change="handleTableChange"
+      :row-selection="{
           type: 'checkbox',
           selectedRowKeys: selectedRowKeys,
           onChange: onSelectionChange,
           columnWidth: 50
         }">
-        <template #title>
-          <div class="flex">
-            <div>用户列表</div>
-            <a-button ml-auto type="primary"
-              @click="handleEdit(EditEnum.ADD)">
-              <BaseIcon icon="i-mdi-plus" />
-              新增
+      <template #title>
+        <div class="flex">
+          <div>用户列表</div>
+          <a-button ml-auto type="primary"
+            @click="handleEdit(EditEnum.ADD)">
+            <BaseIcon icon="i-mdi-plus" />
+            新增
+          </a-button>
+          <a-popconfirm
+            title="是否确认删除?"
+            @confirm="handleBatchDelete"
+          >
+            <a-button ml-2 danger>
+              <BaseIcon icon="i-mdi-trash-can-outline" />
+              删除
             </a-button>
-            <a-popconfirm
-              title="是否确认删除?"
-              @confirm="handleBatchDelete"
-            >
-              <a-button ml-2 danger>
-                <BaseIcon icon="i-mdi-trash-can-outline" />
-                删除
-              </a-button>
-            </a-popconfirm>
-            <a-button ml-2>
-              <BaseIcon icon="i-mdi-login" />
-              导入
-            </a-button>
-            <BaseExport export-name="用户表" dom-id="user-table" />
-          </div>
+          </a-popconfirm>
+          <a-button ml-2>
+            <BaseIcon icon="i-mdi-login" />
+            导入
+          </a-button>
+          <BaseExport export-name="用户表" dom-id="user-table" />
+        </div>
+      </template>
+      <template #bodyCell="{ column, record }">
+        <template v-if="column.dataIndex === 'operation'">
+          <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as UserRecord)">编辑</a-button>
+          <a-divider type="vertical" />
+          <a-popconfirm
+            title="是否确定删除？"
+            @confirm="handleDelete(record.Id)"
+          >
+            <a-button btn-in-table danger type="link">删除</a-button>
+          </a-popconfirm>
         </template>
-        <template #bodyCell="{ column, record }">
-          <template v-if="column.dataIndex === 'operation'">
-            <a-button btn-in-table type="link" @click="handleEdit(EditEnum.EDIT, record as UserRecord)">编辑</a-button>
-            <a-divider type="vertical" />
-            <a-popconfirm
-              title="是否确定删除？"
-              @confirm="handleDelete(record.Id)"
-            >
-              <a-button btn-in-table danger type="link">删除</a-button>
-            </a-popconfirm>
-          </template>
-        </template>
-      </a-table>
-    </div>
+      </template>
+    </FixedTable>
     <UserModal
       v-model:open="modalOpen"
       :type="modalType"

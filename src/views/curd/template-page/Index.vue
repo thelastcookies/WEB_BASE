@@ -33,29 +33,6 @@ const onSelectionChange = (keys: Key[]) => {
   selectedRowKeys.value = keys;
 };
 
-const { height } = useWindowSize();
-watch([height, qFormExpand], () => {
-  tableResize();
-});
-const scroll = ref({
-  y: height.value - 310 - (queryFormRef.value?.$el.offsetHeight ?? 0),
-});
-const tableResize = useDebounceFn(() => {
-  nextTick(() => {
-    scroll.value.y = height.value - 310 - (queryFormRef.value?.$el.offsetHeight ?? 0);
-  });
-}, 200);
-
-onMounted(() => {
-  tableResize();
-});
-
-const pagination = ref({
-  total: 0,
-  current: 1,
-  pageSize: 20,
-});
-
 const fetch = async () => {
   loading.value = true;
   const Data = mockData;
@@ -65,6 +42,13 @@ const fetch = async () => {
   }
   loading.value = false;
 };
+
+const pagination = ref({
+  total: 0,
+  current: 1,
+  pageSize: 20,
+  showSizeChanger: true,
+});
 
 const handleTableChange = (p: TablePaginationConfig) => {
   pagination.value.current = p.current ?? 1;
@@ -124,18 +108,17 @@ const batchDelete = async (ids: string[]) => {
       v-model:expand="qFormExpand"
       @query="handleQuery"
       :itemInLine="4"></QueryForm>
-    <a-table id="table"
+    <FixedTable class="h-[calc(100%-60px)]"
+      id="table" row-key="id" :loading="loading"
       :columns="tableColumns" :data-source="list"
-      :pagination="pagination" :loading="loading"
-      row-key="id"
+      :pagination="pagination"
+      @change="handleTableChange"
       :row-selection="{
         type: 'checkbox',
         selectedRowKeys: selectedRowKeys,
         onChange: onSelectionChange,
         columnWidth: 50
-      }"
-      :scroll="scroll"
-      @change="handleTableChange">
+      }">
       <template #title>
         <div class="flex">
           <div>列表CURD</div>
@@ -171,7 +154,7 @@ const batchDelete = async (ids: string[]) => {
           {{ (pagination.current - 1) * pagination.pageSize + index + 1 }}
         </template>
       </template>
-    </a-table>
+    </FixedTable>
     <EditModal
       v-model:open="modalOpen"
       :type="modalType"
