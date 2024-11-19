@@ -79,5 +79,15 @@
 
   /* 扩展 */
   --marginSize: 12px;
+
+  --zIndexLevel1: 100;
+  --zIndexLevel2: 200;
+  --zIndexLevel3: 300;
+  --zIndexLevel4: 400;
+  --zIndexLevel5: 500;
+  --zIndexLevel6: 600;
+  --zIndexLevel7: 700;
+  --zIndexLevel8: 800;
+  --zIndexLevel9: 900;
 }
 
