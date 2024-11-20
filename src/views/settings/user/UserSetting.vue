@@ -37,7 +37,7 @@ const qForm = ref<Recordable<any>>({});
 const fetch = async () => {
   loading.value = true;
   const res = await getUserList({ Search: qForm.value });
-  if (res.Data) list.value = [...res.Data, ...res.Data, ...res.Data, ...res.Data, ...res.Data, ...res.Data];
+  if (res.Data) list.value = res.Data;
   loading.value = false;
 };
 
