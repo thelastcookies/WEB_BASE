@@ -17,18 +17,12 @@ const operationColumnClassList = [
 
 const props = withDefaults(defineProps<{
   domId: string;
-  option?: {
-    name?: string;
-    excludeOperation?: boolean;
-  };
+  exportName?: string;
+  excludeOperation?: boolean;
 }>(), {
   domId: 'table',
-  option: () => {
-    return {
-      name: '导出',
-      excludeOperation: true,
-    };
-  },
+  exportName: '导出',
+  excludeOperation: true,
 });
 
 const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
@@ -36,7 +30,7 @@ const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
   const wrapper = dom.closest('.ant-table-wrapper')!;
   const copy = wrapper.cloneNode(true) as HTMLTableElement;
   let removeClassList = [...selectionColumnClassList];
-  if (props.option.excludeOperation) {
+  if (props.excludeOperation) {
     removeClassList = [...removeClassList, ...operationColumnClassList];
   }
   // 移除不进行导出的列
@@ -45,13 +39,13 @@ const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
     col[i].remove();
   }
   if (key === 'Excel') {
-    exportTableAsXlsx(copy, props.option.name);
+    exportTableAsXlsx(copy, props.exportName);
   } else if (key === 'Word') {
-    exportTableAsDocx(copy, props.option.name);
+    exportTableAsDocx(copy, props.exportName);
   } else if (key === 'PDF') {
     const app = document.getElementById('app')!;
     app.appendChild(copy);
-    await exportTableAsPdf(copy, props.option.name);
+    await exportTableAsPdf(copy, props.exportName);
     app.removeChild(copy);
   }
 };
@@ -85,5 +79,3 @@ const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
     </div>
   </a-dropdown>
 </template>
-
-
