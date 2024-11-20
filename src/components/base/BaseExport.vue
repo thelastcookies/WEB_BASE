@@ -2,21 +2,57 @@
 
 import type { MenuProps } from 'ant-design-vue';
 
+// 选择器列
+const selectionColumnClassList = [
+  '.ant-table-selection-col',
+  '.ant-table-selection-column',
+];
+// 操作列
+const operationColumnClassList = [
+  'colgroup col:last-child',
+  'tr th:last-child',
+  'tr td:last-child',
+];
+
+
 const props = withDefaults(defineProps<{
-  domId?: string;
-  exportName?: string;
+  domId: string;
+  option?: {
+    name?: string;
+    excludeOperation?: boolean;
+  };
 }>(), {
   domId: 'table',
-  exportName: '导出',
+  option: () => {
+    return {
+      name: '导出',
+      excludeOperation: true,
+    };
+  },
 });
 
-const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
+const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
+  let dom = document.getElementById(props.domId)!;
+  const wrapper = dom.closest('.ant-table-wrapper')!;
+  const copy = wrapper.cloneNode(true) as HTMLTableElement;
+  let removeClassList = [...selectionColumnClassList];
+  if (props.option.excludeOperation) {
+    removeClassList = [...removeClassList, ...operationColumnClassList];
+  }
+  // 移除不进行导出的列
+  const col = copy.querySelectorAll(removeClassList.join(','));
+  for (let i = 0, len = col.length; i < len; i++) {
+    col[i].remove();
+  }
   if (key === 'Excel') {
-    exportTableAsXlsx(props.domId, props.exportName);
+    exportTableAsXlsx(copy, props.option.name);
   } else if (key === 'Word') {
-    exportTableAsDocx(props.domId, props.exportName);
+    exportTableAsDocx(copy, props.option.name);
   } else if (key === 'PDF') {
-    exportTableAsPdf(props.domId, props.exportName);
+    const app = document.getElementById('app')!;
+    app.appendChild(copy);
+    await exportTableAsPdf(copy, props.option.name);
+    app.removeChild(copy);
   }
 };
 </script>
@@ -44,7 +80,9 @@ const handleMenuClick: MenuProps['onClick'] = ({ key }) => {
       导出
       <BaseIcon icon="i-mdi-chevron-down" />
     </a-button>
-
+    <div id="copy-container">
+      fsdafasd
+    </div>
   </a-dropdown>
 </template>
 

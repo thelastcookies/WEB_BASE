@@ -31,15 +31,15 @@ export const exportJsonAsXlsx = (
 
 /**
  * exportDomAsXlsx: 以 TABLE DOM 为数据源导出为 Excel
- * @param domId 所要导出 DOM 的 id
+ * @param dom 所要导出的 DOM
  * @param fileName 导出的 Excel 文件名，默认为 "导出"
  */
 export const exportTableAsXlsx = (
-  domId: string,
+  dom: HTMLTableElement,
   fileName = '导出',
 ) => {
   try {
-    const dom = document.getElementById(domId)!;
+    // const dom = document.getElementById(domId)!;
     let ws: WorkSheet;
     if (dom.tagName === 'TABLE') {
       // 如果 domId 指向的 DOM 本身即为 Table，则导出此 Table
@@ -118,15 +118,15 @@ const domToTableObject = (dom: HTMLTableElement) => {
 /**
  * exportTableAsDocx: 以 TABLE DOM 为数据源导出为 Docx
  * 针对 Element Plus Table 组件优化
- * @param domId 所要导出 DOM 的 id
+ * @param dom 所要导出的 DOM
  * @param fileName 导出的 Excel 文件名，默认为 "导出"
  */
 export const exportTableAsDocx = (
-  domId: string,
+  dom: HTMLTableElement,
   fileName = '导出',
 ) => {
   try {
-    const dom = document.getElementById(domId)!;
+    // const dom = document.getElementById(domId)!;
     let table;
     let sections = [];
     if (dom.tagName === 'TABLE') {
@@ -175,21 +175,19 @@ export const exportTableAsDocx = (
 
 /**
  * exportDocxWithTemplate: 以 .docx 为模板导出
- * 待完善
  * npm install --save docxtemplater pizzip
  */
-export const exportDocxWithTemplate = () => {
-
-};
+// export const exportDocxWithTemplate = () => {
+//
+// };
 
 /**
  * pdfOverview: 浏览器端的 PDF Reader
- * 待完善
  * mozilla/pdf.js
  */
-export const pdfOverview = () => {
-
-};
+// export const pdfOverview = () => {
+//
+// };
 
 interface jsPDFExdOptions extends jsPDFOptions {
   A4Padding?: number;
@@ -252,40 +250,45 @@ class jsPDFExd extends jsPDF {
 
 /**
  * exportAsPdf: 以 TABLE DOM 为数据源导出为 PDF
- * @param domId 所要导出 DOM 的 id
+ * @param dom 所要导出的 DOM
  * @param fileName 导出的 Excel 文件名，默认为 "导出"
  */
 export const exportTableAsPdf = async (
-  domId: string,
+  dom: HTMLTableElement,
   fileName = '导出',
 ) => {
-  try {
-    let dom = document.getElementById(domId)!;
-    if (!dom) {
-      console.error(`export.exportAsPdf: Invalid DOM #${domId}`);
-    }
-    let PDF = new jsPDFExd({
-      orientation: 'p',
-      unit: 'pt',
-      format: 'a4',
-    });
-    if (dom.tagName === 'TABLE') {
-      // 如果 domId 指向的 DOM 本身即为 Table，则导出此 Table
-      let canvas = await html2canvas(dom as HTMLElement);
-      PDF.addCanvasToPage(canvas);
-    } else {
-      // 如果 domId 指向 Table 的容器，则在其中寻找 Table
-      let domList = dom.getElementsByTagName('TABLE');
-      for (let i = 0, len = domList.length; i < len; i++) {
-        let canvas = await html2canvas(domList[i] as HTMLElement);
-        PDF.addCanvasToPage(canvas);
+  return new Promise<void>(async (resolve, reject) => {
+    try {
+      // let dom = document.getElementById(domId)!;
+      if (!dom) {
+        // console.error(`export.exportAsPdf: Invalid DOM #${domId}`);
       }
+      let PDF = new jsPDFExd({
+        orientation: 'p',
+        unit: 'pt',
+        format: 'a4',
+      });
+      if (dom.tagName === 'TABLE') {
+        // 如果 domId 指向的 DOM 本身即为 Table，则导出此 Table
+        let canvas = await html2canvas(dom as HTMLElement);
+        PDF.addCanvasToPage(canvas);
+      } else {
+        // 如果 domId 指向 Table 的容器，则在其中寻找 Table
+        let domList = dom.getElementsByTagName('TABLE');
+        for (let i = 0, len = domList.length; i < len; i++) {
+          let canvas = await html2canvas(domList[i] as HTMLElement);
+          PDF.addCanvasToPage(canvas);
+        }
+      }
+      PDF.save(fileName + '.pdf');
+      resolve();
+    } catch (e) {
+      message.error('导出失败');
+      console.error(e);
+      reject();
     }
-    PDF.save(fileName + '.pdf');
-  } catch (e) {
-    message.error('导出失败');
-    console.error(e);
-  }
+  });
+
 };
 
 
