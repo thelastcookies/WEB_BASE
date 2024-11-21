@@ -1,5 +1,27 @@
 # Changelog
 
+## [0.23.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.22.0...v0.23.0) (2024-11-21)
+
+
+### Features
+
+* 完善 CURD 示例页面 ([69263ef](https://github.com/thelastcookies/WEB-BASE/commit/69263ef4edba88c48482f8bc8412eec808a2ddd8))
+* 完善用户、权限页面配置 ([668c084](https://github.com/thelastcookies/WEB-BASE/commit/668c084fac03cf9d6d0b86370ff9f6de3931139d))
+* 完善表格导出功能 ([7bed984](https://github.com/thelastcookies/WEB-BASE/commit/7bed984f8c30cdcd31515198c010fb0eb6175292))
+* 将 CURD、用户管理页面中表格改为 FixedTable ([8ffcdbe](https://github.com/thelastcookies/WEB-BASE/commit/8ffcdbe498fd8dd39a3acb7f41142fb185e07685))
+* 新增 FixedTable，为 Antdv Table 的固定高度支持版本 ([672179a](https://github.com/thelastcookies/WEB-BASE/commit/672179a2b218504fb604c8594dc28c03f963a0ca))
+* 新增 QueryForm Input 类型的搜索图标 ([820f9ad](https://github.com/thelastcookies/WEB-BASE/commit/820f9ada4fca085144f97970a17b23c986fedef1))
+* 新增文件上传功能与示例 ([a4e50de](https://github.com/thelastcookies/WEB-BASE/commit/a4e50def1d7aad6d416917a7ff5c5ed74b343cd7))
+* 新增表格导出功能 ([8acfb69](https://github.com/thelastcookies/WEB-BASE/commit/8acfb69e936c69df1acad3c76dc4c902aaaaafd9))
+* 更新 CURD 示例页面，新增导出功能 ([fda167d](https://github.com/thelastcookies/WEB-BASE/commit/fda167d70944798a18ef7667cc3d0515a7c06113))
+* 路由守卫功能迭代，完善 Axios 错误处理与 500 页面功能 ([5ccb472](https://github.com/thelastcookies/WEB-BASE/commit/5ccb4728ad19c06cb3cd2953f62c2ca47792e2ff))
+
+
+### Bug Fixes
+
+* 修改导出组件入参，修复入参没有正确被接收的问题 ([c5b6cf7](https://github.com/thelastcookies/WEB-BASE/commit/c5b6cf7edf93295a082e6d63eba2582f6780f876))
+* 修改用户管理页面数据问题 ([7c3a63d](https://github.com/thelastcookies/WEB-BASE/commit/7c3a63d8ad8109728c377f413606b732a2733f94))
+
 ## [0.22.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.21.0...v0.22.0) (2024-11-13)
 
 
