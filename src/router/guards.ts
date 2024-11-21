@@ -1,4 +1,3 @@
-import { AxiosError } from 'axios';
 import { message } from 'ant-design-vue';
 
 const loginPath = '/login';
@@ -7,8 +6,6 @@ const accessWhileList = [loginPath, '/error', '/401', '/403', '/404', '/500'];
 
 router.beforeEach(async (to) => {
   setRouteEmitter(to);
-
-  // TODO 禁用登录时登录页的拦截
   // 获取 token 进行校验
   const { getToken } = useTokenStore();
   const token = getToken();
@@ -17,9 +14,16 @@ router.beforeEach(async (to) => {
     // Sample 页面特殊处理
     return;
   } else if (accessWhileList.includes(to.path)) {
-    // 如果目标路径在白名单内，则不干涉
+    // 如果目标路径在白名单内
+    if (to.path === loginPath && (!loginEnable || token)) {
+      // 如果是登录页则检查登录配置与登录状态
+      return ({
+        path: '/',
+      });
+    }
+    // 其他页面不干涉
     return;
-  } else if (!token && loginEnable) {
+  } else if (loginEnable && !token) {
     // 如果需要登录但未登录，则跳转到登录页
     return ({
       path: loginPath,
@@ -29,7 +33,7 @@ router.beforeEach(async (to) => {
     // 检查用户信息
     const userStore = useUserStore();
     if (!Object.keys(userStore.userInfo).length) {
-      // 如果用户信息不存在则视作系统未初始化
+      // 如果用户信息不存在则尝试获取
       message.loading({
         content: '系统加载中，请稍候',
         key: SYS_LOADING_KEY,
@@ -47,52 +51,16 @@ router.beforeEach(async (to) => {
           key: SYS_LOADING_KEY,
         });
         return ({
-          // path: "/",
           path: to.path,
           query: to.query,
           replace: true,
         });
       } catch (e) {
-        console.error(e);
-        if (e instanceof AxiosError) {
-          if (e.code === 'ECONNABORTED') {
-            message.error({
-              content: '请求超时',
-              key: SYS_LOADING_KEY,
-            });
-          } else if (e.code === 'ERR_NETWORK') {
-            message.error({
-              content: '网络连接失败',
-              key: SYS_LOADING_KEY,
-            });
-            return ({
-              path: '/500',
-            });
-          } else if (e?.response?.status === 401) {
-            message.destroy(SYS_LOADING_KEY);
-            // 跳转到error页面
-            return ({
-              // TODO: 401 页面
-              path: '/401',
-            });
-          } else {
-            message.destroy(SYS_LOADING_KEY);
-          }
-        } else if ((e as Error).message === WITH_UNAUTHORIZED) {
-          const { signOut } = useAppStore();
-          signOut().then(() => {
-            message.error({
-              content: '会话已过期，请重新登录',
-              key: SYS_LOADING_KEY,
-              duration: 5,
-            });
-          });
-        } else {
-          message.error({
-            content: '加载失败',
-            key: SYS_LOADING_KEY,
-          });
-        }
+        message.destroy(SYS_LOADING_KEY);
+        return ({
+          path: '/500',
+          query: { redirect: encodeURIComponent(to.fullPath) },
+        });
       }
     } else if (to.query.redirect) {
       // 如果有重定向页面
@@ -100,11 +68,10 @@ router.beforeEach(async (to) => {
         path: decodeURIComponent(to.query.redirect as string),
         replace: true,
       });
-    } else if (to.path === loginPath) {
-      // 已登录情况下访问登录页时跳转到首页
-      return ({
-        path: '/',
-      });
+    } else {
+      // 预留页面级权限检查
+      // 由于目前后端框架特性，暂不需要开发
+      return;
     }
   }
 });

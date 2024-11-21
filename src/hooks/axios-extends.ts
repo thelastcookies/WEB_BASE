@@ -4,6 +4,7 @@
 import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import type { NamingStyleTransfer } from '@/enums/naming-style.ts';
+import { message } from 'ant-design-vue';
 
 export interface RequestConfigExtra {
   // 请求时是否携带 token
@@ -13,8 +14,6 @@ export interface RequestConfigExtra {
   loading?: boolean;
   namingStyleTransfer?: NamingStyleTransfer;
 }
-
-// const axiosLoading = new AxiosLoading();
 
 const requestHandler = async (
   config: InternalAxiosRequestConfig & RequestConfigExtra,
@@ -41,9 +40,6 @@ const requestHandler = async (
 };
 
 const responseHandler = (response: any): AxiosResponse<any> | Promise<any> | any => {
-  /******************************************
-   * 预留 NamingStyleTransfer 的处理
-   */
   return response.data;
 };
 
@@ -51,45 +47,74 @@ const responseHandler = (response: any): AxiosResponse<any> | Promise<any> | any
  * 全局的 axios 请求错误处理
  * @param error
  */
-const errorHandler = (error: AxiosError): Promise<any> => {
-  // const [notificationApi] = notification.useNotification();
-
-  if (error.response) {
-    // const {data, status, statusText} = error.response as AxiosResponse<ResponseBody>;
-    // if (status === 401) {
-    //     notificationApi?.error({
-    //         message: '401',
-    //         description: data?.msg || statusText,
-    //         duration: 3,
-    //     });
-    //     token.value = "";
-    //     router.push({
-    //         path: '/login',
-    //         query: {
-    //             redirect: router.currentRoute.value.fullPath,
-    //         },
-    //     }).then(() => {
-    //     });
-    // } else if (status === 403) {
-    //     notificationApi?.error({
-    //         message: '403',
-    //         description: data?.msg || statusText,
-    //         duration: 3,
-    //     });
-    // } else if (status === 500) {
-    //     notificationApi?.error({
-    //         message: '500',
-    //         description: data?.msg || statusText,
-    //         duration: 3,
-    //     });
-    // } else {
-    //     notificationApi?.error({
-    //         message: '服务错误',
-    //         description: data?.msg || statusText,
-    //         duration: 3,
-    //     });
-    // }
+const errorHandler = async (error: AxiosError): Promise<AxiosError> => {
+  console.error(error);
+  if (error.message === WITH_UNAUTHORIZED) {
+    const { signOut } = useAppStore();
+    await signOut();
+    message.error({
+      content: '会话已过期，请重新登录',
+      key: SYS_LOADING_KEY,
+      duration: 7,
+    });
+  } else if (error.code === 'ERR_NETWORK') {
+    message.error({
+      content: '网络连接失败',
+      key: AXIOS_ERROR_KEY,
+    });
+  } else if (error.code === 'ERR_CONNECTION_ABORTED') {
+    message.error({
+      content: '网络连接中断',
+      key: AXIOS_ERROR_KEY,
+    });
+  } else if (error.code === 'ERR_TIMEOUT') {
+    message.error({
+      content: '请求超时',
+      key: AXIOS_ERROR_KEY,
+    });
+  } else if (error.code === 'ERR_CONNECTION_REFUSED') {
+    message.error({
+      content: '服务器拒绝连接',
+      key: AXIOS_ERROR_KEY,
+    });
   }
+
+  // if (error.response) {
+  //   const { data, status, statusText } = error.response as AxiosResponse<any>;
+  //   if (status === 401) {
+  //     message?.error({
+  //       message: '401',
+  //       content: data?.msg || statusText,
+  //       key: AXIOS_ERROR_KEY,
+  //     });
+  //     token.value = '';
+  //     router.push({
+  //       path: '/login',
+  //       query: {
+  //         redirect: router.currentRoute.value.fullPath,
+  //       },
+  //     }).then(() => {
+  //     });
+  //   } else if (status === 403) {
+  //     message?.error({
+  //       message: '403',
+  //       content: data?.msg || statusText,
+  //       key: AXIOS_ERROR_KEY,
+  //     });
+  //   } else if (status === 500) {
+  //     message?.error({
+  //       message: '500',
+  //       content: data?.msg || statusText,
+  //       key: AXIOS_ERROR_KEY,
+  //     });
+  //   } else {
+  //     message?.error({
+  //       message: '服务错误',
+  //       content: data?.msg || statusText,
+  //       key: AXIOS_ERROR_KEY,
+  //     });
+  //   }
+  // }
   return Promise.reject(error);
 };
 
