@@ -3,7 +3,6 @@ import type { UserRecord } from '@/api/admin/user/types';
 export interface LoginRequestBody {
   userName: string;
   password: string;
-  remember: boolean;
 }
 
 export interface ChangePwdRequestBody {
