@@ -190,7 +190,7 @@ const handleSignIn = () => {
         <a-input-password
           id="password"
           class="login-input transparent z-1"
-          autocomplete="password"
+          autocomplete="current-password"
           v-model:value="loginForm.password"
           @focus="handleInputFocus"
           @blur="handleInputBlur"
@@ -219,13 +219,31 @@ const handleSignIn = () => {
     background-color: transparent;
   }
 
-  .ant-input-password {
+  :deep(.ant-input-password) {
     padding: 0 1rem 0;
 
-    :deep(.ant-input) {
+    .ant-input {
       padding: 1rem 0 1rem;
       background-color: transparent;
     }
+
+    .ant-input-suffix {
+      margin-left: 0;
+      padding-left: 4px;
+    }
+
+    input:-webkit-autofill + span.ant-input-suffix {
+      background-color: var(--colorWebkitAutofillBg);
+    }
+  }
+
+  // :has 伪类比较激进，浏览器支持有限
+  .ant-input-password:has(input:-webkit-autofill) {
+    background: linear-gradient(90deg,
+    var(--colorWebkitAutofillBg) 16px,
+    transparent calc(16px),
+    transparent calc(100% - 16px),
+    var(--colorWebkitAutofillBg) calc(100% - 16px));
   }
 
   .ant-input[disabled] {

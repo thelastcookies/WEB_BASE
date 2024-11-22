@@ -6,9 +6,10 @@ import { notification } from 'ant-design-vue';
 export const useEnvironmentCheck = () => {
   const { userAgent } = useAppStore();
   const browser = userAgent.getBrowser();
+  // 版本检查以及
   if (
-    (browser.name === 'Chrome' && Number(browser.version?.split('.')[0]) < 103)
-    || (browser.name === 'Microsoft Edge' && Number(browser.version?.split('.')[0]) < 103)
+    (browser.name === 'Chrome' && Number(browser.version?.split('.')[0]) < 105)
+    || (browser.name === 'Microsoft Edge' && Number(browser.version?.split('.')[0]) < 105)
     || (browser.name === 'Safari' && Number(browser.version?.split('.')[0]) < 16)
   ) {
     notification.warning({
@@ -17,6 +18,11 @@ export const useEnvironmentCheck = () => {
     为了获得最佳体验，请将浏览器升级到推荐版本以上。感谢您的理解与支持。`,
       duration: 10,
     });
+  }
+
+  // 增加针对 Safari 浏览器添加特殊样式的抓手
+  if (browser.name === 'Safari') {
+    document.body.classList.add('safari');
   }
 };
 
