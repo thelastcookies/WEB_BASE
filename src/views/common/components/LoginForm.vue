@@ -221,6 +221,30 @@ const handleSignIn = () => {
 
   :deep(.ant-input-password) {
     padding: 0 1rem 0;
+    overflow: hidden;
+
+    &:before {
+      content: '';
+      width: 16px;
+      height: 100%;
+      background-color: transparent;
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      visibility: visible;
+      transition: background-color 0.2s ease;
+    }
+
+    &:after {
+      content: '';
+      width: 16px;
+      height: 100%;
+      background-color: transparent;
+      position: absolute;
+      bottom: 0;
+      right: 0;
+      transition: background-color 0.2s ease;
+    }
 
     .ant-input {
       padding: 1rem 0 1rem;
@@ -230,6 +254,7 @@ const handleSignIn = () => {
     .ant-input-suffix {
       margin-left: 0;
       padding-left: 4px;
+      transition: background-color 0.2s ease;
     }
 
     input:-webkit-autofill + span.ant-input-suffix {
@@ -239,11 +264,13 @@ const handleSignIn = () => {
 
   // :has 伪类比较激进，浏览器支持有限
   .ant-input-password:has(input:-webkit-autofill) {
-    background: linear-gradient(90deg,
-    var(--colorWebkitAutofillBg) 16px,
-    transparent calc(16px),
-    transparent calc(100% - 16px),
-    var(--colorWebkitAutofillBg) calc(100% - 16px));
+    &:before {
+      background-color: var(--colorWebkitAutofillBg);
+    }
+
+    &:after {
+      background-color: var(--colorWebkitAutofillBg);
+    }
   }
 
   .ant-input[disabled] {
