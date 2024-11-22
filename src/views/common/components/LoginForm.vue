@@ -8,9 +8,8 @@ const route = useRoute();
 const submittingDisabled = ref(false);
 
 const loginForm = reactive<LoginRequestBody>({
-  userName: 'Admin',
-  password: '1qazXSW@',
-  remember: false,
+  userName: '',
+  password: '',
 });
 
 const loginFormRules: Record<string, Rule[]> = {
@@ -145,6 +144,11 @@ const handleInputBlur = (e: Event) => {
   }
 };
 
+// 注册
+const handleSignIn = () => {
+  message.warn('该功能尚未开放');
+};
+
 </script>
 
 <template>
@@ -156,7 +160,6 @@ const handleInputBlur = (e: Event) => {
       name="login"
       ref="loginFormRef"
       :model="loginForm"
-      autocomplete="off"
       :rules="loginFormRules"
       :disabled="submittingDisabled"
       @validate="handleValidate"
@@ -168,6 +171,7 @@ const handleInputBlur = (e: Event) => {
           ref="usernameRef"
           class="login-input transparent z-1"
           autofocus
+          autocomplete="userName"
           v-model:value="loginForm.userName"
           @mouseenter="handleInputMEnter"
           @mouseleave="handleInputMLeave"
@@ -175,35 +179,35 @@ const handleInputBlur = (e: Event) => {
           @blur="handleInputBlur"
         />
         <div class="form-label bg-ant.bg-container absolute left-12.5px px-1"
-             :class="[userNameColorClass, {'active': userNameIsActive}]">账号
+          :class="[userNameColorClass, {'active': userNameIsActive}]">账号
         </div>
       </a-form-item>
-      <a-form-item name="password"
-                   id="password-cont"
-                   @mouseenter="handleInputMEnter"
-                   @mouseleave="handleInputMLeave">
+      <a-form-item
+        name="password"
+        id="password-cont"
+        @mouseenter="handleInputMEnter"
+        @mouseleave="handleInputMLeave">
         <a-input-password
           id="password"
           class="login-input transparent z-1"
+          autocomplete="password"
           v-model:value="loginForm.password"
           @focus="handleInputFocus"
           @blur="handleInputBlur"
         />
         <div class="form-label bg-ant.bg-container absolute left-12.5px px-1"
-             :class="[passwordColorClass, {'active': passwordIsActive}]">密码
+          :class="[passwordColorClass, {'active': passwordIsActive}]">密码
         </div>
       </a-form-item>
-      <a-form-item class="mb-5">
-        <a-form-item name="remember" no-style>
-          <a-checkbox v-model:checked="loginForm.remember">记住密码</a-checkbox>
-        </a-form-item>
-      </a-form-item>
-      <a-form-item class="m-0">
+      <!--<a-form-item class="mb-5" name="remember">-->
+      <!--  <a-checkbox v-model:checked="loginForm.remember">记住密码</a-checkbox>-->
+      <!--</a-form-item>-->
+      <a-form-item class="mt-8 mb-0">
         <a-button login-btn type="primary" html-type="submit">登录</a-button>
       </a-form-item>
       <a-divider>或</a-divider>
       <a-form-item class="m-0">
-        <a-button login-btn>注册账号</a-button>
+        <a-button login-btn @click="handleSignIn">注册账号</a-button>
       </a-form-item>
     </a-form>
   </div>
@@ -211,6 +215,10 @@ const handleInputBlur = (e: Event) => {
 
 <style scoped lang="less">
 .form-container {
+  .login-input {
+    background-color: transparent;
+  }
+
   .ant-input-password {
     padding: 0 1rem 0;
 
