@@ -45,7 +45,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 91,
         showInMenu: true,
         url: 'user',
-        resource: 'settings/user/UserManagement.vue',
+        resource: 'settings/user/Index.vue',
       }, {
         id: '1536652666153734144',
         pId: '1536643442430447616',
@@ -55,7 +55,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 92,
         showInMenu: true,
         url: 'role',
-        resource: 'settings/role/RoleManagement.vue',
+        resource: 'settings/role/Index.vue',
       }, {
         id: '1536652853853032448',
         pId: '1536643442430447616',
@@ -65,7 +65,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 92,
         showInMenu: true,
         url: 'menu',
-        resource: 'settings/action/ActionManagement.vue',
+        resource: 'settings/action/Index.vue',
       }, {
         id: '1536652773624385536',
         pId: '1536643442430447616',
@@ -75,7 +75,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 94,
         showInMenu: true,
         url: 'permission',
-        resource: 'settings/perm/PermissionManagement.vue',
+        resource: 'settings/perm/Index.vue',
       }, {
         id: '1536652915467358208',
         pId: '1536643442430447616',
@@ -85,7 +85,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 95,
         showInMenu: true,
         url: 'organization',
-        resource: 'settings/org/OrganizationManagement.vue',
+        resource: 'settings/org/Index.vue',
       },
       {
         id: '1536653005456150528',
@@ -96,7 +96,7 @@ export const staticActions = createTree<ActionRecordRaw>([
         sort: 96,
         showInMenu: true,
         url: 'password',
-        resource: 'settings/pwd/PasswordManagement.vue',
+        resource: 'settings/pwd/Index.vue',
       }, {
         id: '1536653005456150529',
         pId: '1536643442430447616',

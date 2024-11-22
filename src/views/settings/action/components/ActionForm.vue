@@ -129,7 +129,7 @@ const handleDelete = async () => {
       message.success('删除成功');
       emit('ok');
     } else {
-      message.success({ content: '删除失败' });
+      message.error('删除失败');
     }
   } catch (e) {
     message.error('删除失败');

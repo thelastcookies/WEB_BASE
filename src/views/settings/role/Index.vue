@@ -72,7 +72,7 @@ const batchDelete = async (ids: string[]) => {
       message.success('删除成功');
       await handleReload();
     } else {
-      message.success({ content: '删除失败' });
+      message.error('删除失败');
     }
   } catch (e) {
     message.error('删除失败');

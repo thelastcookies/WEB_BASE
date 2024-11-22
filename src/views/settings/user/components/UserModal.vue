@@ -52,10 +52,10 @@ const handleSubmit = async () => {
       message.success('保存成功');
       emit('submit');
       handleClear();
+      open.value = false;
     } else {
       message.error({ content: '保存失败，' + Msg });
     }
-    open.value = false;
   } catch (e) {
     if ((e as ValidateErrorEntity)?.errorFields) {
       message.error((e as ValidateErrorEntity)?.errorFields[0].errors[0]);
