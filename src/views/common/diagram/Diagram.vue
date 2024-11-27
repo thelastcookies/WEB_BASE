@@ -24,10 +24,6 @@ const hisTimeRange = ref<[Dayjs, Dayjs]>([dayjs().subtract(2, 'h'), dayjs()]);
 const timeSliderValue = ref(0);
 const timeSliderData = ref<TrendTimeTag[]>();
 
-const preprocessHref = (href: string) => {
-  return href.startsWith('/') ? '/diagrams' + href : '/diagrams/' + href;
-};
-
 // 实时数据请求定时器
 const { pause, resume } = useIntervalFn(() => {
   getRealTimeData(nodeTagArr.value);
@@ -57,13 +53,15 @@ const init = () => {
   // 给显示区域绑定事件
   graphView.mi(e => {
     if (e.kind === 'clickData') {
-      // if (e.data.a('node.cate') === 'button') {
-      //   let subPageUrl = e.data.a('button.link');
-      //   // console.log(subPageUrl)
-      //   // console.log(pageConf.subPage)
-      //   let subPage = pageConf.children.find(item => item.diagramPath = subPageUrl);
-      //   $store.dispatch('routeTo', { pageId: subPage.id });
-      // }
+      if (e.data.a('node.cate') === 'button') {
+        const url = e.data.a('button.link');
+        routeTo({
+          name: 'diagram',
+          query: {
+            d: url,
+          },
+        });
+      }
       if (e.data.a('node.tag')) {
         message.success('绑定测点： ' + e.data.a('node.tag'));
       }
@@ -75,10 +73,15 @@ const init = () => {
   });
 };
 
+const preprocessHref = (href: string) => {
+  return href.startsWith('/') ? '/diagrams' + href : '/diagrams/' + href;
+};
+
 // 加载组态文件
 const load = async () => {
   try {
-    const res = await fetch(preprocessHref(href.value));
+    const route = useRoute();
+    const res = await fetch(preprocessHref(route.query?.d ?? href.value));
     const data = await res.json();
 
     dataModel.clear();
@@ -94,6 +97,7 @@ const load = async () => {
 };
 
 tryOnMounted(() => {
+  // TODO 很可能存在并发问题
   init();
   load();
 });
