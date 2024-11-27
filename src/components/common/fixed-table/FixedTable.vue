@@ -7,14 +7,29 @@
  *
  * TODO: 没有分页器的表格
  * TODO: 没有 title 的表格
- *
  */
+
+import type { Slot } from 'vue';
+
+// Antdv Table 组件支持的插槽 key
+type ATableSlotKeys = 'emptyText'
+  | 'expandIcon'
+  | 'title'
+  | 'footer'
+  | 'summary'
+  | 'expandedRowRender'
+  | 'expandColumnTitle'
+  | 'bodyCell'
+  | 'headerCell'
+  | 'customFilterIcon'
+  | 'customFilterDropdown';
+
 </script>
 
 <template>
   <a-table v-bind="$attrs">
     <template
-      v-for="(_, name) in $slots" :key="name"
+      v-for="(_, name) in $slots as Record<ATableSlotKeys, Slot>" :key="name"
       v-slot:[name]="slotProps"
     >
       <slot :name="name" v-bind="slotProps" />
