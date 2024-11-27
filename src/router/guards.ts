@@ -56,11 +56,24 @@ router.beforeEach(async (to) => {
           replace: true,
         });
       } catch (e) {
-        message.destroy(SYS_LOADING_KEY);
-        return ({
-          path: '/500',
-          query: { redirect: encodeURIComponent(to.fullPath) },
-        });
+        if ((e as Error).message === WITH_UNAUTHORIZED) {
+          const { signOut } = useAppStore();
+          await signOut();
+          message.error({
+            content: '会话已过期，请重新登录',
+            key: SYS_LOADING_KEY,
+            duration: 7,
+          });
+        } else {
+          message.error({
+            content: '加载失败',
+            key: SYS_LOADING_KEY,
+          });
+          return ({
+            path: '/500',
+            query: { redirect: encodeURIComponent(to.fullPath) },
+          });
+        }
       }
     } else if (to.query.redirect) {
       // 如果有重定向页面

@@ -49,15 +49,7 @@ const responseHandler = (response: any): AxiosResponse<any> | Promise<any> | any
  */
 const errorHandler = async (error: AxiosError): Promise<AxiosError> => {
   console.error(error);
-  if (error.message === WITH_UNAUTHORIZED) {
-    const { signOut } = useAppStore();
-    await signOut();
-    message.error({
-      content: '会话已过期，请重新登录',
-      key: SYS_LOADING_KEY,
-      duration: 7,
-    });
-  } else if (error.code === 'ERR_NETWORK') {
+  if (error.code === 'ERR_NETWORK') {
     message.error({
       content: '网络连接失败',
       key: AXIOS_ERROR_KEY,
