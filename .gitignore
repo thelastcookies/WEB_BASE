@@ -133,5 +133,6 @@ auto-imports.d.ts
 components.d.ts
 
 /web-base/
+/web-base.*
 
 stats.html
