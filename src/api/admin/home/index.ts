@@ -6,9 +6,6 @@ export const login = (data: LoginRequestBody) => {
   return usePost<AdminResponseBody<string>, LoginRequestBody>(
     `${ADMIN_URL}/Base_Manage/Home/SubmitLogin`,
     data,
-    {
-      // mock: true,
-    },
   );
 };
 
@@ -28,7 +25,6 @@ export const getOperatorInfo = () => {
     null,
     {
       token: true,
-      // mock: true,
     },
   );
 };
@@ -47,5 +43,8 @@ export const getOperatorMenuListByUsername = (data: UserNameRequestBody) => {
   return usePost<AdminResponseBody<ActionResponseRecord[]>, UserNameRequestBody>(
     `${ADMIN_URL}/Base_Manage/Home/GetOperatorMenuListByUserName`,
     data,
+    {
+      token: true,
+    },
   );
 };

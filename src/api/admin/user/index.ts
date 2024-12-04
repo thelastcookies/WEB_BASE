@@ -32,6 +32,9 @@ export const saveUser = (data: SaveUserRequestBody) => {
   return usePost<AdminResponseBody, SaveUserRequestBody>(
     `${ADMIN_URL}/Base_Manage/Base_User/SaveData`,
     data,
+    {
+      token: true,
+    },
   );
 };
 
@@ -39,5 +42,8 @@ export const deleteUser = (ids: string[]) => {
   return usePost<AdminResponseBody, string[]>(
     `${ADMIN_URL}/Base_Manage/Base_User/DeleteData`,
     ids,
+    {
+      token: true,
+    },
   );
 };
