@@ -17,8 +17,6 @@ export const basicRouteMap = {
   IFrame: () => import('@/views/common/IFrame.vue'),
   // 用于链接跳转的页面
   Link: () => import('@/views/common/Link.vue'),
-  // 用于组态图的页面
-  Diagram: () => import('@/views/common/diagram/Diagram.vue'),
   // 用于存在 children 的页面
   Parent: () => import('@/views/common/Parent.vue'),
   // 空页面
