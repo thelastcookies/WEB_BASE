@@ -1,4 +1,5 @@
 import { VNodeChild } from 'vue';
+import type { MessageArgsProps } from 'ant-design-vue/es/message';
 
 export type Key = string | number;
 export type RecordName = string | symbol;
@@ -65,4 +66,9 @@ export interface MenuTreeNode {
   disabled?: boolean;
   showInMenu?: boolean;
   children?: MenuTreeNode[];
+}
+
+export interface IFrameMessage {
+  type: 'message';
+  content: MessageArgsProps;
 }

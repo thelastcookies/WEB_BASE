@@ -16,20 +16,20 @@ interface ImportMetaEnv {
    *   BREADCRUMB：面包屑导航可用
    */
   readonly APP_ROUTE_PAGE_MODE: string;
-  readonly APP_LOAD_ACTION_TYPE: "FRONTEND" | "BACKEND";
+  readonly APP_LOAD_ACTION_TYPE: 'FRONTEND' | 'BACKEND';
   readonly APP_HOMEPAGE_ID: string;
   // 打包时是否开启 sourcemap
-  readonly APP_SOURCE_MAP: "true" | "false";
+  readonly APP_SOURCE_MAP: 'true' | 'false';
   /**
    * APP_LOGIN_ENABLE
    * 是否启用登录、权限验证等
    * 通常开启，在无用户概念的、简单的系统里可以关闭
    */
-  readonly APP_LOGIN_ENABLE: "true" | "false";
+  readonly APP_LOGIN_ENABLE: 'true' | 'false';
   readonly APP_API_BASE_URL: string;
   readonly APP_API_ADMIN_URL: string;
-  readonly APP_API_GO_URL: string;
   readonly APP_API_MOCK_URL: string;
+  readonly APP_WHITE_ORIGIN: string;
 }
 
 interface ImportMeta {
