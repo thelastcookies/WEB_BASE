@@ -48,13 +48,24 @@ const queryFields: QueryFormField[] = [
     component: 'RangePicker',
     compProps: {
       placeholder: ['请选择开始时间', '请选择结束时间'],
-      valueFormat: 'YYYY-MM-DD',
+    },
+  },
+  {
+    label: '起止月份',
+    field: 'MonthRangePickerName',
+    component: 'RangePicker',
+    compProps: {
+      picker: 'month',
+      placeholder: ['请选择开始月份', '请选择结束月份'],
     },
   },
 ];
+
+// TODO 时区问题
 const qForm = ref<Recordable<any>>({
   inputName: '1234',
   RangePickerName: [dayjs().subtract(8, 'h'), dayjs()],
+  MonthRangePickerName: [dayjs(), dayjs()],
 });
 const onQuery = (form: Record<string, string>) => {
   qForm.value = form;
@@ -72,10 +83,10 @@ const rules: Record<string, Rule[]> = {
         return Promise.reject('请选择时间范围');
       }
       const [start, end] = value;
-      if (dayjs(start).isSame(end, 'day')) {
+      if (dayjs(start).isSame(end, 'month')) {
         return Promise.resolve();
       }
-      return Promise.reject('起止时间必须在同一天');
+      return Promise.reject('起止时间不可跨月');
     },
   }],
 };
