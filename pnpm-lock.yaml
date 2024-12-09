@@ -44,6 +44,9 @@ importers:
       jspdf:
         specifier: ^2.5.2
         version: 2.5.2
+      jsqr:
+        specifier: ^1.4.0
+        version: 1.4.0
       lodash-es:
         specifier: ^4.17.21
         version: 4.17.21
@@ -1709,6 +1712,9 @@ packages:
 
   jspdf@2.5.2:
     resolution: {integrity: sha512-myeX9c+p7znDWPk0eTrujCzNjT+CXdXyk7YmJq5nD5V7uLLKmSXnlQ/Jn/kuo3X09Op70Apm0rQSnFWyGK8uEQ==}
+
+  jsqr@1.4.0:
+    resolution: {integrity: sha512-dxLob7q65Xg2DvstYkRpkYtmKm2sPJ9oFhrhmudT1dZvNFFTlroai3AWSpLey/w5vMcLBXRgOJsbXpdN9HzU/A==}
 
   jszip@3.10.1:
     resolution: {integrity: sha512-xXDvecyTpGLrqFrvkrUSoxxfJI5AH7U8zxxtVclpsUtMCq4JQ290LY8AW5c7Ggnr/Y/oK+bQMbqK2qmtk3pN4g==}
@@ -4289,6 +4295,8 @@ snapshots:
       core-js: 3.36.1
       dompurify: 2.5.7
       html2canvas: 1.4.1
+
+  jsqr@1.4.0: {}
 
   jszip@3.10.1:
     dependencies:
