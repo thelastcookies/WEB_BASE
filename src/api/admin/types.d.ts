@@ -9,3 +9,8 @@ export interface GetOptionRequestBody {
   selectedValues: string[];
   q?: string;
 }
+
+export interface RequestPagination {
+  Page?: number;
+  Limit?: number;
+}
