@@ -29,7 +29,7 @@ const shortcuts: UserShortcuts = [
   ['m-center', 'ml-a mr-a mt-0 mb-0'],
   ['login-input', 'w-full p-16px lh-8 border-rd-10px font-size-18px border-width-1'],
   ['login-btn', 'h-54px w-full font-size-18px font-600 border-rd-10px'],
-  ['btn-in-table', 'p-ltrb-0 h-20px'],
+  ['btn-in-table', 'p-0 h-20px b-0 bg-transparent shadow-none'],
   [/^(([pm])-([lrtb]+)-(\w+))$/, ([, , style, direction, val]) => {
     let output = [] as string[];
     direction.split('').forEach(d => {
