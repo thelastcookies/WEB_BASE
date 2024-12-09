@@ -6,6 +6,7 @@ import { UnoCSSPluginConfig } from './unocss';
 import { AutoImportPluginConfig } from './auto-import';
 import { VueComponentPluginConfig } from './vue-component';
 import { VisualizerPluginConfig } from './visualizer';
+import { BasicSslPluginConfig } from './basic-ssl';
 
 /**
  * 注入 vite 的插件
@@ -27,6 +28,7 @@ export function createVitePlugins() {
     AutoImportPluginConfig,
     VueComponentPluginConfig,
     VisualizerPluginConfig,
+    BasicSslPluginConfig,
   ];
   return vitePluginList;
 }
