@@ -18,17 +18,17 @@
     "ant.control-height-lg": "var(--controlHeightLG)",
     "custom.margin-size": "var(--marginSize)"
   },
-  "zIndex": {
+  "index": {
     "ant.base": "var(--zIndexBase)",
-    "ant.l1": "var(--zIndexLevel1)",
-    "ant.l2": "var(--zIndexLevel2)",
-    "ant.l3": "var(--zIndexLevel3)",
-    "ant.l4": "var(--zIndexLevel4)",
-    "ant.l5": "var(--zIndexLevel5)",
-    "ant.l6": "var(--zIndexLevel6)",
-    "ant.l7": "var(--zIndexLevel7)",
-    "ant.l8": "var(--zIndexLevel8)",
-    "ant.l9": "var(--zIndexLevel9)",
+    "ant.z1": "var(--zIndexLevel1)",
+    "ant.z2": "var(--zIndexLevel2)",
+    "ant.z3": "var(--zIndexLevel3)",
+    "ant.z4": "var(--zIndexLevel4)",
+    "ant.z5": "var(--zIndexLevel5)",
+    "ant.z6": "var(--zIndexLevel6)",
+    "ant.z7": "var(--zIndexLevel7)",
+    "ant.z8": "var(--zIndexLevel8)",
+    "ant.z9": "var(--zIndexLevel9)",
     "ant.popup-base": "var(--zIndexPopupBase)"
   },
   "fontFamily": {
