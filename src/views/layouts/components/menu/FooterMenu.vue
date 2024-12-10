@@ -47,6 +47,7 @@ onUnmounted(() => {
 </script>
 <template>
   <a-menu
+    v-if="menu.length"
     h-24 flex-sb
     v-model:selectedKeys="selectedKeys"
     mode="horizontal"

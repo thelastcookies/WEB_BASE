@@ -35,7 +35,8 @@ listenRouteChange((route: RouteLocationNormalized) => {
   if (!ancestorChain || !ancestorChain.length) return;
 
   const indexMenuSelectable = ancestorChain.findIndex(action => action.showInMenu === true);
-  selectedKeys.value = [String(ancestorChain[indexMenuSelectable]!.actionId)];
+  if (indexMenuSelectable < 0) return;
+  selectedKeys.value = [String(ancestorChain[indexMenuSelectable].actionId)];
   const parentMenuIndex = indexMenuSelectable + 1 < ancestorChain.length ? indexMenuSelectable + 1 : indexMenuSelectable;
   openKeys.value = [String(ancestorChain[parentMenuIndex].actionId)];
 }, true);
