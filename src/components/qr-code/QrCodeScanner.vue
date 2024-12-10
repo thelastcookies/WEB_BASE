@@ -35,7 +35,7 @@ const previousCodeData = ref<string>('');
 // 初始化
 const init = () => {
   if (!navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
-    message.error('环境检测失败，摄像头调用需要安全的连接环境');
+    message.error('环境检测失败，需要安全的连接环境');
     return;
   }
   const width = scanner.value?.clientWidth as number;
@@ -90,7 +90,8 @@ const initVideoStream = () => {
 };
 // 销毁视频流
 const disposeVideoStream = () => {
-  (video.value!.srcObject as MediaStream).getTracks().forEach(t => t.stop());
+  if (video.value && video.value.srcObject)
+    (video.value.srcObject as MediaStream).getTracks().forEach(t => t.stop());
 };
 // 播放视频
 const playVideo = () => {
