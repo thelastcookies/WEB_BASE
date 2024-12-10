@@ -3,9 +3,9 @@ import basicSsl from '@vitejs/plugin-basic-ssl';
 
 export const BasicSslPluginConfig: PluginOption = basicSsl({
   /** name of certification */
-  name: 'test',
+  name: 'web-base',
   /** custom trust domains */
-  domains: ['*.custom.com'],
+  domains: [],
   /** custom certification directory */
-  certDir: '/Users/.../.devServer/cert',
+  certDir: '',
 });
