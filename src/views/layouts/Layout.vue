@@ -1,8 +1,22 @@
 <script setup lang="ts">
 import Parent from '@/views/common/Parent.vue';
+import type { TreeNode } from '@/utils/tree';
+import type { ActionRecordRaw } from '@/types/action';
 
 const { deviceType } = useAppStore();
-const { menu } = useMenuStore();
+
+// Menu 初始化，来源自 actionTree
+const { actionTree } = storeToRefs(useActionStore());
+const menuStore = useMenuStore();
+const { actionToMenu } = menuStore;
+const { menu } = storeToRefs(menuStore);
+
+watch(actionTree, (tree: TreeNode<ActionRecordRaw>[]) => {
+  menu.value = actionToMenu(tree);
+}, {
+  immediate: true,
+});
+
 </script>
 <template>
   <a-layout w-full h-full>
@@ -15,7 +29,7 @@ const { menu } = useMenuStore();
       <a-layout-sider
         v-if="deviceType === 'desktop' && menu.length"
         width="220" breakpoint="xl" collapsed-width="50">
-        <SidebarMenu></SidebarMenu>
+        <SidebarMenu :menu="menu"></SidebarMenu>
       </a-layout-sider>
       <a-layout>
         <PageHeader v-if="deviceType === 'desktop'"></PageHeader>
@@ -25,7 +39,7 @@ const { menu } = useMenuStore();
       </a-layout>
     </a-layout>
     <a-layout-footer v-if="deviceType === 'mobile'" class="!p-0">
-      <FooterMenu></FooterMenu>
+      <FooterMenu :menu="menu"></FooterMenu>
     </a-layout-footer>
   </a-layout>
 </template>
