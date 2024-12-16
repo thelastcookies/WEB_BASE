@@ -1,7 +1,7 @@
 /**
  * 提供 axios 实例，配置请求拦截器、响应拦截器和错误处理
  */
-import type { AxiosError, AxiosInstance, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
+import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
 import type { NamingStyleTransfer } from '@/enums/naming-style.ts';
 import { message } from 'ant-design-vue';
@@ -110,13 +110,7 @@ const errorHandler = async (error: AxiosError): Promise<AxiosError> => {
   return Promise.reject(error);
 };
 
-interface AxiosOptions<T> {
-  url: string;
-  params?: T;
-  data?: T;
-}
-
-export const instancePromise = <R = any, T = any>(options: AxiosOptions<T> & RequestConfigExtra): Promise<R> => {
+export const instancePromise = <R = any, T = any>(options: AxiosRequestConfig<T> & RequestConfigExtra): Promise<R> => {
   const { loading } = options;
   return new Promise((resolve, reject) => {
     instance.request(options).then((res) => {
