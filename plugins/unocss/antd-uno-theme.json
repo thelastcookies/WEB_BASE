@@ -42,15 +42,15 @@
     "ant.br-outer": "var(--borderRadiusOuter)"
   },
   "fontSize": {
-    "ant.text-md": "var(--fontSize)",
-    "ant.text-sm": "var(--fontSizeSM)",
-    "ant.text-lg": "var(--fontSizeLG)",
-    "ant.text-text-xl": "var(--fontSizeXL)",
-    "ant.heading1": "var(--fontSizeHeading1)",
-    "ant.text-heading2": "var(--fontSizeHeading2)",
-    "ant.text-heading3": "var(--fontSizeHeading3)",
-    "ant.text-heading4": "var(--fontSizeHeading4)",
-    "ant.text-heading5": "var(--fontSizeHeading5)"
+    "ant.fs-sm": "var(--fontSizeSM)",
+    "ant.fs-md": "var(--fontSize)",
+    "ant.fs-lg": "var(--fontSizeLG)",
+    "ant.fs-xl": "var(--fontSizeXL)",
+    "ant.fs-heading1": "var(--fontSizeHeading1)",
+    "ant.fs-heading2": "var(--fontSizeHeading2)",
+    "ant.fs-heading3": "var(--fontSizeHeading3)",
+    "ant.fs-heading4": "var(--fontSizeHeading4)",
+    "ant.fs-heading5": "var(--fontSizeHeading5)"
   },
   "lineHeight": {
     "ant.lh-md": "var(--lineHeight)",
