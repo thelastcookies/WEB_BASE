@@ -7,7 +7,7 @@ import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 
 // TODO 前端筛选
 
-const form = defineModel<Record<string, string>>('form', {
+const form = defineModel<Recordable<any>>('form', {
   default: () => {
   },
 });
@@ -25,7 +25,7 @@ const props = withDefaults(defineProps<{
 });
 
 const emit = defineEmits<{
-  (e: 'query', value: Record<string, string>): void;
+  (e: 'query', value: Recordable<any>): void;
 }>();
 
 const slots = useSlots();
