@@ -18,7 +18,7 @@
     "ant.control-height-lg": "var(--controlHeightLG)",
     "custom.margin-size": "var(--marginSize)"
   },
-  "index": {
+  "zIndex": {
     "ant.base": "var(--zIndexBase)",
     "ant.z1": "var(--zIndexLevel1)",
     "ant.z2": "var(--zIndexLevel2)",
