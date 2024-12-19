@@ -22,9 +22,9 @@ const emit = defineEmits<{
 const loading = ref<boolean>(false);
 
 const titleEnum = {
-  0: '新增',
-  1: '编辑',
-  2: '查看',
+  [EditEnum.ADD]: '新增',
+  [EditEnum.EDIT]: '编辑',
+  [EditEnum.VIEW]: '查看',
 };
 const title = computed(() => {
   return titleEnum[props.type];
