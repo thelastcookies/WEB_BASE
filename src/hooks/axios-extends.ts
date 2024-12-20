@@ -3,7 +3,7 @@
  */
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
 import axios from 'axios';
-import type { NamingStyleTransfer } from '@/enums/naming-style.ts';
+import type { NamingStyleTransfer } from '@/constants/enums/naming-style.ts';
 import { message } from 'ant-design-vue';
 
 export interface RequestConfigExtra {

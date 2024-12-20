@@ -3,14 +3,14 @@ import type { RoleRecord } from '@/api/admin/role/types';
 import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
-import { EditEnum } from '@/enums';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 import { message } from 'ant-design-vue';
 
 const open = defineModel('open', { default: false });
 
 const props = withDefaults(defineProps<{
   id?: string;
-  type: EditEnum;
+  type: EditEnumType;
 }>(), {
   type: EditEnum.VIEW,
 });

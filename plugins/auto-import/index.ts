@@ -19,7 +19,7 @@ export const AutoImportPluginConfig: PluginOption = AutoImport({
   dts: './plugins/auto-import/auto-imports.d.ts',
   dirs: [
     'src/api/**/*.ts',
-    'src/enums/**/*.ts',
+    'src/constants/**/*.ts',
     'src/hooks',
     'src/router',
     'src/stores/**/*.ts',

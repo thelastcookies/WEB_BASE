@@ -1,7 +1,6 @@
 import type { AdminResponseBody } from '@/api/admin/types';
 import type { HisTagParams, HistoricalRequestBody, IntervalRequestBody } from '@/api/base/historical/types';
 import type { ValueResponseBody } from '@/api/base/types';
-import { HisDataType } from '@/enums';
 
 export const getHistorical = (data: HistoricalRequestBody) => {
   return usePost<AdminResponseBody<ValueResponseBody>, HistoricalRequestBody>(

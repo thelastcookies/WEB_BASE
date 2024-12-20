@@ -1,4 +1,4 @@
-import type { MenuTypeEnum } from '@/enums';
+import type { MenuTypeEnum } from '@/constants/enums';
 import type { Key } from '@/types';
 import type { RouteMeta } from 'vue-router';
 import type { TreeNodeInterface } from '@/utils/tree/types';

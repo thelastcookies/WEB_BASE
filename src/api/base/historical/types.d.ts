@@ -1,6 +1,6 @@
 import type { TagsRequestBody } from '@/api/base/types';
 import type { Dayjs } from 'dayjs';
-import type { HisDataType } from '@/enums';
+import type { HisDataType } from '@/constants/enums';
 
 export interface HistoricalRequestBody extends TagsRequestBody {
   time: string;

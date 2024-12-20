@@ -11,11 +11,10 @@ export const useThemeStore = defineStore('theme', () => {
   const darkModeMediaQuery = window.matchMedia('(prefers-color-scheme: dark)');
   const isDarkTheme = ref(darkModeMediaQuery.matches);
   const emitter = mitt();
-  const key = Symbol('THEME_CHANGE');
 
   const themeModeChange = (e: MediaQueryListEvent) => {
     isDarkTheme.value = e.matches;
-    emitter.emit(key, isDarkTheme.value);
+    emitter.emit(THEME_CHANGE_KEY, isDarkTheme.value);
     console.log(isDarkTheme.value ? '🌒 深色模式开启' : '🌖 浅色模式开启');
   };
 
@@ -37,14 +36,14 @@ export const useThemeStore = defineStore('theme', () => {
     handler: (isDark: Boolean) => void,
     immediate = true,
   ) => {
-    emitter.on(key, handler as Handler);
+    emitter.on(THEME_CHANGE_KEY, handler as Handler);
     if (immediate && isDarkTheme.value) {
       handler(isDarkTheme.value);
     }
   };
 
   const removeThemeListener = () => {
-    emitter.off(key);
+    emitter.off(THEME_CHANGE_KEY);
   };
 
   return { isDarkTheme, designToken, themeAlgorithm, listenThemeChange, removeThemeListener };

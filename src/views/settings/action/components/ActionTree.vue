@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { EditEnum } from '@/enums';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 import type { Key } from '@/types';
 import type { DataNode, EventDataNode } from 'ant-design-vue/es/vc-tree/interface';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
@@ -21,7 +21,7 @@ const checkedKeys = defineModel<{
 
 const props = withDefaults(defineProps<{
   tree?: TreeNode<ActionResponseRecord>[];
-  type?: EditEnum;
+  type?: EditEnumType;
   searchable?: boolean;
   checkable?: boolean;
   defaultExpandAll?: boolean;

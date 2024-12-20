@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { UserRecord } from '@/api/admin/user/types';
-import { EditEnum, SexEnum } from '@/enums';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
@@ -11,7 +11,7 @@ const open = defineModel('open', { default: false });
 
 const props = withDefaults(defineProps<{
   id?: string;
-  type: EditEnum;
+  type: EditEnumType;
 }>(), {
   type: EditEnum.VIEW,
 });

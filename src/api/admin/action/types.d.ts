@@ -1,4 +1,4 @@
-import type { MenuTypeEnum } from '@/enums';
+import type { MenuTypeEnum } from '@/constants/enums';
 import type { TreeNode } from '@/utils';
 
 export interface GetActionsRequestBody {

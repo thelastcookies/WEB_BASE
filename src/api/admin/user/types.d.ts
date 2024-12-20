@@ -1,4 +1,4 @@
-import type { RoleTypeEnum, SexEnum } from '@/enums';
+import type { RoleTypeEnum, SexEnum } from '@/constants/enums';
 
 export interface GetUserListRequestBody {
   PageIndex?: number;

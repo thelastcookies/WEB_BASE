@@ -1,15 +1,15 @@
 <script setup lang="ts">
-import { EditEnum } from '@/enums';
 import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 import type { DataRecord } from '@/views/curd/template-page/types';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 
 const open = defineModel('open', { default: false });
 
 const props = withDefaults(defineProps<{
-  type?: EditEnum;
+  type?: EditEnumType;
   data?: any;
 }>(), {
   type: EditEnum.VIEW,

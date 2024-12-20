@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { Empty, message } from 'ant-design-vue';
-import { EditEnum } from '@/enums';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 import type { Recordable } from '@/types';
 import type { ActionResponseRecord } from '@/api/admin/action/types';
 import type { Rule } from 'ant-design-vue/es/form';
@@ -10,7 +10,7 @@ import type { TreeNode } from '@/utils/tree';
 const props = withDefaults(defineProps<{
   tree?: TreeNode<ActionResponseRecord>[];
   value?: TreeNode<ActionResponseRecord>;
-  type?: EditEnum;
+  type?: EditEnumType;
 }>(), {
   type: EditEnum.VIEW,
 });
