@@ -1,9 +1,20 @@
 <script setup lang="ts">
-import { legacyLogicalPropertiesTransformer } from "ant-design-vue";
-import zhCN from "ant-design-vue/es/locale/zh_CN";
-const { designToken, themeAlgorithm } = storeToRefs(useThemeStore());
+import { legacyLogicalPropertiesTransformer, theme } from 'ant-design-vue';
+import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
+const themeStore = useThemeStore();
+const { listenThemeChange } = themeStore;
+const { designToken, themeAlgorithm } = storeToRefs(themeStore);
 useEnvironmentCheck();
+
+const { useToken } = theme;
+const { token } = useToken();
+tryOnMounted(() => {
+  generateThemeStyle(token.value);
+  listenThemeChange(() => {
+    generateThemeStyle(token.value);
+  });
+});
 </script>
 
 <template>

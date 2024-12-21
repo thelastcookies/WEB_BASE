@@ -1,8 +1,7 @@
 @import '@/assets/font/font.css';
-@import "@/assets/theme/style.css";
-@import "@/assets/theme/light.css" (prefers-color-scheme: light);
-@import "@/assets/theme/dark.css" (prefers-color-scheme: dark);
-@import "@/assets/theme/ant-fine-tuning";
+@import "./theme/light.css" (prefers-color-scheme: light);
+@import "./theme/dark.css" (prefers-color-scheme: dark);
+@import "./ant-fine-tuning";
 
 :root {
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -21,6 +20,16 @@
 
   width: 100%;
   height: 100%;
+
+  --zIndexLevel1: 100;
+  --zIndexLevel2: 200;
+  --zIndexLevel3: 300;
+  --zIndexLevel4: 400;
+  --zIndexLevel5: 500;
+  --zIndexLevel6: 600;
+  --zIndexLevel7: 700;
+  --zIndexLevel8: 800;
+  --zIndexLevel9: 900;
 }
 
 * {

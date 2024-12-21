@@ -95,14 +95,12 @@ const batchDelete = async (ids: string[]) => {
 
 <template>
   <div class="w-full h-full p-3">
-    <div class="bg-rd-ant.border-radius m-custom.margin-size">
-      <QueryForm
-        class="py-2"
-        :fields="userTableSearchFields"
-        v-model:form="qForm"
-        @query="onQuery"
-      />
-    </div>
+    <QueryForm
+      class="py-2"
+      :fields="userTableSearchFields"
+      v-model:form="qForm"
+      @query="onQuery"
+    />
     <FixedTable class="h-[calc(100%-60px)]"
       id="user-table" row-key="Id" :loading="loading"
       :columns="userTableColumns" :data-source="list"
