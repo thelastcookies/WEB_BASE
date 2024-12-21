@@ -1,4 +1,8 @@
 /**
+ * 定义 枚举
+ */
+
+/**
  * 加载 Action 模式
  * FRONTEND 模式从 static-actions.ts 中加载
  * BACKEND 模式向接口请求加载
