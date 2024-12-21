@@ -4,7 +4,7 @@ import App from './App.vue';
 export const app = createApp(App);
 
 // 全局样式表
-import '@/assets/index.less';
+import '@/assets/style/index.less';
 
 // Pinia
 import { createPinia } from 'pinia';
@@ -22,6 +22,6 @@ import 'ant-design-vue/dist/reset.css';
 app.use(Antd);
 
 // UnoCSS
-// import 'virtual:uno.css';
+import 'virtual:uno.css';
 
 app.mount('#app');
