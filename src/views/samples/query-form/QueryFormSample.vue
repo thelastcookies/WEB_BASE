@@ -337,6 +337,11 @@ const selectFields: QueryFormField[] = [
     field: 'apiTreeSelectName',
     component: 'TreeSelect',
     compProps: {
+      fieldNames: {
+        value: 'Id',
+        label: 'Name',
+        children: 'Children',
+      },
       treeCheckable: true,
       getTreeData: async () => {
         const res = await getMenuTreeList({});
