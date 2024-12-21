@@ -83,7 +83,7 @@ const columns = [
 </script>
 
 <template>
-  <a-table id="table" row-key="id"
+  <a-table id="table" row-key="id" class="px-5"
     :columns="columns" :data-source="list"
     :pagination="{showSizeChanger: true}"
     :row-selection="{}"

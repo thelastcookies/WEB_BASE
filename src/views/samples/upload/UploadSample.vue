@@ -65,15 +65,15 @@ onMounted(() => {
     </a-col>
     <a-col :span="8">
       <div class="w-full flex p-8">
-        <div class="overflow-y-auto">
-          <div class="text-5 sticky top-0 bg-pixel-matrix">formData</div>
+        <div>
+          <div class="text-5">formData</div>
           <div v-for="(value, key) in formData">{{ key }}: {{ value }}</div>
         </div>
       </div>
     </a-col>
     <a-col :span="8">
-      <div class="overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">fileList</div>
+      <div>
+        <div class="text-5">fileList</div>
         <div v-for="(value, key) in fileList">{{ key }}: {{ value }}</div>
       </div>
     </a-col>
@@ -90,23 +90,19 @@ onMounted(() => {
     </a-col>
     <a-col :span="8">
       <div class="w-full flex p-8">
-        <div class="overflow-y-auto">
-          <div class="text-5 sticky top-0 bg-pixel-matrix">uploadedFormData</div>
+        <div>
+          <div class="text-5">uploadedFormData</div>
           <div v-for="(value, key) in uploadedFormData">{{ key }}: {{ value }}</div>
         </div>
       </div>
     </a-col>
     <a-col :span="8">
       <div class="w-full flex p-8">
-        <div class="overflow-y-auto">
-          <div class="text-5 sticky top-0 bg-pixel-matrix">uploadedFileList</div>
+        <div>
+          <div class="text-5">uploadedFileList</div>
           <div v-for="(value, key) in uploadedFileList">{{ key }}: {{ value }}</div>
         </div>
       </div>
     </a-col>
   </a-row>
 </template>
-
-<style scoped lang="less">
-
-</style>

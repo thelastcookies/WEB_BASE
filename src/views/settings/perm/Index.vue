@@ -131,7 +131,7 @@ const handleSubmit = async () => {
     </div>
     <div class="w-50% h-full bg-ant.bg-container rounded-ant.br p-3 flex flex-col">
       <template v-if="selectedRowKeys.length">
-        <div class="w-full h-12 flex justify-end pb-4 bg-pixel-matrix sticky top-0">
+        <div class="w-full h-12 flex justify-end pb-4 sticky top-0">
           <a-button class="ml-2" type="primary" :loading="submitLoading" @click="handleSubmit">
             <BaseIcon icon="i-mdi-content-save" />
             保存

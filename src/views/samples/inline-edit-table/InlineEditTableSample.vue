@@ -2,8 +2,6 @@
 import InlineEditTable from '@/components/common/inline-edit-table/InlineEditTable.vue';
 import type { TableEditableColumnProps } from '@/components/common/inline-edit-table/types';
 
-const editableData: Record<string, any> = reactive({});
-
 const tableData = ref([
   {
     fieldA: 'JYCVHZKUGJJSVWIT',
@@ -89,9 +87,9 @@ const handleAdd = () => {
   <div class="w-full p-3 flex gap-3">
     <div class="w-70% flex justify-center">
       <InlineEditTable class="w-full"
-                       v-model:data-source="tableData"
-                       :columns="tableColumns"
-                       @add="handleAdd"
+        v-model:data-source="tableData"
+        :columns="tableColumns"
+        @add="handleAdd"
       ></InlineEditTable>
     </div>
     <div class="w-30%">
@@ -99,14 +97,6 @@ const handleAdd = () => {
       <div v-for="(item, idx) in tableData">
         <span class="">{{ idx }}: </span><span>{{ item }}</span>
       </div>
-      <div class="text-5">editableData:</div>
-      <div v-for="(value, idx) in editableData">
-        <span class="">{{ idx }}: </span><span>{{ value }}</span>
-      </div>
     </div>
   </div>
 </template>
-
-<style scoped lang="less">
-
-</style>

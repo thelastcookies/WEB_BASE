@@ -352,7 +352,7 @@ const selectFields: QueryFormField[] = [
 const sForm = ref<Recordable<any>>({
   selectName: 'valueA',
   selectAllName: ['valueA', 'valueB', 'valueC', 'valueD'],
-  apiSelectName: ['1522888670812573696', '1524295838120022016', '1181928860648738816', '1516341240566648832', '1522888566902886400', '1524262249470889984', '1524296840516734976', '1524301898759278592', '1537262531804925952', '1537269946810109952', '1537331782196662272', '1537688013524439040', '38384f3c-f843-467a-85c8-76eec5b11b57', 'Admin', 'ddd902f6-d4ae-4846-8e01-855ef2de8b33'],
+  apiSelectName: ['1522888670812573696', '1181928860648738816', 'Admin'],
 });
 
 </script>
@@ -375,12 +375,12 @@ const sForm = ref<Recordable<any>>({
       </QueryForm>
     </div>
     <div class="w-full flex p-8">
-      <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">QueryForm</div>
+      <div class="w-50% pl-8">
+        <div class="text-5">QueryForm</div>
         <div v-for="(value, key) in qForm">{{ key }}: {{ value }}</div>
       </div>
-      <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">Rules</div>
+      <div class="w-50% pl-8">
+        <div class="text-5">Rules</div>
         <div v-for="(value, key) in rules">{{ key }}: {{ value }}</div>
       </div>
     </div>
@@ -393,8 +393,8 @@ const sForm = ref<Recordable<any>>({
       ></QueryForm>
     </div>
     <div class="w-full flex p-8">
-      <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">CheckableForm</div>
+      <div class="pl-8">
+        <div class="text-5">CheckableForm</div>
         <div v-for="(value, key) in cForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
@@ -407,13 +407,10 @@ const sForm = ref<Recordable<any>>({
       ></QueryForm>
     </div>
     <div class="w-full flex p-8">
-      <div class="w-50% pl-8 overflow-y-auto">
-        <div class="text-5 sticky top-0 bg-pixel-matrix">SelectableForm</div>
+      <div class="pl-8">
+        <div class="text-5">SelectableForm</div>
         <div v-for="(value, key) in sForm">{{ key }}: {{ value }}</div>
       </div>
     </div>
   </div>
 </template>
-<style scoped lang="less">
-
-</style>
