@@ -46,16 +46,18 @@ onUnmounted(() => {
 <template>
   <a-menu
     v-if="menuNative.length"
-    h-24 flex-sb
+    class="flex-sb"
     v-model:selectedKeys="selectedKeys"
     mode="horizontal"
     @click="handleMenuClick"
   >
-    <a-menu-item v-for="item in menuNative" :key="item.key" :style="{width: menuItemWidth}">
+    <a-menu-item v-for="item in menuNative" :key="item.key"
+      :style="{width: menuItemWidth}"
+    >
       <template v-if="item.icon" #icon>
         <BaseIcon :icon="item.icon" size="1.5" />
       </template>
-      {{ item.title }}
+      <div class="text-ant.fs-sm mt-1.5">{{ item.title }}</div>
     </a-menu-item>
   </a-menu>
 </template>
@@ -63,19 +65,19 @@ onUnmounted(() => {
 <style scoped lang="less">
 .ant-menu {
   :deep(.ant-menu-item) {
-    --uno: h-full flex-c flex-col justify-evenly pb-4;
+    --uno: flex-c flex-col pt-3 pb-4;
 
     &:after {
-      border-bottom-width: 0 !important;
+      --uno: b-b-0;
     }
 
     .ant-menu-title-content {
-      --uno: m-0 lh-4;
+      --uno: m0;
     }
   }
 
   .ant-menu-submenu::after {
-    border-bottom-width: 0;
+    --uno: b-b-0;
   }
 }
 </style>
