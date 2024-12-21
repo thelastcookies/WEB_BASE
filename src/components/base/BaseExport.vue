@@ -43,6 +43,9 @@ const handleMenuClick: MenuProps['onClick'] = async ({ key }) => {
   } else if (key === 'Word') {
     exportTableAsDocx(copy, props.exportName);
   } else if (key === 'PDF') {
+    copy.style.position = 'fixed';
+    copy.style.width = '100%';
+    copy.style.maxWidth = '1500px';
     const app = document.getElementById('app')!;
     app.appendChild(copy);
     await exportTableAsPdf(copy, props.exportName);

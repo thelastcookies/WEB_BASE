@@ -10,7 +10,6 @@ export const generateThemeStyle = (tokens: GlobalToken) => {
   let style = `:root {`;
   Object.entries(tokens).forEach(([key, value]) => {
     style += `--${key}: ${value};`;
-    console.log(`--${key}: ${value};`);
   });
   style += `}`;
   styleDom.textContent = style;
