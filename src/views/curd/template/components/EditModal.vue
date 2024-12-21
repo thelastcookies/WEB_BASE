@@ -1,10 +1,10 @@
 <script setup lang="ts">
-import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import { message } from 'ant-design-vue';
+import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
-import type { DataRecord } from '@/views/curd/template-page/types';
 import type { EditEnum as EditEnumType } from '@/constants/enums';
+import type { TemplateMockRecord } from '@/views/curd/template/types';
 
 const open = defineModel('open', { default: false });
 
@@ -31,7 +31,7 @@ const title = computed(() => {
 });
 
 const formRef = ref<FormInstance>();
-const formData = ref<DataRecord>({});
+const formData = ref<TemplateMockRecord>({});
 
 const rules: Record<string, Rule[]> = {};
 

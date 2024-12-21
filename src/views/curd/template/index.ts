@@ -1,6 +1,6 @@
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type { TableColumnProps } from 'ant-design-vue';
-import type { DataRecord } from '@/views/curd/template-page/types';
+import type { TemplateMockRecord } from '@/views/curd/template/types';
 
 export const queryFields: QueryFormField[] = [
   {
@@ -98,7 +98,7 @@ export const mockData = {
   'success': true,
   'errorCode': 0,
   'msg': 'string',
-  'data': [
+  'data': <TemplateMockRecord[]>[
     {
       id: '1',
       field1: 'r1field1',
@@ -200,6 +200,6 @@ export const mockData = {
       field2: 'r4field2',
       field3: 'r4field3',
     },
-  ] as DataRecord[],
+  ],
   'total': 256,
 };

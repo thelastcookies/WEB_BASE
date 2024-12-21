@@ -1,10 +1,11 @@
 <script setup lang="ts">
-import type { Key, Recordable } from '@/types';
 import { message, type TablePaginationConfig } from 'ant-design-vue';
+import { mockData, queryFields, tableColumns } from '@/views/curd/template/index.ts';
+import EditModal from '@/views/curd/template/components/EditModal.vue';
+import type { Key, Recordable } from '@/types';
 import type QueryForm from '@/components/common/query-form/QueryForm.vue';
-import { mockData, queryFields, tableColumns } from '@/views/curd/template-page/index.ts';
-import EditModal from '@/views/curd/template-page/components/EditModal.vue';
-import type { DataRecord } from '@/views/curd/template-page/types';
+import type { TemplateMockRecord } from '@/views/curd/template/types';
+import type { EditEnum as EditEnumType } from '@/constants/enums';
 
 /**
  * 查询栏
@@ -25,7 +26,7 @@ onMounted(() => {
 /**
  * table 属性与方法
  */
-const list = ref<DataRecord[]>([]);
+const list = ref<TemplateMockRecord[]>([]);
 const loading = ref(false);
 
 const selectedRowKeys = ref<Key[]>([]);
@@ -59,11 +60,11 @@ const handleTableChange = (p: TablePaginationConfig) => {
 /**
  * 模态框
  */
-const modalOpen = ref(false);
-const modalType = ref(EditEnum.VIEW);
-const modalData = ref({} as DataRecord);
+const modalOpen = ref<boolean>(false);
+const modalType = ref<EditEnumType>(EditEnum.VIEW);
+const modalData = ref<TemplateMockRecord>({});
 
-const handleEdit = (type: number, data?: DataRecord) => {
+const handleEdit = (type: EditEnumType, data?: TemplateMockRecord) => {
   modalOpen.value = true;
   modalType.value = type;
   if (type === EditEnum.EDIT || type === EditEnum.VIEW) {
