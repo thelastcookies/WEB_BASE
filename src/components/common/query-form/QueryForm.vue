@@ -31,7 +31,9 @@ const emit = defineEmits<{
 const slots = useSlots();
 const slotsCount = Object.keys(slots).length;
 
-const ITEM_IN_LINE = props.itemInLine;
+const { deviceType } = useAppStore();
+
+const ITEM_IN_LINE = deviceType === 'desktop' ? props.itemInLine : 1;
 const SPAN = 24 / ITEM_IN_LINE;
 
 const formRef = ref<FormInstance>();
@@ -98,7 +100,7 @@ const handleClear = () => {
   <a-form
     ref="formRef"
     name="查询表单"
-    class="w-full ant-advanced-search-form"
+    class="w-full px-2 ant-advanced-search-form"
     :labelCol="{span: 6}"
     :wrapperCol="{span: 18}"
     :hideRequiredMark="true"
@@ -107,9 +109,9 @@ const handleClear = () => {
     @finish="onFinish"
     @finishFailed="onFinishFailed"
   >
-    <a-row :gutter="16">
+    <a-row>
       <template v-for="(item, idx) in fields" :key="idx">
-        <a-col v-show="expand || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="SPAN">
+        <a-col v-show="expand || idx === 0 || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="SPAN">
           <a-form-item
             :name="item.field"
             :label="item.label"
