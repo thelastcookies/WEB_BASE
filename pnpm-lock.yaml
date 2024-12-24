@@ -124,7 +124,7 @@ importers:
         specifier: 5.4.6
         version: 5.4.6(@types/node@20.11.30)(less@4.2.0)
       vite-plugin-vue-devtools:
-        specifier: ^7.6.8
+        specifier: latest
         version: 7.6.8(rollup@4.27.2)(vite@5.4.6(@types/node@20.11.30)(less@4.2.0))(vue@3.4.33(typescript@5.4.3))
       vue-tsc:
         specifier: ^2.0.6
