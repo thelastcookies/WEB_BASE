@@ -19,8 +19,8 @@ const props = withDefaults(defineProps<{
 const sizeStyle = computed(() => {
   if (props.type === 'iconify') {
     return {
-      height: `${Number(props.size) * 1.1}em`,
-      width: `${Number(props.size) * 1.1}em`,
+      height: `${Number(props.size)}rem`,
+      width: `${Number(props.size)}rem`,
     };
   } else {
     return {
