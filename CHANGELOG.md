@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.25.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.24.0...v0.25.0) (2024-12-25)
+
+
+### Features
+
+* 提交演示功能 ([96e687b](https://github.com/thelastcookies/WEB-BASE/commit/96e687b2f752e089b8c1ae81e8583f68cc2ca347))
+
 ## [0.24.0](https://github.com/thelastcookies/WEB-BASE/compare/v0.23.0...v0.24.0) (2024-12-24)
 
 
