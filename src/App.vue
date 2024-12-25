@@ -15,6 +15,7 @@ tryOnMounted(() => {
     generateThemeStyle(token.value);
   });
 });
+console.log('test');
 </script>
 
 <template>
