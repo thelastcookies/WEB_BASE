@@ -16,6 +16,12 @@ tryOnMounted(() => {
   });
 });
 console.log('test');
+console.log('test');
+console.log('test');
+console.log('test');
+console.log('test');
+console.log('test');
+console.log('test');
 </script>
 
 <template>
