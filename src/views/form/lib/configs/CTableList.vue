@@ -24,6 +24,6 @@
   <!--  </el-form-item>-->
 </template>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 
 </style>

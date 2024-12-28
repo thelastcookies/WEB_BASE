@@ -204,7 +204,7 @@ const goForward = () => {
 </template>
 
 
-<style lang="less" scoped>
+<style scoped lang="less">
 @keyframes scan-ani {
   0% {
     top: 20px

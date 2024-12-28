@@ -30,6 +30,6 @@
   </div>
 </template>
 
-<style lang="less" scoped>
+<style scoped lang="less">
 
 </style>
