@@ -16,7 +16,27 @@
     "ant.control-height-sm": "var(--controlHeightSM)",
     "ant.control-height-xs": "var(--controlHeightXS)",
     "ant.control-height-lg": "var(--controlHeightLG)",
-    "custom.margin-size": "var(--marginSize)"
+    "custom.margin-size": "var(--marginSize)",
+    "ant.screen-xs": "var(--screenXS)",
+    "ant.screen-xs-min": "var(--screenXSMin)",
+    "ant.screen-xs-max": "var(--screenXSMax)",
+    "ant.screen-sm": "var(--screenSM)",
+    "ant.screen-sm-min": "var(--screenSMMin)",
+    "ant.screen-sm-max": "var(--screenSMMax)",
+    "ant.screen-md": "var(--screenMD)",
+    "ant.screen-md-min": "var(--screenMDMin)",
+    "ant.screen-md-max": "var(--screenMDMax)",
+    "ant.screen-lg": "var(--screenLG)",
+    "ant.screen-lg-min": "var(--screenLGMin)",
+    "ant.screen-lg-max": "var(--screenLGMax)",
+    "ant.screen-xl": "var(--screenXL)",
+    "ant.screen-xl-min": "var(--screenXLMin)",
+    "ant.screen-xl-max": "var(--screenXLMax)",
+    "ant.screen-xxl": "var(--screenXXL)",
+    "ant.screen-xxl-min": "var(--screenXXLMin)",
+    "ant.screen-xxl-max": "var(--screenXXLMax)",
+    "ant.screen-xxxl": "var(--screenXXXL)",
+    "ant.screen-xxxl-min": "var(--screenXXXLMin)"
   },
   "zIndex": {
     "ant.base": "var(--zIndexBase)",
@@ -50,7 +70,11 @@
     "ant.fs-heading2": "var(--fontSizeHeading2)",
     "ant.fs-heading3": "var(--fontSizeHeading3)",
     "ant.fs-heading4": "var(--fontSizeHeading4)",
-    "ant.fs-heading5": "var(--fontSizeHeading5)"
+    "ant.fs-heading5": "var(--fontSizeHeading5)",
+    "ant.fs-icon": "var(--fontSizeIcon)"
+  },
+  "fontWeight": {
+    "ant.font-weight-strong": "var(--fontWeightStrong)"
   },
   "lineHeight": {
     "ant.lh-md": "var(--lineHeight)",
@@ -288,6 +312,88 @@
     "ant.info-text": "var(--colorInfoText)",
     "ant.info-text-active": "var(--colorInfoTextActive)",
     "ant.bg-mask": "var(--colorBgMask)",
-    "ant.white": "var(--colorWhite)"
+    "ant.white": "var(--colorWhite)",
+    "ant.link": "var(--colorLink)",
+    "ant.link-hover": "var(--colorLinkHover)",
+    "ant.link-active": "var(--colorLinkActive)",
+    "ant.fill-content": "var(--colorFillContent)",
+    "ant.fill-content-hover": "var(--colorFillContentHover)",
+    "ant.fill-alter": "var(--colorFillAlter)",
+    "ant.bg-container-disabled": "var(--colorBgContainerDisabled)",
+    "ant.border-bg": "var(--colorBorderBg)",
+    "ant.split": "var(--colorSplit)",
+    "ant.text-placeholder": "var(--colorTextPlaceholder)",
+    "ant.text-disabled": "var(--colorTextDisabled)",
+    "ant.text-heading": "var(--colorTextHeading)",
+    "ant.text-label": "var(--colorTextLabel)",
+    "ant.text-description": "var(--colorTextDescription)",
+    "ant.text-light-solid": "var(--colorTextLightSolid)",
+    "ant.highlight": "var(--colorHighlight)",
+    "ant.bg-text-hover": "var(--colorBgTextHover)",
+    "ant.bg-text-active": "var(--colorBgTextActive)",
+    "ant.icon": "var(--colorIcon)",
+    "ant.icon-hover": "var(--colorIconHover)",
+    "ant.error-outline": "var(--colorErrorOutline)",
+    "ant.warning-outline": "var(--colorWarningOutline)"
+  },
+  "control": {
+    "ant.outline-width": "var(--controlOutlineWidth)",
+    "ant.interactive-size": "var(--controlInteractiveSize)",
+    "ant.item-bg-hover": "var(--controlItemBgHover)",
+    "ant.item-bg-active": "var(--controlItemBgActive)",
+    "ant.item-bg-active-hover": "var(--controlItemBgActiveHover)",
+    "ant.item-bg-active-disabled": "var(--controlItemBgActiveDisabled)",
+    "ant.tmp-outline": "var(--controlTmpOutline)",
+    "ant.outline": "var(--controlOutline)",
+    "ant.padding-horizontal": "var(--controlPaddingHorizontal)",
+    "ant.padding-horizontal-sm": "var(--controlPaddingHorizontalSM)"
+  },
+  "opacity": {
+    "ant.loading": "var(--opacityLoading)"
+  },
+  "underline": {
+    "ant.link-decoration": "var(--linkDecoration)",
+    "ant.link-hover-decoration": "var(--linkHoverDecoration)",
+    "ant.link-focus-decoration": "var(--linkFocusDecoration)"
+  },
+  "padding": {
+    "ant.xxs": "var(--paddingXXS)",
+    "ant.xs": "var(--paddingXS)",
+    "ant.sm": "var(--paddingSM)",
+    "ant.p": "var(--padding)",
+    "ant.md": "var(--paddingMD)",
+    "ant.lg": "var(--paddingLG)",
+    "ant.xl": "var(--paddingXL)",
+    "ant.content-horizontal-lg": "var(--paddingContentHorizontalLG)",
+    "ant.content-vertical-lg": "var(--paddingContentVerticalLG)",
+    "ant.content-horizontal": "var(--paddingContentHorizontal)",
+    "ant.content-vertical": "var(--paddingContentVertical)",
+    "ant.content-horizontal-sm": "var(--paddingContentHorizontalSM)",
+    "ant.content-vertical-sm": "var(--paddingContentVerticalSM)"
+  },
+  "margin": {
+    "ant.xxs": "var(--marginXXS)",
+    "ant.xs": "var(--marginXS)",
+    "ant.sm": "var(--marginSM)",
+    "ant.m": "var(--margin)",
+    "ant.md": "var(--marginMD)",
+    "ant.lg": "var(--marginLG)",
+    "ant.xl": "var(--marginXL)",
+    "ant.xxl": "var(--marginXXL)"
+  },
+  "boxShadow": {
+    "ant.bs": "var(--boxShadow)",
+    "ant.secondary": "var(--boxShadowSecondary)",
+    "ant.tertiary": "var(--boxShadowTertiary)",
+    "ant.popover-arrow": "var(--boxShadowPopoverArrow)",
+    "ant.card": "var(--boxShadowCard)",
+    "ant.drawer-right": "var(--boxShadowDrawerRight)",
+    "ant.drawer-left": "var(--boxShadowDrawerLeft)",
+    "ant.drawer-up": "var(--boxShadowDrawerUp)",
+    "ant.drawer-down": "var(--boxShadowDrawerDown)",
+    "ant.tabs-overflow-left": "var(--boxShadowTabsOverflowLeft)",
+    "ant.tabs-overflow-right": "var(--boxShadowTabsOverflowRight)",
+    "ant.tabs-overflow-top": "var(--boxShadowTabsOverflowTop)",
+    "ant.tabs-overflow-bottom": "var(--boxShadowTabsOverflowBottom)"
   }
 }
