@@ -111,7 +111,7 @@ const handleClear = () => {
   >
     <a-row>
       <template v-for="(item, idx) in fields" :key="idx">
-        <a-col v-show="expand || idx === 0 || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="SPAN">
+        <a-col v-show="expand || idx === 0 || idx < (ITEM_IN_LINE - slotsCount - 1)" :span="item.colSpan || SPAN">
           <a-form-item
             :name="item.field"
             :label="item.label"
