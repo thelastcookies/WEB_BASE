@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue';
 import type { FormInstance } from 'ant-design-vue/es/form/Form';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';

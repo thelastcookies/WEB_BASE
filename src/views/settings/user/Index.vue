@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Key, Recordable } from '@/types';
-import { message, type TablePaginationConfig } from 'ant-design-vue';
+import type { TablePaginationConfig } from 'ant-design-vue';
 import type { UserRecord } from '@/api/admin/user/types';
 
 /**

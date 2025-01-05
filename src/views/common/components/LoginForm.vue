@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { LoginRequestBody } from '@/api/admin/home/types';
 import type { Rule } from 'ant-design-vue/es/form';
-import { message } from 'ant-design-vue';
 
 const route = useRoute();
 

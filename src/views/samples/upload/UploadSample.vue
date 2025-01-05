@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import type { Recordable } from '@/types';
-import { message, type UploadProps } from 'ant-design-vue';
+import type { UploadProps } from 'ant-design-vue';
 import type { UploadChangeParam } from 'ant-design-vue/es/upload/interface';
 import type { UploadResponseBody } from '@/api/admin/upload/types';
 

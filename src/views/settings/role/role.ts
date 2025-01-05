@@ -1,4 +1,4 @@
-import { TableColumnProps } from 'ant-design-vue';
+import type { TableColumnProps } from 'ant-design-vue';
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type { DefaultOptionType } from 'ant-design-vue/es/vc-select/Select';
 import type { RoleRecord } from '@/api/admin/role/types';

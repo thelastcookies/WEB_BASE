@@ -2,9 +2,7 @@
  * 提供 axios 实例，配置请求拦截器、响应拦截器和错误处理
  */
 import type { AxiosError, AxiosInstance, AxiosRequestConfig, AxiosResponse, InternalAxiosRequestConfig } from 'axios';
-import axios from 'axios';
 import type { NamingStyleTransfer } from '@/constants/enums/naming-style.ts';
-import { message } from 'ant-design-vue';
 
 export interface RequestConfigExtra {
   // 请求时是否携带 token

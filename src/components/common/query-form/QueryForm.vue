@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { type FormInstance, message } from 'ant-design-vue';
+import type { FormInstance } from 'ant-design-vue';
 import type { QueryFormField } from '@/components/common/query-form/types';
 import type { Recordable } from '@/types';
 import type { Rule } from 'ant-design-vue/es/form';

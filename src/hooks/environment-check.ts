@@ -1,5 +1,3 @@
-import { notification } from 'ant-design-vue';
-
 /**
  * 浏览器版本号对齐至 2022.09
  */

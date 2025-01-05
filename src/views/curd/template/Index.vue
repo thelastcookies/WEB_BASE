@@ -1,7 +1,7 @@
 <script setup lang="ts">
-import { message, type TablePaginationConfig } from 'ant-design-vue';
-import { mockData, queryFields, tableColumns } from '@/views/curd/template/index.ts';
 import EditModal from '@/views/curd/template/components/EditModal.vue';
+import { mockData, queryFields, tableColumns } from '@/views/curd/template/index.ts';
+import type { TablePaginationConfig } from 'ant-design-vue';
 import type { Key, Recordable } from '@/types';
 import type QueryForm from '@/components/common/query-form/QueryForm.vue';
 import type { TemplateMockRecord } from '@/views/curd/template/types';

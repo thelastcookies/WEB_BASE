@@ -1,5 +1,3 @@
-import { message } from 'ant-design-vue';
-
 const loginPath = '/login';
 const samplePath = '/sample';
 const accessWhileList = [loginPath, '/error', '/401', '/403', '/404', '/500'];

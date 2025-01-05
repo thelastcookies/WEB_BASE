@@ -1,4 +1,3 @@
-import { App } from 'ant-design-vue';
 import Bowser from 'bowser';
 import type { MessageInstance } from 'ant-design-vue/es/message/interface';
 import type { ModalStaticFunctions } from 'ant-design-vue/es/modal/confirm';

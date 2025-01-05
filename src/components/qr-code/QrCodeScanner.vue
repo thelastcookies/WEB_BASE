@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import jsQR, { type QRCode } from 'jsqr';
-import { message } from 'ant-design-vue';
 
 const active = defineModel<boolean>('active');
 

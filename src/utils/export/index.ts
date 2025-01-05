@@ -5,7 +5,6 @@ import type { jsPDFOptions } from 'jspdf';
 import { jsPDF } from 'jspdf';
 import html2canvas from 'html2canvas';
 import FileSaver from 'file-saver';
-import { message } from 'ant-design-vue';
 
 /**
  * exportJsonAsXlsx: 以 JSON 为数据源导出为 Excel

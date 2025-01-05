@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import type { Key, Recordable } from '@/types';
 import type { RoleRecord } from '@/api/admin/role/types';
-import { message } from 'ant-design-vue';
 
 /**
  * table 属性与方法

@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue';
-
 const scannerActive = ref(false);
 
 const codeScanned = (content: string) => {

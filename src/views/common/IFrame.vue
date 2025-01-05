@@ -1,6 +1,5 @@
 <script setup lang="ts">
 import type { IFrameMessage } from '@/types';
-import { message } from 'ant-design-vue';
 
 const route = useRoute();
 const url = computed(() => route?.meta?.href as string);

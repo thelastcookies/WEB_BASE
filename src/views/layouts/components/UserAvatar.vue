@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue';
 import type { MenuInfo } from 'ant-design-vue/es/menu/src/interface';
 
 withDefaults(defineProps<{

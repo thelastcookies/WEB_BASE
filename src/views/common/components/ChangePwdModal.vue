@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { message } from 'ant-design-vue';
 import type { Rule } from 'ant-design-vue/es/form';
 import type { ValidateErrorEntity } from 'ant-design-vue/es/form/interface';
 import type { ChangePwdRequestBody } from '@/api/admin/home/types';

@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { Empty, message } from 'ant-design-vue';
 import type { EditEnum as EditEnumType } from '@/constants/enums';
 import type { Recordable } from '@/types';
 import type { ActionResponseRecord } from '@/api/admin/action/types';

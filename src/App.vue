@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import { legacyLogicalPropertiesTransformer, theme } from 'ant-design-vue';
 import zhCN from 'ant-design-vue/es/locale/zh_CN';
 
 const themeStore = useThemeStore();
