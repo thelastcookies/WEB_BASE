@@ -1,5 +1,4 @@
 <script setup lang="ts">
-import Parent from '@/views/common/Parent.vue';
 import type { TreeNode } from '@/utils/tree';
 import type { ActionRecordRaw } from '@/types/action';
 
@@ -34,7 +33,13 @@ watch(actionTree, (tree: TreeNode<ActionRecordRaw>[]) => {
       <a-layout>
         <PageHeader v-if="deviceType === 'desktop'"></PageHeader>
         <a-layout-content overflow-x-hidden overflow-y-auto>
-          <Parent />
+          <RouterView v-slot="{ Component, route }">
+            <Transition appear name="slide-fade" mode="out-in">
+              <KeepAlive>
+                <component :is="Component" :key="route.fullPath" />
+              </KeepAlive>
+            </Transition>
+          </RouterView>
         </a-layout-content>
       </a-layout>
     </a-layout>

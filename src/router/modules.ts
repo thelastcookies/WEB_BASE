@@ -10,6 +10,11 @@ const modules = import.meta.glob([
   '!/src/views/**/test',
 ]);
 
+/**
+ * v0.25.0 版本移除 Parent 组件
+ * 使用 VueRouter 官方提供的「忽略父组件」方法解决嵌套 RouterView 的 KeepAlive 问题
+ * https://router.vuejs.org/zh/guide/essentials/nested-routes.html#忽略父组件
+ */
 export const basicRouteMap = {
   // 用于 App 的根页面
   Layout: () => import('@/views/layouts/Layout.vue'),
@@ -17,8 +22,6 @@ export const basicRouteMap = {
   IFrame: () => import('@/views/common/IFrame.vue'),
   // 用于链接跳转的页面
   Link: () => import('@/views/common/Link.vue'),
-  // 用于存在 children 的页面
-  Parent: () => import('@/views/common/Parent.vue'),
   // 空页面
   ComponentError: () => import('@/views/exceptions/ComponentError.vue'),
 };
